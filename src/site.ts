@@ -14,15 +14,18 @@ export const SITE = {
   lang: 'de',
 } as const;
 
-/** Angaben für Impressum, Datenschutz und E-E-A-T. Vor Livegang ersetzen. */
+/**
+ * Angaben für Impressum und Datenschutz.
+ * Übernommen von octa-ai.app/imprint.
+ */
 export const OWNER = {
-  name: '[PLATZHALTER: Vor- und Nachname]',
-  street: '[PLATZHALTER: Straße und Hausnummer]',
-  city: '[PLATZHALTER: PLZ und Ort]',
+  /** Marke / Geschäftsbezeichnung */
+  brand: 'octa AI — Intelligent Learning Solutions',
+  name: 'Mathias Horner',
+  street: 'Heinrichsallee 42',
+  city: '52062 Aachen',
   country: 'Deutschland',
-  email: '[PLATZHALTER: kontakt@octastudy.com]',
-  /** Optional, nur falls vorhanden: */
-  vatId: '[PLATZHALTER: USt-IdNr. oder Zeile löschen]',
+  email: 'info@octaai.com',
 } as const;
 
 /** Redaktion — für E-E-A-T und Article-Markup auf den Schema-Seiten */
@@ -53,11 +56,11 @@ export type NavItem = {
 export const NAV: NavItem[] = [
   { label: 'Schemata', href: '/schemata/' },
   { label: 'Tools', href: '/tools/' },
-  { label: 'Über uns', href: '/ueber-uns/' },
+  // { label: 'Über uns', href: '/ueber-uns/' },  ← wieder einblenden, sobald Autor + Gegenleser feststehen
 ];
 
 export const FOOTER_NAV: NavItem[] = [
-  { label: 'Über uns', href: '/ueber-uns/' },
+  // { label: 'Über uns', href: '/ueber-uns/' },  ← siehe oben
   { label: 'Impressum', href: '/impressum/' },
   { label: 'Datenschutz', href: '/datenschutz/' },
 ];

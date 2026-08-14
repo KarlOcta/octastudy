@@ -12,9 +12,12 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Rechtsseiten gehoeren nicht in die Sitemap
+      // Rechtsseiten und ausgeblendete Seiten gehoeren nicht in die Sitemap
       filter: (page) =>
-        !page.includes('/impressum/') && !page.includes('/datenschutz/'),
+        !page.includes('/impressum/') &&
+        !page.includes('/datenschutz/') &&
+        // Vorerst ausgeblendet — Zeile entfernen, wenn /ueber-uns/ live geht
+        !page.includes('/ueber-uns/'),
     }),
   ],
 });

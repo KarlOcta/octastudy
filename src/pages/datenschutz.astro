@@ -12,22 +12,12 @@ import { OWNER, SITE } from '../site';
   <div class="prose">
     <h1>Datenschutzerklärung</h1>
 
-    <div class="note">
-      <p>
-        <strong>Hinweis für die Redaktion:</strong> Diese Erklärung beschreibt den
-        aktuellen technischen Stand der Seite (statisches Hosting auf GitHub
-        Pages, keine Cookies, kein Tracking, keine externen Schriftarten). Sobald
-        Analytics, Formulare, eingebettete Videos oder ein CDN dazukommen, muss
-        sie ergänzt werden. Platzhalter in <code>src/site.ts</code> ersetzen und
-        den Text vor dem Livegang juristisch prüfen lassen.
-      </p>
-    </div>
-
     <h2>1. Verantwortlicher</h2>
     <p>
       Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
     </p>
     <p>
+      {OWNER.brand}<br />
       {OWNER.name}<br />
       {OWNER.street}<br />
       {OWNER.city}<br />
