@@ -1,89 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { OCTA } from '../site';
+
+/** Fächer mit eigenem Content-Cluster. */
+const faecher = [
+  {
+    title: 'Rechtswissenschaft',
+    href: '/schemata/',
+    text: 'Prüfungsschemata zu den klassischen Klausurparagrafen — vollständig aufgebaut, mit Definitionen, Streitständen, PDF und Karteikarten-Deck.',
+    status: 'live',
+  },
+];
+
+/** Geplante Fächer — nur als Ausblick, bewusst ohne eigene Kachel. */
+const geplant = [
+  'BWL & Wirtschaft',
+  'Sportwissenschaften',
+  'Wirtschaftsingenieurwesen',
+  'Bauingenieurwesen',
+];
 ---
 
 <BaseLayout
   title="Startseite"
-  description="Vollständige Prüfungsschemata zum Ausklappen und Ausdrucken, kostenlose Lerntools und fertige Karteikarten-Decks — für Studierende, die effizienter lernen wollen."
+  description="Lernmaterial für dein Studium: fertige Prüfungsschemata, PDFs zum Ausdrucken, Karteikarten-Decks und kostenlose Lerntools. Ohne Anmeldung, direkt nutzbar."
   wide
 >
-  <section class="hero wrap">
-    <div class="hero__text">
-      <p class="eyebrow">Lernmaterial statt Textwüste</p>
-      <h1>Unterlagen, mit denen du tatsächlich lernst.</h1>
+  <section class="hero">
+    <div class="hero__inner wrap">
+      <p class="eyebrow">Lernmaterial für dein Studium</p>
+      <h1>Material, mit dem du <span class="hl">tatsächlich</span> lernst.</h1>
       <p class="lead">
-        Kein weiterer Blogartikel, der dir dein Thema „erklärt“. Hier bekommst du
-        das, was du in der Klausurvorbereitung wirklich brauchst: vollständige
-        Prüfungsschemata, PDFs zum Ausdrucken, fertige Karteikarten-Decks und
-        Rechner, die dir Arbeit abnehmen. Kostenlos und ohne Anmeldung.
+        Kein weiterer Artikel, der dir dein Thema erklärt — das stand schon im
+        Skript. Hier liegt das, womit in der Prüfungsvorbereitung wirklich
+        gearbeitet wird: fertige Schemata, PDFs zum Ausdrucken,
+        Karteikarten-Decks und Rechner, die dir Arbeit abnehmen. Kostenlos und
+        ohne Anmeldung.
       </p>
-      <div class="btn-row">
-        <a class="btn" href="/schemata/">Zu den Prüfungsschemata</a>
-        <a class="btn btn--ghost" href="/tools/">Lerntools ansehen</a>
-      </div>
     </div>
   </section>
 
   <section class="wrap">
-    <h2>Was dich hier erwartet</h2>
+    <h2 class="rule">Fächer</h2>
     <div class="grid">
-      <a class="card" href="/schemata/">
-        <span class="card__tag">Jura</span>
-        <h3>Prüfungsschemata</h3>
-        <p>
-          Jeder Paragraf mit vollständigem, hierarchisch aufgeklapptem Schema,
-          den Definitionen der Tatbestandsmerkmale, den wichtigsten
-          Streitständen — plus PDF und Karteikarten zum Mitnehmen.
-        </p>
-      </a>
+      {
+        faecher.map((fach) => (
+          <a class="card" href={fach.href}>
+            <span class="card__tag">Verfügbar</span>
+            <h3>{fach.title}</h3>
+            <p>{fach.text}</p>
+            <p class="card__more">Zu den Schemata →</p>
+          </a>
+        ))
+      }
+    </div>
+    <p class="upcoming">
+      <span class="upcoming__label">In Vorbereitung:</span>
+      {geplant.join(' · ')}
+    </p>
+  </section>
 
+  <section class="wrap">
+    <h2 class="rule">Tools</h2>
+    <p class="section-intro">
+      Fachunabhängig, laufen komplett in deinem Browser — deine Eingaben
+      verlassen dein Gerät nicht.
+    </p>
+    <div class="grid">
       <a class="card" href="/tools/#notendurchschnitt-rechner">
-        <span class="card__tag">Für alle Studiengänge</span>
         <h3>Notendurchschnitt-Rechner</h3>
         <p>
           Gewichteter Schnitt aus deinen Modulnoten — Bachelor, Master, Abitur.
-          Läuft komplett in deinem Browser, deine Noten verlassen dein Gerät
-          nicht.
         </p>
       </a>
-
       <a class="card" href="/tools/#lerntyp-test">
-        <span class="card__tag">Für alle Studiengänge</span>
         <h3>Lerntyp-Test</h3>
         <p>
-          Acht Fragen, sechs Lernprofile. Danach weißt du, ob du beim Lesen,
-          Hören, Sprechen oder Aufschreiben tatsächlich etwas behältst — und
-          worauf du deine Zeit besser nicht verschwendest.
+          Acht Fragen, sechs Profile — und eine konkrete Empfehlung, wie du dein
+          Material aufbereiten solltest.
         </p>
       </a>
     </div>
-  </section>
-
-  <section class="wrap">
-    <h2>Warum Schemata und keine Erklärtexte</h2>
-    <p>
-      Wer sich auf eine Klausur vorbereitet, braucht keine erneute Einführung ins
-      Thema — die stand schon im Skript. Gebraucht wird die Struktur: Welche
-      Punkte müssen in welcher Reihenfolge geprüft werden, was gehört in den
-      objektiven, was in den subjektiven Tatbestand, wo lauert der Streitstand,
-      den der Korrektor sehen will.
-    </p>
-    <p>
-      Deshalb ist jede Seite hier auf ein Artefakt gebaut, das du mitnehmen
-      kannst: ein Schema zum Ausklappen, ein PDF für den Ordner, ein Deck für die
-      Abfrage. Kein Material, das du nach dem Lesen wieder schließt.
-    </p>
   </section>
 
   <section class="wrap">
     <div class="octa-cta">
-      <h2>Und dann abfragen lassen</h2>
+      <h2>Gelesen ist nicht gekonnt</h2>
       <p>
-        Ein Schema gelesen zu haben heißt nicht, es zu können. {OCTA.pitch} Lade
-        dein Skript oder das Schema-PDF von hier hoch — die Karteikarten
-        entstehen automatisch, und du sprichst die Antworten laut, statt sie nur
-        stumm zu überfliegen.
+        Material durchzuarbeiten heißt nicht, es zu können. {OCTA.pitch} Lade
+        dein Skript oder ein PDF von hier hoch — die Karteikarten entstehen
+        automatisch, und du sprichst die Antworten laut, statt sie stumm zu
+        überfliegen.
       </p>
       <div class="btn-row">
         <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
@@ -95,13 +102,19 @@ import { OCTA } from '../site';
 </BaseLayout>
 
 <style>
+  /* Schlichter Hintergrund — Farbe kommt ueber Boxen und Balken in die Seite,
+     nicht ueber grossflaechige Verlaeufe. */
   .hero {
-    padding-block: 1rem 3.5rem;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    padding-block: 0.5rem 3rem;
   }
 
-  .hero__text {
+  .hero__inner {
+    max-width: min(var(--w-wide), 100%);
+  }
+
+  .hero__inner > * {
     max-width: 42rem;
   }
 
@@ -109,7 +122,33 @@ import { OCTA } from '../site';
     margin-bottom: 1.1rem;
   }
 
+  .section-intro {
+    color: var(--text-muted);
+    max-width: 40rem;
+    margin-top: -0.35rem;
+  }
+
+  .card__more {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .upcoming {
+    margin-top: 0.25rem;
+    color: var(--text-subtle);
+    font-size: 0.95rem;
+  }
+
+  .upcoming__label {
+    font-weight: 650;
+    color: var(--text-muted);
+    margin-right: 0.4em;
+  }
+
   section + section {
-    margin-top: 1rem;
+    margin-top: 2.5rem;
   }
 </style>
