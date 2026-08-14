@@ -1,0 +1,91 @@
+---
+import { FOOTER_NAV, SITE } from '../site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__brand">
+      <strong>{SITE.name}</strong><br />
+      <span class="text-muted">{SITE.tagline}</span>
+    </p>
+
+    <nav aria-label="Rechtliches und Zusatzinformationen">
+      <ul>
+        {
+          FOOTER_NAV.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrap site-footer__legal">
+    <p>
+      © {year} {SITE.name}. Alle Inhalte dienen ausschließlich Lernzwecken und
+      stellen keine Rechtsberatung dar.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
+    padding-block: 2.5rem 1.75rem;
+    font-size: 0.95rem;
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .site-footer__brand {
+    max-width: 26rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .site-footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+  }
+
+  .site-footer nav li {
+    margin-top: 0;
+  }
+
+  .site-footer nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .site-footer nav a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .site-footer__legal {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .site-footer__legal p {
+    margin: 0;
+    color: var(--text-subtle);
+    font-size: 0.87rem;
+  }
+</style>

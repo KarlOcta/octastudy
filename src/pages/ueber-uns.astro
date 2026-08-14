@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR, OCTA, REVIEWER, SITE } from '../site';
+---
+
+<BaseLayout
+  title="Über uns"
+  description="Wer hinter octastudy.com steht, wie die Inhalte entstehen, wie KI dabei eingesetzt wird und wer die juristischen Seiten fachlich gegenliest."
+  breadcrumbs={[{ label: 'Über uns', href: '/ueber-uns/' }]}
+>
+  <div class="prose">
+    <p class="eyebrow">Transparenz</p>
+    <h1>Wer hier schreibt — und wie</h1>
+    <p class="lead">
+      Lernmaterial ist nur so viel wert wie die Sorgfalt, mit der es entsteht.
+      Deshalb steht hier offen, wer die Inhalte macht, wie sie geprüft werden und
+      an welcher Stelle KI im Spiel ist.
+    </p>
+
+    <h2>Die Idee</h2>
+    <p>
+      {SITE.name} ist aus einer Beobachtung entstanden: Wer sich auf eine Prüfung
+      vorbereitet, sucht selten nach einer Erklärung. Gesucht wird das Material —
+      das Schema, die Struktur, die Karteikarten. Was man stattdessen findet,
+      sind meist lange Artikel, die das Thema noch einmal von vorne aufrollen und
+      am Ende genau die Gliederung schuldig bleiben, wegen der man gesucht hat.
+    </p>
+    <p>
+      Diese Seite dreht das um. Jede Seite hier hat ein Artefakt im Zentrum: ein
+      vollständiges Schema, ein PDF, ein Karteikarten-Deck, einen Rechner. Etwas,
+      das du mitnimmst und benutzt — nicht etwas, das du liest und wieder
+      schließt.
+    </p>
+
+    <h2>Redaktion</h2>
+    <dl class="people">
+      <div>
+        <dt>{AUTHOR.name}</dt>
+        <dd class="people__role">{AUTHOR.role}</dd>
+        <dd>{AUTHOR.bio}</dd>
+      </div>
+      <div>
+        <dt>{REVIEWER.name}</dt>
+        <dd class="people__role">
+          {REVIEWER.role} — fachliches Gegenlesen der juristischen Inhalte
+        </dd>
+        <dd>
+          Prüft jede juristische Seite vor der Veröffentlichung auf inhaltliche
+          Richtigkeit und darauf, ob der Aufbau der gängigen Klausurpraxis
+          entspricht.
+        </dd>
+      </div>
+    </dl>
+
+    <h2>Wie die Inhalte entstehen</h2>
+    <ol>
+      <li>
+        <strong>Recherche am Gesetz und an der Standardliteratur.</strong> Grundlage
+        jedes Schemas ist der Gesetzestext selbst sowie die gängigen Lehrbücher
+        und Kommentare zum jeweiligen Rechtsgebiet.
+      </li>
+      <li>
+        <strong>Aufbau des Schemas.</strong> Die Gliederung folgt der Struktur, die
+        in Klausuren und Hausarbeiten tatsächlich erwartet wird — nicht einer
+        beliebigen thematischen Ordnung.
+      </li>
+      <li>
+        <strong>KI-gestützte Ausarbeitung.</strong> Für Formulierung, Struktur und
+        Aufbereitung setzen wir KI-Werkzeuge ein. Sie schreiben nichts, was
+        anschließend nicht geprüft wird.
+      </li>
+      <li>
+        <strong>Fachliches Gegenlesen.</strong> Vor der Veröffentlichung geht jede
+        juristische Seite durch die fachliche Prüfung. Erst danach geht sie
+        online.
+      </li>
+      <li>
+        <strong>Korrektur.</strong> Fehler passieren. Wenn dir einer auffällt,
+        schreib uns — die Korrektur kommt zügig und wird auf der Seite vermerkt.
+      </li>
+    </ol>
+
+    <h2>Zum Einsatz von KI</h2>
+    <p>
+      Wir halten es für unehrlich, den KI-Einsatz zu verschweigen, und für
+      unnötig, ihn zu dramatisieren. Konkret heißt das: KI hilft beim
+      Strukturieren, Formulieren und Aufbereiten von Material. Sie entscheidet
+      nicht, was fachlich richtig ist. Jede juristische Aussage auf dieser Seite
+      hat ein Mensch mit fachlichem Hintergrund geprüft, bevor sie veröffentlicht
+      wurde.
+    </p>
+
+    <h2>Keine Rechtsberatung</h2>
+    <p>
+      Die juristischen Inhalte auf dieser Seite sind Lernmaterial für die
+      Prüfungsvorbereitung. Sie stellen keine Rechtsberatung dar, beziehen sich
+      auf keinen konkreten Fall und ersetzen in keinem Fall die Beratung durch
+      eine Anwältin oder einen Anwalt.
+    </p>
+
+    <div class="octa-cta">
+      <h2>Was {OCTA.name} damit zu tun hat</h2>
+      <p>
+        Diese Seite gehört zum Team hinter {OCTA.name}, einer Lern-App für
+        Studierende. {OCTA.pitch} Das Material hier funktioniert vollständig ohne
+        die App — die App ist der Schritt danach, wenn du das Gelesene abgefragt
+        haben willst.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .people {
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .people > div {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.4rem;
+  }
+
+  .people dt {
+    font-weight: 650;
+    font-size: 1.05rem;
+  }
+
+  .people dd {
+    margin-left: 0;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+  }
+
+  .people__role {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+</style>

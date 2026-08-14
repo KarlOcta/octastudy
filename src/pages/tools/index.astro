@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Lerntools"
+  description="Kostenlose Tools für Studierende: Notendurchschnitt berechnen und den eigenen Lerntyp bestimmen. Ohne Anmeldung, ohne Datenweitergabe, direkt im Browser."
+  breadcrumbs={[{ label: 'Tools', href: '/tools/' }]}
+  wide
+>
+  <div class="wrap">
+    <p class="eyebrow">Für jeden Studiengang</p>
+    <h1>Lerntools</h1>
+    <p class="lead intro">
+      Kleine Werkzeuge, die eine konkrete Aufgabe abnehmen. Alles läuft direkt in
+      deinem Browser — keine Anmeldung, keine Konten, und deine Eingaben werden
+      nirgendwo gespeichert.
+    </p>
+
+    <div class="grid">
+      <div class="card" id="notendurchschnitt-rechner">
+        <span class="card__tag">In Arbeit</span>
+        <h3>Notendurchschnitt-Rechner</h3>
+        <p>
+          Gewichteter Durchschnitt aus deinen Modulnoten — mit Credit Points für
+          Bachelor und Master, mit Kurshalbjahren fürs Abitur. Inklusive
+          Vorschau, welche Note du noch brauchst, um auf deinen Zielschnitt zu
+          kommen.
+        </p>
+      </div>
+
+      <div class="card" id="lerntyp-test">
+        <span class="card__tag">In Arbeit</span>
+        <h3>Lerntyp-Test</h3>
+        <p>
+          Acht Fragen, sechs Profile. Am Ende steht nicht nur ein Etikett,
+          sondern eine konkrete Empfehlung, wie du dein Material aufbereiten
+          solltest — und welche Lernmethoden bei dir vermutlich Zeitverschwendung
+          sind.
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p>
+        <strong>Beide Tools sind gerade im Aufbau</strong> und gehen als Nächstes
+        online.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 44rem;
+    margin-bottom: 1.75rem;
+  }
+</style>

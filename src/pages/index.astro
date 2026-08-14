@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { OCTA } from '../site';
+---
+
+<BaseLayout
+  title="Startseite"
+  description="Vollständige Prüfungsschemata zum Ausklappen und Ausdrucken, kostenlose Lerntools und fertige Karteikarten-Decks — für Studierende, die effizienter lernen wollen."
+  wide
+>
+  <section class="hero wrap">
+    <div class="hero__text">
+      <p class="eyebrow">Lernmaterial statt Textwüste</p>
+      <h1>Unterlagen, mit denen du tatsächlich lernst.</h1>
+      <p class="lead">
+        Kein weiterer Blogartikel, der dir dein Thema „erklärt“. Hier bekommst du
+        das, was du in der Klausurvorbereitung wirklich brauchst: vollständige
+        Prüfungsschemata, PDFs zum Ausdrucken, fertige Karteikarten-Decks und
+        Rechner, die dir Arbeit abnehmen. Kostenlos und ohne Anmeldung.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="/schemata/">Zu den Prüfungsschemata</a>
+        <a class="btn btn--ghost" href="/tools/">Lerntools ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Was dich hier erwartet</h2>
+    <div class="grid">
+      <a class="card" href="/schemata/">
+        <span class="card__tag">Jura</span>
+        <h3>Prüfungsschemata</h3>
+        <p>
+          Jeder Paragraf mit vollständigem, hierarchisch aufgeklapptem Schema,
+          den Definitionen der Tatbestandsmerkmale, den wichtigsten
+          Streitständen — plus PDF und Karteikarten zum Mitnehmen.
+        </p>
+      </a>
+
+      <a class="card" href="/tools/#notendurchschnitt-rechner">
+        <span class="card__tag">Für alle Studiengänge</span>
+        <h3>Notendurchschnitt-Rechner</h3>
+        <p>
+          Gewichteter Schnitt aus deinen Modulnoten — Bachelor, Master, Abitur.
+          Läuft komplett in deinem Browser, deine Noten verlassen dein Gerät
+          nicht.
+        </p>
+      </a>
+
+      <a class="card" href="/tools/#lerntyp-test">
+        <span class="card__tag">Für alle Studiengänge</span>
+        <h3>Lerntyp-Test</h3>
+        <p>
+          Acht Fragen, sechs Lernprofile. Danach weißt du, ob du beim Lesen,
+          Hören, Sprechen oder Aufschreiben tatsächlich etwas behältst — und
+          worauf du deine Zeit besser nicht verschwendest.
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Warum Schemata und keine Erklärtexte</h2>
+    <p>
+      Wer sich auf eine Klausur vorbereitet, braucht keine erneute Einführung ins
+      Thema — die stand schon im Skript. Gebraucht wird die Struktur: Welche
+      Punkte müssen in welcher Reihenfolge geprüft werden, was gehört in den
+      objektiven, was in den subjektiven Tatbestand, wo lauert der Streitstand,
+      den der Korrektor sehen will.
+    </p>
+    <p>
+      Deshalb ist jede Seite hier auf ein Artefakt gebaut, das du mitnehmen
+      kannst: ein Schema zum Ausklappen, ein PDF für den Ordner, ein Deck für die
+      Abfrage. Kein Material, das du nach dem Lesen wieder schließt.
+    </p>
+  </section>
+
+  <section class="wrap">
+    <div class="octa-cta">
+      <h2>Und dann abfragen lassen</h2>
+      <p>
+        Ein Schema gelesen zu haben heißt nicht, es zu können. {OCTA.pitch} Lade
+        dein Skript oder das Schema-PDF von hier hoch — die Karteikarten
+        entstehen automatisch, und du sprichst die Antworten laut, statt sie nur
+        stumm zu überfliegen.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
+          {OCTA.name} im App Store ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: 1rem 3.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+
+  .hero__text {
+    max-width: 42rem;
+  }
+
+  .hero h1 {
+    margin-bottom: 1.1rem;
+  }
+
+  section + section {
+    margin-top: 1rem;
+  }
+</style>

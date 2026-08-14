@@ -1,0 +1,132 @@
+---
+import { NAV, SITE } from '../site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a href="/" class="logo" aria-label={`${SITE.name} — Startseite`}>
+      <svg
+        class="logo__mark"
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <rect
+          x="2.5"
+          y="2.5"
+          width="19"
+          height="19"
+          rx="5.5"
+          stroke="currentColor"
+          stroke-width="1.6"></rect>
+        <path
+          d="M7.5 12.2 L10.7 15.4 L16.5 9"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <span class="logo__text">octa<span class="logo__accent">study</span></span>
+    </a>
+
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4rem;
+    flex-wrap: wrap;
+    padding-block: 0.6rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 1.24rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .logo__mark {
+    color: var(--accent);
+    flex: none;
+  }
+
+  .logo__accent {
+    color: var(--accent);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  .nav li {
+    margin-top: 0;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.97rem;
+    font-weight: 550;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .nav a:hover {
+    background: var(--bg-soft);
+    color: var(--text);
+  }
+
+  .nav a[aria-current='page'] {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+</style>

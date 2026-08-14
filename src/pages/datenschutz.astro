@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { OWNER, SITE } from '../site';
+---
+
+<BaseLayout
+  title="Datenschutzerklärung"
+  description="Datenschutzerklärung von octastudy.com — welche Daten beim Besuch dieser Website verarbeitet werden und welche Rechte du hast."
+  breadcrumbs={[{ label: 'Datenschutz', href: '/datenschutz/' }]}
+  noindex
+>
+  <div class="prose">
+    <h1>Datenschutzerklärung</h1>
+
+    <div class="note">
+      <p>
+        <strong>Hinweis für die Redaktion:</strong> Diese Erklärung beschreibt den
+        aktuellen technischen Stand der Seite (statisches Hosting auf GitHub
+        Pages, keine Cookies, kein Tracking, keine externen Schriftarten). Sobald
+        Analytics, Formulare, eingebettete Videos oder ein CDN dazukommen, muss
+        sie ergänzt werden. Platzhalter in <code>src/site.ts</code> ersetzen und
+        den Text vor dem Livegang juristisch prüfen lassen.
+      </p>
+    </div>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+      Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+    </p>
+    <p>
+      {OWNER.name}<br />
+      {OWNER.street}<br />
+      {OWNER.city}<br />
+      {OWNER.country}<br />
+      E-Mail: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
+    </p>
+
+    <h2>2. Grundsätzliches zu dieser Website</h2>
+    <p>
+      {SITE.url} ist eine rein statische Website. Es gibt keine Benutzerkonten,
+      keine Kommentarfunktion und keine Anmeldung. Wir setzen <strong
+        >keine Cookies</strong
+      >, <strong>kein Tracking</strong> und <strong>keine Analyse-Werkzeuge</strong
+      > ein. Es werden keine Schriftarten oder Skripte von externen Servern
+      nachgeladen — alle Inhalte werden von unserem Hoster ausgeliefert.
+    </p>
+    <p>
+      Sofern auf dieser Seite interaktive Werkzeuge angeboten werden (etwa ein
+      Notenrechner oder ein Lerntyp-Test), laufen diese vollständig in deinem
+      Browser. Deine Eingaben werden nicht an einen Server übertragen und nicht
+      gespeichert.
+    </p>
+
+    <h2>3. Hosting und Server-Logfiles</h2>
+    <p>
+      Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub,
+      Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (ein
+      Unternehmen von Microsoft).
+    </p>
+    <p>
+      Beim Aufruf einer Seite werden vom Hoster technisch notwendige Daten
+      verarbeitet, die dein Browser automatisch übermittelt:
+    </p>
+    <ul>
+      <li>IP-Adresse des anfragenden Geräts</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Name und URL der abgerufenen Datei</li>
+      <li>übertragene Datenmenge und Meldung über den Abrufstatus</li>
+      <li>verwendeter Browser und Betriebssystem</li>
+      <li>gegebenenfalls die zuvor besuchte Seite (Referrer)</li>
+    </ul>
+    <p>
+      Diese Verarbeitung ist technisch erforderlich, um die Website ausliefern
+      und ihre Stabilität und Sicherheit gewährleisten zu können.
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes
+      Interesse liegt im sicheren und zuverlässigen Betrieb der Website. Wir
+      selbst haben keinen Zugriff auf diese Logdaten und werten sie nicht aus.
+    </p>
+    <p>
+      Da GitHub seinen Sitz in den USA hat, kann eine Übermittlung
+      personenbezogener Daten in ein Drittland nicht ausgeschlossen werden.
+      GitHub stützt solche Übermittlungen auf die Standardvertragsklauseln der
+      Europäischen Kommission. Näheres findest du in der Datenschutzerklärung von
+      GitHub:
+      <a
+        href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+        rel="noopener nofollow">GitHub Privacy Statement</a
+      >.
+    </p>
+
+    <h2>4. Verschlüsselung</h2>
+    <p>
+      Diese Seite wird ausschließlich über eine verschlüsselte
+      HTTPS-Verbindung ausgeliefert. Das Zertifikat wird automatisch von Let's
+      Encrypt über GitHub Pages bereitgestellt.
+    </p>
+
+    <h2>5. Kontaktaufnahme per E-Mail</h2>
+    <p>
+      Wenn du uns per E-Mail kontaktierst, werden deine Angaben zur Bearbeitung
+      der Anfrage und für mögliche Anschlussfragen gespeichert. Rechtsgrundlage
+      ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung
+      von Anfragen) beziehungsweise Art. 6 Abs. 1 lit. b DSGVO, sofern die
+      Anfrage auf einen Vertragsabschluss gerichtet ist. Die Daten werden
+      gelöscht, sobald sie für die Zweckerreichung nicht mehr erforderlich sind
+      und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.
+    </p>
+
+    <h2>6. Externe Links</h2>
+    <p>
+      Diese Website verlinkt an einzelnen Stellen auf externe Angebote, etwa auf
+      den Apple App Store. Beim Anklicken eines solchen Links verlässt du diese
+      Website; ab diesem Zeitpunkt gilt die Datenschutzerklärung des jeweiligen
+      Anbieters. Auf die dortige Datenverarbeitung haben wir keinen Einfluss.
+    </p>
+
+    <h2>7. Deine Rechte</h2>
+    <p>Dir stehen als betroffener Person die folgenden Rechte zu:</p>
+    <ul>
+      <li>
+        <strong>Auskunft</strong> über die zu deiner Person verarbeiteten Daten
+        (Art. 15 DSGVO)
+      </li>
+      <li>
+        <strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)
+      </li>
+      <li><strong>Löschung</strong> (Art. 17 DSGVO)</li>
+      <li>
+        <strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)
+      </li>
+      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+      <li>
+        <strong>Widerspruch</strong> gegen Verarbeitungen, die auf Art. 6 Abs. 1
+        lit. f DSGVO gestützt sind (Art. 21 DSGVO)
+      </li>
+    </ul>
+    <p>
+      Zur Ausübung dieser Rechte genügt eine formlose E-Mail an
+      <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>.
+    </p>
+
+    <h2>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <p>
+      Unbeschadet anderer Rechtsbehelfe hast du das Recht, dich bei einer
+      Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem
+      Mitgliedstaat deines Aufenthaltsorts, deines Arbeitsplatzes oder des Orts
+      des mutmaßlichen Verstoßes (Art. 77 DSGVO).
+    </p>
+
+    <h2>9. Änderungen dieser Datenschutzerklärung</h2>
+    <p>
+      Wir passen diese Datenschutzerklärung an, sobald sich die
+      Datenverarbeitung auf dieser Website ändert — etwa durch neue Funktionen
+      oder eingebundene Dienste. Es gilt jeweils die hier abrufbare Fassung.
+    </p>
+  </div>
+</BaseLayout>

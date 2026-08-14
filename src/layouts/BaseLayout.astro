@@ -1,0 +1,128 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../site';
+import '../styles/global.css';
+
+export type Crumb = { label: string; href: string };
+
+export interface Props {
+  /** Seitentitel ohne Marken-Suffix */
+  title: string;
+  /** Meta-Description, 140–160 Zeichen */
+  description: string;
+  /** Breadcrumb-Pfad ohne Startseite — die wird automatisch vorangestellt */
+  breadcrumbs?: Crumb[];
+  /** Von der Indexierung ausnehmen (z. B. Impressum, Datenschutz, 404) */
+  noindex?: boolean;
+  /** Breite Inhaltsspalte statt Lesebreite */
+  wide?: boolean;
+}
+
+const {
+  title,
+  description,
+  breadcrumbs = [],
+  noindex = false,
+  wide = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const fullTitle =
+  Astro.url.pathname === '/'
+    ? `${SITE.name} — ${SITE.tagline}`
+    : `${title} | ${SITE.name}`;
+
+const containerClass = wide ? 'wrap' : 'prose';
+
+// --- Schema.org --------------------------------------------------------
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'WebSite',
+    '@id': `${SITE.url}/#website`,
+    url: `${SITE.url}/`,
+    name: SITE.name,
+    description: SITE.description,
+    inLanguage: 'de-DE',
+  },
+];
+
+if (breadcrumbs.length > 0) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [{ label: 'Startseite', href: '/' }, ...breadcrumbs].map(
+      (crumb, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: crumb.label,
+        item: new URL(crumb.href, SITE.url).href,
+      })
+    ),
+  });
+}
+
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+    <Header />
+
+    <main id="main">
+      {
+        breadcrumbs.length > 0 && (
+          <div class={containerClass}>
+            <nav class="breadcrumb" aria-label="Brotkrumen-Navigation">
+              <ol>
+                <li>
+                  <a href="/">Startseite</a>
+                </li>
+                {breadcrumbs.map((crumb, i) =>
+                  i === breadcrumbs.length - 1 ? (
+                    <li aria-current="page">{crumb.label}</li>
+                  ) : (
+                    <li>
+                      <a href={crumb.href}>{crumb.label}</a>
+                    </li>
+                  )
+                )}
+              </ol>
+            </nav>
+          </div>
+        )
+      }
+
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
