@@ -18,19 +18,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </p>
 
     <div class="grid">
-      <div class="card" id="notendurchschnitt-rechner">
-        <span class="card__tag">In Arbeit</span>
-        <h3>Notendurchschnitt-Rechner</h3>
-        <p>
-          Gewichteter Durchschnitt aus deinen Modulnoten — mit Credit Points für
-          Bachelor und Master, mit Kurshalbjahren fürs Abitur. Inklusive
-          Vorschau, welche Note du noch brauchst, um auf deinen Zielschnitt zu
-          kommen.
-        </p>
-      </div>
-
-      <div class="card" id="lerntyp-test">
-        <span class="card__tag">In Arbeit</span>
+      <a class="card" id="lerntyp-test" href="/tools/lerntyp-test/">
+        <span class="card__tag">Verfügbar</span>
         <h3>Lerntyp-Test</h3>
         <p>
           Acht Fragen, sechs Profile. Am Ende steht nicht nur ein Etikett,
@@ -38,13 +27,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           solltest — und welche Lernmethoden bei dir vermutlich Zeitverschwendung
           sind.
         </p>
-      </div>
+        <p class="card__more">Test starten →</p>
+      </a>
     </div>
 
     <div class="note">
       <p>
-        <strong>Beide Tools sind gerade im Aufbau</strong> und gehen als Nächstes
-        online.
+        Weitere Tools sind in Arbeit — ein Notendurchschnitt-Rechner steht als
+        Nächstes an.
       </p>
     </div>
   </div>
@@ -54,5 +44,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .intro {
     max-width: 44rem;
     margin-bottom: 1.75rem;
+  }
+
+  .card__more {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
   }
 </style>

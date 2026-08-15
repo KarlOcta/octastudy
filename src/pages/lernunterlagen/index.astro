@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { OCTA } from '../../site';
+
+const faecher = [
+  {
+    title: 'Rechtswissenschaft',
+    href: '/lernunterlagen/jura/',
+    text: 'Prüfungsschemata zu den klassischen Klausurparagrafen — Zivilrecht, Strafrecht und Öffentliches Recht.',
+    status: 'verfügbar',
+  },
+  { title: 'BWL & Wirtschaft', text: 'Kennzahlen, Buchungssätze, Schemata für die typischen Klausuraufgaben.', status: 'in Vorbereitung' },
+  { title: 'Sportwissenschaften', text: 'Anatomie, Trainingslehre und Prüfungsstoff aus der Bewegungswissenschaft.', status: 'in Vorbereitung' },
+  { title: 'Wirtschaftsingenieurwesen', text: 'Technik trifft Betriebswirtschaft — Formelsammlungen und Rechenwege.', status: 'in Vorbereitung' },
+  { title: 'Bauingenieurwesen', text: 'Statik, Baustoffkunde und die Nachweise, die in jeder Klausur drankommen.', status: 'in Vorbereitung' },
+];
+---
+
+<BaseLayout
+  title="Lernunterlagen"
+  description="Fertige Lernunterlagen für dein Studium: vollständige Prüfungsschemata, PDFs zum Ausdrucken und Karteikarten-Decks. Kostenlos, ohne Anmeldung — und direkt in Octa weiterverwendbar."
+  breadcrumbs={[{ label: 'Lernunterlagen', href: '/lernunterlagen/' }]}
+  wide
+>
+  <div class="wrap">
+    <p class="eyebrow">Lernunterlagen</p>
+    <h1>Fertiges Material statt noch eines Erklärtexts.</h1>
+    <p class="lead intro">
+      Wer sich auf eine Prüfung vorbereitet, braucht selten noch eine Erklärung
+      — die stand schon im Skript. Gebraucht wird das Material: die Struktur,
+      die Gliederung, die Karten zum Abfragen. Genau das liegt hier.
+    </p>
+
+    <h2 class="rule">Was du bekommst</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Struktur</span>
+        <h3>Vollständige Prüfungsschemata</h3>
+        <p>
+          Hierarchisch aufgebaut von der ersten Prüfungsstufe bis zur letzten,
+          zum Ausklappen. Mit den Definitionen der einzelnen Merkmale und den
+          Streitständen, die in der Klausur erwartet werden.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Zum Mitnehmen</span>
+        <h3>PDF zum Ausdrucken</h3>
+        <p>
+          Jedes Schema als saubere Druckvorlage. Damit es beim Lernen neben dem
+          Gesetz oder dem Skript liegen kann statt in einem weiteren offenen
+          Browser-Tab.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Zum Abfragen</span>
+        <h3>Karteikarten-Decks</h3>
+        <p>
+          Fertige Decks zum Herunterladen — die Fragen sind schon geschrieben.
+          Du sparst dir die vierzig Minuten Tipparbeit, die sonst vor dem
+          eigentlichen Lernen stehen.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="rule">Warum wir es so machen</h2>
+    <div class="prose-inline">
+      <p>
+        Material durchzulesen fühlt sich produktiv an und ist es kaum. Was in
+        der Prüfung abgefragt wird, ist nicht Wiedererkennen, sondern freies
+        Abrufen — eine Fähigkeit, die man beim Lesen nie trainiert. Deshalb
+        besteht hier jede Seite aus etwas, mit dem man arbeiten kann: einer
+        Gliederung zum Nachvollziehen, einem Blatt zum Danebenlegen, einem Deck
+        zum Abfragen.
+      </p>
+      <p>
+        Der zweite Grund ist Ehrlichkeit über den Aufwand. Die meisten wissen,
+        dass Selbstabfragen besser wirkt als Markieren. Sie tun es trotzdem
+        nicht, weil zwanzig Karteikarten pro Kapitel eine gute Stunde
+        Schreibarbeit sind — vor dem Lernen. Genau diese Stunde nehmen wir dir
+        ab.
+      </p>
+      <p>
+        Alles ist kostenlos, ohne Anmeldung und ohne Konto. Juristische Inhalte
+        werden vor der Veröffentlichung fachlich gegengelesen.
+      </p>
+    </div>
+
+    <div class="octa-cta">
+      <h2>Und daraus einen kompletten Lernplan machen</h2>
+      <p>
+        Die Unterlagen von hier kannst du direkt in {OCTA.name} hochladen — PDF,
+        Karteikarten-Deck oder deine eigene abfotografierte Mitschrift. Octa
+        liest das Material, macht daraus einen Lernplan bis zu deinem
+        Prüfungstermin und erzeugt automatisch Karteikarten und Quizze dazu.
+      </p>
+      <p>
+        Der entscheidende Unterschied zum stillen Durchlesen: Du sprichst die
+        Antworten ein und bekommst gesagt, wo sie schwammig oder unvollständig
+        waren. Also genau die Rückmeldung, die beim Lernen allein fehlt.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
+          {OCTA.name} im App Store ansehen
+        </a>
+        <a class="btn btn--ghost" href="/tools/lerntyp-test/">
+          Erst herausfinden, wo es hakt
+        </a>
+      </div>
+    </div>
+
+    <h2 class="rule">Fächer</h2>
+    <p class="section-intro">
+      Wir bauen Fach für Fach auf, statt überall etwas Halbes anzubieten. Was
+      fertig ist, ist vollständig.
+    </p>
+    <div class="grid">
+      {
+        faecher.map((fach) =>
+          fach.href ? (
+            <a class="card" href={fach.href}>
+              <span class="card__tag">Verfügbar</span>
+              <h3>{fach.title}</h3>
+              <p>{fach.text}</p>
+              <p class="card__more">Zu den Unterlagen →</p>
+            </a>
+          ) : (
+            <div class="card card--soon">
+              <span class="card__tag card__tag--soon">In Vorbereitung</span>
+              <h3>{fach.title}</h3>
+              <p>{fach.text}</p>
+            </div>
+          )
+        )
+      }
+    </div>
+
+    <div class="note">
+      <p>
+        Dir fehlt dein Fach? Schreib uns — welche Bereiche als Nächstes
+        entstehen, entscheiden wir danach, wonach tatsächlich gefragt wird.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 44rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-inline {
+    max-width: 44rem;
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    max-width: 42rem;
+    margin-top: -0.35rem;
+  }
+
+  .card__more {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* Geplante Faecher: sichtbar, aber klar zurueckgenommen */
+  .card--soon {
+    background: transparent;
+    border-style: dashed;
+    box-shadow: none;
+  }
+
+  .card--soon h3 {
+    color: var(--text-muted);
+  }
+
+  .card--soon p {
+    color: var(--text-subtle);
+  }
+
+  .card__tag--soon {
+    color: var(--text-subtle);
+    background: var(--bg-soft);
+  }
+</style>

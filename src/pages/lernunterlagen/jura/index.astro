@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { OCTA } from '../../site';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { OCTA } from '../../../site';
 
 const silos = [
   {
@@ -25,14 +25,17 @@ const silos = [
 ---
 
 <BaseLayout
-  title="Prüfungsschemata"
+  title="Rechtswissenschaft"
   description="Vollständige juristische Prüfungsschemata zum Ausklappen und Ausdrucken — Zivilrecht, Strafrecht und Öffentliches Recht, jeweils mit PDF und Karteikarten-Deck."
-  breadcrumbs={[{ label: 'Schemata', href: '/schemata/' }]}
+  breadcrumbs={[
+    { label: 'Lernunterlagen', href: '/lernunterlagen/' },
+    { label: 'Rechtswissenschaft', href: '/lernunterlagen/jura/' },
+  ]}
   wide
 >
   <div class="wrap">
-    <p class="eyebrow">Jura</p>
-    <h1>Prüfungsschemata</h1>
+    <p class="eyebrow">Lernunterlagen</p>
+    <h1>Rechtswissenschaft</h1>
     <p class="lead intro">
       Jedes Schema hier ist vollständig aufgebaut — hierarchisch von der ersten
       Prüfungsstufe bis zur letzten, mit den Definitionen der

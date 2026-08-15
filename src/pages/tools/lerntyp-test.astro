@@ -1,0 +1,1879 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Lerntyp-Test"
+  description="Acht Fragen, unter einer Minute: Finde heraus, wo du beim Lernen tatsächlich hängen bleibst — und was dagegen hilft. Ohne Anmeldung, kostenlos."
+  breadcrumbs={[
+    { label: 'Tools', href: '/tools/' },
+    { label: 'Lerntyp-Test', href: '/tools/lerntyp-test/' },
+  ]}
+  wide
+>
+  <div class="wrap lt-page">
+    <div class="lt-shell">
+      <!-- ---------------------------------------------------- Intro -- -->
+      <section id="s-intro" class="lt-screen on">
+        <!-- 1 — Aufhänger: das gefühlte Problem, nicht das Produkt -->
+        <div class="lt-hero">
+          <span class="eyebrow">Kostenloser Lerntyp-Test</span>
+          <h1 class="lt-h1">
+            Du lernst nicht zu wenig.<br />Du lernst
+            <span class="hl">an der falschen Stelle</span>.
+          </h1>
+          <p class="lt-lede">
+            Die meisten Studierenden scheitern nicht an fehlender Zeit oder
+            Disziplin, sondern an einer einzigen Stelle im eigenen Lernprozess —
+            und merken jahrelang nicht, an welcher. Acht Fragen zeigen dir, wo es
+            bei dir tatsächlich hakt und was konkret dagegen hilft.
+          </p>
+          <button class="btn lt-btn-block" type="button" onclick="start()">
+            Jetzt kostenlosen Test starten →
+          </button>
+          <ul class="lt-meta">
+            <li>8 Fragen</li>
+            <li>unter 60 Sekunden</li>
+            <li>kein Login</li>
+            <li>kostenlos</li>
+          </ul>
+
+          <div class="lt-cast" aria-hidden="true">
+            <img src="/img/lerntypen/markierer@1x.webp" alt="" width="450" height="670" loading="eager" />
+            <img src="/img/lerntypen/koenner@1x.webp" alt="" width="450" height="692" loading="eager" />
+            <img src="/img/lerntypen/sprinter@1x.webp" alt="" width="450" height="658" loading="eager" />
+          </div>
+        </div>
+
+        <!-- 2 — Wiedererkennung: Symptome zum Abhaken -->
+        <section class="lt-band">
+          <h2 class="rule">Kennst du das?</h2>
+          <ul class="lt-symptoms">
+            <li>Du liest ein Kapitel, verstehst alles — und zwei Tage später ist es weg.</li>
+            <li>Du weißt die Antwort. Du bekommst sie mündlich nur nicht heraus.</li>
+            <li>Du sitzt vor dem Stoff und verlierst zwanzig Minuten mit der Frage, womit du anfängst.</li>
+            <li>Du lernst seit Wochen und hast trotzdem das Gefühl, nichts davon zu können.</li>
+            <li>Du nimmst dir jeden Tag etwas vor — und niemandem fällt auf, wenn du es nicht tust.</li>
+          </ul>
+          <p class="lt-turn">
+            Wenn dir davon etwas bekannt vorkommt: Dahinter steckt selten
+            Faulheit. Dahinter steckt fast immer, dass du viel Energie an einer
+            Stelle einsetzt, an der sie nichts bringt.
+          </p>
+        </section>
+
+        <!-- 3 — Entlastung und Mechanismus -->
+        <section class="lt-band">
+          <h2 class="rule">Warum die üblichen Lerntipps bei dir nicht greifen</h2>
+          <p>
+            Du kennst die Einteilung in „visuelle“, „auditive“ und „haptische“
+            Lerntypen. Sie klingt einleuchtend — und sie ist widerlegt. Studien
+            finden keinen Beleg dafür, dass Material im bevorzugten Sinneskanal
+            besser hängen bleibt. Wer danach lernt, optimiert die falsche
+            Stellschraube.
+          </p>
+          <p>
+            <strong>Es liegt also nicht an dir.</strong> Es liegt an
+            Ratschlägen, die für alle gleichzeitig gelten sollen und deshalb für
+            niemanden genau passen. Entscheidend ist nicht, wie du Informationen
+            am liebsten aufnimmst, sondern <strong
+              >an welcher Stelle deines Lernprozesses es abreißt</strong
+            > — beim Sammeln, beim Verarbeiten, beim Abrufen oder beim Dranbleiben.
+          </p>
+          <p>
+            Genau das misst dieser Test. Und weil der Bruchpunkt bei jedem woanders
+            liegt, ist auch die Gegenmaßnahme bei jedem eine andere.
+          </p>
+          <div class="lt-cta-inline">
+            <button class="btn" type="button" onclick="start()">
+              Meinen Bruchpunkt finden →
+            </button>
+          </div>
+        </section>
+
+        <!-- 4 — Was der Test liefert -->
+        <section class="lt-band">
+          <h2 class="rule">Was der Test dir sagt</h2>
+          <div class="lt-benefits">
+            <div class="lt-benefit">
+              <span class="lt-benefit__num">01</span>
+              <h3>Deine Stärke</h3>
+              <p>
+                Womit du tatsächlich gut bist. Jedes der sechs Profile hat eine
+                echte Fähigkeit im Kern — sie wird nur an der falschen Stelle
+                eingesetzt.
+              </p>
+            </div>
+            <div class="lt-benefit">
+              <span class="lt-benefit__num">02</span>
+              <h3>Dein Bruchpunkt</h3>
+              <p>
+                Die eine Stelle, an der deine Lernzeit verpufft — benannt,
+                erklärt und mit dem, was sie dich in Prüfungen tatsächlich
+                kostet.
+              </p>
+            </div>
+            <div class="lt-benefit">
+              <span class="lt-benefit__num">03</span>
+              <h3>Dein nächster Schritt</h3>
+              <p>
+                Kein allgemeiner Lerntipp, sondern die Gegenmaßnahme, die zu
+                deinem Profil passt — in drei Schritten, sofort umsetzbar.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 — Typen-Vorschau: erzeugt die Frage „welcher bin ich?" -->
+        <section class="lt-band">
+          <h2 class="rule">Welcher Typ bist du?</h2>
+          <p class="lt-band__intro">
+            Sechs Profile, sechs verschiedene Stellen, an denen Lernzeit
+            verloren geht. Keines davon ist ein Urteil über deine Intelligenz —
+            jedes beschreibt eine Gewohnheit, die sich ändern lässt.
+          </p>
+
+          <div class="lt-types">
+            <article class="lt-type">
+              <img src="/img/lerntypen/koenner@1x.webp" srcset="/img/lerntypen/koenner@1x.webp 450w, /img/lerntypen/koenner.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="692" alt="Illustration: Studierender sitzt im Schneidersitz und sucht nach Worten" loading="lazy" />
+              <div>
+                <h3>Der stille Könner</h3>
+                <p class="lt-type__line">„Du kannst es. Bis du es sagen sollst.“</p>
+                <p>
+                  Versteht den Stoff wirklich und lernt nichts stumpf auswendig.
+                  Trainiert dabei aber nur das Verstehen, nie das freie Abrufen —
+                  und steht mündlich mit leerem Kopf da.
+                </p>
+              </div>
+            </article>
+
+            <article class="lt-type">
+              <img src="/img/lerntypen/sammler@1x.webp" srcset="/img/lerntypen/sammler@1x.webp 450w, /img/lerntypen/sammler.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="595" alt="Illustration: Studentin zwischen hohen Papierstapeln mit weiteren Unterlagen im Arm" loading="lazy" />
+              <div>
+                <h3>Der Sammler</h3>
+                <p class="lt-type__line">„Du hast alles. Gelernt hast du davon nichts.“</p>
+                <p>
+                  Hat jede Folie, jedes Skript, jede Mitschrift. Sammeln fühlt
+                  sich wie Fortschritt an, schiebt die eigentliche
+                  Auseinandersetzung aber immer weiter nach hinten.
+                </p>
+              </div>
+            </article>
+
+            <article class="lt-type">
+              <img src="/img/lerntypen/markierer@1x.webp" srcset="/img/lerntypen/markierer@1x.webp 450w, /img/lerntypen/markierer.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="670" alt="Illustration: Studentin markiert eine bereits vollständig eingefärbte Buchseite" loading="lazy" />
+              <div>
+                <h3>Der Markierer</h3>
+                <p class="lt-type__line">„Bunt heißt nicht gelernt.“</p>
+                <p>
+                  Fleißig und ausdauernd. Nur erzeugen Markieren und Wiederlesen
+                  Vertrautheit statt Abrufbarkeit — die am besten belegte
+                  Lernfalle überhaupt.
+                </p>
+              </div>
+            </article>
+
+            <article class="lt-type">
+              <img src="/img/lerntypen/ueberfordert@1x.webp" srcset="/img/lerntypen/ueberfordert@1x.webp 450w, /img/lerntypen/ueberfordert.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="598" alt="Illustration: Studierender sitzt zwischen mehreren aufgeschlagenen Büchern und zögert" loading="lazy" />
+              <div>
+                <h3>Der Überforderte</h3>
+                <p class="lt-type__line">„Nicht zu wenig Zeit. Zu viele Anfänge.“</p>
+                <p>
+                  Kein Disziplinproblem, ein Entscheidungsproblem. Solange der
+                  ganze Stoff gleichzeitig dasteht, frisst die Frage nach dem
+                  Anfang die Energie fürs Lernen.
+                </p>
+              </div>
+            </article>
+
+            <article class="lt-type">
+              <img src="/img/lerntypen/einzel@1x.webp" srcset="/img/lerntypen/einzel@1x.webp 450w, /img/lerntypen/einzel.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="438" alt="Illustration: Studierender sitzt allein neben einem leeren Klappstuhl" loading="lazy" />
+              <div>
+                <h3>Der Einzelkämpfer</h3>
+                <p class="lt-type__line">„Niemandem fällt auf, ob du es tust.“</p>
+                <p>
+                  Kann konzentriert allein arbeiten. Was fehlt, ist keine
+                  Methode, sondern Verbindlichkeit — ein Vorsatz ohne Zeugen
+                  kostet nichts, wenn er bricht.
+                </p>
+              </div>
+            </article>
+
+            <article class="lt-type">
+              <img src="/img/lerntypen/sprinter@1x.webp" srcset="/img/lerntypen/sprinter@1x.webp 450w, /img/lerntypen/sprinter.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="658" alt="Illustration: Studentin rennt mit Büchern und Kaffeebecher, Blätter fliegen hinterher" loading="lazy" />
+              <div>
+                <h3>Der Sprinter</h3>
+                <p class="lt-type__line">„Du schaffst es. Behalten tust du es nicht.“</p>
+                <p>
+                  Funktioniert unter Druck erstaunlich gut. Ohne Wiederholung
+                  über mehrere Tage verfällt der Stoff aber — es rächt sich in
+                  der nächsten Prüfung, die darauf aufbaut.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="lt-cta-inline">
+            <button class="btn" type="button" onclick="start()">
+              Herausfinden, welcher ich bin →
+            </button>
+          </div>
+        </section>
+
+        <!-- 6 — Belege statt Autorität -->
+        <section class="lt-band">
+          <h2 class="rule">Worauf der Test beruht</h2>
+          <p>
+            Die Auswertung stützt sich nicht auf eine Persönlichkeitstheorie,
+            sondern auf Lernforschung. Zwei Befunde sind dabei zentral und in
+            großen Übersichtsarbeiten quer über Fächer, Altersgruppen und
+            Prüfungsformen bestätigt:
+          </p>
+          <ul class="lt-evidence">
+            <li>
+              <strong>Sich selbst abfragen schlägt Wiederlesen deutlich.</strong>
+              Wiederlesen wirkt unmittelbar danach besser — nach einigen Tagen
+              aber klar schlechter, und es macht sicherer, als man tatsächlich
+              ist.
+              <cite>Roediger &amp; Karpicke 2006 · Dunlosky u. a. 2013</cite>
+            </li>
+            <li>
+              <strong>Verteiltes Lernen schlägt Lernen am Stück.</strong>
+              Derselbe Stoff über mehrere Tage verteilt bleibt erheblich länger
+              verfügbar als in einer einzigen langen Einheit.
+              <cite>Dunlosky u. a. 2013</cite>
+            </li>
+          </ul>
+          <p>
+            Markieren und Wiederlesen — die beiden beliebtesten Lernmethoden
+            überhaupt — landeten in derselben Übersichtsarbeit in der
+            niedrigsten Wirksamkeitsklasse. Der Test prüft deshalb nicht deinen
+            Geschmack, sondern deine Gewohnheiten.
+          </p>
+        </section>
+
+        <!-- 7 — Abschluss-CTA -->
+        <section class="lt-final">
+          <h2>Acht Fragen. Danach weißt du es.</h2>
+          <p>
+            Kein Konto, keine E-Mail-Adresse, keine Weitergabe deiner Antworten.
+            Der Test läuft vollständig in deinem Browser.
+          </p>
+          <button class="btn lt-btn-block" type="button" onclick="start()">
+            Jetzt kostenlosen Test starten →
+          </button>
+          <p class="lt-fine">Dauer: unter einer Minute</p>
+        </section>
+      </section>
+
+      <!-- ----------------------------------------------------- Quiz -- -->
+      <section id="s-quiz" class="lt-screen">
+        <div class="lt-top">
+          <div class="lt-mascot" id="mascot"></div>
+          <div class="lt-progress">
+            <div class="lt-progress__head">
+              <span class="lt-count" id="count">Frage 1 von 8</span>
+              <span class="lt-mood" id="mood"></span>
+            </div>
+            <div class="lt-track"><span class="lt-fill" id="fill"></span></div>
+          </div>
+        </div>
+
+        <p class="lt-q" id="q"></p>
+        <div class="lt-opts" id="opts"></div>
+        <p class="lt-note" id="note"></p>
+        <button class="lt-back hide" id="back" type="button" onclick="back()">
+          ← zurück
+        </button>
+      </section>
+
+      <!-- -------------------------------------------------- Ergebnis -- -->
+      <section id="s-result" class="lt-screen lt-result"></section>
+      <canvas id="confetti" class="lt-confetti" aria-hidden="true"></canvas>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* =====================================================================
+     Lerntyp-Test — eigene Formsprache, aber auf den Design-Tokens der
+     Seite aufgebaut. Bewusst `is:global`, weil ein Teil des Markups zur
+     Laufzeit per innerHTML entsteht und Astros Scoping dort nicht greift.
+     Alle Klassen sind mit `lt-` praefixiert.
+     ===================================================================== */
+
+  .lt-page {
+    padding-block: 0 1rem;
+  }
+
+  .lt-shell {
+    position: relative;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .lt-screen {
+    display: none;
+  }
+
+  .lt-screen.on {
+    display: block;
+    animation: lt-rise 0.34s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  @keyframes lt-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  /* ------------------------------------------------------------ Intro -- */
+
+  .lt-h1 {
+    margin: 0.35rem 0 0.9rem;
+  }
+
+  .lt-lede {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 34rem;
+    margin-bottom: 2rem;
+  }
+
+  .lt-btn-block {
+    width: 100%;
+    max-width: 24rem;
+    font-size: 1.05rem;
+    padding-block: 1rem;
+  }
+
+  .lt-meta {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    padding: 0;
+    margin: 1.1rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+  }
+
+  .lt-meta li {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .lt-meta li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  /* ------------------------------------------------------ Fortschritt -- */
+
+  .lt-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .lt-mascot {
+    flex: none;
+    width: 60px;
+    height: 60px;
+  }
+
+  .lt-mascot svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .lt-progress {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lt-progress__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lt-count {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .lt-mood {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    text-align: right;
+  }
+
+  .lt-track {
+    height: 8px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+
+  .lt-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: var(--radius-pill);
+    background-image: linear-gradient(90deg, var(--cta-from), var(--accent));
+    transition: width 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  /* ------------------------------------------------------------ Frage -- */
+
+  .lt-q {
+    font-size: clamp(1.4rem, 1.1rem + 1.4vw, 1.85rem);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    margin-bottom: 1.4rem;
+    text-wrap: balance;
+  }
+
+  .lt-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .lt-opt {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.45;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s ease, background 0.15s ease,
+      transform 0.12s ease, box-shadow 0.15s ease;
+  }
+
+  .lt-opt__key {
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 8px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    color: var(--text-subtle);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    transition: background 0.15s ease, color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .lt-opt:hover {
+    border-color: var(--accent);
+    transform: translateX(3px);
+    box-shadow: var(--shadow);
+  }
+
+  .lt-opt:hover .lt-opt__key {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: transparent;
+  }
+
+  .lt-opt.picked {
+    border-color: transparent;
+    background-image: linear-gradient(100deg, var(--cta-from), var(--cta-to));
+    color: #fff;
+    transform: scale(0.985);
+  }
+
+  .lt-opt.picked .lt-opt__key {
+    background: rgb(255 255 255 / 0.22);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .lt-note {
+    margin: 1.5rem 0 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .lt-note b {
+    color: var(--text);
+  }
+
+  .lt-note cite {
+    font-style: normal;
+    color: var(--text-subtle);
+  }
+
+  .lt-back {
+    background: none;
+    border: 0;
+    color: var(--text-subtle);
+    font: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    padding: 0.7rem 0;
+    margin-top: 0.5rem;
+  }
+
+  .lt-back:hover {
+    color: var(--accent);
+  }
+
+  /* --------------------------------------------------------- Ergebnis -- */
+
+  .lt-result-head {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .lt-result-char {
+    margin-inline: auto;
+    width: 148px;
+    height: 148px;
+  }
+
+  .lt-result-char svg {
+    width: 100%;
+    height: 100%;
+    animation: lt-pop 0.55s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  }
+
+  @keyframes lt-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.4) rotate(-8deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .lt-tagline {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--highlight);
+    margin-bottom: 0;
+  }
+
+  .lt-befund {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lt-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .lt-bar-row {
+    display: grid;
+    grid-template-columns: 1fr 4.5rem;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .lt-bar-name {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .lt-bar-row.top-hit .lt-bar-name {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .lt-bar-track {
+    height: 8px;
+    background: var(--bg-soft);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+
+  .lt-bar-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+    transition: width 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .lt-bar-row.top-hit .lt-bar-fill {
+    background-image: linear-gradient(90deg, var(--cta-from), var(--accent));
+  }
+
+  .lt-bar-val {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-subtle);
+    text-align: right;
+  }
+
+  .lt-block {
+    margin-bottom: 2rem;
+  }
+
+  .lt-block h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .lt-moment {
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: var(--text);
+    border-left: 3px solid var(--highlight);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 0;
+  }
+
+  .lt-steps {
+    list-style: none;
+    counter-reset: lt;
+    margin: 1.1rem 0 0;
+    padding: 0;
+  }
+
+  .lt-steps li {
+    counter-increment: lt;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.05rem;
+    line-height: 1.55;
+  }
+
+  .lt-steps li::before {
+    content: counter(lt);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 10px;
+    background-image: linear-gradient(135deg, var(--cta-from), var(--accent));
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+
+  .lt-divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* Demo-Platzhalter */
+  .lt-demo {
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.25rem;
+    text-align: center;
+    color: var(--text-subtle);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    background: var(--bg-soft);
+  }
+
+  .lt-demo strong {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .lt-demo video {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+
+  .lt-cap {
+    font-size: 0.87rem;
+    color: var(--text-subtle);
+    text-align: center;
+    margin: 0.6rem 0 0;
+  }
+
+  /* Bewertungen */
+  .lt-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .lt-rating-num {
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .lt-stars {
+    color: var(--highlight);
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    display: block;
+  }
+
+  .lt-rating-sub {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    margin-top: 0.15rem;
+  }
+
+  .lt-rev {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .lt-rev p {
+    font-size: 0.98rem;
+    margin: 0.4rem 0 0.5rem;
+  }
+
+  .lt-who {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  /* Code-Box */
+  .lt-codebox {
+    border: 2px dashed var(--highlight);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--accent-soft);
+    margin-bottom: 1rem;
+  }
+
+  .lt-codebox .lt-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .lt-code {
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--highlight);
+    margin: 0.4rem 0 0.8rem;
+    word-break: break-all;
+  }
+
+  .lt-copy {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.1rem;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .lt-copy:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .lt-fine {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    line-height: 1.55;
+    margin-top: 0.9rem;
+  }
+
+  .lt-done-note {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.15rem;
+    font-size: 0.98rem;
+  }
+
+  /* Konfetti */
+  .lt-confetti {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 40;
+    display: none;
+  }
+
+  /* SEO-Abschnitt */
+  .lt-seo {
+    max-width: var(--w-content);
+    margin: 4.5rem auto 0;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .lt-seo h2 {
+    margin-top: 0;
+  }
+
+
+  /* --------------------------------------------------- Landingpage -- */
+
+  .lt-hero {
+    padding-bottom: 1rem;
+  }
+
+  .lt-cast {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0;
+    margin-top: 2.5rem;
+  }
+
+  .lt-cast img {
+    width: 33%;
+    max-width: 190px;
+    height: auto;
+  }
+
+  .lt-cast img:nth-child(1) { transform: translateX(14%) scale(.86); }
+  .lt-cast img:nth-child(3) { transform: translateX(-14%) scale(.86); }
+
+  .lt-band {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .lt-band h2 {
+    margin-top: 0;
+  }
+
+  .lt-band__intro {
+    color: var(--text-muted);
+    max-width: 44rem;
+  }
+
+  .lt-symptoms {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .lt-symptoms li {
+    position: relative;
+    margin-top: 0;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    line-height: 1.5;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lt-symptoms li::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 5px;
+    border: 2px solid var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .lt-turn {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--highlight);
+    padding-left: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .lt-cta-inline {
+    margin-top: 1.75rem;
+  }
+
+  .lt-benefits {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .lt-benefit {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lt-benefit__num {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .lt-benefit h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .lt-benefit p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  /* Typen-Vorschau */
+  .lt-types {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    margin-top: 1.5rem;
+  }
+
+  .lt-type {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lt-type img {
+    flex: none;
+    width: 6.5rem;
+    height: auto;
+    align-self: center;
+  }
+
+  .lt-type h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.08rem;
+  }
+
+  .lt-type__line {
+    color: var(--highlight);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .lt-type p:last-child {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .lt-evidence {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .lt-evidence li {
+    margin-top: 0;
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.15rem;
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .lt-evidence strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .lt-evidence cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.87rem;
+    color: var(--text-subtle);
+    margin-top: 0.35rem;
+  }
+
+  .lt-final {
+    margin-top: 3.5rem;
+    padding: 2.25rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+
+  .lt-final h2 {
+    margin-top: 0;
+  }
+
+  .lt-final p {
+    color: var(--text-muted);
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .lt-final .btn {
+    margin-inline: auto;
+  }
+
+  .lt-final .lt-fine {
+    margin-top: 0.9rem;
+  }
+
+  /* Ergebnis-Illustration */
+  .lt-result-img {
+    display: block;
+    width: min(340px, 78vw);
+    height: auto;
+    margin: 0 auto 0.75rem;
+    animation: lt-pop 0.55s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lt-result-img { animation: none; }
+  }
+
+  @media (max-width: 560px) {
+    .lt-type {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .lt-type img { width: 9rem; }
+    .lt-cast { margin-top: 2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lt-screen.on,
+    .lt-result-char svg {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .lt-top {
+      gap: 0.75rem;
+    }
+    .lt-mascot {
+      width: 48px;
+      height: 48px;
+    }
+    .lt-mood {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  /* =====================================================================
+     Konfiguration — hier stellst du den Funnel scharf.
+     ===================================================================== */
+  const CONFIG = {
+    appStore:
+      'https://apps.apple.com/de/app/octa-ai-tutor-study-plan/id6751514384',
+    // E-Mail-Einsammeln ist AUS. Vor dem Aktivieren zwingend zwei Dinge tun:
+    // 1. mailEndpoint auf einen echten Dienst setzen (Brevo, ConvertKit ...)
+    // 2. Datenschutzerklaerung ergaenzen — aktuell steht dort, dass diese
+    //    Seite keine Formulare hat und keine Eingaben uebertragen werden.
+    mailAktiv: false,
+    mailEndpoint: '',
+  };
+
+  /* Gesamtbewertung im deutschen App Store. Stand regelmaessig pruefen. */
+  const STORE = { schnitt: '5,0', anzahl: 9, stand: 'Juli 2026' };
+
+  const QUESTIONS = [
+    {
+      q: 'Du setzt dich hin, um zu lernen. Was passiert in den ersten zehn Minuten?',
+      a: [
+        ['Ich blättere durch meine Unterlagen und suche, womit ich anfange', { ueberfordert: 2, sammler: 1 }],
+        ['Ich lese da weiter, wo ich aufgehört habe, und markiere', { markierer: 2 }],
+        ['Ich rechne aus, wie viele Tage noch bis zur Prüfung sind', { sprinter: 2 }],
+        ['Ich fange an — aber es merkt ohnehin niemand, ob ich dranbleibe', { einzel: 2 }],
+      ],
+    },
+    {
+      q: 'Wie sehen deine Unterlagen gerade aus?',
+      a: [
+        ['Skripte, Fotos, Screenshots, PDFs — verteilt über mehrere Apps', { sammler: 3 }],
+        ['Ordentlich abgelegt, aber nie wirklich durchgearbeitet', { sammler: 2, ueberfordert: 1 }],
+        ['Vollgeschrieben und in drei Farben markiert', { markierer: 3 }],
+        ['Kaum was. Ich lerne aus dem, was ich kurz vorher zusammensuche', { sprinter: 2 }],
+      ],
+    },
+    {
+      q: 'Du hast ein Kapitel gelesen und verstanden. Zwei Tage später?',
+      a: [
+        ['Ich erkenne alles wieder — frei wiedergeben könnte ich es nicht', { markierer: 3, koenner: 1 }],
+        ['Weg. Als hätte ich es nie gelesen', { markierer: 1, sprinter: 2 }],
+        ['Sitzt — solange ich es aufschreiben darf', { koenner: 2 }],
+        ['Keine Ahnung, so früh lerne ich nie', { sprinter: 3 }],
+      ],
+    },
+    {
+      q: 'Jemand fragt dich mündlich ab. Erster Gedanke?',
+      a: [
+        ['Bitte nicht. Ich weiß es, ich kriege es nur nicht raus', { koenner: 3 }],
+        ['Gern — so merke ich überhaupt erst, was ich wirklich kann', { einzel: 1, markierer: 1 }],
+        ['Geht klar, wenn ich vorher kurz nachsehen darf', { markierer: 2 }],
+        ['Kommt drauf an, wer fragt. Vor anderen wird es schlimmer', { koenner: 2, einzel: 1 }],
+      ],
+    },
+    {
+      q: 'Wann lernst du wirklich — nicht wann du es dir vornimmst?',
+      a: [
+        ['Ab etwa einer Woche vorher, dann ziemlich konstant', { einzel: 1 }],
+        ['Zwei, drei Tage vorher. Dann aber durch', { sprinter: 3 }],
+        ['Ich fange früh an und verliere schnell wieder den Faden', { ueberfordert: 2, einzel: 1 }],
+        ['Ich nehme mir jeden Tag etwas vor und schiebe es dann', { ueberfordert: 2, einzel: 2 }],
+      ],
+    },
+    {
+      q: 'Allein oder mit anderen?',
+      a: [
+        ['Allein. Alles andere lenkt mich ab', { einzel: 2 }],
+        ['Allein — aber mir fehlt jemand, dem auffällt, wenn ich nichts tue', { einzel: 3 }],
+        ['Mit anderen. Wobei wir mehr reden als lernen', { einzel: 1, ueberfordert: 1 }],
+        ['Gegenseitig abfragen ist das Einzige, was bei mir hängen bleibt', { koenner: 2 }],
+      ],
+    },
+    {
+      q: 'Was sagst du am häufigsten nach einer Prüfung?',
+      a: [
+        ['Ich hatte einfach zu wenig Zeit', { sprinter: 2, ueberfordert: 1 }],
+        ['Ich habe das Falsche gelernt', { ueberfordert: 2, sammler: 1 }],
+        ['Ich wusste es. Ich habe es nur nicht rausbekommen', { koenner: 3 }],
+        ['Gelesen hatte ich es. Abrufbar war es nicht', { markierer: 3 }],
+      ],
+    },
+    {
+      q: 'Was fehlt dir gerade am meisten?',
+      a: [
+        ['Jemand, der mich abfragt und merkt, wenn die Antwort schwammig war', { koenner: 4 }],
+        ['Ordnung in dem, was ich schon alles gesammelt habe', { sammler: 4 }],
+        ['Eine Methode, bei der es wirklich hängen bleibt', { markierer: 4 }],
+        ['Ein Plan, der mir sagt, was heute dran ist', { ueberfordert: 4 }],
+        ['Jemand, dem auffällt, ob ich dranbleibe', { einzel: 4 }],
+        ['Ein Rhythmus, statt immer nur kurz vorher', { sprinter: 4 }],
+      ],
+    },
+  ];
+
+  const MOODS = [
+    'Los geht’s',
+    'Läuft',
+    'Warm geworden',
+    'Halbzeit',
+    'Es wird persönlich',
+    'Gleich hast du’s',
+    'Vorletzte',
+    'Die entscheidet',
+  ];
+
+  const PROFILES = {
+    koenner: {
+      name: 'Der stille Könner',
+      short: 'Stiller Könner',
+      tagline: 'Du kannst es. Bis du es sagen sollst.',
+      strength:
+        'Du arbeitest gründlich und verstehst Zusammenhänge wirklich — du bist keiner, der auswendig lernt, ohne zu kapieren. Beim Lesen hast du selten das Gefühl, etwas nicht zu verstehen.',
+      cost: 'Schriftlich fällt das kaum auf, weil du Zeit zum Sortieren hast. Mündlich kostet es dich ganze Notenstufen — und zwar bei Stoff, den du eigentlich beherrschst.',
+      featureTitle: 'Octas mündlicher Prüfer',
+      code: 'MUENDLICH',
+    },
+    sammler: {
+      name: 'Der Sammler',
+      short: 'Sammler',
+      tagline: 'Du hast alles. Gelernt hast du davon nichts.',
+      strength:
+        'Dir entgeht nichts. Du hast jede Folie, jedes Skript, jede Mitschrift — wenn es darauf ankommt, findest du die Quelle. Das ist mehr, als die meisten von sich behaupten können.',
+      cost: 'Du verbringst die Tage vor der Prüfung damit, deinen eigenen Bestand zu sichten statt zu lernen. Der Stoff bleibt bis zuletzt eine Menge, kein Inhalt.',
+      featureTitle: 'Octas KI-Agent auf deinen eigenen Unterlagen',
+      code: 'ORDNUNG',
+    },
+    markierer: {
+      name: 'Der Markierer',
+      short: 'Markierer',
+      tagline: 'Bunt heißt nicht gelernt.',
+      strength:
+        'Du bist fleißig und bleibst dran — du gehörst nicht zu denen, die es einfach schleifen lassen. Die investierte Zeit ist da, sie zahlt nur nicht ein.',
+      cost: 'Du lernst doppelt so lange wie nötig für ein Ergebnis, das sich beim Lernen gut und in der Prüfung schlecht anfühlt.',
+      featureTitle: 'Octas Karteikarten und Quizze',
+      code: 'ABRUF',
+    },
+    ueberfordert: {
+      name: 'Der Überforderte',
+      short: 'Überforderter',
+      tagline: 'Nicht zu wenig Zeit. Zu viele Anfänge.',
+      strength:
+        'Du willst es richtig machen. Genau deshalb bleibst du am Anfang stehen — du fängst nicht einfach irgendwo an, weil dir klar ist, dass die Reihenfolge zählt.',
+      cost: 'Du beginnst dieselben drei Kapitel immer wieder und kommst nie zu den hinteren. Am Ende hast du das Falsche gelernt, nicht zu wenig.',
+      featureTitle: 'Octas Lernplan',
+      code: 'STARTPUNKT',
+    },
+    einzel: {
+      name: 'Der Einzelkämpfer',
+      short: 'Einzelkämpfer',
+      tagline: 'Niemandem fällt auf, ob du es tust.',
+      strength:
+        'Du kannst konzentriert allein arbeiten — das können viele nicht. Wenn du einmal drin bist, brauchst du niemanden, der dich bei Laune hält.',
+      cost: 'Deine guten Wochen sind richtig gut. Nur folgen darauf zuverlässig zwei, in denen nichts passiert — und die fallen dir erst kurz vor der Prüfung auf.',
+      featureTitle: 'Octas Tribes',
+      code: 'TRIBE',
+    },
+    sprinter: {
+      name: 'Der Sprinter',
+      short: 'Sprinter',
+      tagline: 'Du schaffst es. Behalten tust du es nicht.',
+      strength:
+        'Du funktionierst unter Druck, und zwar erstaunlich gut. Was andere in drei Wochen tun, ziehst du in drei Tagen durch — das ist eine echte Fähigkeit.',
+      cost: 'Es rächt sich nicht in dieser Prüfung, sondern in der nächsten, die darauf aufbaut. Und im Mündlichen, wo Stoff aus dem letzten Semester vorausgesetzt wird.',
+      featureTitle: 'Octas Lernplan mit Wiederholungslogik',
+      code: 'RHYTHMUS',
+    },
+  };
+
+  const DETAIL = {
+    koenner: {
+      moment:
+        'Der Prüfer stellt die Frage, und du weißt genau, wo das im Skript steht — Seite, Absatz, sogar die Grafik daneben. Nur der Satz, der jetzt rauskommen müsste, formt sich nicht. Du sagst irgendwas Halbes und hörst dir dabei selbst zu.',
+      why: 'Das liegt nicht an Nervosität. Beim Lesen erkennst du den Stoff wieder, und Wiedererkennen fühlt sich exakt so an wie Können. In der Prüfung wird aber nicht Wiedererkennen abgefragt, sondern freies Abrufen — eine Fähigkeit, die du beim Lesen nie trainierst. Du übst also konsequent das eine und wirst im anderen geprüft.',
+      how: [
+        'Du lädst dein Skript hoch oder fotografierst deine Mitschrift ab.',
+        'Octa stellt dir daraus mündliche Fragen — laut, eine nach der anderen. Du antwortest sprechend, nicht tippend.',
+        'Danach kommt die Rückmeldung zu genau dieser Antwort: was gefehlt hat, wo du unpräzise warst, wo ein Prüfer nachgehakt hätte.',
+      ],
+      why_octa:
+        'Karteikarten lösen das nicht, weil du dort dich selbst bewertest — und wer den Stoff halb kann, merkt nicht, an welcher Stelle. Es braucht ein Gegenüber, das deine gesprochene Antwort hört und benennt, was fehlte.',
+    },
+    sammler: {
+      moment:
+        'Sonntagabend, der Ordner ist offen, vierzig Dateien. Du öffnest drei, schließt sie wieder, weil du nicht weißt, ob es die aktuelle Version ist. Nach vierzig Minuten hast du sortiert. Gelernt hast du nichts.',
+      why: 'Sammeln erzeugt dasselbe Gefühl wie Fortschritt, ohne einer zu sein. Jede gespeicherte Datei quittiert dir kurz, dass du etwas getan hast — und schiebt den Moment weiter nach hinten, in dem du dich inhaltlich damit auseinandersetzen müsstest. Je größer der Bestand wird, desto höher die Hürde, überhaupt anzufangen.',
+      how: [
+        'Alles rein, was du hast: Vorlesungs-PDFs, abfotografierte Mitschriften, Screenshots, lose Notizen.',
+        'Octa liest es, erkennt Themen und Dubletten und macht aus dem Wust eine Gliederung.',
+        'Zu jedem Block gibt es direkt Plan, Karten und Fragen. Du steigst beim Lernen ein statt beim Sortieren.',
+      ],
+      why_octa:
+        'Der Teil, an dem du hängst, ist nicht das Lernen — es sind die drei Tage davor. Genau die fallen weg, wenn das Sichten nicht mehr deine Aufgabe ist.',
+    },
+    markierer: {
+      moment:
+        'Du gehst das Kapitel durch und alles kommt dir bekannt vor. Genau dieses Gefühl ist der Grund, warum du aufhörst. In der Prüfung steht die Frage dann da, und das Bekannte lässt sich nicht in einen Satz übersetzen.',
+      why: 'Markieren und Wiederlesen erzeugen Vertrautheit, und Vertrautheit fühlt sich täuschend nach Beherrschen an. In Untersuchungen schneiden Menschen nach dem Wiederlesen direkt danach sogar besser ab — nach ein paar Tagen aber deutlich schlechter als jene, die sich abgefragt haben. Und sie sind sich sicherer dabei. Das ist die eigentliche Falle: Du merkst es nicht.',
+      how: [
+        'Kapitel hochladen — Skript, Folien oder abfotografierte Seiten.',
+        'Octa macht daraus Fragen, die du ohne Vorlage beantworten musst. Abrufen statt Wiedererkennen.',
+        'Was sitzt, kommt seltener. Was wackelt, kommt wieder — bis es hält.',
+      ],
+      why_octa:
+        'Du weißt vermutlich längst, dass Abfragen besser wirkt. Der Grund, warum du es nicht tust, ist der Aufwand: Zwanzig Karten pro Kapitel sind vierzig Minuten Schreibarbeit vor dem Lernen. Genau dieser Aufwand fällt weg.',
+    },
+    ueberfordert: {
+      moment:
+        'Du sitzt am Schreibtisch, alles liegt bereit. Und dann vergehen zwanzig Minuten damit, dass du zwischen drei Kapiteln hin und her springst, weil jedes gleich wichtig aussieht. Am Ende hast du wieder das angefangen, was du schon kennst.',
+      why: 'Das ist kein Disziplinproblem, sondern ein Entscheidungsproblem. Solange der gesamte Stoff gleichzeitig vor dir liegt, kostet dich jeder Lerntag zuerst die Frage, womit du beginnst — und diese Frage verbraucht genau die Konzentration, die du danach fürs Lernen bräuchtest.',
+      how: [
+        'Stoff hochladen, Prüfungsdatum eintragen.',
+        'Octa rechnet vom Prüfungstag rückwärts und schneidet den Stoff in Tagesportionen.',
+        'Du öffnest die App und siehst eine Aufgabe. Fällt ein Tag aus, verteilt Octa den Rest neu — ohne dass du planen musst.',
+      ],
+      why_octa:
+        'Einen Plan kannst du dir selbst machen. Er hält nur bis zum ersten Tag, der ausfällt — und ab da steht dieselbe Entscheidungslast wieder vor dir, die dich ursprünglich blockiert hat.',
+    },
+    einzel: {
+      moment:
+        'Du hattest dir für heute drei Stunden vorgenommen. Um sieben verschiebst du auf morgen. Es kostet dich nichts, weil niemand davon wusste. Und morgen passiert dasselbe.',
+      why: 'Dir fehlt keine Methode, dir fehlt Verbindlichkeit. Ein Vorsatz, von dem niemand weiß, hat keinen Preis, wenn du ihn brichst — deshalb bricht er zuverlässig. Deine guten Wochen sind wirklich gut. Nur folgen darauf zwei, in denen nichts passiert, und das fällt dir erst kurz vor der Prüfung auf.',
+      how: [
+        'Du trittst einem Tribe bei — anderen, die auf dieselbe Art Prüfung hinarbeiten.',
+        'Deine Lernsessions sind dort sichtbar, ohne dass du etwas melden musst.',
+        'Bleibst du zwei Tage weg, fällt das auf. Nicht als Kontrolle, sondern als der Grund, es heute doch zu machen.',
+      ],
+      why_octa:
+        'Du könntest das über einen Freund lösen. Nur fragt der nach zwei Wochen nicht mehr nach — und dann bist du wieder allein mit dem Vorsatz.',
+    },
+    sprinter: {
+      moment:
+        'Die Prüfung lief gut, du warst zufrieden. Vier Wochen später sitzt du in der Veranstaltung, die darauf aufbaut, und merkst: von dem Stoff ist fast nichts mehr da.',
+      why: 'Das ist kein Charakterfehler, sondern schlicht, wie Gedächtnis arbeitet. Ohne Wiederholung über mehrere Tage verfällt Gelerntes — egal wie intensiv die eine Session war. Dein Tempo ist nicht das Problem. Das Problem ist, dass alles in einem einzigen Block passiert.',
+      how: [
+        'Stoff hochladen, Prüfungsdatum eintragen.',
+        'Octa zerlegt ihn in kurze Einheiten. Dein Tempo bleibt, nur liegt es nicht mehr an einem Stück.',
+        'Was du schon konntest, kommt genau dann wieder, wenn du es zu vergessen beginnst.',
+      ],
+      why_octa:
+        'Verteiltes Wiederholen wirkt nur, wenn der Abstand stimmt: zu früh bringt nichts, zu spät ist es weg. Diesen Zeitpunkt triffst du von Hand nicht — du rätst ihn.',
+    },
+  };
+
+  const NOTES = [
+    '<b>Warum das zählt:</b> Wer vorher festlegt, wann und womit er anfängt, setzt Vorhaben deutlich zuverlässiger um als wer es sich nur allgemein vornimmt. <cite>Gollwitzer &amp; Sheeran, Meta-Analyse 2006</cite>',
+    '<b>Warum das zählt:</b> Unsortiertes Material bindet Arbeitsgedächtnis, das dann fürs Verstehen fehlt. Sortieren fühlt sich nach Fortschritt an, ist aber noch kein Lernen. <cite>Cognitive Load Theory, Sweller u.&nbsp;a.</cite>',
+    '<b>Warum das zählt:</b> Nochmal lesen schneidet direkt danach besser ab — nach ein paar Tagen aber deutlich schlechter als Selbstabfragen. Und es macht dich sicherer, als du tatsächlich bist. <cite>Roediger &amp; Karpicke, Psychological Science 2006</cite>',
+    '<b>Warum das zählt:</b> Sich selbst abfragen gehört in einer großen Übersichtsarbeit zu nur zwei Methoden mit hoher Wirksamkeit — quer über Fächer, Altersgruppen und Prüfungsformen. <cite>Dunlosky u.&nbsp;a., Psychological Science in the Public Interest 2013</cite>',
+    '<b>Warum das zählt:</b> Derselbe Stoff über mehrere Tage verteilt bleibt deutlich länger hängen als am Stück gelernt. Verteiltes Lernen ist die zweite der beiden hochwirksamen Methoden. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
+    '<b>Warum das zählt:</b> Gemeinsam lernen wirkt nicht durch die Gesellschaft, sondern durch das, was sie erzwingt: erklären, abgefragt werden, sich festlegen. Fehlen diese drei, bringt eine Lerngruppe wenig.',
+    '<b>Warum das zählt:</b> Markieren und Wiederlesen sind die beiden beliebtesten Lernmethoden überhaupt — und landeten in derselben Übersichtsarbeit in der niedrigsten Wirksamkeitsklasse. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
+    '<b>Fast geschafft.</b> Diese Antwort wiegt am stärksten: Bei einem knappen Ergebnis gibt sie den Ausschlag.',
+  ];
+
+  /* ---------------------------------------------------------- Grafiken -- */
+
+  /* Koerperfarben. `mascot` ist Octas Markenviolett, direkt aus dem Render
+     abgenommen; die Profilfarben sind Varianten davon, damit jede Figur
+     erkennbar bleibt, ohne dass es nach sechs fremden Tieren aussieht. */
+  const PAL = {
+    mascot: { body: '#6B67DE', dark: '#5A55C9' },
+    koenner: { body: '#6B67DE', dark: '#5A55C9' },
+    sammler: { body: '#4E9AD6', dark: '#3F82BA' },
+    markierer: { body: '#E5589B', dark: '#CF3E84' },
+    ueberfordert: { body: '#F08A4B', dark: '#D9713A' },
+    einzel: { body: '#7C88B4', dark: '#68739C' },
+    sprinter: { body: '#F0B429', dark: '#D69B1B' },
+  };
+
+  const SUCKER = '#F5A6C0';
+  const INK = '#1E2432';
+
+  /* Acht Tentakel, von hinten nach vorne gezeichnet. */
+  const ARMS_BACK = [
+    'M36 72 C24 78 13 84 8 78',
+    'M84 72 C96 78 107 84 112 78',
+    'M44 78 C34 90 22 97 15 92',
+    'M76 78 C86 90 98 97 105 92',
+  ];
+  const ARMS_FRONT = [
+    'M50 82 C46 95 40 105 44 112',
+    'M70 82 C74 95 80 105 76 112',
+    'M57 83 C55 96 52 108 57 114',
+    'M63 83 C65 96 68 108 63 114',
+  ];
+
+  function arms(paths, dark) {
+    const body = paths
+      .map(
+        (d) =>
+          `<path d="${d}" stroke="${dark}" stroke-width="8.5" fill="none" stroke-linecap="round"/>`
+      )
+      .join('');
+    // Saugnaepfe: gepunktete Linie auf der Tentakel-Unterseite
+    const dots = paths
+      .map(
+        (d) =>
+          `<path d="${d}" stroke="${SUCKER}" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="0.1 5.4" opacity=".9"/>`
+      )
+      .join('');
+    return body + dots;
+  }
+
+  /* Gesichtsausdruecke — die Augenbrauen tragen den groessten Teil davon. */
+  const FACE = {
+    happy: `<path d="M38 34 q9 -6 19 -2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M63 32 q10 -4 19 2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="47" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="48.5" cy="51" r="5.4" fill="${INK}"/><circle cx="46.4" cy="48.4" r="1.9" fill="#FFF"/>
+            <ellipse cx="73" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="74.5" cy="51" r="5.4" fill="${INK}"/><circle cx="72.4" cy="48.4" r="1.9" fill="#FFF"/>
+            <path d="M51 67 Q60 77 69 67 Z" fill="${INK}"/><path d="M56 73 Q60 77 64 73 Z" fill="#E8607F"/>`,
+    smile: `<path d="M38 34 q9 -5 19 -2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M63 32 q10 -3 19 2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="47" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="48.5" cy="51" r="5.4" fill="${INK}"/><circle cx="46.4" cy="48.4" r="1.9" fill="#FFF"/>
+            <ellipse cx="73" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="74.5" cy="51" r="5.4" fill="${INK}"/><circle cx="72.4" cy="48.4" r="1.9" fill="#FFF"/>
+            <path d="M52 68 Q60 75 68 68" stroke="${INK}" stroke-width="3.2" fill="none" stroke-linecap="round"/>`,
+    wink: `<path d="M38 34 q9 -6 19 -2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+           <path d="M63 30 q10 -3 19 3" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+           <ellipse cx="47" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="48.5" cy="51" r="5.4" fill="${INK}"/><circle cx="46.4" cy="48.4" r="1.9" fill="#FFF"/>
+           <path d="M65 51 q8 -8 16 0" stroke="${INK}" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+           <path d="M51 67 Q60 77 69 67 Z" fill="${INK}"/>`,
+    wow: `<path d="M37 30 q10 -7 20 -3" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M63 27 q10 -4 20 3" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="47" cy="51" rx="12.5" ry="14" fill="#FFF"/><circle cx="47" cy="51" r="5.8" fill="${INK}"/><circle cx="44.8" cy="48.2" r="2.1" fill="#FFF"/>
+          <ellipse cx="73" cy="51" rx="12.5" ry="14" fill="#FFF"/><circle cx="73" cy="51" r="5.8" fill="${INK}"/><circle cx="70.8" cy="48.2" r="2.1" fill="#FFF"/>
+          <ellipse cx="60" cy="71" rx="5.5" ry="7" fill="${INK}"/>`,
+    flat: `<path d="M38 33 q9 -3 19 -2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+           <path d="M63 31 q10 -1 19 2" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+           <ellipse cx="47" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="48.5" cy="51" r="5.4" fill="${INK}"/><circle cx="46.4" cy="48.4" r="1.9" fill="#FFF"/>
+           <ellipse cx="73" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="74.5" cy="51" r="5.4" fill="${INK}"/><circle cx="72.4" cy="48.4" r="1.9" fill="#FFF"/>
+           <path d="M53 70 H67" stroke="${INK}" stroke-width="3.2" stroke-linecap="round"/>`,
+    worried: `<path d="M38 30 q10 3 18 6" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M82 30 q-10 3 -18 6" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="47" cy="52" rx="11.5" ry="13" fill="#FFF"/><circle cx="47" cy="53" r="5.4" fill="${INK}"/><circle cx="44.9" cy="50.4" r="1.9" fill="#FFF"/>
+              <ellipse cx="73" cy="52" rx="11.5" ry="13" fill="#FFF"/><circle cx="73" cy="53" r="5.4" fill="${INK}"/><circle cx="70.9" cy="50.4" r="1.9" fill="#FFF"/>
+              <path d="M51 71 q4.5 -5 9 0 q4.5 5 9 0" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+    tired: `<path d="M38 33 q9 -2 19 0" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M63 33 q10 -2 19 0" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M39 50 q8 7 16 0" stroke="${INK}" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+            <path d="M65 50 q8 7 16 0" stroke="${INK}" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+            <path d="M53 70 q7 4 14 0" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+    curious: `<path d="M38 36 q9 -8 19 -3" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M63 29 q10 -2 19 4" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="47" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="49.5" cy="51" r="5.4" fill="${INK}"/><circle cx="47.4" cy="48.4" r="1.9" fill="#FFF"/>
+              <ellipse cx="73" cy="50" rx="11" ry="12.5" fill="#FFF"/><circle cx="75.5" cy="51" r="5.4" fill="${INK}"/><circle cx="73.4" cy="48.4" r="1.9" fill="#FFF"/>
+              <path d="M54 69 q6 6 12 1" stroke="${INK}" stroke-width="3.2" fill="none" stroke-linecap="round"/>`,
+  };
+
+  /* Doktorhut — das Erkennungszeichen aus Octas Logo. */
+  const CAP = `<g>
+      <path d="M60 4 L96 17 L60 30 L24 17 Z" fill="#22283A"/>
+      <path d="M40 22 v9 c0 5 9 8 20 8 s20 -3 20 -8 v-9 l-20 7 z" fill="#2B3247"/>
+      <path d="M92 18 v13" stroke="#F0B429" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="92" cy="33" r="4" fill="#F0B429"/>
+    </g>`;
+
+  /**
+   * Zeichnet Octa.
+   * @param key  Schluessel in PAL
+   * @param face Ausdruck aus FACE
+   * @param behind  SVG hinter der Figur
+   * @param front   SVG vor der Figur
+   */
+  function octo(key, face, behind = '', front = '') {
+    const c = PAL[key] || PAL.mascot;
+    return `<svg viewBox="0 0 120 120" aria-hidden="true">
+      ${behind}
+      ${arms(ARMS_BACK, c.dark)}
+      <path d="M60 12 C84 12 99 30 99 53 C99 73 83 86 60 86 C37 86 21 73 21 53 C21 30 36 12 60 12 Z" fill="${c.body}"/>
+      <ellipse cx="47" cy="27" rx="15" ry="7.5" fill="#FFF" opacity=".22" transform="rotate(-20 47 27)"/>
+      ${arms(ARMS_FRONT, c.dark)}
+      <path d="M60 12 C84 12 99 30 99 53 C99 73 83 86 60 86 C37 86 21 73 21 53 C21 30 36 12 60 12 Z" fill="${c.body}"/>
+      <ellipse cx="47" cy="27" rx="15" ry="7.5" fill="#FFF" opacity=".22" transform="rotate(-20 47 27)"/>
+      ${FACE[face] || FACE.smile}
+      ${front}
+    </svg>`;
+  }
+
+  /* Maskottchen im Quiz: wechselt mit jeder Frage den Ausdruck. */
+  const MASCOT_FACES = [
+    () => octo('mascot', 'smile'),
+    () => octo('mascot', 'wink'),
+    () => octo('mascot', 'curious'),
+    () => octo('mascot', 'happy'),
+    () => octo('mascot', 'wow'),
+    () => octo('mascot', 'smile'),
+    () => octo('mascot', 'wink'),
+    () => octo('mascot', 'happy'),
+  ];
+
+  /* ------------------------------------------------------------- Logik -- */
+
+  const ORDER = ['koenner', 'sammler', 'markierer', 'ueberfordert', 'einzel', 'sprinter'];
+  let step = 0;
+  let picks = [];
+  let locked = false;
+
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  const el = (id) => document.getElementById(id);
+  const show = (id) =>
+    document
+      .querySelectorAll('.lt-screen')
+      .forEach((s) => s.classList.toggle('on', s.id === id));
+
+  function start() {
+    show('s-quiz');
+    render();
+  }
+
+  function render() {
+    const item = QUESTIONS[step];
+    locked = false;
+    el('q').textContent = item.q;
+    el('count').textContent = `Frage ${step + 1} von ${QUESTIONS.length}`;
+    el('mood').textContent = MOODS[step] || '';
+    el('fill').style.width =
+      Math.round(((step + 1) / QUESTIONS.length) * 100) + '%';
+    el('mascot').innerHTML = MASCOT_FACES[step % MASCOT_FACES.length]();
+    el('opts').innerHTML = item.a
+      .map(
+        (o, i) =>
+          `<button class="lt-opt" type="button" onclick="pick(${i},this)">
+             <span class="lt-opt__key">${String.fromCharCode(65 + i)}</span>
+             <span>${o[0]}</span>
+           </button>`
+      )
+      .join('');
+    el('note').innerHTML = NOTES[step];
+    el('back').classList.toggle('hide', step === 0);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  /* Kurze Verzoegerung nach dem Klick: die Auswahl wird sichtbar quittiert,
+     bevor die naechste Frage kommt. Fuehlt sich deutlich besser an als ein
+     sofortiger Sprung. */
+  function pick(i, btn) {
+    if (locked) return;
+    locked = true;
+    picks[step] = i;
+    if (btn) btn.classList.add('picked');
+    const go = () => {
+      if (step < QUESTIONS.length - 1) {
+        step++;
+        render();
+      } else {
+        finish();
+      }
+    };
+    reduceMotion ? go() : setTimeout(go, 200);
+  }
+
+  function back() {
+    if (step > 0) {
+      step--;
+      render();
+    }
+  }
+
+  function score() {
+    const s = Object.fromEntries(ORDER.map((k) => [k, 0]));
+    picks.forEach((choice, qi) => {
+      const weights = QUESTIONS[qi].a[choice][1];
+      for (const k in weights) s[k] += weights[k];
+    });
+    return s;
+  }
+
+  function finish() {
+    const s = score();
+    const lastPick = QUESTIONS[QUESTIONS.length - 1].a[picks[picks.length - 1]][1];
+    const lastKey = Object.keys(lastPick)[0];
+    let best = ORDER[0];
+    ORDER.forEach((k) => {
+      if (s[k] > s[best]) best = k;
+    });
+    // Gleichstand entscheidet die Selbsteinschaetzung aus der letzten Frage
+    if (s[lastKey] === s[best]) best = lastKey;
+
+    show('s-result');
+    el('s-result').innerHTML = resultHTML(PROFILES[best], s, best);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+
+    requestAnimationFrame(() => {
+      const max = Math.max(...Object.values(s), 1);
+      document.querySelectorAll('.lt-bar-fill').forEach((b) => {
+        b.style.width = Math.round((+b.dataset.v / max) * 100) + '%';
+      });
+    });
+
+    if (!reduceMotion) confetti();
+    if (window.plausible) window.plausible('quiz_fertig', { props: { profil: best } });
+  }
+
+  function resultHTML(p, s, key) {
+    const d = DETAIL[key];
+
+    const bars = ORDER.map(
+      (k) => `
+      <div class="lt-bar-row ${k === key ? 'top-hit' : ''}">
+        <div>
+          <div class="lt-bar-name">${PROFILES[k].short}</div>
+          <div class="lt-bar-track"><span class="lt-bar-fill" data-v="${s[k]}"></span></div>
+        </div>
+        <span class="lt-bar-val">${s[k]} Pkt.</span>
+      </div>`
+    ).join('');
+
+    const reviews = REVIEWS[key] || [];
+    const bewertungen = `
+      <h3>Was andere sagen</h3>
+      <div class="lt-rating">
+        <span class="lt-rating-num">${STORE.schnitt}</span>
+        <span>
+          <span class="lt-stars">★★★★★</span>
+          <span class="lt-rating-sub">${STORE.anzahl} Bewertungen im App&nbsp;Store · Stand ${STORE.stand}</span>
+        </span>
+      </div>
+      ${reviews
+        .map(
+          (r) => `<div class="lt-rev">
+            <div class="lt-stars">★★★★★</div>
+            <p>${r.t}</p>
+            <div class="lt-who">${r.w}</div>
+          </div>`
+        )
+        .join('')}`;
+
+    const cta = isIOS
+      ? `<div class="lt-codebox">
+           <div class="lt-label">Dein Gratismonat</div>
+           <div class="lt-code" id="thecode">${p.code}</div>
+           <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
+         </div>
+         <a class="btn lt-btn-block" href="${CONFIG.appStore}" target="_blank" rel="noopener"
+            onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}'}})">Octa laden und Code einlösen</a>
+         <p class="lt-fine">Code beim Abo-Abschluss im App Store eingeben. Ein Monat gratis, danach ganz normal kündbar.</p>`
+      : `<div class="lt-done-note">
+           <strong>Octa gibt es aktuell nur für iOS.</strong><br />
+           Öffne diese Seite auf deinem iPhone, um deinen Gratismonat einzulösen — dein Code lautet <strong>${p.code}</strong>.
+         </div>`;
+
+    const mail = CONFIG.mailAktiv
+      ? `<hr class="lt-divider">
+         <div class="lt-befund" id="mailbox">
+           <h3 style="margin-bottom:.4rem">Lieber erstmal ohne App?</h3>
+           <p class="text-muted">Dann schicken wir dir deinen 7-Tage-Plan für ${p.name.toLowerCase()} — eine Aufgabe pro Tag, 20 bis 30 Minuten.</p>
+           <label for="mail">E-Mail</label>
+           <input id="mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
+           <label for="exam">Nächste Prüfung (optional)</label>
+           <input id="exam" type="date">
+           <button class="btn btn--ghost lt-btn-block" type="button" onclick="sendMail('${p.code}')">Plan schicken</button>
+           <p class="lt-fine">Nur für den Plan und Erinnerungen zu deiner Prüfung. Jederzeit abbestellbar.</p>
+         </div>`
+      : '';
+
+    return `
+      <div class="lt-result-head">
+        <img class="lt-result-img" src="/img/lerntypen/${key}.webp" srcset="/img/lerntypen/${key}@1x.webp 450w, /img/lerntypen/${key}.webp 900w" sizes="(max-width: 640px) 78vw, 340px" alt="Illustration: ${p.name}" />
+        <span class="eyebrow">Dein Ergebnis</span>
+        <h1 style="margin:.4rem 0 .5rem">${p.name}</h1>
+        <p class="lt-tagline">${p.tagline}</p>
+      </div>
+
+      <div class="lt-befund">
+        <span class="eyebrow" style="margin-bottom:1rem">Auswertung</span>
+        <div class="lt-bars">${bars}</div>
+      </div>
+
+      <div class="lt-block"><h3>Was du gut kannst</h3><p>${p.strength}</p></div>
+      <div class="lt-block"><h3>Kennst du das?</h3><p class="lt-moment">${d.moment}</p></div>
+      <div class="lt-block"><h3>Warum das passiert</h3><p>${d.why}</p></div>
+      <div class="lt-block"><h3>Was dich das kostet</h3><p>${p.cost}</p></div>
+
+      <hr class="lt-divider">
+
+      <div class="lt-block">
+        <span class="eyebrow">Die Lösung</span>
+        <h3 style="margin:.75rem 0 .5rem">${p.featureTitle}</h3>
+        <p>${d.why_octa}</p>
+        <ol class="lt-steps">${d.how.map((x) => `<li>${x}</li>`).join('')}</ol>
+      </div>
+
+      <div class="lt-demo">
+        <strong>Demo-Video hier einsetzen</strong>
+        ${VIDEOS[key]}
+      </div>
+
+      <div class="lt-block" style="margin-top:2rem">${bewertungen}</div>
+
+      <hr class="lt-divider">
+
+      ${cta}
+      ${mail}
+
+      <hr class="lt-divider">
+
+      <button class="lt-back" type="button" onclick="location.reload()">← Test noch einmal machen</button>`;
+  }
+
+  /* Echte Rezensionen aus dem deutschen App Store. Nichts erfinden —
+     Profile ohne passende Bewertung bleiben bewusst leer, dann traegt
+     die Store-Gesamtbewertung. */
+  const R = {
+    timmi: {
+      t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      w: 'Timmi.bremmen · App Store',
+    },
+    fifi: {
+      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
+      w: 'So fifi · App Store',
+    },
+    dexter: {
+      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      w: 'DexterBerlin36 · App Store',
+    },
+  };
+  const REVIEWS = {
+    koenner: [],
+    sammler: [R.fifi, R.dexter],
+    markierer: [],
+    ueberfordert: [R.timmi],
+    einzel: [],
+    sprinter: [R.timmi],
+  };
+
+  const VIDEOS = {
+    koenner: 'Der mündliche Prüfer stellt eine Frage und bewertet die gesprochene Antwort',
+    sammler: 'Mehrere PDFs und Fotos werden zu einer Gliederung',
+    markierer: 'Aus einem Kapitel entstehen Karten und Quizfragen',
+    ueberfordert: 'Prüfungsdatum eintragen, Plan entsteht, Tagesaufgabe erscheint',
+    einzel: 'Tribe beitreten, Fortschritt der Gruppe sehen',
+    sprinter: 'Wiederholungen tauchen zum richtigen Zeitpunkt wieder auf',
+  };
+
+  function copyCode() {
+    const code = el('thecode').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const b = document.querySelector('.lt-copy');
+      b.textContent = 'Kopiert';
+      setTimeout(() => (b.textContent = 'Code kopieren'), 1800);
+    });
+  }
+
+  function sendMail(code) {
+    const mail = el('mail').value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(mail)) {
+      el('mail').style.borderColor = '#E5177B';
+      el('mail').focus();
+      return;
+    }
+    const payload = {
+      email: mail,
+      pruefung: el('exam').value || null,
+      profil: code,
+      plattform: isIOS ? 'ios' : 'andere',
+      antworten: picks,
+    };
+    const done = () => {
+      el('mailbox').innerHTML =
+        '<div class="lt-done-note"><strong>Ist unterwegs.</strong><br />Dein Plan liegt gleich in deinem Postfach — schau notfalls im Spam nach.</div>';
+    };
+    if (!CONFIG.mailEndpoint) {
+      console.warn('Kein mailEndpoint gesetzt. Payload:', payload);
+      done();
+      return;
+    }
+    fetch(CONFIG.mailEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(done)
+      .catch(done);
+  }
+
+  /* Konfetti — kurz, dezent, in den Markenfarben. */
+  function confetti() {
+    const cv = el('confetti');
+    const ctx = cv.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.style.display = 'block';
+    cv.width = window.innerWidth * dpr;
+    cv.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+
+    const colors = ['#E5177B', '#7C6BF0', '#F0B429', '#3E9BD8', '#17B98D'];
+    const parts = Array.from({ length: 90 }, (_, i) => ({
+      x: window.innerWidth * (0.15 + Math.sin(i * 12.9898) * 0.5 + 0.35),
+      y: -20 - (i % 12) * 24,
+      r: 4 + (i % 5),
+      c: colors[i % colors.length],
+      vy: 2.4 + (i % 7) * 0.35,
+      vx: (((i * 37) % 100) / 100 - 0.5) * 2.2,
+      rot: (i * 31) % 360,
+      vr: (((i * 17) % 100) / 100 - 0.5) * 9,
+    }));
+
+    let frames = 0;
+    (function tick() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      parts.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.045;
+        p.rot += p.vr;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.7);
+        ctx.restore();
+      });
+      frames++;
+      if (frames < 190) requestAnimationFrame(tick);
+      else {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        cv.style.display = 'none';
+      }
+    })();
+  }
+
+  
+</script>

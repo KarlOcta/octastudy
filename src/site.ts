@@ -54,7 +54,7 @@ export type NavItem = {
 };
 
 export const NAV: NavItem[] = [
-  { label: 'Schemata', href: '/schemata/' },
+  { label: 'Lernunterlagen', href: '/lernunterlagen/' },
   { label: 'Tools', href: '/tools/' },
   // { label: 'Über uns', href: '/ueber-uns/' },  ← wieder einblenden, sobald Autor + Gegenleser feststehen
 ];
