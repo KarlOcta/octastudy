@@ -9,29 +9,14 @@ const isActive = (href: string) =>
 <header class="site-header">
   <div class="wrap site-header__inner">
     <a href="/" class="logo" aria-label={`${SITE.name} — Startseite`}>
-      <svg
+      <img
         class="logo__mark"
-        width="26"
-        height="26"
-        viewBox="0 0 24 24"
-        fill="none"
+        src="/img/logo-mark.webp"
+        width="96"
+        height="96"
+        alt=""
         aria-hidden="true"
-      >
-        <rect
-          x="2.5"
-          y="2.5"
-          width="19"
-          height="19"
-          rx="5.5"
-          stroke="currentColor"
-          stroke-width="1.6"></rect>
-        <path
-          d="M7.5 12.2 L10.7 15.4 L16.5 9"
-          stroke="currentColor"
-          stroke-width="1.9"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
+      />
       <span class="logo__text">octa<span class="logo__accent">study</span></span>
     </a>
 
@@ -86,8 +71,10 @@ const isActive = (href: string) =>
   }
 
   .logo__mark {
-    color: var(--accent);
     flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
   }
 
   .logo__accent {

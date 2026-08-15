@@ -1126,6 +1126,137 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .lt-cast { margin-top: 2rem; }
   }
 
+
+  /* ---------------------------------------------- Ergebnis: App-Block -- */
+
+  .lt-evidence-single {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.15rem;
+    margin: 1.25rem 0;
+  }
+
+  .lt-evidence-single strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .lt-evidence-single p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .lt-app {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 250px);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .lt-app__feature {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Telefon-Rahmen um den App-Screenshot */
+  .lt-phone {
+    margin: 0;
+    position: relative;
+  }
+
+  .lt-phone img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 22px;
+    border: 6px solid var(--brand-navy);
+    box-shadow: var(--shadow-lg);
+    background: #fff;
+  }
+
+  .lt-phone figcaption {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--text-subtle);
+    text-align: center;
+  }
+
+  .lt-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .lt-features li {
+    margin-top: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lt-features strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  /* Store-Block */
+  .lt-store {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    text-align: center;
+  }
+
+  .lt-store__note {
+    font-size: 0.97rem;
+    color: var(--text-muted);
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  .lt-store__note strong {
+    color: var(--text);
+  }
+
+  .lt-store .lt-codebox {
+    background: var(--bg-card);
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+
+  .lt-store .btn {
+    margin-inline: auto;
+  }
+
+  .lt-store .lt-fine {
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 720px) {
+    .lt-app {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    .lt-phone {
+      max-width: 250px;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .lt-screen.on,
     .lt-result-char svg {
@@ -1537,6 +1668,58 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     () => octo('mascot', 'happy'),
   ];
 
+
+  /* Das Prinzip, das dem Profil fehlt — bewusst produktfrei formuliert.
+     Erst wenn klar ist, WAS gebraucht wird, kommt Octa als Umsetzung. */
+  const CONCEPT = {
+    koenner: {
+      titel: 'Aktives Abrufen — laut und ohne Vorlage',
+      was: 'Dir fehlt kein weiteres Verstehen, dir fehlt Übung im Herausholen. Konkret: den Stoff aus dem Kopf formulieren, ohne hinzusehen — und zwar sprechend, weil die Prüfung ebenfalls gesprochen stattfindet.',
+      warum: 'Wer sich selbst abfragt, schneidet nach einigen Tagen deutlich besser ab als wer denselben Stoff noch einmal liest. Abrufen ist nicht die Kontrolle des Gelernten, es ist der Lernvorgang selbst.',
+      huerde: 'Beim Abfragen allein merkst du nur nicht, wann deine Antwort schwammig war — wer den Stoff halb kann, hält die halbe Antwort für vollständig. Es braucht ein Gegenüber, das zuhört und benennt, was gefehlt hat.',
+    },
+    sammler: {
+      titel: 'Vom Material zum Stoff — in einem Schritt',
+      was: 'Dir fehlt keine weitere Datei, dir fehlt eine Reihenfolge: eine Gliederung, die aus dem Berg einen Weg macht, und Fragen, die dich zwingen, dich inhaltlich damit zu befassen statt es nur abzulegen.',
+      warum: 'Unsortiertes Material bindet Arbeitsgedächtnis, das dann fürs Verstehen fehlt. Solange Sichten und Lernen dieselbe Sitzung belegen, gewinnt das Sichten — es fühlt sich produktiv an und ist anspruchsloser.',
+      huerde: 'Von Hand ist genau dieser Schritt der teuerste. Vierzig Dateien sichten, ordnen und daraus Fragen bauen kostet exakt die Tage, die du zum Lernen bräuchtest.',
+    },
+    markierer: {
+      titel: 'Abrufen statt Wiedererkennen',
+      was: 'Der Wechsel ist klein und unbequem: Seite zuklappen, Frage ohne Vorlage beantworten. Was tatsächlich sitzt, zeigt sich erst, wenn die Vorlage weg ist — vorher misst du nur Vertrautheit.',
+      warum: 'Markieren und Wiederlesen landeten in der großen Übersichtsarbeit von Dunlosky u. a. in der niedrigsten Wirksamkeitsklasse. Selbstabfragen und verteiltes Lernen sind die einzigen beiden mit hoher Wirksamkeit.',
+      huerde: 'Du weißt das vermutlich längst. Der Grund, warum du es trotzdem nicht tust, ist der Aufwand: zwanzig Karten pro Kapitel sind vierzig Minuten Schreibarbeit — und zwar vor dem Lernen, wenn die Motivation ohnehin knapp ist.',
+    },
+    ueberfordert: {
+      titel: 'Eine Aufgabe statt zwölf Optionen',
+      was: 'Dir fehlt kein längerer Lerntag, dir fehlt eine bereits getroffene Entscheidung. Der Stoff muss vom Prüfungstag rückwärts in Tagesportionen geschnitten sein, damit beim Hinsetzen nur noch eine Sache dasteht.',
+      warum: 'Wer vorher festlegt, wann und womit er anfängt, setzt Vorhaben deutlich zuverlässiger um als wer es sich nur allgemein vornimmt. Die Entscheidung im Voraus zu treffen ist der eigentliche Hebel, nicht die Willenskraft am Tag selbst.',
+      huerde: 'Einen Plan kannst du dir selbst machen. Er hält bis zum ersten Tag, der ausfällt — ab da steht dieselbe Entscheidungslast wieder vor dir, jetzt zusätzlich mit Rückstand.',
+    },
+    einzel: {
+      titel: 'Ein Vorsatz, von dem jemand weiß',
+      was: 'Dir fehlt keine Methode, dir fehlt ein äußerer Blick. Etwas, das aus einem privaten Vorsatz eine Verabredung macht: sichtbarer Fortschritt gegenüber Leuten, die auf dasselbe hinarbeiten.',
+      warum: 'Gemeinsam lernen wirkt nicht durch die Gesellschaft, sondern durch das, was sie erzwingt — sich festlegen, erklären, auffallen wenn man wegbleibt. Fehlen diese drei, bringt auch eine Lerngruppe wenig.',
+      huerde: 'Über einen Freund lässt sich das kaum lösen: Der fragt zwei Wochen nach und dann nicht mehr. Es braucht etwas, das ohne Erinnern und ohne Rechenschaftsbericht funktioniert.',
+    },
+    sprinter: {
+      titel: 'Derselbe Stoff, über Tage verteilt',
+      was: 'Dein Tempo ist nicht das Problem — dass alles in einem einzigen Block passiert, ist es. Was du brauchst, ist dieselbe Menge in kurzen Einheiten und Wiederholungen genau dann, wenn du zu vergessen beginnst.',
+      warum: 'Verteiltes Lernen ist neben dem Selbstabfragen die zweite Methode mit hoher Wirksamkeit. Derselbe Aufwand über mehrere Tage verteilt bleibt erheblich länger verfügbar als am Stück gelernt.',
+      huerde: 'Den richtigen Wiederholungsabstand triffst du von Hand nicht — zu früh bringt nichts, zu spät ist es weg. Du müsstest für jede Karte mitführen, wann sie wieder dran ist.',
+    },
+  };
+
+  /* Passender App-Screenshot je Profil. */
+  const MOCKUP_CAP = {
+    koenner: 'Der mündliche Prüfer stellt die Frage — du antwortest gesprochen',
+    sammler: 'Hochgeladene Folie, sofort erklärt und aufbereitet',
+    markierer: 'Karteikarte aus deinem eigenen Material, mit Selbsteinschätzung',
+    ueberfordert: 'Der Lernplan zeigt, was heute dran ist — eine Aufgabe',
+    einzel: 'Tribes: dein Fortschritt ist für andere sichtbar',
+    sprinter: 'Wochenverlauf und Serie halten den Rhythmus',
+  };
+
   /* ------------------------------------------------------------- Logik -- */
 
   const ORDER = ['koenner', 'sammler', 'markierer', 'ueberfordert', 'einzel', 'sprinter'];
@@ -1647,8 +1830,35 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     if (window.plausible) window.plausible('quiz_fertig', { props: { profil: best } });
   }
 
+  /* Echte Rezensionen aus dem deutschen App Store. Nichts erfinden —
+     Profile ohne passende Bewertung bleiben leer, dann traegt die
+     Store-Gesamtbewertung. */
+  const R = {
+    timmi: {
+      t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      w: 'Timmi.bremmen · App Store',
+    },
+    fifi: {
+      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
+      w: 'So fifi · App Store',
+    },
+    dexter: {
+      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      w: 'DexterBerlin36 · App Store',
+    },
+  };
+  const REVIEWS = {
+    koenner: [],
+    sammler: [R.fifi, R.dexter],
+    markierer: [],
+    ueberfordert: [R.timmi],
+    einzel: [],
+    sprinter: [R.timmi],
+  };
+
   function resultHTML(p, s, key) {
     const d = DETAIL[key];
+    const c = CONCEPT[key];
 
     const bars = ORDER.map(
       (k) => `
@@ -1681,19 +1891,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         )
         .join('')}`;
 
-    const cta = isIOS
-      ? `<div class="lt-codebox">
-           <div class="lt-label">Dein Gratismonat</div>
-           <div class="lt-code" id="thecode">${p.code}</div>
-           <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
-         </div>
-         <a class="btn lt-btn-block" href="${CONFIG.appStore}" target="_blank" rel="noopener"
-            onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}'}})">Octa laden und Code einlösen</a>
-         <p class="lt-fine">Code beim Abo-Abschluss im App Store eingeben. Ein Monat gratis, danach ganz normal kündbar.</p>`
-      : `<div class="lt-done-note">
-           <strong>Octa gibt es aktuell nur für iOS.</strong><br />
-           Öffne diese Seite auf deinem iPhone, um deinen Gratismonat einzulösen — dein Code lautet <strong>${p.code}</strong>.
-         </div>`;
+    const cta = `
+      <div class="lt-store">
+        <p class="lt-store__note">
+          <strong>Octa gibt es derzeit nur für iPhone und iPad.</strong>
+          Eine Android-Version ist in Arbeit.
+        </p>
+        <div class="lt-codebox">
+          <div class="lt-label">Dein Gratismonat als ${p.short}</div>
+          <div class="lt-code" id="thecode">${p.code}</div>
+          <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
+        </div>
+        <a class="btn lt-btn-block" href="${CONFIG.appStore}" target="_blank" rel="noopener"
+           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}'}})">Octa im App Store laden</a>
+        <p class="lt-fine">
+          Code beim Abo-Abschluss im App Store eingeben. Ein Monat gratis, danach
+          ganz normal kündbar.
+        </p>
+      </div>`;
 
     const mail = CONFIG.mailAktiv
       ? `<hr class="lt-divider">
@@ -1730,18 +1945,71 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <hr class="lt-divider">
 
       <div class="lt-block">
-        <span class="eyebrow">Die Lösung</span>
-        <h3 style="margin:.75rem 0 .5rem">${p.featureTitle}</h3>
-        <p>${d.why_octa}</p>
-        <ol class="lt-steps">${d.how.map((x) => `<li>${x}</li>`).join('')}</ol>
+        <span class="eyebrow">Das Prinzip</span>
+        <h3 style="margin:.75rem 0 .5rem">${c.titel}</h3>
+        <p>${c.was}</p>
+        <div class="lt-evidence-single">
+          <strong>Warum das wirkt</strong>
+          <p>${c.warum}</p>
+        </div>
+        <p><strong>Die Hürde im Alltag:</strong> ${c.huerde}</p>
       </div>
 
-      <div class="lt-demo">
-        <strong>Demo-Video hier einsetzen</strong>
-        ${VIDEOS[key]}
+      <hr class="lt-divider">
+
+      <div class="lt-block">
+        <span class="eyebrow">Die Umsetzung</span>
+        <h3 style="margin:.75rem 0 .5rem">Genau dafür haben wir Octa gebaut</h3>
+        <div class="lt-app">
+          <div class="lt-app__text">
+            <p class="lt-app__feature">${p.featureTitle}</p>
+            <p>${d.why_octa}</p>
+            <ol class="lt-steps">${d.how.map((x) => `<li>${x}</li>`).join('')}</ol>
+          </div>
+          <figure class="lt-phone">
+            <img src="/img/app/${key}@1x.webp"
+                 srcset="/img/app/${key}@1x.webp 430w, /img/app/${key}.webp 860w"
+                 sizes="(max-width: 720px) 60vw, 250px"
+                 alt="Octa-App: ${MOCKUP_CAP[key]}" loading="lazy" />
+            <figcaption>${MOCKUP_CAP[key]}</figcaption>
+          </figure>
+        </div>
       </div>
 
-      <div class="lt-block" style="margin-top:2rem">${bewertungen}</div>
+      <div class="lt-block">
+        <h3>Was Octa sonst noch macht</h3>
+        <ul class="lt-features">
+          <li>
+            <strong>Unterlagen hochladen</strong>
+            Vorlesungs-PDF, Folien, abfotografierte Mitschrift oder Screenshot —
+            Octa liest es und erkennt die Themen darin.
+          </li>
+          <li>
+            <strong>Karteikarten und Quizze automatisch</strong>
+            Aus deinem eigenen Material, in Sekunden. Du schreibst keine
+            einzige Karte selbst.
+          </li>
+          <li>
+            <strong>Mündlicher Prüfer</strong>
+            Fragt dich laut ab, hört sich deine gesprochene Antwort an und sagt
+            dir danach, wo sie unvollständig war. Streng oder freundlich, je
+            nach Einstellung.
+          </li>
+          <li>
+            <strong>Lernplan bis zum Prüfungstermin</strong>
+            Rechnet vom Prüfungstag rückwärts, schneidet den Stoff in
+            Tagesportionen und bringt Wiederholungen zum richtigen Zeitpunkt
+            zurück.
+          </li>
+          <li>
+            <strong>Tribes</strong>
+            Lerngruppen, in denen dein Fortschritt sichtbar ist — ohne dass du
+            etwas melden musst.
+          </li>
+        </ul>
+      </div>
+
+      <div class="lt-block">${bewertungen}</div>
 
       <hr class="lt-divider">
 
@@ -1752,41 +2020,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <button class="lt-back" type="button" onclick="location.reload()">← Test noch einmal machen</button>`;
   }
-
-  /* Echte Rezensionen aus dem deutschen App Store. Nichts erfinden —
-     Profile ohne passende Bewertung bleiben bewusst leer, dann traegt
-     die Store-Gesamtbewertung. */
-  const R = {
-    timmi: {
-      t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
-      w: 'Timmi.bremmen · App Store',
-    },
-    fifi: {
-      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
-      w: 'So fifi · App Store',
-    },
-    dexter: {
-      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
-      w: 'DexterBerlin36 · App Store',
-    },
-  };
-  const REVIEWS = {
-    koenner: [],
-    sammler: [R.fifi, R.dexter],
-    markierer: [],
-    ueberfordert: [R.timmi],
-    einzel: [],
-    sprinter: [R.timmi],
-  };
-
-  const VIDEOS = {
-    koenner: 'Der mündliche Prüfer stellt eine Frage und bewertet die gesprochene Antwort',
-    sammler: 'Mehrere PDFs und Fotos werden zu einer Gliederung',
-    markierer: 'Aus einem Kapitel entstehen Karten und Quizfragen',
-    ueberfordert: 'Prüfungsdatum eintragen, Plan entsteht, Tagesaufgabe erscheint',
-    einzel: 'Tribe beitreten, Fortschritt der Gruppe sehen',
-    sprinter: 'Wiederholungen tauchen zum richtigen Zeitpunkt wieder auf',
-  };
 
   function copyCode() {
     const code = el('thecode').textContent;
