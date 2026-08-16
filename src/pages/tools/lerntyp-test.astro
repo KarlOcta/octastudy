@@ -1408,6 +1408,60 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin-top: 1.25rem;
   }
 
+  /* Einwilligung */
+  .lt-dialog label.lt-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 1.1rem 0 0;
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-subtle);
+    cursor: pointer;
+  }
+
+  .lt-dialog label.lt-check input {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+    margin-top: 0.15rem;
+    padding: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .lt-dialog label.lt-check a {
+    color: var(--accent);
+    text-underline-offset: 2px;
+  }
+
+  .lt-check--miss span {
+    color: var(--highlight);
+  }
+
+  /* Honigtopf gegen Bots — für Menschen unsichtbar, für Screenreader weg */
+  .lt-dialog input.lt-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lt-msg {
+    margin-top: 0.9rem;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    color: var(--highlight);
+    font-weight: 600;
+  }
+
+  .lt-msg.hide {
+    display: none;
+  }
+
   /* Textlink im Store-Block */
   .lt-link {
     background: none;
@@ -1461,7 +1515,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     mailEndpoint: '',
     // Warteliste Android. Solange leer, bietet der Dialog eine E-Mail-Adresse an
     // statt eines Formulars. Vor dem Aktivieren die Datenschutzerklaerung ergaenzen.
-    waitlistEndpoint: '',
+    waitlistEndpoint: 'https://octastudy-warteliste.karl-7b5.workers.dev/',
     kontaktMail: 'info@octaai.com',
   };
 
@@ -2254,16 +2308,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   /* ------------------------------------------------- Android-Warteliste -- */
 
+  /* Wortlaut der Einwilligung. Wird mitgespeichert, damit später belegbar ist,
+     wozu genau der Nutzer zugestimmt hat. Bei jeder Textänderung mitziehen. */
+  const WL_EINWILLIGUNG =
+    'Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht.';
+
   function openWaitlist() {
     const body = el('wl-body');
     if (CONFIG.waitlistEndpoint) {
       body.innerHTML = `
         <label for="wl-mail">E-Mail</label>
         <input id="wl-mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
-        <label for="wl-tel">Handynummer <span style="font-weight:400">(optional)</span></label>
-        <input id="wl-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+49 …">
-        <button class="btn" type="button" onclick="sendWaitlist()">Auf die Warteliste</button>
-        <p class="lt-fine">Wir melden uns nur, wenn die Android-Version fertig ist. Jederzeit abbestellbar.</p>`;
+        <input id="wl-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="lt-hp">
+        <label class="lt-check" for="wl-consent">
+          <input id="wl-consent" type="checkbox">
+          <span>Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht. Die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> habe ich gelesen.</span>
+        </label>
+        <button class="btn" type="button" id="wl-send" onclick="sendWaitlist()">Auf die Warteliste</button>
+        <p class="lt-msg hide" id="wl-msg"></p>
+        <p class="lt-fine">Kein Newsletter, keine Werbung — genau eine Nachricht, wenn es so weit ist.</p>`;
     } else {
       body.innerHTML = `
         <p class="lt-fine" style="margin-bottom:1rem">Die Warteliste wird gerade eingerichtet. Bis dahin genügt eine kurze Mail — Betreff ist schon gesetzt.</p>
@@ -2277,23 +2340,64 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     el('waitlist').classList.add('hide');
   }
 
+  function wlFehler(text) {
+    const m = el('wl-msg');
+    m.textContent = text;
+    m.classList.remove('hide');
+  }
+
   function sendWaitlist() {
-    const mail = el('wl-mail').value.trim();
+    const feld = el('wl-mail');
+    const consent = el('wl-consent');
+    const knopf = el('wl-send');
+    const mail = feld.value.trim();
+
+    el('wl-msg').classList.add('hide');
+    feld.style.borderColor = '';
+    consent.closest('.lt-check').classList.remove('lt-check--miss');
+
     if (!/^\S+@\S+\.\S+$/.test(mail)) {
-      el('wl-mail').style.borderColor = '#E5177B';
-      el('wl-mail').focus();
+      feld.style.borderColor = '#E5177B';
+      feld.focus();
+      wlFehler('Diese E-Mail-Adresse sieht nicht vollständig aus.');
       return;
     }
-    const payload = { email: mail, telefon: el('wl-tel').value.trim() || null, fach: fach, liste: 'android' };
-    const done = () => {
-      el('wl-body').innerHTML =
-        '<div class="lt-done-note"><strong>Eingetragen.</strong><br />Wir melden uns, sobald die Android-Version steht.</div>';
-    };
+    if (!consent.checked) {
+      consent.closest('.lt-check').classList.add('lt-check--miss');
+      consent.focus();
+      wlFehler('Ohne dein Einverständnis dürfen wir die Adresse nicht speichern.');
+      return;
+    }
+
+    knopf.disabled = true;
+    knopf.textContent = 'Wird gesendet …';
+
     fetch(CONFIG.waitlistEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).then(done).catch(done);
+      body: JSON.stringify({
+        email: mail,
+        fach: fach || '',
+        quelle: 'lerntyp-test',
+        einwilligung: WL_EINWILLIGUNG,
+        hp: el('wl-hp').value,
+      }),
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => {
+        if (!d || d.ok !== true) return Promise.reject('antwort');
+        el('wl-body').innerHTML =
+          '<div class="lt-done-note"><strong>Du stehst auf der Liste.</strong><br />Wir schreiben dir, sobald die Android-Version da ist — und sonst nie.</div>';
+        if (window.plausible) window.plausible('warteliste_eingetragen');
+      })
+      .catch(() => {
+        knopf.disabled = false;
+        knopf.textContent = 'Noch einmal versuchen';
+        wlFehler(
+          'Das hat gerade nicht geklappt. Versuch es noch einmal oder schreib uns an ' +
+            CONFIG.kontaktMail + '.'
+        );
+      });
   }
 
   document.addEventListener('keydown', (e) => {
