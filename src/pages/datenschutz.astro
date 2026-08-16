@@ -30,16 +30,18 @@ import { OWNER, SITE } from '../site';
       {SITE.url} ist eine rein statische Website. Es gibt keine Benutzerkonten,
       keine Kommentarfunktion und keine Anmeldung. Wir setzen <strong
         >keine Cookies</strong
-      >, <strong>kein Tracking</strong> und <strong>keine Analyse-Werkzeuge</strong
-      > ein. Es werden keine Schriftarten oder Skripte von externen Servern
-      nachgeladen — alle Inhalte werden von unserem Hoster ausgeliefert.
+      > und <strong>keine Werkzeuge zur Wiedererkennung von Besuchern</strong> ein
+      — weder für Werbung noch für seitenübergreifende Analyse. Es werden keine
+      Schriftarten oder Skripte von externen Servern nachgeladen; alle Inhalte
+      werden von unserem Hoster ausgeliefert.
     </p>
     <p>
-      Sofern auf dieser Seite interaktive Werkzeuge angeboten werden (etwa ein
-      Notenrechner oder ein Lerntyp-Test), laufen diese vollständig in deinem
-      Browser. Deine Eingaben werden nicht an einen Server übertragen und nicht
-      gespeichert. Die einzige Ausnahme ist die freiwillige Anmeldung zur
-      Warteliste für die Android-Version — dazu Näheres unter Ziffer 6.
+      Die interaktiven Werkzeuge dieser Seite (etwa der Notenrechner oder der
+      Lerntyp-Test) laufen vollständig in deinem Browser. Zwei Vorgänge
+      übertragen etwas an einen Server, und beide sind unten einzeln
+      beschrieben: die freiwillige Anmeldung zur Warteliste für die
+      Android-Version (Ziffer 6) und eine anonyme Auswertung der
+      Testdurchläufe (Ziffer 7).
     </p>
 
     <h2>3. Hosting und Server-Logfiles</h2>
@@ -102,9 +104,12 @@ import { OWNER, SITE } from '../site';
       Auf dieser Website kannst du dich freiwillig in eine Warteliste eintragen,
       um benachrichtigt zu werden, sobald die Android-Fassung der App Octa
       verfügbar ist. Verarbeitet werden dabei ausschließlich die von dir
-      angegebene <strong>E-Mail-Adresse</strong> sowie — falls du zuvor den
-      Lerntyp-Test genutzt hast — das dort ausgewählte <strong>Studienfach</strong>.
-      Die Angabe einer Telefonnummer ist nicht vorgesehen.
+      angegebene <strong>E-Mail-Adresse</strong> sowie — da die Anmeldung am Ende
+      des Lerntyp-Tests erfolgt — das dort ausgewählte <strong>Studienfach</strong>
+      und das <strong>Testergebnis</strong> (eines von sechs Lernprofilen). Die
+      beiden letzten Angaben nutzen wir ausschließlich in zusammengefasster Form,
+      um einzuschätzen, für welche Zielgruppen die Android-Version besonders
+      nachgefragt wird. Die Angabe einer Telefonnummer ist nicht vorgesehen.
     </p>
     <p>
       Zum Nachweis deiner Einwilligung speichern wir zusätzlich den Zeitpunkt der
@@ -140,7 +145,46 @@ import { OWNER, SITE } from '../site';
       >.
     </p>
 
-    <h2>7. Externe Links</h2>
+    <h2>7. Anonyme Auswertung des Lerntyp-Tests</h2>
+    <p>
+      Damit wir erkennen können, welche Fragen verständlich sind, an welcher
+      Stelle Nutzende den Test abbrechen und welche Ergebnisse am häufigsten
+      vorkommen, wird jeder Durchlauf des Lerntyp-Tests in anonymisierter Form
+      gezählt. Übermittelt werden dabei ausschließlich:
+    </p>
+    <ul>
+      <li>das ausgewählte Studienfach</li>
+      <li>die angeklickten Antworten (nur als Nummer der jeweiligen Auswahl)</li>
+      <li>das ermittelte Lernprofil, sofern der Test beendet wurde</li>
+      <li>wie weit der Test bearbeitet wurde und wie lange das gedauert hat</li>
+      <li>die Geräteklasse (iOS, Android, Desktop oder sonstiges)</li>
+    </ul>
+    <p>
+      Diese Angaben sind <strong>keine personenbezogenen Daten</strong>. Es
+      werden weder deine IP-Adresse noch Cookies noch sonstige Kennungen
+      gespeichert, die dich wiedererkennbar machen würden. Auf deinem Gerät wird
+      dabei nichts abgelegt und nichts ausgelesen — es kommen weder Cookies noch
+      vergleichbare Techniken zum Einsatz, eine Einwilligung nach § 25 TDDDG ist
+      dafür nicht erforderlich.
+    </p>
+    <p>
+      Um die mehreren Meldungen eines einzelnen Durchlaufs einander zuordnen zu
+      können, erzeugt dein Browser beim Aufruf der Seite eine zufällige
+      Kennnummer. Sie wird nirgends gespeichert, existiert nur im Arbeitsspeicher
+      der geöffneten Seite und ist bei jedem neuen Aufruf eine andere. Eine
+      Wiedererkennung über den einzelnen Seitenaufruf hinaus ist damit
+      ausgeschlossen. Soweit für die Übertragung selbst kurzzeitig eine
+      IP-Adresse verarbeitet wird, geschieht dies technisch bedingt und ohne
+      Speicherung; Rechtsgrundlage ist insoweit Art. 6 Abs. 1 lit. f DSGVO mit
+      unserem berechtigten Interesse an der Verbesserung des Angebots.
+    </p>
+    <p>
+      Die Auswertung wird in derselben Datenbank gespeichert wie die Warteliste
+      (Cloudflare D1, Jurisdiktion Europäische Union, siehe Ziffer 6), jedoch
+      getrennt davon und ohne jede Verbindung zu einer E-Mail-Adresse.
+    </p>
+
+    <h2>8. Externe Links</h2>
     <p>
       Diese Website verlinkt an einzelnen Stellen auf externe Angebote, etwa auf
       den Apple App Store. Beim Anklicken eines solchen Links verlässt du diese
@@ -148,7 +192,7 @@ import { OWNER, SITE } from '../site';
       Anbieters. Auf die dortige Datenverarbeitung haben wir keinen Einfluss.
     </p>
 
-    <h2>8. Deine Rechte</h2>
+    <h2>9. Deine Rechte</h2>
     <p>Dir stehen als betroffener Person die folgenden Rechte zu:</p>
     <ul>
       <li>
@@ -173,7 +217,7 @@ import { OWNER, SITE } from '../site';
       <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>.
     </p>
 
-    <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <h2>10. Beschwerderecht bei der Aufsichtsbehörde</h2>
     <p>
       Unbeschadet anderer Rechtsbehelfe hast du das Recht, dich bei einer
       Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem
@@ -181,7 +225,7 @@ import { OWNER, SITE } from '../site';
       des mutmaßlichen Verstoßes (Art. 77 DSGVO).
     </p>
 
-    <h2>10. Änderungen dieser Datenschutzerklärung</h2>
+    <h2>11. Änderungen dieser Datenschutzerklärung</h2>
     <p>
       Wir passen diese Datenschutzerklärung an, sobald sich die
       Datenverarbeitung auf dieser Website ändert — etwa durch neue Funktionen

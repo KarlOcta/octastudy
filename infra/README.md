@@ -59,13 +59,49 @@ Diese Adresse in `src/pages/tools/lerntyp-test.astro` bei
 `CONFIG.waitlistEndpoint` eintragen. Solange dort ein leerer String steht, zeigt
 der Dialog den mailto-Fallback statt des Formulars.
 
+## 7. Übersichtsseite freischalten
+
+Der Worker bringt unter `/liste` eine geschützte Tabelle mit allen Anmeldungen
+mit. Sie ist gesperrt, solange kein Passwort hinterlegt ist.
+
+Im Worker auf **Settings → Variables and secrets → Add variable**:
+
+- Type: **Secret** (nicht *Text* — Secrets sind nach dem Speichern nicht mehr
+  auslesbar)
+- Name: `ADMIN_PASSWORT`
+- Value: ein selbst gewähltes Passwort, mindestens 12 Zeichen
+
+Speichern, Worker neu deployen. Danach:
+
+- `https://<worker>.workers.dev/liste` → Tabelle, Zahlen, Auswertung nach Fach
+- `https://<worker>.workers.dev/liste.csv` → CSV-Download
+
+Beim Aufruf fragt der Browser nach Benutzername und Passwort. Der Benutzername
+ist beliebig, es zählt nur das Passwort.
+
+## Die beiden Auswertungsseiten
+
+Beide sind mit demselben Passwort geschützt und untereinander verlinkt.
+
+| Adresse | Inhalt |
+|---|---|
+| `/liste` | Anmeldungen zur Android-Warteliste, Zahlen nach Fach und Lerntyp |
+| `/liste.csv` | dieselben Daten als CSV |
+| `/statistik` | anonyme Auswertung **aller** Testdurchläufe: Abschlussquote, Abbruchstellen, Ergebnisverteilung, Antwortverteilung je Frage |
+| `/statistik.csv` | Rohdaten der Durchläufe als CSV |
+
+Ändern sich Fragen oder Antworten in `lerntyp-test.astro`, muss die Liste
+`FRAGEN` im Worker mitgezogen werden — sie dient nur der Beschriftung der
+Statistik, ist aber sonst wirkungslos und fällt bei Abweichung nicht auf.
+
 ## Später: Liste ansehen
 
 Im Dashboard unter D1 → `octastudy` → **Console**:
 
 ```sql
-SELECT email, fach, angelegt_am FROM warteliste ORDER BY angelegt_am DESC;
-SELECT fach, COUNT(*) AS anzahl FROM warteliste GROUP BY fach ORDER BY anzahl DESC;
+SELECT email, fach, lerntyp, angelegt_am FROM warteliste ORDER BY angelegt_am DESC;
+SELECT lerntyp, COUNT(*) AS anzahl FROM warteliste GROUP BY lerntyp ORDER BY anzahl DESC;
+SELECT fach, lerntyp, COUNT(*) AS anzahl FROM warteliste GROUP BY fach, lerntyp ORDER BY anzahl DESC;
 ```
 
 Die Ergebnisse lassen sich dort als CSV herunterladen — damit kann die Liste

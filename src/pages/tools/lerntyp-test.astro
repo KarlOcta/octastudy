@@ -1516,6 +1516,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     // Warteliste Android. Solange leer, bietet der Dialog eine E-Mail-Adresse an
     // statt eines Formulars. Vor dem Aktivieren die Datenschutzerklaerung ergaenzen.
     waitlistEndpoint: 'https://octastudy-warteliste.karl-7b5.workers.dev/',
+    // Anonyme Durchlaufstatistik. Leer lassen schaltet sie vollstaendig ab.
+    statistikEndpoint: 'https://octastudy-warteliste.karl-7b5.workers.dev/lauf',
     kontaktMail: 'info@octaai.com',
   };
 
@@ -1982,6 +1984,66 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   let picks = [];
   let locked = false;
   let fach = 'andere';
+  let lerntyp = '';
+
+  /* ------------------------------------------ anonyme Durchlaufstatistik --
+     `laufId` entsteht bei jedem Seitenaufruf neu und wird nirgends abgelegt —
+     kein Cookie, kein localStorage. Sie verbindet nur die Meldungen desselben
+     Durchlaufs miteinander und ist beim naechsten Besuch eine andere. Damit
+     entstehen anonyme Zahlen, keine personenbezogenen Daten. */
+  const laufId = (() => {
+    try {
+      if (crypto && crypto.randomUUID) return crypto.randomUUID();
+    } catch (e) {}
+    return 'l-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+  })();
+  let laufStart = 0;
+  let zuletztGemeldet = -1;
+
+  const geraeteArt = () => {
+    const ua = navigator.userAgent;
+    if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+      return 'ios';
+    if (/Android/.test(ua)) return 'android';
+    if (/Mobi/.test(ua)) return 'andere';
+    return 'desktop';
+  };
+
+  function melden(fertig) {
+    if (!CONFIG.statistikEndpoint || !laufStart) return;
+    const schritt = picks.filter((p) => p !== undefined && p !== null).length;
+    if (!fertig && schritt === zuletztGemeldet) return;
+    zuletztGemeldet = fertig ? 99 : schritt;
+    const daten = JSON.stringify({
+      lauf: laufId,
+      fach: fach,
+      schritt: schritt,
+      abgeschlossen: fertig ? 1 : 0,
+      lerntyp: fertig ? lerntyp : '',
+      antworten: picks.map((p) => (p === undefined || p === null ? '' : p)).join(','),
+      dauer_sek: Math.round((Date.now() - laufStart) / 1000),
+      geraet: geraeteArt(),
+    });
+    try {
+      /* sendBeacon blockiert nichts und kommt auch beim Verlassen der Seite
+         noch an. Als Blob mit text/plain, damit kein Preflight noetig ist. */
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(CONFIG.statistikEndpoint, new Blob([daten], { type: 'text/plain' }));
+        return;
+      }
+      fetch(CONFIG.statistikEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: daten,
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {}
+  }
+
+  window.addEventListener('pagehide', () => melden(false));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') melden(false);
+  });
 
   const isIOS =
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -2013,6 +2075,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     fach = k;
     if (btn) btn.classList.add('picked');
     if (window.plausible) window.plausible('fach_gewaehlt', { props: { fach: k } });
+    laufStart = Date.now();
+    melden(false);
     const go = () => {
       locked = false;
       show('s-quiz');
@@ -2065,6 +2129,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     locked = true;
     picks[step] = i;
     if (btn) btn.classList.add('picked');
+    melden(false);
     const go = () => {
       if (step < QUESTIONS.length - 1) {
         step++;
@@ -2102,6 +2167,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     });
     // Gleichstand entscheidet die Selbsteinschaetzung aus der letzten Frage
     if (s[lastKey] === s[best]) best = lastKey;
+
+    lerntyp = best;
+    melden(true);
 
     show('s-result');
     el('s-result').innerHTML = resultHTML(PROFILES[best], s, best);
@@ -2378,6 +2446,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       body: JSON.stringify({
         email: mail,
         fach: fach || '',
+        lerntyp: lerntyp || '',
         quelle: 'lerntyp-test',
         einwilligung: WL_EINWILLIGUNG,
         hp: el('wl-hp').value,
