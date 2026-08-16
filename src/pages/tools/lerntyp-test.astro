@@ -266,6 +266,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </section>
       </section>
 
+
+      <!-- ------------------------------------------- Studienfach (Schritt 0) -- -->
+      <section id="s-fach" class="lt-screen">
+        <div class="lt-top">
+          <div class="lt-mascot" id="mascot-fach"></div>
+          <div class="lt-progress">
+            <div class="lt-progress__head">
+              <span class="lt-count">Kurz vorab</span>
+              <span class="lt-mood">Zählt nicht mit</span>
+            </div>
+            <div class="lt-track"><span class="lt-fill" style="width:6%"></span></div>
+          </div>
+        </div>
+        <p class="lt-q">Was studierst du?</p>
+        <p class="lt-fachhint">
+          Damit die Beispiele zu deinem Fach passen. Eine Antwort, dann geht es
+          mit den acht Fragen los.
+        </p>
+        <div class="lt-faecher" id="faecher"></div>
+      </section>
+
       <!-- ----------------------------------------------------- Quiz -- -->
       <section id="s-quiz" class="lt-screen">
         <div class="lt-top">
@@ -290,6 +311,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <!-- -------------------------------------------------- Ergebnis -- -->
       <section id="s-result" class="lt-screen lt-result"></section>
       <canvas id="confetti" class="lt-confetti" aria-hidden="true"></canvas>
+
+    <!-- ------------------------------------------------- Android-Warteliste -- -->
+    <div class="lt-overlay hide" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="wl-title">
+      <div class="lt-dialog">
+        <button class="lt-dialog__x" type="button" onclick="closeWaitlist()" aria-label="Schließen">✕</button>
+        <h3 id="wl-title">Android-Version</h3>
+        <p>
+          Octa gibt es aktuell nur für iPhone und iPad. Die Android-Fassung wird
+          gebaut — trag dich ein und wir sagen dir Bescheid, sobald sie da ist.
+        </p>
+        <div id="wl-body"></div>
+      </div>
+    </div>
+
     </div>
 
   </div>
@@ -1257,6 +1292,139 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
   }
 
+
+  /* Studienfach-Auswahl */
+  .lt-fachhint {
+    color: var(--text-muted);
+    margin: -0.6rem 0 1.4rem;
+    max-width: 34rem;
+  }
+
+  .lt-faecher {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+
+  .lt-fach {
+    cursor: pointer;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    font: inherit;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s ease, transform 0.12s ease, background 0.15s ease;
+  }
+
+  .lt-fach:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .lt-fach.picked {
+    border-color: transparent;
+    background-image: linear-gradient(100deg, var(--cta-from), var(--cta-to));
+    color: #fff;
+  }
+
+  /* Dialog */
+  .lt-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgb(28 26 40 / 0.55);
+    backdrop-filter: blur(3px);
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+  }
+
+  .lt-dialog {
+    position: relative;
+    width: min(30rem, 100%);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .lt-dialog h3 {
+    margin: 0 0 0.5rem;
+  }
+
+  .lt-dialog p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .lt-dialog__x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 0;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .lt-dialog label {
+    display: block;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 1rem 0 0.35rem;
+  }
+
+  .lt-dialog input {
+    width: 100%;
+    background: var(--bg-soft);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.8rem 0.9rem;
+  }
+
+  .lt-dialog input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .lt-dialog .btn {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  /* Textlink im Store-Block */
+  .lt-link {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  .lt-link:hover {
+    color: var(--accent-hover);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .lt-screen.on,
     .lt-result-char svg {
@@ -1291,7 +1459,40 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     //    Seite keine Formulare hat und keine Eingaben uebertragen werden.
     mailAktiv: false,
     mailEndpoint: '',
+    // Warteliste Android. Solange leer, bietet der Dialog eine E-Mail-Adresse an
+    // statt eines Formulars. Vor dem Aktivieren die Datenschutzerklaerung ergaenzen.
+    waitlistEndpoint: '',
+    kontaktMail: 'info@octaai.com',
   };
+
+  /* Studienfaecher. Der Schluessel steuert zugleich die Mockup-Dateien
+     (public/img/app/<schluessel>-plan|karte|test.webp). */
+  const FAECHER = [
+    ['bwl', 'BWL & Wirtschaft'],
+    ['jura', 'Rechtswissenschaft'],
+    ['medizin', 'Medizin'],
+    ['maschinenbau', 'Maschinenbau'],
+    ['informatik', 'Informatik'],
+    ['psychologie', 'Psychologie'],
+    ['lehramt', 'Lehramt'],
+    ['biologie', 'Biologie'],
+    ['elektrotechnik', 'Elektrotechnik'],
+    ['bauingenieurwesen', 'Bauingenieurwesen'],
+    ['wirtschaftsingenieurwesen', 'Wirtschaftsingenieurwesen'],
+    ['sozialearbeit', 'Soziale Arbeit'],
+    ['politikwissenschaft', 'Politikwissenschaft'],
+    ['chemie', 'Chemie'],
+    ['sportwissenschaften', 'Sportwissenschaften'],
+    ['andere', 'Anderes Fach'],
+  ];
+
+  /* Eigene Custom Product Page je Fach. Sobald in App Store Connect eine Seite
+     angelegt ist, hier die URL mit ?ppid=... eintragen — sonst greift die
+     Standardseite aus CONFIG.appStore. */
+  const APPSTORE_FACH = {
+    // jura: 'https://apps.apple.com/de/app/octa-ai-tutor-study-plan/id6751514384?ppid=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+  };
+  const storeLink = (fach) => APPSTORE_FACH[fach] || CONFIG.appStore;
 
   /* Gesamtbewertung im deutschen App Store. Stand regelmaessig pruefen. */
   const STORE = { schnitt: '5,0', anzahl: 9, stand: 'Juli 2026' };
@@ -1392,7 +1593,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       strength:
         'Du arbeitest gründlich und verstehst Zusammenhänge wirklich — du bist keiner, der auswendig lernt, ohne zu kapieren. Beim Lesen hast du selten das Gefühl, etwas nicht zu verstehen.',
       cost: 'Schriftlich fällt das kaum auf, weil du Zeit zum Sortieren hast. Mündlich kostet es dich ganze Notenstufen — und zwar bei Stoff, den du eigentlich beherrschst.',
-      featureTitle: 'Octas mündlicher Prüfer',
+      featureTitle: 'Test yourself — auf jeder Karteikarte',
       code: 'MUENDLICH',
     },
     sammler: {
@@ -1453,12 +1654,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         'Der Prüfer stellt die Frage, und du weißt genau, wo das im Skript steht — Seite, Absatz, sogar die Grafik daneben. Nur der Satz, der jetzt rauskommen müsste, formt sich nicht. Du sagst irgendwas Halbes und hörst dir dabei selbst zu.',
       why: 'Das liegt nicht an Nervosität. Beim Lesen erkennst du den Stoff wieder, und Wiedererkennen fühlt sich exakt so an wie Können. In der Prüfung wird aber nicht Wiedererkennen abgefragt, sondern freies Abrufen — eine Fähigkeit, die du beim Lesen nie trainierst. Du übst also konsequent das eine und wirst im anderen geprüft.',
       how: [
-        'Du lädst dein Skript hoch oder fotografierst deine Mitschrift ab.',
-        'Octa stellt dir daraus mündliche Fragen — laut, eine nach der anderen. Du antwortest sprechend, nicht tippend.',
-        'Danach kommt die Rückmeldung zu genau dieser Antwort: was gefehlt hat, wo du unpräzise warst, wo ein Prüfer nachgehakt hätte.',
+        'Du lädst deine Unterlagen hoch — oder gibst nur das Thema ein. Octa erzeugt daraus die Karteikarten.',
+        'Auf jeder Karte sitzt der Knopf „Test yourself“. Du tippst ihn an und sprichst deine Antwort ein.',
+        'Octa antwortet gesprochen: was gefehlt hat, wo du unpräzise warst — dazu eine Eselsbrücke und ein Tipp fürs nächste Mal.',
       ],
       why_octa:
-        'Karteikarten lösen das nicht, weil du dort dich selbst bewertest — und wer den Stoff halb kann, merkt nicht, an welcher Stelle. Es braucht ein Gegenüber, das deine gesprochene Antwort hört und benennt, was fehlte.',
+        'Karteikarten allein lösen das nicht, weil du dort dich selbst bewertest — und wer den Stoff halb kann, merkt nicht, an welcher Stelle. In Octa sitzt deshalb auf jeder Karte ein „Test yourself“-Knopf: Du sprichst deine Antwort ein und bekommst gesprochenes Feedback dazu, samt Eselsbrücke.',
     },
     sammler: {
       moment:
@@ -1491,7 +1692,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       how: [
         'Stoff hochladen, Prüfungsdatum eintragen.',
         'Octa rechnet vom Prüfungstag rückwärts und schneidet den Stoff in Tagesportionen.',
-        'Du öffnest die App und siehst eine Aufgabe. Fällt ein Tag aus, verteilt Octa den Rest neu — ohne dass du planen musst.',
+        'Du gibst an, wie weit du im Stoff schon bist und welche Note du anstrebst. Octa erstellt daraus den Plan — und du lernst ab dann Schritt für Schritt nach Schema.',
       ],
       why_octa:
         'Einen Plan kannst du dir selbst machen. Er hält nur bis zum ersten Tag, der ausfällt — und ab da steht dieselbe Entscheidungslast wieder vor dir, die dich ursprünglich blockiert hat.',
@@ -1712,11 +1913,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   /* Passender App-Screenshot je Profil. */
   const MOCKUP_CAP = {
-    koenner: 'Der mündliche Prüfer stellt die Frage — du antwortest gesprochen',
-    sammler: 'Hochgeladene Folie, sofort erklärt und aufbereitet',
-    markierer: 'Karteikarte aus deinem eigenen Material, mit Selbsteinschätzung',
+    koenner: '„Test yourself“ auf der Karte — du sprichst die Antwort ein',
+    sammler: 'Aus dem gesammelten Material wird ein geordneter Lernplan',
+    markierer: 'Karteikarte aus deinem eigenen Material — abrufen statt wiederlesen',
     ueberfordert: 'Der Lernplan zeigt, was heute dran ist — eine Aufgabe',
-    einzel: 'Tribes: dein Fortschritt ist für andere sichtbar',
+    einzel: 'Tribes — dein Fortschritt ist für die Gruppe sichtbar',
     sprinter: 'Wochenverlauf und Serie halten den Rhythmus',
   };
 
@@ -1726,6 +1927,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   let step = 0;
   let picks = [];
   let locked = false;
+  let fach = 'andere';
 
   const isIOS =
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -1742,9 +1944,41 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       .forEach((s) => s.classList.toggle('on', s.id === id));
 
   function start() {
-    show('s-quiz');
-    render();
+    el('faecher').innerHTML = FAECHER.map(
+      ([k, label], i) =>
+        `<button class="lt-fach" type="button" onclick="pickFach('${k}',this)">${label}</button>`
+    ).join('');
+    el('mascot-fach').innerHTML = octo('mascot', 'curious');
+    show('s-fach');
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
+
+  function pickFach(k, btn) {
+    if (locked) return;
+    locked = true;
+    fach = k;
+    if (btn) btn.classList.add('picked');
+    if (window.plausible) window.plausible('fach_gewaehlt', { props: { fach: k } });
+    const go = () => {
+      locked = false;
+      show('s-quiz');
+      render();
+    };
+    reduceMotion ? go() : setTimeout(go, 200);
+  }
+
+  /* Welcher App-Bildschirm passt zu welchem Profil. Zwei Profile zeigen einen
+     fachunabhaengigen Screen, weil ihr Feature nicht vom Studiengang abhaengt. */
+  const SCREEN = {
+    koenner: 'test',
+    sammler: 'plan',
+    markierer: 'karte',
+    ueberfordert: 'plan',
+    einzel: 'tribes',
+    sprinter: null, // Wochenverlauf und Serie zeigen keinen Fachstoff
+  };
+  const mockSrc = (key) =>
+    SCREEN[key] ? `/img/app/${fach}-${SCREEN[key]}.webp` : '/img/app/home.webp';
 
   function render() {
     const item = QUESTIONS[step];
@@ -1895,19 +2129,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="lt-store">
         <p class="lt-store__note">
           <strong>Octa gibt es derzeit nur für iPhone und iPad.</strong>
-          Eine Android-Version ist in Arbeit.
+          Eine <button class="lt-link" type="button" onclick="openWaitlist()">Android-Version</button>
+          ist in Arbeit.
         </p>
         <div class="lt-codebox">
           <div class="lt-label">Dein Gratismonat als ${p.short}</div>
           <div class="lt-code" id="thecode">${p.code}</div>
           <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
         </div>
-        <a class="btn lt-btn-block" href="${CONFIG.appStore}" target="_blank" rel="noopener"
-           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}'}})">Octa im App Store laden</a>
-        <p class="lt-fine">
-          Code beim Abo-Abschluss im App Store eingeben. Ein Monat gratis, danach
-          ganz normal kündbar.
-        </p>
+        <a class="btn lt-btn-block" href="${storeLink(fach)}" target="_blank" rel="noopener"
+           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Octa im App Store laden</a>
       </div>`;
 
     const mail = CONFIG.mailAktiv
@@ -1967,9 +2198,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <ol class="lt-steps">${d.how.map((x) => `<li>${x}</li>`).join('')}</ol>
           </div>
           <figure class="lt-phone">
-            <img src="/img/app/${key}@1x.webp"
-                 srcset="/img/app/${key}@1x.webp 430w, /img/app/${key}.webp 860w"
-                 sizes="(max-width: 720px) 60vw, 250px"
+            <img src="${mockSrc(key)}" sizes="(max-width: 720px) 60vw, 250px"
                  alt="Octa-App: ${MOCKUP_CAP[key]}" loading="lazy" />
             <figcaption>${MOCKUP_CAP[key]}</figcaption>
           </figure>
@@ -1980,9 +2209,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <h3>Was Octa sonst noch macht</h3>
         <ul class="lt-features">
           <li>
-            <strong>Unterlagen hochladen</strong>
-            Vorlesungs-PDF, Folien, abfotografierte Mitschrift oder Screenshot —
-            Octa liest es und erkennt die Themen darin.
+            <strong>Unterlagen hochladen — oder einfach das Thema eingeben</strong>
+            Vorlesungs-PDF, Folien, abfotografierte Mitschrift oder Screenshot.
+            Hast du gerade nichts zur Hand, reicht ein Stichwort: Octa recherchiert
+            das Thema selbst und baut die Karten daraus.
           </li>
           <li>
             <strong>Karteikarten und Quizze automatisch</strong>
@@ -1990,10 +2220,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             einzige Karte selbst.
           </li>
           <li>
-            <strong>Mündlicher Prüfer</strong>
-            Fragt dich laut ab, hört sich deine gesprochene Antwort an und sagt
-            dir danach, wo sie unvollständig war. Streng oder freundlich, je
-            nach Einstellung.
+            <strong>„Test yourself“ auf jeder Karteikarte</strong>
+            Antwort einsprechen statt tippen. Octa hört zu und antwortet
+            gesprochen: was gefehlt hat, dazu eine Eselsbrücke und ein Tipp.
+            Streng oder freundlich, je nach Einstellung.
           </li>
           <li>
             <strong>Lernplan bis zum Prüfungstermin</strong>
@@ -2020,6 +2250,58 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <button class="lt-back" type="button" onclick="location.reload()">← Test noch einmal machen</button>`;
   }
+
+
+  /* ------------------------------------------------- Android-Warteliste -- */
+
+  function openWaitlist() {
+    const body = el('wl-body');
+    if (CONFIG.waitlistEndpoint) {
+      body.innerHTML = `
+        <label for="wl-mail">E-Mail</label>
+        <input id="wl-mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
+        <label for="wl-tel">Handynummer <span style="font-weight:400">(optional)</span></label>
+        <input id="wl-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+49 …">
+        <button class="btn" type="button" onclick="sendWaitlist()">Auf die Warteliste</button>
+        <p class="lt-fine">Wir melden uns nur, wenn die Android-Version fertig ist. Jederzeit abbestellbar.</p>`;
+    } else {
+      body.innerHTML = `
+        <p class="lt-fine" style="margin-bottom:1rem">Die Warteliste wird gerade eingerichtet. Bis dahin genügt eine kurze Mail — Betreff ist schon gesetzt.</p>
+        <a class="btn" href="mailto:${CONFIG.kontaktMail}?subject=Android-Warteliste">Per E-Mail eintragen</a>`;
+    }
+    el('waitlist').classList.remove('hide');
+    if (window.plausible) window.plausible('warteliste_geoeffnet');
+  }
+
+  function closeWaitlist() {
+    el('waitlist').classList.add('hide');
+  }
+
+  function sendWaitlist() {
+    const mail = el('wl-mail').value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(mail)) {
+      el('wl-mail').style.borderColor = '#E5177B';
+      el('wl-mail').focus();
+      return;
+    }
+    const payload = { email: mail, telefon: el('wl-tel').value.trim() || null, fach: fach, liste: 'android' };
+    const done = () => {
+      el('wl-body').innerHTML =
+        '<div class="lt-done-note"><strong>Eingetragen.</strong><br />Wir melden uns, sobald die Android-Version steht.</div>';
+    };
+    fetch(CONFIG.waitlistEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(done).catch(done);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeWaitlist();
+  });
+  document.getElementById('waitlist').addEventListener('click', (e) => {
+    if (e.target.id === 'waitlist') closeWaitlist();
+  });
 
   function copyCode() {
     const code = el('thecode').textContent;

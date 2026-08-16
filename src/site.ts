@@ -43,7 +43,8 @@ export const REVIEWER = {
 
 export const OCTA = {
   name: 'Octa',
-  appStoreUrl: 'https://apps.apple.com/app/octa',
+  appStoreUrl:
+    'https://apps.apple.com/de/app/octa-ai-tutor-study-plan/id6751514384',
   pitch:
     'Octa macht aus deinen hochgeladenen Unterlagen automatisch Karteikarten. Du sprichst die Antwort ein und bekommst echtes mündliches Feedback.',
 } as const;
