@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Lerntyp-Test"
-  description="Acht Fragen, unter einer Minute: Finde heraus, wo du beim Lernen tatsächlich hängen bleibst — und was dagegen hilft. Ohne Anmeldung, kostenlos."
+  title="Lerntyp-Test: Welcher Lerntyp bin ich? Kostenlos, 8 Fragen"
+  description="Welcher Lerntyp bin ich? Kostenloser Test für Studierende: 8 Fragen, unter einer Minute, ohne Anmeldung — und du weißt, wo du beim Lernen Zeit verlierst."
   breadcrumbs={[
     { label: 'Tools', href: '/tools/' },
     { label: 'Lerntyp-Test', href: '/tools/lerntyp-test/' },
@@ -17,16 +17,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <section id="s-intro" class="lt-screen on">
         <!-- 1 — Aufhänger: das gefühlte Problem, nicht das Produkt -->
         <div class="lt-hero">
-          <span class="eyebrow">Kostenloser Lerntyp-Test</span>
+          <span class="eyebrow">Kostenloser Lerntyp-Test für Studierende</span>
           <h1 class="lt-h1">
-            Du lernst nicht zu wenig.<br />Du lernst
+            Welcher Lerntyp bin ich?<br />Du lernst nicht zu wenig — du lernst
             <span class="hl">an der falschen Stelle</span>.
           </h1>
           <p class="lt-lede">
             Die meisten Studierenden scheitern nicht an fehlender Zeit oder
             Disziplin, sondern an einer einzigen Stelle im eigenen Lernprozess —
-            und merken jahrelang nicht, an welcher. Acht Fragen zeigen dir, wo es
-            bei dir tatsächlich hakt und was konkret dagegen hilft.
+            und merken jahrelang nicht, an welcher. Dieser kostenlose Lerntyp-Test
+            zeigt dir in acht Fragen, wo es bei dir tatsächlich hakt und was
+            konkret dagegen hilft.
           </p>
           <button class="btn lt-btn-block" type="button" onclick="start()">
             Jetzt kostenlosen Test starten →
@@ -131,6 +132,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             Sechs Profile, sechs verschiedene Stellen, an denen Lernzeit
             verloren geht. Keines davon ist ein Urteil über deine Intelligenz —
             jedes beschreibt eine Gewohnheit, die sich ändern lässt.
+          </p>
+          <p class="lt-band__hinweis">
+            Du suchst die klassischen Lerntypen — visuell, auditiv, haptisch?
+            Die verwenden wir bewusst nicht.
+            <a href="/lerntypen/">Hier steht, warum dieses Modell der
+            Überprüfung nicht standhält</a> und was die Forschung stattdessen
+            empfiehlt.
           </p>
 
           <div class="lt-types">
@@ -1034,6 +1042,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   /* Typen-Vorschau */
+  .lt-band__hinweis {
+    max-width: 62ch;
+    margin: 0.9rem auto 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-subtle);
+    text-align: center;
+  }
+
+  .lt-band__hinweis a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
   .lt-types {
     display: grid;
     gap: 1.1rem;

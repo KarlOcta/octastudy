@@ -1,0 +1,441 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+/* Die vier Typen des Vester-Modells. Eigene Abschnitte, weil danach einzeln
+   gesucht wird ("visueller Lerntyp", "haptischer Lerntyp" …). */
+const TYPEN = [
+  {
+    id: 'visueller-lerntyp',
+    name: 'Der visuelle Lerntyp',
+    auch: 'auch: optischer Lerntyp',
+    behauptung:
+      'Lernt angeblich am besten über das Auge — durch Lesen, Grafiken, Mindmaps und Farben.',
+    empfehlung:
+      'Text markieren, Schaubilder zeichnen, mit Farben arbeiten, Karteikarten mit Bildern.',
+    haken:
+      'Fast alle Menschen behalten Bilder besser als Wörter. Das ist kein Persönlichkeitsmerkmal, sondern eine Eigenschaft des menschlichen Gedächtnisses — es gilt für den „auditiven Typ“ genauso.',
+  },
+  {
+    id: 'auditiver-lerntyp',
+    name: 'Der auditive Lerntyp',
+    auch: 'auch: akustischer Lerntyp',
+    behauptung:
+      'Lernt angeblich am besten über das Ohr — durch Zuhören, lautes Vorlesen, Gespräche und Podcasts.',
+    empfehlung:
+      'Den Stoff laut vorlesen, Aufnahmen anhören, in der Vorlesung mitsprechen, sich abfragen lassen.',
+    haken:
+      'Der Rat, sich abfragen zu lassen, wirkt tatsächlich — aber nicht, weil jemand „auditiv“ wäre. Er wirkt bei allen, weil dabei abgerufen statt wiedergelesen wird.',
+  },
+  {
+    id: 'haptischer-lerntyp',
+    name: 'Der haptische Lerntyp',
+    auch: 'auch: motorischer oder kinästhetischer Lerntyp',
+    behauptung:
+      'Lernt angeblich am besten durch Anfassen und Tun — Experimente, Modelle, Bewegung beim Lernen.',
+    empfehlung:
+      'Versuche selbst durchführen, Modelle bauen, beim Lernen umhergehen, Abläufe nachstellen.',
+    haken:
+      'Etwas selbst zu tun schlägt beim Lernen fast immer das bloße Zusehen. Auch das gilt für jeden — die Zuordnung zu einem Typ fügt dieser Erkenntnis nichts hinzu.',
+  },
+  {
+    id: 'intellektueller-lerntyp',
+    name: 'Der intellektuelle Lerntyp',
+    auch: 'auch: abstrakt-verbaler oder kognitiver Lerntyp',
+    behauptung:
+      'Lernt angeblich am besten über den Verstand — durch Logik, Herleitungen und Zusammenhänge.',
+    empfehlung:
+      'Zusammenhänge herleiten, Systeme durchdringen, Regeln statt Einzelfälle lernen.',
+    haken:
+      'Dieser vierte Typ fällt aus der Reihe: Die anderen drei sind Sinneskanäle, dieser ist eine Denkweise. Schon die Einteilung selbst ist nicht trennscharf.',
+  },
+];
+
+const FAQ = [
+  {
+    frage: 'Welche Lerntypen gibt es?',
+    antwort:
+      'Das bekannteste Modell stammt von Frederic Vester und unterscheidet vier Lerntypen: den visuellen (optischen), den auditiven, den haptischen und den intellektuellen Lerntyp. Verbreitet sind auch Varianten mit drei Typen (VAK: visuell, auditiv, kinästhetisch) oder sieben und mehr. Die Zahl schwankt je nach Modell, weil keines davon empirisch abgesichert ist.',
+  },
+  {
+    frage: 'Welche 4 Lerntypen gibt es nach Vester?',
+    antwort:
+      'Vester unterscheidet in „Denken, Lernen, Vergessen“ (1975) den auditiven Lerntyp (Hören und Sprechen), den optisch-visuellen (Beobachtung), den haptischen (Anfassen und Fühlen) und den intellektuellen Lerntyp (abstrakt-verbal).',
+  },
+  {
+    frage: 'Sind Lerntypen wissenschaftlich belegt?',
+    antwort:
+      'Nein. Eine viel beachtete Übersichtsarbeit von Pashler und Kollegen (2008) fand keine belastbare Studie, die den entscheidenden Nachweis erbringt: dass Lernende besser abschneiden, wenn der Unterricht zu ihrem angeblichen Typ passt. In der deutschsprachigen Fachdidaktik hat Maike Looß die Lerntypentheorie bereits 2001 als pädagogisches Konstrukt ohne kognitionswissenschaftliche Grundlage beschrieben.',
+  },
+  {
+    frage: 'Warum ist die Lerntypentheorie trotzdem so bekannt?',
+    antwort:
+      'Weil sie intuitiv einleuchtet, weil sie eine schmeichelhafte Erklärung für Misserfolg anbietet („die Methode passte nicht zu mir“) und weil sie sich gut vermitteln lässt. Hinzu kommt eine oft zitierte Prozentliste zur Behaltensleistung — 20 Prozent des Gehörten, 30 Prozent des Gesehenen, 90 Prozent des selbst Getanen —, deren Herkunft sich nicht zurückverfolgen lässt.',
+  },
+  {
+    frage: 'Was hilft stattdessen beim Lernen?',
+    antwort:
+      'Am besten belegt sind zwei Techniken: sich selbst abfragen statt wiederzulesen (Practice Testing) und den Stoff über mehrere Tage verteilen statt an einem Stück zu lernen (Distributed Practice). Beide erhielten in der Übersichtsarbeit von Dunlosky und Kollegen (2013) als einzige die höchste Wirksamkeitsbewertung.',
+  },
+  {
+    frage: 'Was bringt dann ein Lerntyp-Test?',
+    antwort:
+      'Ein Test, der dir einen Sinneskanal zuweist, bringt nichts. Sinnvoll ist ein Test, der dein tatsächliches Lernverhalten betrachtet: wann du anfängst, ob du abrufst oder wiederliest, ob du allein durchhältst. Diese Gewohnheiten unterscheiden sich messbar zwischen Menschen — und sie lassen sich ändern.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/lerntypen/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.frage,
+    acceptedAnswer: { '@type': 'Answer', text: f.antwort },
+  })),
+});
+---
+
+<BaseLayout
+  title="Welche Lerntypen gibt es? Die 4 Typen — und was die Forschung sagt"
+  description="Visuell, auditiv, haptisch, intellektuell: die vier Lerntypen nach Vester im Überblick. Warum das Modell wissenschaftlich nicht haltbar ist — und was beim Lernen wirklich wirkt."
+  breadcrumbs={[{ label: 'Lerntypen', href: '/lerntypen/' }]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Lerntypen</p>
+    <h1>Welche Lerntypen gibt es — und bringt das Modell überhaupt etwas?</h1>
+
+    <p class="lead intro">
+      Das bekannteste Modell unterscheidet vier Lerntypen: den <strong
+        >visuellen</strong
+      >, den <strong>auditiven</strong>, den <strong>haptischen</strong> und den
+      <strong>intellektuellen</strong> Lerntyp. Es geht auf Frederic Vester zurück
+      und steht in fast jedem Ratgeber. Nur: Die Annahme, auf der es beruht, hält
+      der Überprüfung nicht stand. Diese Seite erklärt beides — das Modell und
+      warum die Forschung ihm widerspricht.
+    </p>
+
+    <div class="note">
+      <p>
+        <strong>Die Kurzfassung.</strong> Dass Menschen unterschiedliche Vorlieben
+        beim Lernen haben, ist unstrittig. Nicht belegt ist der entscheidende
+        Schritt danach: dass jemand <em>besser lernt</em>, wenn der Stoff im
+        bevorzugten Kanal dargeboten wird. Genau dafür fehlt bis heute die
+        Evidenz. Was dagegen gut belegt ist, steht weiter unten.
+      </p>
+    </div>
+
+    <h2 class="rule">Die vier Lerntypen nach Vester</h2>
+    <p class="intro">
+      Frederic Vester, Biochemiker und Systemforscher, stellte das Modell 1975 in
+      seinem Buch <em>Denken, Lernen, Vergessen</em> vor. Er unterschied vier Wege,
+      auf denen Wissen in den Kopf gelangt. So werden sie üblicherweise beschrieben
+      — jeweils mit dem Haken, der selten dazugesagt wird.
+    </p>
+
+    {
+      TYPEN.map((t) => (
+        <section class="typ" id={t.id}>
+          <h3>{t.name}</h3>
+          <p class="typ__auch">{t.auch}</p>
+          <p>{t.behauptung}</p>
+          <p class="typ__zeile">
+            <strong>Übliche Empfehlung:</strong> {t.empfehlung}
+          </p>
+          <p class="typ__haken">
+            <strong>Der Haken:</strong> {t.haken}
+          </p>
+        </section>
+      ))
+    }
+
+    <h2 class="rule">Die Prozentzahlen, die überall stehen</h2>
+    <p class="intro">
+      Zum Modell gehört fast immer eine Liste: Wir behalten 10 Prozent von dem,
+      was wir lesen, 20 Prozent von dem, was wir hören, 30 Prozent von dem, was
+      wir sehen, 50 Prozent von dem, was wir hören und sehen, 70 Prozent von dem,
+      was wir selbst sagen, und 90 Prozent von dem, was wir selbst tun. Die Zahlen
+      wirken präzise und sind eingängig.
+    </p>
+    <p class="intro">
+      Sie sind allerdings nicht überprüfbar. Die Fachdidaktikerin Maike Looß hat
+      2001 versucht, sie zurückzuverfolgen, und kam zu dem Ergebnis, dass sich
+      nicht ermitteln lässt, wie diese Werte gewonnen wurden. Es gibt keine
+      Originalstudie, auf die die Liste zurückginge — sie wird seit Jahrzehnten
+      von Quelle zu Quelle weitergereicht. Hinzu kommt ein inhaltlicher Einwand:
+      Selbst wenn die Zahlen stimmten, würden sie reine Gedächtnisleistung mit
+      Lernerfolg gleichsetzen. Das ist nicht dasselbe.
+    </p>
+
+    <h2 class="rule">Was die Forschung tatsächlich geprüft hat</h2>
+    <p class="intro">
+      Die entscheidende Frage lautet nicht, ob Menschen Vorlieben haben — die
+      haben sie. Sie lautet: Lernt jemand mit ausgeprägter visueller Vorliebe
+      <em>besser</em>, wenn man ihm den Stoff visuell gibt? In der Forschung heißt
+      diese Annahme <strong>Meshing-Hypothese</strong>.
+    </p>
+    <p class="intro">
+      Um sie zu prüfen, braucht es ein bestimmtes Studiendesign: Man teilt
+      Lernende nach ihrem Typ ein, weist sie <em>zufällig</em> verschiedenen
+      Unterrichtsmethoden zu und lässt am Ende alle denselben Test schreiben.
+      Belegt wäre die These nur dann, wenn sich die Ergebnisse überkreuzen — wenn
+      also die Methode, die der einen Gruppe am meisten nützt, einer anderen
+      Gruppe gerade nicht am meisten nützt.
+    </p>
+    <p class="intro">
+      Eine Arbeitsgruppe um Harold Pashler hat 2008 die verfügbare Literatur
+      daraufhin durchgesehen. Ergebnis: Sie fand eine einzige Studie, die dieses
+      Kriterium überhaupt annähernd erfüllte — und deren Aussagekraft war
+      fraglich. Das Fazit der Autoren: Es gebe derzeit keine ausreichende
+      Evidenzgrundlage, um Lernstil-Diagnostik in die allgemeine Bildungspraxis
+      aufzunehmen.
+    </p>
+    <p class="intro">
+      Für den deutschsprachigen Raum kommt Looß zum selben Schluss: Den Begriff
+      „Lerntyp“ im Sinne Vesters sucht man in der kognitionswissenschaftlichen
+      Literatur vergeblich.
+    </p>
+
+    <h2 class="rule">Warum sich das Modell trotzdem hält</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Es leuchtet ein</span>
+        <h3>Vorlieben gibt es wirklich</h3>
+        <p>
+          Wer lieber liest als zuhört, merkt das an sich selbst. Der Sprung von
+          „ich mag das lieber“ zu „damit lerne ich besser“ fühlt sich klein an —
+          er ist aber genau der Punkt, an dem das Modell scheitert.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Es entlastet</span>
+        <h3>Eine bequeme Erklärung</h3>
+        <p>
+          „Die Methode passte nicht zu meinem Typ“ ist angenehmer als „ich habe
+          zu spät angefangen“ oder „ich habe wiedergelesen statt abgefragt“. Das
+          Modell verlagert die Ursache nach außen.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Es lässt sich verkaufen</span>
+        <h3>Ein fertiges Etikett</h3>
+        <p>
+          Ein Typ mit Namen ist ein griffiges Ergebnis, das man teilen kann.
+          Deshalb steht am Ende der meisten Lerntyp-Tests ein Etikett — und
+          selten eine Handlungsanweisung, die etwas ändert.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="rule">Was stattdessen belegt ist</h2>
+    <p class="intro">
+      2013 hat eine Gruppe um John Dunlosky zehn verbreitete Lerntechniken
+      systematisch bewertet. Nur zwei erhielten die höchste Wirksamkeitsstufe —
+      und ausgerechnet die beiden beliebtesten landeten in der niedrigsten.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Hohe Wirksamkeit</span>
+        <h3>Sich selbst abfragen</h3>
+        <p>
+          Den Stoff aus dem Kopf herausholen, ohne hinzusehen. Das Abrufen ist
+          nicht die Kontrolle des Gelernten — es ist der Lernvorgang selbst. Wer
+          sich abfragt, schneidet nach einigen Tagen deutlich besser ab als wer
+          denselben Stoff noch einmal liest.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Hohe Wirksamkeit</span>
+        <h3>Über Tage verteilen</h3>
+        <p>
+          Derselbe Aufwand, auf mehrere Tage verteilt, bleibt erheblich länger
+          verfügbar als am Stück gelernt. Nicht mehr Zeit — dieselbe Zeit,
+          anders angeordnet.
+        </p>
+      </div>
+      <div class="card card--schwach">
+        <span class="card__tag">Niedrige Wirksamkeit</span>
+        <h3>Markieren und Wiederlesen</h3>
+        <p>
+          Die beiden meistgenutzten Techniken überhaupt. Sie erzeugen
+          Vertrautheit mit dem Text, und Vertrautheit fühlt sich beim Lernen an
+          wie Können. In der Prüfung ist der Unterschied dann deutlich.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="rule">Was das für dich heißt</h2>
+    <p class="intro">
+      Die brauchbare Frage ist nicht, über welchen Sinneskanal du lernst. Sie
+      lautet: An welcher Stelle deines Lernens geht die Zeit verloren? Fängst du
+      zu spät an? Sammelst du Material, statt dich damit zu befassen? Liest du
+      wieder, statt abzufragen? Fehlt dir jemand, dem auffällt, ob du dranbleibst?
+    </p>
+    <p class="intro">
+      Das sind Gewohnheiten, keine Wesensmerkmale — und Gewohnheiten lassen sich
+      ändern. Genau darauf ist unser Test ausgelegt: Er gibt dir kein Etikett,
+      sondern zeigt dir die eine Stelle, an der bei dir am meisten liegen bleibt.
+    </p>
+
+    <p class="cta-row">
+      <a class="btn" href="/tools/lerntyp-test/">Zum Lerntyp-Test — 8 Fragen, kostenlos →</a>
+    </p>
+
+    <h2 class="rule">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.frage}</summary>
+            <p>{f.antwort}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Pashler, H., McDaniel, M., Rohrer, D. &amp; Bjork, R. (2008):
+        <em>Learning Styles: Concepts and Evidence.</em> Psychological Science in
+        the Public Interest, 9 (3), S. 105–119.
+        <a
+          href="https://journals.sagepub.com/doi/10.1111/j.1539-6053.2009.01038.x"
+          rel="noopener nofollow">Zum Aufsatz</a
+        >
+      </li>
+      <li>
+        Looß, M. (2001): <em
+          >Lerntypen? Ein pädagogisches Konstrukt auf dem Prüfstand.</em
+        > Die Deutsche Schule, 93 (2), S. 186–198.
+        <a
+          href="https://www.pedocs.de/volltexte/2023/27550/pdf/DDS_2001_2_Looss_Lerntypen_Ein_paedagogisches_Konstrukt.pdf"
+          rel="noopener nofollow">Zum Volltext</a
+        >
+      </li>
+      <li>
+        Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &amp;
+        Willingham, D. T. (2013): <em
+          >Improving Students’ Learning With Effective Learning Techniques.</em
+        > Psychological Science in the Public Interest, 14 (1), S. 4–58.
+        <a
+          href="https://journals.sagepub.com/doi/abs/10.1177/1529100612453266"
+          rel="noopener nofollow">Zum Aufsatz</a
+        >
+      </li>
+      <li>
+        Vester, F. (1975): <em>Denken, Lernen, Vergessen.</em> Deutsche
+        Verlags-Anstalt, Stuttgart.
+      </li>
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .typ {
+    border-left: 3px solid var(--accent-soft);
+    padding: 0.1rem 0 0.1rem 1.4rem;
+    margin: 1.8rem 0;
+    max-width: 70ch;
+  }
+
+  .typ h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+  }
+
+  .typ__auch {
+    font-size: 0.87rem;
+    color: var(--text-subtle);
+    margin-bottom: 0.7rem;
+  }
+
+  .typ p {
+    margin-bottom: 0.6rem;
+  }
+
+  .typ__zeile {
+    color: var(--text-muted);
+  }
+
+  .typ__haken {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    margin-top: 0.9rem;
+  }
+
+  .card--schwach {
+    border-style: dashed;
+    background: transparent;
+  }
+
+  .card--schwach .card__tag {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-subtle);
+  }
+
+  .cta-row {
+    margin: 2rem 0 0;
+  }
+
+  .faq {
+    max-width: 70ch;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+</style>
