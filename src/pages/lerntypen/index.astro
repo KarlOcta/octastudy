@@ -8,6 +8,8 @@ import { SITE } from '../../site';
 const TYPEN = [
   {
     id: 'visueller-lerntyp',
+    bild: 'visuell',
+    alt: 'Illustration: Studentin kniet auf dem Boden und zeichnet eine farbige Mindmap mit Kästchen und Pfeilen',
     name: 'Der visuelle Lerntyp',
     auch: 'auch: optischer Lerntyp',
     behauptung:
@@ -19,6 +21,8 @@ const TYPEN = [
   },
   {
     id: 'auditiver-lerntyp',
+    bild: 'auditiv',
+    alt: 'Illustration: Student mit Kopfhörern um den Hals sitzt im Schneidersitz und spricht den Stoff laut nach',
     name: 'Der auditive Lerntyp',
     auch: 'auch: akustischer Lerntyp',
     behauptung:
@@ -30,6 +34,8 @@ const TYPEN = [
   },
   {
     id: 'haptischer-lerntyp',
+    bild: 'haptisch',
+    alt: 'Illustration: Studentin hockt am Boden und baut ein Molekülmodell zwischen aufgeschlagenen Büchern zusammen',
     name: 'Der haptische Lerntyp',
     auch: 'auch: motorischer oder kinästhetischer Lerntyp',
     behauptung:
@@ -41,6 +47,8 @@ const TYPEN = [
   },
   {
     id: 'intellektueller-lerntyp',
+    bild: 'intellektuell',
+    alt: 'Illustration: Student mit Brille sitzt mit einem Heft voller Herleitungen auf dem Knie und denkt nach',
     name: 'Der intellektuelle Lerntyp',
     auch: 'auch: abstrakt-verbaler oder kognitiver Lerntyp',
     behauptung:
@@ -150,15 +158,28 @@ const jsonLd = JSON.stringify({
     {
       TYPEN.map((t) => (
         <section class="typ" id={t.id}>
-          <h3>{t.name}</h3>
-          <p class="typ__auch">{t.auch}</p>
-          <p>{t.behauptung}</p>
-          <p class="typ__zeile">
-            <strong>Übliche Empfehlung:</strong> {t.empfehlung}
-          </p>
-          <p class="typ__haken">
-            <strong>Der Haken:</strong> {t.haken}
-          </p>
+          <img
+            class="typ__bild"
+            src={`/img/vester/${t.bild}@1x.webp`}
+            srcset={`/img/vester/${t.bild}@1x.webp 450w, /img/vester/${t.bild}.webp 900w`}
+            sizes="(max-width: 700px) 55vw, 260px"
+            width="450"
+            height="600"
+            alt={t.alt}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="typ__text">
+            <h3>{t.name}</h3>
+            <p class="typ__auch">{t.auch}</p>
+            <p>{t.behauptung}</p>
+            <p class="typ__zeile">
+              <strong>Übliche Empfehlung:</strong> {t.empfehlung}
+            </p>
+            <p class="typ__haken">
+              <strong>Der Haken:</strong> {t.haken}
+            </p>
+          </div>
         </section>
       ))
     }
@@ -352,11 +373,37 @@ const jsonLd = JSON.stringify({
     max-width: 70ch;
   }
 
+  /* Bild und Text nebeneinander, im Wechsel links und rechts. Auf schmalen
+     Schirmen steht das Bild oben mittig. */
   .typ {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.8rem;
+    align-items: center;
+    margin: 2.6rem 0;
+    max-width: 62rem;
+  }
+
+  .typ:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .typ:nth-child(even) .typ__bild {
+    order: 2;
+  }
+
+  .typ__bild {
+    width: 100%;
+    height: auto;
+  }
+
+  .typ__text {
     border-left: 3px solid var(--accent-soft);
-    padding: 0.1rem 0 0.1rem 1.4rem;
-    margin: 1.8rem 0;
-    max-width: 70ch;
+    padding-left: 1.4rem;
+  }
+
+  .typ:nth-child(even) .typ__text {
+    order: 1;
   }
 
   .typ h3 {
@@ -373,6 +420,31 @@ const jsonLd = JSON.stringify({
 
   .typ p {
     margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 700px) {
+    .typ,
+    .typ:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      justify-items: center;
+    }
+
+    .typ__bild {
+      max-width: 55vw;
+      order: 0;
+    }
+
+    .typ:nth-child(even) .typ__bild {
+      order: 0;
+    }
+
+    .typ__text,
+    .typ:nth-child(even) .typ__text {
+      order: 1;
+      border-left: 0;
+      padding-left: 0;
+    }
   }
 
   .typ__zeile {
