@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CharakterTrio from '../../components/CharakterTrio.astro';
 import { SITE } from '../../site';
 
 /* Die vier Typen des Vester-Modells. Eigene Abschnitte, weil danach einzeln
@@ -126,6 +127,16 @@ const jsonLd = JSON.stringify({
         bevorzugten Kanal dargeboten wird. Genau dafür fehlt bis heute die
         Evidenz. Was dagegen gut belegt ist, steht weiter unten.
       </p>
+    </div>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Du willst die Kurzfassung überspringen?</strong> Unser Test fragt
+        nicht nach Sinneskanälen, sondern nach deinem tatsächlichen Lernverhalten
+        — und zeigt dir die eine Stelle, an der bei dir am meisten Zeit liegen
+        bleibt.
+      </p>
+      <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten — 8 Fragen, kostenlos →</a>
     </div>
 
     <h2 class="rule">Die vier Lerntypen nach Vester</h2>
@@ -269,6 +280,7 @@ const jsonLd = JSON.stringify({
     </div>
 
     <h2 class="rule">Was das für dich heißt</h2>
+    <CharakterTrio class="trio-block" />
     <p class="intro">
       Die brauchbare Frage ist nicht, über welchen Sinneskanal du lernst. Sie
       lautet: An welcher Stelle deines Lernens geht die Zeit verloren? Fängst du
@@ -383,6 +395,23 @@ const jsonLd = JSON.stringify({
     background: transparent;
     border: 1px solid var(--border-strong);
     color: var(--text-subtle);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 2.2rem 0 0;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .trio-block {
+    margin: 1.6rem 0 0.4rem;
   }
 
   .cta-row {

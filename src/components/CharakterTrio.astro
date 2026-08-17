@@ -1,0 +1,77 @@
+---
+/**
+ * Die drei Illustrationen aus dem Lerntyp-Test als wiederverwendbarer Block.
+ * Wird auf der Startseite, in der Tool-Übersicht und auf der Lerntypen-Seite
+ * eingesetzt, damit der Test überall dasselbe Gesicht hat.
+ *
+ * Rein dekorativ — deshalb aria-hidden und leere alt-Attribute. Wer die Seite
+ * vorgelesen bekommt, verpasst nichts: Der Text daneben sagt dasselbe.
+ */
+export interface Props {
+  /** Zusätzliche Klassen für den Abstand am Einsatzort */
+  class?: string;
+  /** Bilder früh laden (nur sinnvoll, wenn der Block oben auf der Seite steht) */
+  eager?: boolean;
+}
+
+const { class: extra = '', eager = false } = Astro.props;
+const laden = eager ? 'eager' : 'lazy';
+---
+
+<div class={`trio ${extra}`} aria-hidden="true">
+  <img
+    src="/img/lerntypen/markierer@1x.webp"
+    alt=""
+    width="450"
+    height="670"
+    loading={laden}
+    decoding="async"
+  />
+  <img
+    src="/img/lerntypen/koenner@1x.webp"
+    alt=""
+    width="450"
+    height="692"
+    loading={laden}
+    decoding="async"
+  />
+  <img
+    src="/img/lerntypen/sprinter@1x.webp"
+    alt=""
+    width="450"
+    height="658"
+    loading={laden}
+    decoding="async"
+  />
+</div>
+
+<style>
+  .trio {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .trio img {
+    width: 33%;
+    max-width: 190px;
+    height: auto;
+  }
+
+  /* Die äußeren beiden etwas kleiner und nach innen gerückt — das ergibt die
+     Staffelung, ohne dass die Figuren einander überdecken. */
+  .trio img:nth-child(1) {
+    transform: translateX(14%) scale(0.86);
+  }
+
+  .trio img:nth-child(3) {
+    transform: translateX(-14%) scale(0.86);
+  }
+
+  @media (max-width: 480px) {
+    .trio img {
+      max-width: 130px;
+    }
+  }
+</style>

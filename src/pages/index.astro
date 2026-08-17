@@ -1,4 +1,5 @@
 ---
+import CharakterTrio from '../components/CharakterTrio.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { OCTA } from '../site';
 
@@ -73,14 +74,16 @@ const geplant = [
       Fachunabhängig, laufen komplett in deinem Browser — deine Eingaben
       verlassen dein Gerät nicht.
     </p>
-    <div class="grid">
-      <a class="card" href="/tools/lerntyp-test/">
+    <div class="tool-teaser">
+      <a class="card tool-teaser__card" href="/tools/lerntyp-test/">
         <h3>Lerntyp-Test</h3>
         <p>
           Acht Fragen, sechs Profile — und eine konkrete Empfehlung, wie du dein
           Material aufbereiten solltest.
         </p>
+        <p class="card__more">Test starten →</p>
       </a>
+      <CharakterTrio class="tool-teaser__bild" />
     </div>
   </section>
 
@@ -103,6 +106,33 @@ const geplant = [
 </BaseLayout>
 
 <style>
+  /* Test-Teaser: Karte links, die drei Figuren rechts daneben. Auf schmalen
+     Schirmen rutschen die Figuren unter die Karte. */
+  .tool-teaser {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .tool-teaser__card {
+    height: 100%;
+  }
+
+  .tool-teaser__bild {
+    align-self: end;
+  }
+
+  @media (max-width: 760px) {
+    .tool-teaser {
+      grid-template-columns: 1fr;
+    }
+
+    .tool-teaser__bild {
+      margin-top: 0.5rem;
+    }
+  }
+
   /* Schlichter Hintergrund — Farbe kommt ueber Boxen und Balken in die Seite,
      nicht ueber grossflaechige Verlaeufe. */
   .hero {

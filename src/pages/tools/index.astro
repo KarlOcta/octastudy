@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CharakterTrio from '../../components/CharakterTrio.astro';
 ---
 
 <BaseLayout
@@ -16,6 +17,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       deinem Browser — keine Anmeldung, keine Konten, und deine Eingaben werden
       nirgendwo gespeichert.
     </p>
+
+    <CharakterTrio class="tools-trio" eager />
 
     <div class="grid">
       <a class="card" id="lerntyp-test" href="/tools/lerntyp-test/">
@@ -55,6 +58,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .intro {
     max-width: 44rem;
     margin-bottom: 1.75rem;
+  }
+
+  .tools-trio {
+    margin: 0 0 2rem;
   }
 
   .card__more {
