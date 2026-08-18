@@ -12,21 +12,21 @@ const SLIDES = [
   {
     src: '/img/mockups/octa-karteikarten-jura.webp',
     alt: 'Octa zeigt eine Karteikarte mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage',
-    caption: 'Karteikarten automatisch aus deinen Unterlagen',
+    caption: 'Karteikarten aus deinen Unterlagen',
     width: 360,
     height: 761,
   },
   {
     src: '/img/mockups/octa-lernplan-jura.webp',
     alt: 'Octa zeigt einen Lernplan mit Lernpfad und Fortschrittsanzeige bis zur Klausur',
-    caption: 'Lernplan bis zu deinem Prüfungstermin',
+    caption: 'Lernplan bis zur nächsten Prüfung',
     width: 360,
     height: 761,
   },
   {
     src: '/img/mockups/octa-pruefer-jura.webp',
     alt: 'Octa fragt eine Frage mündlich ab und wartet auf die gesprochene Antwort',
-    caption: 'Mündlich abgefragt statt nur durchgelesen',
+    caption: 'Mündlich abgefragt, nicht nur gelesen',
     width: 360,
     height: 761,
   },
@@ -139,7 +139,9 @@ const jsonLd = JSON.stringify({
         </div>
       </div>
 
-      <MockupSlideshow id="hero-slides" slides={SLIDES} class="hero-mockup" />
+      <div class="hero-mockup">
+        <MockupSlideshow id="hero-slides" slides={SLIDES} />
+      </div>
     </div>
 
     <script is:inline>
@@ -285,7 +287,7 @@ const jsonLd = JSON.stringify({
     </div>
 
     <div class="octa-cta octa-cta--closing">
-      <img class="octa-cta__mascot" src={OCTA.mascot} alt="" aria-hidden="true" width="110" height="73" />
+      <img class="octa-cta__mascot" src="/img/octa-mascot-transparent.webp" alt="" aria-hidden="true" width="110" height="84" />
       <div class="octa-cta__text">
         <h2>Und direkt mündlich abfragen</h2>
         <p>
@@ -301,7 +303,9 @@ const jsonLd = JSON.stringify({
           </a>
         </div>
       </div>
-      <MockupSlideshow id="closing-slides" slides={SLIDES} class="octa-cta__mockup" intervalMs={4200} />
+      <div class="octa-cta__mockup">
+        <MockupSlideshow id="closing-slides" slides={SLIDES} intervalMs={4200} />
+      </div>
     </div>
 
     <div class="note">
@@ -327,18 +331,17 @@ const jsonLd = JSON.stringify({
   }
 
   .hero-block {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 160px;
-    gap: 1.1rem;
-    align-items: start;
-    margin-bottom: 1.5rem;
+    position: relative;
+    max-width: 46rem;
+    padding-right: 155px;
+    margin-bottom: 0.6rem;
   }
 
   .downloads {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
   }
 
   .octa-hint {
@@ -368,22 +371,26 @@ const jsonLd = JSON.stringify({
   }
 
   .hero-mockup {
-    justify-self: end;
-    max-width: 160px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 135px;
   }
 
   @media (max-width: 760px) {
     .hero-block {
-      grid-template-columns: 1fr;
+      padding-right: 0;
     }
 
     .hero-mockup {
-      display: none;
+      position: static;
+      width: 120px;
+      margin: 0.2rem auto 0;
     }
   }
 
   .rule--tight {
-    margin-top: 0.75rem;
+    margin-top: 0.15rem;
   }
 
   .faq {
@@ -551,7 +558,8 @@ const jsonLd = JSON.stringify({
   }
 
   .octa-cta__mockup {
-    max-width: 150px;
+    width: 140px;
+    max-width: 140px;
     justify-self: end;
   }
 

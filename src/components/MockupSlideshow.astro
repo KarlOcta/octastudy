@@ -129,12 +129,16 @@ const { slides, id, intervalMs = 3800, class: extra = '' } = Astro.props;
 
   .mockup-slides__caption {
     position: relative;
-    min-height: 2.4em;
+    min-height: 2.6em;
     margin: 0.6rem 0 0;
     text-align: center;
     font-size: 0.82rem;
+    line-height: 1.3;
     color: var(--text-muted);
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mockup-slides__caption span {
