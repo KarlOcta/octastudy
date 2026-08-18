@@ -12,37 +12,36 @@ export interface Props {
   class?: string;
   /** Bilder früh laden (nur sinnvoll, wenn der Block oben auf der Seite steht) */
   eager?: boolean;
+  /** Kleine Beschriftung unter jeder Figur, damit klar ist, was man sieht */
+  labels?: boolean;
 }
 
-const { class: extra = '', eager = false } = Astro.props;
+const { class: extra = '', eager = false, labels = false } = Astro.props;
 const laden = eager ? 'eager' : 'lazy';
+
+const figuren = [
+  { src: '/img/lerntypen/markierer@1x.webp', w: 450, h: 670, name: 'Der Markierer' },
+  { src: '/img/lerntypen/koenner@1x.webp', w: 450, h: 692, name: 'Der Könner' },
+  { src: '/img/lerntypen/sprinter@1x.webp', w: 450, h: 658, name: 'Der Sprinter' },
+];
 ---
 
-<div class={`trio ${extra}`} aria-hidden="true">
-  <img
-    src="/img/lerntypen/markierer@1x.webp"
-    alt=""
-    width="450"
-    height="670"
-    loading={laden}
-    decoding="async"
-  />
-  <img
-    src="/img/lerntypen/koenner@1x.webp"
-    alt=""
-    width="450"
-    height="692"
-    loading={laden}
-    decoding="async"
-  />
-  <img
-    src="/img/lerntypen/sprinter@1x.webp"
-    alt=""
-    width="450"
-    height="658"
-    loading={laden}
-    decoding="async"
-  />
+<div class={`trio ${extra} ${labels ? 'trio--labels' : ''}`} aria-hidden={labels ? undefined : 'true'}>
+  {
+    figuren.map((f) => (
+      <div class="trio__fig">
+        <img
+          src={f.src}
+          alt={labels ? f.name : ''}
+          width={f.w}
+          height={f.h}
+          loading={laden}
+          decoding="async"
+        />
+        {labels && <span class="trio__label">{f.name}</span>}
+      </div>
+    ))
+  }
 </div>
 
 <style>
@@ -53,24 +52,43 @@ const laden = eager ? 'eager' : 'lazy';
     gap: 0;
   }
 
-  .trio img {
+  .trio__fig {
     width: 33%;
     max-width: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .trio__fig img {
+    width: 100%;
     height: auto;
+  }
+
+  .trio__label {
+    margin-top: 0.4em;
+    font-size: 0.8rem;
+    color: var(--muted, #6b7280);
+    text-align: center;
   }
 
   /* Die äußeren beiden etwas kleiner und nach innen gerückt — das ergibt die
      Staffelung, ohne dass die Figuren einander überdecken. */
-  .trio img:nth-child(1) {
+  .trio__fig:nth-child(1) {
     transform: translateX(14%) scale(0.86);
   }
 
-  .trio img:nth-child(3) {
+  .trio__fig:nth-child(3) {
     transform: translateX(-14%) scale(0.86);
   }
 
+  .trio--labels .trio__fig:nth-child(1),
+  .trio--labels .trio__fig:nth-child(3) {
+    transform: none;
+  }
+
   @media (max-width: 480px) {
-    .trio img {
+    .trio__fig {
       max-width: 130px;
     }
   }

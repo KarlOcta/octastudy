@@ -1,5 +1,16 @@
 ---
-import { NAV, SITE } from '../site';
+import { NAV, NAV_EN, SITE } from '../site';
+
+export interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const nav = lang === 'en' ? NAV_EN : NAV;
+const homeHref = lang === 'en' ? '/' : '/';
+const navLabel = lang === 'en' ? 'Main navigation' : 'Hauptnavigation';
+const logoLabel =
+  lang === 'en' ? `${SITE.name} — Home` : `${SITE.name} — Startseite`;
 
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
@@ -8,7 +19,7 @@ const isActive = (href: string) =>
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a href="/" class="logo" aria-label={`${SITE.name} — Startseite`}>
+    <a href={homeHref} class="logo" aria-label={logoLabel}>
       <img
         class="logo__mark"
         src="/img/logo-mark.webp"
@@ -20,10 +31,10 @@ const isActive = (href: string) =>
       <span class="logo__text">octa<span class="logo__accent">study</span></span>
     </a>
 
-    <nav aria-label="Hauptnavigation">
+    <nav aria-label={navLabel}>
       <ul class="nav">
         {
-          NAV.map((item) => (
+          nav.map((item) => (
             <li>
               <a
                 href={item.href}

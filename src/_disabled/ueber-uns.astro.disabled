@@ -42,9 +42,7 @@ import { AUTHOR, OCTA, REVIEWER, SITE } from '../site';
       </div>
       <div>
         <dt>{REVIEWER.name}</dt>
-        <dd class="people__role">
-          {REVIEWER.role} — fachliches Gegenlesen der juristischen Inhalte
-        </dd>
+        <dd class="people__role">{REVIEWER.role}</dd>
         <dd>
           Prüft jede juristische Seite vor der Veröffentlichung auf inhaltliche
           Richtigkeit und darauf, ob der Aufbau der gängigen Klausurpraxis

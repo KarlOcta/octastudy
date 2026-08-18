@@ -7,19 +7,31 @@ const silos = [
     title: 'Zivilrecht (BGB)',
     slug: 'zivilrecht',
     text: 'Deliktsrecht, Bereicherungsrecht, Leistungsstörungen, Sachenrecht — von § 823 BGB über § 812 BGB bis zur Übereignung nach § 929 BGB.',
-    examples: ['§ 823 I BGB', '§ 985 BGB', '§ 812 BGB', '§ 280 BGB', '§ 929 BGB'],
+    examples: [
+      { label: '§ 823 I BGB', href: '/lernunterlagen/jura/823-bgb/' },
+      { label: '§ 985 BGB' },
+      { label: '§ 812 BGB' },
+      { label: '§ 280 BGB' },
+      { label: '§ 929 BGB' },
+    ],
   },
   {
     title: 'Strafrecht (StGB)',
     slug: 'strafrecht',
     text: 'Die klassischen Klausurdelikte mit vollständigem Aufbau: objektiver und subjektiver Tatbestand, Rechtswidrigkeit, Schuld, Strafzumessung.',
-    examples: ['§ 263 StGB', '§ 242 StGB', '§ 223 StGB', '§ 315c StGB', '§ 32 StGB'],
+    examples: [
+      { label: '§ 263 StGB' },
+      { label: '§ 242 StGB' },
+      { label: '§ 223 StGB' },
+      { label: '§ 315c StGB' },
+      { label: '§ 32 StGB' },
+    ],
   },
   {
     title: 'Öffentliches Recht (GG)',
     slug: 'oeffentliches-recht',
     text: 'Grundrechtsprüfung und Verfassungsprozessrecht — Schutzbereich, Eingriff, Rechtfertigung, und die Zulässigkeit der Verfassungsbeschwerde.',
-    examples: ['Grundrechtsprüfung', 'Verfassungsbeschwerde'],
+    examples: [{ label: 'Grundrechtsprüfung' }, { label: 'Verfassungsbeschwerde' }],
   },
 ];
 ---
@@ -45,9 +57,8 @@ const silos = [
 
     <div class="note">
       <p>
-        <strong>Aufbau läuft.</strong> Die ersten Schemata aus dem Strafrecht gehen
-        in Kürze online. Jeder juristische Inhalt wird vor der Veröffentlichung
-        fachlich gegengelesen.
+        <strong>Aufbau läuft.</strong> § 823 I BGB ist als erstes Schema
+        online — die nächsten aus Straf- und Zivilrecht folgen laufend.
       </p>
     </div>
 
@@ -57,10 +68,14 @@ const silos = [
           <div class="card">
             <h3>{silo.title}</h3>
             <p>{silo.text}</p>
-            <ul class="chips" aria-label={`Geplante Schemata: ${silo.title}`}>
-              {silo.examples.map((ex) => (
-                <li>{ex}</li>
-              ))}
+            <ul class="chips" aria-label={`Schemata: ${silo.title}`}>
+              {silo.examples.map((ex) =>
+                ex.href ? (
+                  <li><a href={ex.href}>{ex.label} →</a></li>
+                ) : (
+                  <li>{ex.label}</li>
+                )
+              )}
             </ul>
           </div>
         ))
@@ -120,10 +135,28 @@ const silos = [
     margin-top: 0;
     font-size: 0.82rem;
     font-family: var(--font-mono);
+  }
+
+  .chips li,
+  .chips li a {
     color: var(--text-muted);
     background: var(--bg-soft);
     border: 1px solid var(--border);
     border-radius: 100px;
     padding: 0.15rem 0.6rem;
+  }
+
+  .chips li a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--accent);
+    border-color: var(--accent-soft);
+    background: var(--accent-soft);
+    font-weight: 700;
+  }
+
+  .chips li a:hover {
+    background: var(--accent);
+    color: #fff;
   }
 </style>

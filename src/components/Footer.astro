@@ -1,5 +1,18 @@
 ---
-import { FOOTER_NAV, SITE } from '../site';
+import { FOOTER_NAV, FOOTER_NAV_EN, SITE, SITE_EN } from '../site';
+
+export interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const footerNav = lang === 'en' ? FOOTER_NAV_EN : FOOTER_NAV;
+const tagline = lang === 'en' ? SITE_EN.tagline : SITE.tagline;
+const navLabel = lang === 'en' ? 'Legal and more' : 'Rechtliches und Zusatzinformationen';
+const legal =
+  lang === 'en'
+    ? 'All content is for study purposes only and does not constitute legal advice.'
+    : 'Alle Inhalte dienen ausschließlich Lernzwecken und stellen keine Rechtsberatung dar.';
 
 const year = new Date().getFullYear();
 ---
@@ -8,13 +21,13 @@ const year = new Date().getFullYear();
   <div class="wrap site-footer__inner">
     <p class="site-footer__brand">
       <strong>{SITE.name}</strong><br />
-      <span class="text-muted">{SITE.tagline}</span>
+      <span class="text-muted">{tagline}</span>
     </p>
 
-    <nav aria-label="Rechtliches und Zusatzinformationen">
+    <nav aria-label={navLabel}>
       <ul>
         {
-          FOOTER_NAV.map((item) => (
+          footerNav.map((item) => (
             <li>
               <a href={item.href}>{item.label}</a>
             </li>
@@ -26,8 +39,7 @@ const year = new Date().getFullYear();
 
   <div class="wrap site-footer__legal">
     <p>
-      © {year} {SITE.name}. Alle Inhalte dienen ausschließlich Lernzwecken und
-      stellen keine Rechtsberatung dar.
+      © {year} {SITE.name}. {legal}
     </p>
   </div>
 </footer>

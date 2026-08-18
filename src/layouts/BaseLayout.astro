@@ -17,6 +17,12 @@ export interface Props {
   noindex?: boolean;
   /** Breite Inhaltsspalte statt Lesebreite */
   wide?: boolean;
+  /** Sprache dieser Seite. Deutsch liegt auf der Root-Domain, Englisch unter /en/. */
+  lang?: 'de' | 'en';
+  /** Pfad der Sprachversion dieser Seite (z. B. '/en/tools/lerntyp-test/' von
+   * der deutschen Seite aus, oder umgekehrt) — erzeugt die hreflang-Paarung.
+   * Weglassen, wenn es (noch) keine Übersetzung dieser Seite gibt. */
+  altHref?: string;
 }
 
 const {
@@ -25,13 +31,22 @@ const {
   breadcrumbs = [],
   noindex = false,
   wide = false,
+  lang = 'de',
+  altHref,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const altCanonical = altHref
+  ? new URL(altHref, Astro.site ?? SITE.url).href
+  : undefined;
 const fullTitle =
   Astro.url.pathname === '/'
     ? `${SITE.name} — ${SITE.tagline}`
     : `${title} | ${SITE.name}`;
+const ogLocale = lang === 'en' ? 'en_US' : 'de_DE';
+const skipLinkLabel = lang === 'en' ? 'Skip to content' : 'Zum Inhalt springen';
+const homeLabel = lang === 'en' ? 'Home' : 'Startseite';
+const breadcrumbLabel = lang === 'en' ? 'Breadcrumb' : 'Brotkrumen-Navigation';
 
 const containerClass = wide ? 'wrap' : 'prose';
 
@@ -43,7 +58,7 @@ const graph: Record<string, unknown>[] = [
     url: `${SITE.url}/`,
     name: SITE.name,
     description: SITE.description,
-    inLanguage: 'de-DE',
+    inLanguage: lang === 'en' ? 'en-US' : 'de-DE',
   },
 ];
 
@@ -66,7 +81,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -77,6 +92,13 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
     <meta name="theme-color" content="#5B4BD0" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={canonical} />
+    {altCanonical && (
+      <>
+        <link rel="alternate" hreflang={lang === 'en' ? 'de' : 'en'} href={altCanonical} />
+        <link rel="alternate" hreflang={lang} href={canonical} />
+        <link rel="alternate" hreflang="x-default" href={lang === 'en' ? altCanonical : canonical} />
+      </>
+    )}
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -84,7 +106,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -96,18 +118,18 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
   </head>
 
   <body>
-    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <a class="skip-link" href="#main">{skipLinkLabel}</a>
 
-    <Header />
+    <Header lang={lang} />
 
     <main id="main">
       {
         breadcrumbs.length > 0 && (
           <div class={containerClass}>
-            <nav class="breadcrumb" aria-label="Brotkrumen-Navigation">
+            <nav class="breadcrumb" aria-label={breadcrumbLabel}>
               <ol>
                 <li>
-                  <a href="/">Startseite</a>
+                  <a href="/">{homeLabel}</a>
                 </li>
                 {breadcrumbs.map((crumb, i) =>
                   i === breadcrumbs.length - 1 ? (
@@ -127,6 +149,6 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
       <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

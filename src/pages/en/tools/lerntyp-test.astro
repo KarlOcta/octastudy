@@ -1,43 +1,44 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Lerntyp-Test: Welcher Lerntyp bin ich? Kostenlos, 8 Fragen"
-  description="Welcher Lerntyp bin ich? Kostenloser Test für Studierende: 8 Fragen, unter einer Minute, ohne Anmeldung — und du weißt, wo du beim Lernen Zeit verlierst."
+  title="What's My Study Type? Free Quiz for Students, 8 Questions"
+  description="What's my study type? Free quiz for students: 8 questions, under a minute, no sign-up — and you'll know exactly where you're losing time when you study."
   breadcrumbs={[
     { label: 'Tools', href: '/tools/' },
-    { label: 'Lerntyp-Test', href: '/tools/lerntyp-test/' },
+    { label: 'Study Type Quiz', href: '/en/tools/lerntyp-test/' },
   ]}
-  altHref="/en/tools/lerntyp-test/"
+  lang="en"
+  altHref="/tools/lerntyp-test/"
   wide
 >
   <div class="wrap lt-page">
     <div class="lt-shell">
       <!-- ---------------------------------------------------- Intro -- -->
       <section id="s-intro" class="lt-screen on">
-        <!-- 1 — Aufhänger: das gefühlte Problem, nicht das Produkt -->
+        <!-- 1 — Hook: the felt problem, not the product -->
         <div class="lt-hero">
-          <span class="eyebrow">Kostenloser Lerntyp-Test für Studierende</span>
+          <span class="eyebrow">Free Study Type Quiz for Students</span>
           <h1 class="lt-h1">
-            Welcher Lerntyp bin ich?<br />Du lernst nicht zu wenig — du lernst
-            <span class="hl">an der falschen Stelle</span>.
+            What's my study type?<br />You're not studying too little — you're
+            studying <span class="hl">in the wrong place</span>.
           </h1>
           <p class="lt-lede">
-            Die meisten Studierenden scheitern nicht an fehlender Zeit oder
-            Disziplin, sondern an einer einzigen Stelle im eigenen Lernprozess —
-            und merken jahrelang nicht, an welcher. Dieser kostenlose Lerntyp-Test
-            zeigt dir in acht Fragen, wo es bei dir tatsächlich hakt und was
-            konkret dagegen hilft.
+            Most students don't fail because of a lack of time or discipline —
+            they fail at one single point in their own study process, and go
+            years without noticing which one. This free quiz shows you, in
+            eight questions, where things actually break down for you and
+            exactly what fixes it.
           </p>
           <button class="btn lt-btn-block" type="button" onclick="start()">
-            Jetzt kostenlosen Test starten →
+            Start the free quiz now →
           </button>
           <ul class="lt-meta">
-            <li>8 Fragen</li>
-            <li>unter 60 Sekunden</li>
-            <li>kein Login</li>
-            <li>kostenlos</li>
+            <li>8 questions</li>
+            <li>under 60 seconds</li>
+            <li>no login</li>
+            <li>free</li>
           </ul>
 
           <div class="lt-cast" aria-hidden="true">
@@ -47,176 +48,177 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <!-- 2 — Wiedererkennung: Symptome zum Abhaken -->
+        <!-- 2 — Recognition: symptoms to check off -->
         <section class="lt-band">
-          <h2 class="rule">Kennst du das?</h2>
+          <h2 class="rule">Sound familiar?</h2>
           <ul class="lt-symptoms">
-            <li>Du liest ein Kapitel, verstehst alles — und zwei Tage später ist es weg.</li>
-            <li>Du weißt die Antwort. Du bekommst sie mündlich nur nicht heraus.</li>
-            <li>Du sitzt vor dem Stoff und verlierst zwanzig Minuten mit der Frage, womit du anfängst.</li>
-            <li>Du lernst seit Wochen und hast trotzdem das Gefühl, nichts davon zu können.</li>
-            <li>Du nimmst dir jeden Tag etwas vor — und niemandem fällt auf, wenn du es nicht tust.</li>
+            <li>You read a chapter, understand all of it — and two days later it's gone.</li>
+            <li>You know the answer. You just can't get it out when someone asks out loud.</li>
+            <li>You sit down to study and burn twenty minutes deciding where to even start.</li>
+            <li>You've been studying for weeks and still feel like you don't know any of it.</li>
+            <li>You plan to do something every day — and nobody notices when you don't.</li>
           </ul>
           <p class="lt-turn">
-            Wenn dir davon etwas bekannt vorkommt: Dahinter steckt selten
-            Faulheit. Dahinter steckt fast immer, dass du viel Energie an einer
-            Stelle einsetzt, an der sie nichts bringt.
+            If any of this sounds familiar: it's rarely laziness behind it.
+            What's almost always behind it is that you're pouring a lot of
+            energy into a spot where it doesn't pay off.
           </p>
         </section>
 
-        <!-- 3 — Entlastung und Mechanismus -->
+        <!-- 3 — Relief and mechanism -->
         <section class="lt-band">
-          <h2 class="rule">Warum die üblichen Lerntipps bei dir nicht greifen</h2>
+          <h2 class="rule">Why the usual study tips don't work for you</h2>
           <p>
-            Du kennst die Einteilung in „visuelle“, „auditive“ und „haptische“
-            Lerntypen. Sie klingt einleuchtend — und sie ist widerlegt. Studien
-            finden keinen Beleg dafür, dass Material im bevorzugten Sinneskanal
-            besser hängen bleibt. Wer danach lernt, optimiert die falsche
-            Stellschraube.
+            You know the classic breakdown into "visual," "auditory," and
+            "kinesthetic" learners. It sounds convincing — and it's been
+            debunked. Studies find no evidence that material sticks better
+            when it matches your preferred sensory channel. Studying that way
+            optimizes the wrong lever.
           </p>
           <p>
-            <strong>Es liegt also nicht an dir.</strong> Es liegt an
-            Ratschlägen, die für alle gleichzeitig gelten sollen und deshalb für
-            niemanden genau passen. Entscheidend ist nicht, wie du Informationen
-            am liebsten aufnimmst, sondern <strong
-              >an welcher Stelle deines Lernprozesses es abreißt</strong
-            > — beim Sammeln, beim Verarbeiten, beim Abrufen oder beim Dranbleiben.
+            <strong>So it's not you.</strong> It's advice built to apply to
+            everyone at once, which means it never quite fits anyone.
+            What matters isn't how you prefer to take in information, but
+            <strong>where exactly your study process breaks down</strong> —
+            gathering material, processing it, recalling it, or sticking with
+            it.
           </p>
           <p>
-            Genau das misst dieser Test. Und weil der Bruchpunkt bei jedem woanders
-            liegt, ist auch die Gegenmaßnahme bei jedem eine andere.
+            That's exactly what this quiz measures. And because everyone's
+            breaking point sits somewhere different, the fix is different for
+            everyone too.
           </p>
           <div class="lt-cta-inline">
             <button class="btn" type="button" onclick="start()">
-              Meinen Bruchpunkt finden →
+              Find my breaking point →
             </button>
           </div>
         </section>
 
-        <!-- 4 — Was der Test liefert -->
+        <!-- 4 — What the quiz gives you -->
         <section class="lt-band">
-          <h2 class="rule">Was der Test dir sagt</h2>
+          <h2 class="rule">What the quiz tells you</h2>
           <div class="lt-benefits">
             <div class="lt-benefit">
               <span class="lt-benefit__num">01</span>
-              <h3>Deine Stärke</h3>
+              <h3>Your strength</h3>
               <p>
-                Womit du tatsächlich gut bist. Jedes der sechs Profile hat eine
-                echte Fähigkeit im Kern — sie wird nur an der falschen Stelle
-                eingesetzt.
+                What you're actually good at. Every one of the six profiles
+                has a real skill at its core — it's just being applied in the
+                wrong place.
               </p>
             </div>
             <div class="lt-benefit">
               <span class="lt-benefit__num">02</span>
-              <h3>Dein Bruchpunkt</h3>
+              <h3>Your breaking point</h3>
               <p>
-                Die eine Stelle, an der deine Lernzeit verpufft — benannt,
-                erklärt und mit dem, was sie dich in Prüfungen tatsächlich
-                kostet.
+                The one spot where your study time evaporates — named,
+                explained, and tied to what it's actually costing you on
+                exam day.
               </p>
             </div>
             <div class="lt-benefit">
               <span class="lt-benefit__num">03</span>
-              <h3>Dein nächster Schritt</h3>
+              <h3>Your next step</h3>
               <p>
-                Kein allgemeiner Lerntipp, sondern die Gegenmaßnahme, die zu
-                deinem Profil passt — in drei Schritten, sofort umsetzbar.
+                Not a generic study tip, but the fix that matches your
+                profile — in three steps, ready to use right away.
               </p>
             </div>
           </div>
         </section>
 
-        <!-- 5 — Typen-Vorschau: erzeugt die Frage „welcher bin ich?" -->
+        <!-- 5 — Type preview: raises the question "which one am I?" -->
         <section class="lt-band">
-          <h2 class="rule">Welcher Typ bist du?</h2>
+          <h2 class="rule">Which type are you?</h2>
           <p class="lt-band__intro">
-            Sechs Profile, sechs verschiedene Stellen, an denen Lernzeit
-            verloren geht. Keines davon ist ein Urteil über deine Intelligenz —
-            jedes beschreibt eine Gewohnheit, die sich ändern lässt.
+            Six profiles, six different places where study time goes to
+            waste. None of them is a verdict on your intelligence — each one
+            describes a habit you can change.
           </p>
           <p class="lt-band__hinweis">
-            Du suchst die klassischen Lerntypen — visuell, auditiv, haptisch?
-            Die verwenden wir bewusst nicht.
-            <a href="/lerntypen/">Hier steht, warum dieses Modell der
-            Überprüfung nicht standhält</a> und was die Forschung stattdessen
-            empfiehlt.
+            Looking for the classic learning styles — visual, auditory,
+            kinesthetic? We deliberately don't use those.
+            <a href="/lerntypen/">Here's why that model doesn't hold up to
+            scrutiny</a> and what the research recommends instead. (In
+            German for now — an English version is on the way.)
           </p>
 
           <div class="lt-types">
             <article class="lt-type">
-              <img src="/img/lerntypen/koenner@1x.webp" srcset="/img/lerntypen/koenner@1x.webp 450w, /img/lerntypen/koenner.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="692" alt="Illustration: Studierender sitzt im Schneidersitz und sucht nach Worten" loading="lazy" />
+              <img src="/img/lerntypen/koenner@1x.webp" srcset="/img/lerntypen/koenner@1x.webp 450w, /img/lerntypen/koenner.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="692" alt="Illustration: student sitting cross-legged, searching for words" loading="lazy" />
               <div>
-                <h3>Der stille Könner</h3>
-                <p class="lt-type__line">„Du kannst es. Bis du es sagen sollst.“</p>
+                <h3>The Quiet Achiever</h3>
+                <p class="lt-type__line">"You know it. Until you have to say it."</p>
                 <p>
-                  Versteht den Stoff wirklich und lernt nichts stumpf auswendig.
-                  Trainiert dabei aber nur das Verstehen, nie das freie Abrufen —
-                  und steht mündlich mit leerem Kopf da.
+                  Really understands the material and never learns anything
+                  by rote. But only ever trains understanding, never free
+                  recall — and blanks out the moment it's asked out loud.
                 </p>
               </div>
             </article>
 
             <article class="lt-type">
-              <img src="/img/lerntypen/sammler@1x.webp" srcset="/img/lerntypen/sammler@1x.webp 450w, /img/lerntypen/sammler.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="595" alt="Illustration: Studentin zwischen hohen Papierstapeln mit weiteren Unterlagen im Arm" loading="lazy" />
+              <img src="/img/lerntypen/sammler@1x.webp" srcset="/img/lerntypen/sammler@1x.webp 450w, /img/lerntypen/sammler.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="595" alt="Illustration: student between tall stacks of paper, arms full of more" loading="lazy" />
               <div>
-                <h3>Der Sammler</h3>
-                <p class="lt-type__line">„Du hast alles. Gelernt hast du davon nichts.“</p>
+                <h3>The Collector</h3>
+                <p class="lt-type__line">"You have everything. You've learned none of it."</p>
                 <p>
-                  Hat jede Folie, jedes Skript, jede Mitschrift. Sammeln fühlt
-                  sich wie Fortschritt an, schiebt die eigentliche
-                  Auseinandersetzung aber immer weiter nach hinten.
+                  Has every slide, every handout, every note. Collecting
+                  feels like progress, but it keeps pushing the actual work
+                  further down the road.
                 </p>
               </div>
             </article>
 
             <article class="lt-type">
-              <img src="/img/lerntypen/markierer@1x.webp" srcset="/img/lerntypen/markierer@1x.webp 450w, /img/lerntypen/markierer.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="670" alt="Illustration: Studentin markiert eine bereits vollständig eingefärbte Buchseite" loading="lazy" />
+              <img src="/img/lerntypen/markierer@1x.webp" srcset="/img/lerntypen/markierer@1x.webp 450w, /img/lerntypen/markierer.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="670" alt="Illustration: student highlighting a page that's already fully covered in color" loading="lazy" />
               <div>
-                <h3>Der Markierer</h3>
-                <p class="lt-type__line">„Bunt heißt nicht gelernt.“</p>
+                <h3>The Highlighter</h3>
+                <p class="lt-type__line">"Colorful doesn't mean learned."</p>
                 <p>
-                  Fleißig und ausdauernd. Nur erzeugen Markieren und Wiederlesen
-                  Vertrautheit statt Abrufbarkeit — die am besten belegte
-                  Lernfalle überhaupt.
+                  Hardworking and persistent. But highlighting and rereading
+                  create familiarity, not recall — the single best-documented
+                  study trap there is.
                 </p>
               </div>
             </article>
 
             <article class="lt-type">
-              <img src="/img/lerntypen/ueberfordert@1x.webp" srcset="/img/lerntypen/ueberfordert@1x.webp 450w, /img/lerntypen/ueberfordert.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="598" alt="Illustration: Studierender sitzt zwischen mehreren aufgeschlagenen Büchern und zögert" loading="lazy" />
+              <img src="/img/lerntypen/ueberfordert@1x.webp" srcset="/img/lerntypen/ueberfordert@1x.webp 450w, /img/lerntypen/ueberfordert.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="598" alt="Illustration: student sitting among several open books, hesitating" loading="lazy" />
               <div>
-                <h3>Der Überforderte</h3>
-                <p class="lt-type__line">„Nicht zu wenig Zeit. Zu viele Anfänge.“</p>
+                <h3>The Overwhelmed</h3>
+                <p class="lt-type__line">"Not too little time. Too many false starts."</p>
                 <p>
-                  Kein Disziplinproblem, ein Entscheidungsproblem. Solange der
-                  ganze Stoff gleichzeitig dasteht, frisst die Frage nach dem
-                  Anfang die Energie fürs Lernen.
+                  Not a discipline problem, a decision problem. As long as
+                  the whole subject sits there at once, figuring out where to
+                  start eats the energy that should go into studying.
                 </p>
               </div>
             </article>
 
             <article class="lt-type">
-              <img src="/img/lerntypen/einzel@1x.webp" srcset="/img/lerntypen/einzel@1x.webp 450w, /img/lerntypen/einzel.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="438" alt="Illustration: Studierender sitzt allein neben einem leeren Klappstuhl" loading="lazy" />
+              <img src="/img/lerntypen/einzel@1x.webp" srcset="/img/lerntypen/einzel@1x.webp 450w, /img/lerntypen/einzel.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="438" alt="Illustration: student sitting alone next to an empty folding chair" loading="lazy" />
               <div>
-                <h3>Der Einzelkämpfer</h3>
-                <p class="lt-type__line">„Niemandem fällt auf, ob du es tust.“</p>
+                <h3>The Lone Wolf</h3>
+                <p class="lt-type__line">"Nobody notices whether you do it."</p>
                 <p>
-                  Kann konzentriert allein arbeiten. Was fehlt, ist keine
-                  Methode, sondern Verbindlichkeit — ein Vorsatz ohne Zeugen
-                  kostet nichts, wenn er bricht.
+                  Can work alone and stay focused. What's missing isn't a
+                  method, it's accountability — a promise nobody's watching
+                  costs nothing when it's broken.
                 </p>
               </div>
             </article>
 
             <article class="lt-type">
-              <img src="/img/lerntypen/sprinter@1x.webp" srcset="/img/lerntypen/sprinter@1x.webp 450w, /img/lerntypen/sprinter.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="658" alt="Illustration: Studentin rennt mit Büchern und Kaffeebecher, Blätter fliegen hinterher" loading="lazy" />
+              <img src="/img/lerntypen/sprinter@1x.webp" srcset="/img/lerntypen/sprinter@1x.webp 450w, /img/lerntypen/sprinter.webp 900w" sizes="(max-width: 640px) 40vw, 200px" width="450" height="658" alt="Illustration: student running with books and a coffee cup, papers flying behind" loading="lazy" />
               <div>
-                <h3>Der Sprinter</h3>
-                <p class="lt-type__line">„Du schaffst es. Behalten tust du es nicht.“</p>
+                <h3>The Sprinter</h3>
+                <p class="lt-type__line">"You pull it off. You just don't retain it."</p>
                 <p>
-                  Funktioniert unter Druck erstaunlich gut. Ohne Wiederholung
-                  über mehrere Tage verfällt der Stoff aber — es rächt sich in
-                  der nächsten Prüfung, die darauf aufbaut.
+                  Performs surprisingly well under pressure. But without
+                  reviewing over several days, the material fades — and it
+                  catches up with you on the next exam that builds on it.
                 </p>
               </div>
             </article>
@@ -224,74 +226,74 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
           <div class="lt-cta-inline">
             <button class="btn" type="button" onclick="start()">
-              Herausfinden, welcher ich bin →
+              Find out which one I am →
             </button>
           </div>
         </section>
 
-        <!-- 6 — Belege statt Autorität -->
+        <!-- 6 — Evidence instead of authority -->
         <section class="lt-band">
-          <h2 class="rule">Worauf der Test beruht</h2>
+          <h2 class="rule">What the quiz is based on</h2>
           <p>
-            Die Auswertung stützt sich nicht auf eine Persönlichkeitstheorie,
-            sondern auf Lernforschung. Zwei Befunde sind dabei zentral und in
-            großen Übersichtsarbeiten quer über Fächer, Altersgruppen und
-            Prüfungsformen bestätigt:
+            The results aren't based on a personality theory, but on learning
+            science. Two findings matter most here, and both are confirmed
+            across major reviews spanning subjects, age groups, and exam
+            formats:
           </p>
           <ul class="lt-evidence">
             <li>
-              <strong>Sich selbst abfragen schlägt Wiederlesen deutlich.</strong>
-              Wiederlesen wirkt unmittelbar danach besser — nach einigen Tagen
-              aber klar schlechter, und es macht sicherer, als man tatsächlich
-              ist.
-              <cite>Roediger &amp; Karpicke 2006 · Dunlosky u. a. 2013</cite>
+              <strong>Testing yourself beats rereading, by a lot.</strong>
+              Rereading feels better right afterward — but clearly worse
+              after a few days, and it makes you more confident than you
+              actually are.
+              <cite>Roediger &amp; Karpicke 2006 · Dunlosky et al. 2013</cite>
             </li>
             <li>
-              <strong>Verteiltes Lernen schlägt Lernen am Stück.</strong>
-              Derselbe Stoff über mehrere Tage verteilt bleibt erheblich länger
-              verfügbar als in einer einzigen langen Einheit.
-              <cite>Dunlosky u. a. 2013</cite>
+              <strong>Spaced study beats cramming.</strong>
+              The same material spread across several days stays available
+              far longer than the same amount crammed into one long session.
+              <cite>Dunlosky et al. 2013</cite>
             </li>
           </ul>
           <p>
-            Markieren und Wiederlesen — die beiden beliebtesten Lernmethoden
-            überhaupt — landeten in derselben Übersichtsarbeit in der
-            niedrigsten Wirksamkeitsklasse. Der Test prüft deshalb nicht deinen
-            Geschmack, sondern deine Gewohnheiten.
+            Highlighting and rereading — the two most popular study methods
+            of all — landed in the lowest-effectiveness category in the same
+            review. So this quiz isn't testing your preferences. It's testing
+            your habits.
           </p>
         </section>
 
-        <!-- 7 — Abschluss-CTA -->
+        <!-- 7 — Closing CTA -->
         <section class="lt-final">
-          <h2>Acht Fragen. Danach weißt du es.</h2>
+          <h2>Eight questions. Then you'll know.</h2>
           <p>
-            Kein Konto, keine E-Mail-Adresse, keine Weitergabe deiner Antworten.
-            Der Test läuft vollständig in deinem Browser.
+            No account, no email address, no sharing your answers. The quiz
+            runs entirely in your browser.
           </p>
           <button class="btn lt-btn-block" type="button" onclick="start()">
-            Jetzt kostenlosen Test starten →
+            Start the free quiz now →
           </button>
-          <p class="lt-fine">Dauer: unter einer Minute</p>
+          <p class="lt-fine">Takes under a minute</p>
         </section>
       </section>
 
 
-      <!-- ------------------------------------------- Studienfach (Schritt 0) -- -->
+      <!-- ------------------------------------------- Subject (Step 0) -- -->
       <section id="s-fach" class="lt-screen">
         <div class="lt-top">
           <div class="lt-mascot" id="mascot-fach"></div>
           <div class="lt-progress">
             <div class="lt-progress__head">
-              <span class="lt-count">Kurz vorab</span>
-              <span class="lt-mood">Zählt nicht mit</span>
+              <span class="lt-count">Quick heads-up</span>
+              <span class="lt-mood">Doesn't count</span>
             </div>
             <div class="lt-track"><span class="lt-fill" style="width:6%"></span></div>
           </div>
         </div>
-        <p class="lt-q">Was studierst du?</p>
+        <p class="lt-q">What are you studying?</p>
         <p class="lt-fachhint">
-          Damit die Beispiele zu deinem Fach passen. Eine Antwort, dann geht es
-          mit den acht Fragen los.
+          So the examples match your subject. One answer, then the eight
+          questions start.
         </p>
         <div class="lt-faecher" id="faecher"></div>
       </section>
@@ -302,7 +304,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="lt-mascot" id="mascot"></div>
           <div class="lt-progress">
             <div class="lt-progress__head">
-              <span class="lt-count" id="count">Frage 1 von 8</span>
+              <span class="lt-count" id="count">Question 1 of 8</span>
               <span class="lt-mood" id="mood"></span>
             </div>
             <div class="lt-track"><span class="lt-fill" id="fill"></span></div>
@@ -313,22 +315,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="lt-opts" id="opts"></div>
         <p class="lt-note" id="note"></p>
         <button class="lt-back hide" id="back" type="button" onclick="back()">
-          ← zurück
+          ← back
         </button>
       </section>
 
-      <!-- -------------------------------------------------- Ergebnis -- -->
+      <!-- -------------------------------------------------- Result -- -->
       <section id="s-result" class="lt-screen lt-result"></section>
       <canvas id="confetti" class="lt-confetti" aria-hidden="true"></canvas>
 
-    <!-- ------------------------------------------------- Android-Warteliste -- -->
+    <!-- ------------------------------------------------- Android waitlist -- -->
     <div class="lt-overlay hide" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="wl-title">
       <div class="lt-dialog">
-        <button class="lt-dialog__x" type="button" onclick="closeWaitlist()" aria-label="Schließen">✕</button>
-        <h3 id="wl-title">Android-Version</h3>
+        <button class="lt-dialog__x" type="button" onclick="closeWaitlist()" aria-label="Close">✕</button>
+        <h3 id="wl-title">Android version</h3>
         <p>
-          Octa gibt es aktuell nur für iPhone und iPad. Die Android-Fassung wird
-          gebaut — trag dich ein und wir sagen dir Bescheid, sobald sie da ist.
+          Octa is currently iPhone and iPad only. The Android version is in
+          the works — sign up and we'll let you know the moment it's ready.
         </p>
         <div id="wl-body"></div>
       </div>
@@ -1529,7 +1531,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
      ===================================================================== */
   const CONFIG = {
     appStore:
-      'https://apps.apple.com/de/app/octa-ai-tutor-study-plan/id6751514384',
+      'https://apps.apple.com/us/app/octa-ai-tutor-study-plan/id6751514384',
     // E-Mail-Einsammeln ist AUS. Vor dem Aktivieren zwingend zwei Dinge tun:
     // 1. mailEndpoint auf einen echten Dienst setzen (Brevo, ConvertKit ...)
     // 2. Datenschutzerklaerung ergaenzen — aktuell steht dort, dass diese
@@ -1547,22 +1549,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   /* Studienfaecher. Der Schluessel steuert zugleich die Mockup-Dateien
      (public/img/app/<schluessel>-plan|karte|test.webp). */
   const FAECHER = [
-    ['bwl', 'BWL & Wirtschaft'],
-    ['jura', 'Rechtswissenschaft'],
-    ['medizin', 'Medizin'],
-    ['maschinenbau', 'Maschinenbau'],
-    ['informatik', 'Informatik'],
-    ['psychologie', 'Psychologie'],
-    ['lehramt', 'Lehramt'],
-    ['biologie', 'Biologie'],
-    ['elektrotechnik', 'Elektrotechnik'],
-    ['bauingenieurwesen', 'Bauingenieurwesen'],
-    ['wirtschaftsingenieurwesen', 'Wirtschaftsingenieurwesen'],
-    ['sozialearbeit', 'Soziale Arbeit'],
-    ['politikwissenschaft', 'Politikwissenschaft'],
-    ['chemie', 'Chemie'],
-    ['sportwissenschaften', 'Sportwissenschaften'],
-    ['andere', 'Anderes Fach'],
+    ['bwl', 'Business/Economics'],
+    ['jura', 'Law'],
+    ['medizin', 'Medicine'],
+    ['maschinenbau', 'Mechanical Engineering'],
+    ['informatik', 'Computer Science'],
+    ['psychologie', 'Psychology'],
+    ['lehramt', 'Teacher Training / Education'],
+    ['biologie', 'Biology'],
+    ['elektrotechnik', 'Electrical Engineering'],
+    ['bauingenieurwesen', 'Civil Engineering'],
+    ['wirtschaftsingenieurwesen', 'Industrial Engineering'],
+    ['sozialearbeit', 'Social Work'],
+    ['politikwissenschaft', 'Political Science'],
+    ['chemie', 'Chemistry'],
+    ['sportwissenschaften', 'Sports Science'],
+    ['andere', 'Other'],
   ];
 
   /* Eigene Custom Product Page je Fach. Sobald in App Store Connect eine Seite
@@ -1589,243 +1591,243 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   const storeLink = (fach) => APPSTORE_FACH[fach] || CONFIG.appStore;
 
   /* Gesamtbewertung im deutschen App Store. Stand regelmaessig pruefen. */
-  const STORE = { schnitt: '5,0', anzahl: 9, stand: 'Juli 2026' };
+  const STORE = { schnitt: '5.0', anzahl: 9, stand: 'July 2026' };
 
   const QUESTIONS = [
     {
-      q: 'Du setzt dich hin, um zu lernen. Was passiert in den ersten zehn Minuten?',
+      q: 'You sit down to study. What happens in the first ten minutes?',
       a: [
-        ['Ich blättere durch meine Unterlagen und suche, womit ich anfange', { ueberfordert: 2, sammler: 1 }],
-        ['Ich lese da weiter, wo ich aufgehört habe, und markiere', { markierer: 2 }],
-        ['Ich rechne aus, wie viele Tage noch bis zur Prüfung sind', { sprinter: 2 }],
-        ['Ich fange an — aber es merkt ohnehin niemand, ob ich dranbleibe', { einzel: 2 }],
+        ['I flip through my materials looking for where to start', { ueberfordert: 2, sammler: 1 }],
+        ['I pick up where I left off, and highlight', { markierer: 2 }],
+        ['I calculate how many days are left until the exam', { sprinter: 2 }],
+        ['I get started — but nobody would notice either way if I stuck with it', { einzel: 2 }],
       ],
     },
     {
-      q: 'Wie sehen deine Unterlagen gerade aus?',
+      q: 'What do your study materials look like right now?',
       a: [
-        ['Skripte, Fotos, Screenshots, PDFs — verteilt über mehrere Apps', { sammler: 3 }],
-        ['Ordentlich abgelegt, aber nie wirklich durchgearbeitet', { sammler: 2, ueberfordert: 1 }],
-        ['Vollgeschrieben und in drei Farben markiert', { markierer: 3 }],
-        ['Kaum was. Ich lerne aus dem, was ich kurz vorher zusammensuche', { sprinter: 2 }],
+        ['Slides, photos, screenshots, PDFs — scattered across several apps', { sammler: 3 }],
+        ['Neatly filed away, but never actually worked through', { sammler: 2, ueberfordert: 1 }],
+        ['Covered in writing and highlighted in three colors', { markierer: 3 }],
+        ['Barely anything. I study from whatever I pull together right beforehand', { sprinter: 2 }],
       ],
     },
     {
-      q: 'Du hast ein Kapitel gelesen und verstanden. Zwei Tage später?',
+      q: "You read a chapter and understood it. Two days later?",
       a: [
-        ['Ich erkenne alles wieder — frei wiedergeben könnte ich es nicht', { markierer: 3, koenner: 1 }],
-        ['Weg. Als hätte ich es nie gelesen', { markierer: 1, sprinter: 2 }],
-        ['Sitzt — solange ich es aufschreiben darf', { koenner: 2 }],
-        ['Keine Ahnung, so früh lerne ich nie', { sprinter: 3 }],
+        ["I recognize all of it — I couldn't recall it freely, though", { markierer: 3, koenner: 1 }],
+        ['Gone. As if I never read it', { markierer: 1, sprinter: 2 }],
+        ['Sticks — as long as I can write it down', { koenner: 2 }],
+        ["No idea, I never study that far ahead", { sprinter: 3 }],
       ],
     },
     {
-      q: 'Jemand fragt dich mündlich ab. Erster Gedanke?',
+      q: 'Someone quizzes you out loud. First thought?',
       a: [
-        ['Bitte nicht. Ich weiß es, ich kriege es nur nicht raus', { koenner: 3 }],
-        ['Gern — so merke ich überhaupt erst, was ich wirklich kann', { einzel: 1, markierer: 1 }],
-        ['Geht klar, wenn ich vorher kurz nachsehen darf', { markierer: 2 }],
-        ['Kommt drauf an, wer fragt. Vor anderen wird es schlimmer', { koenner: 2, einzel: 1 }],
+        ["Please don't. I know it, I just can't get it out", { koenner: 3 }],
+        ["Sure — that's actually the only way I find out what I really know", { einzel: 1, markierer: 1 }],
+        ["Fine, if I can glance at my notes first", { markierer: 2 }],
+        ['Depends who\'s asking. In front of others it gets worse', { koenner: 2, einzel: 1 }],
       ],
     },
     {
-      q: 'Wann lernst du wirklich — nicht wann du es dir vornimmst?',
+      q: 'When do you actually study — not when you plan to?',
       a: [
-        ['Ab etwa einer Woche vorher, dann ziemlich konstant', { einzel: 1 }],
-        ['Zwei, drei Tage vorher. Dann aber durch', { sprinter: 3 }],
-        ['Ich fange früh an und verliere schnell wieder den Faden', { ueberfordert: 2, einzel: 1 }],
-        ['Ich nehme mir jeden Tag etwas vor und schiebe es dann', { ueberfordert: 2, einzel: 2 }],
+        ['Starting about a week out, then fairly consistently', { einzel: 1 }],
+        ['Two, three days before. But then I go all in', { sprinter: 3 }],
+        ['I start early and quickly lose the thread', { ueberfordert: 2, einzel: 1 }],
+        ['I plan something every day and then push it off', { ueberfordert: 2, einzel: 2 }],
       ],
     },
     {
-      q: 'Allein oder mit anderen?',
+      q: 'Alone or with others?',
       a: [
-        ['Allein. Alles andere lenkt mich ab', { einzel: 2 }],
-        ['Allein — aber mir fehlt jemand, dem auffällt, wenn ich nichts tue', { einzel: 3 }],
-        ['Mit anderen. Wobei wir mehr reden als lernen', { einzel: 1, ueberfordert: 1 }],
-        ['Gegenseitig abfragen ist das Einzige, was bei mir hängen bleibt', { koenner: 2 }],
+        ['Alone. Anything else distracts me', { einzel: 2 }],
+        ["Alone — but I wish someone would notice if I did nothing", { einzel: 3 }],
+        ['With others. Though we talk more than we study', { einzel: 1, ueberfordert: 1 }],
+        ['Quizzing each other is the only thing that actually sticks for me', { koenner: 2 }],
       ],
     },
     {
-      q: 'Was sagst du am häufigsten nach einer Prüfung?',
+      q: 'What do you say most often after an exam?',
       a: [
-        ['Ich hatte einfach zu wenig Zeit', { sprinter: 2, ueberfordert: 1 }],
-        ['Ich habe das Falsche gelernt', { ueberfordert: 2, sammler: 1 }],
-        ['Ich wusste es. Ich habe es nur nicht rausbekommen', { koenner: 3 }],
-        ['Gelesen hatte ich es. Abrufbar war es nicht', { markierer: 3 }],
+        ['I just didn’t have enough time', { sprinter: 2, ueberfordert: 1 }],
+        ['I studied the wrong things', { ueberfordert: 2, sammler: 1 }],
+        ["I knew it. I just couldn't get it out", { koenner: 3 }],
+        ["I'd read it. I just couldn't recall it", { markierer: 3 }],
       ],
     },
     {
-      q: 'Was fehlt dir gerade am meisten?',
+      q: 'What do you need most right now?',
       a: [
-        ['Jemand, der mich abfragt und merkt, wenn die Antwort schwammig war', { koenner: 4 }],
-        ['Ordnung in dem, was ich schon alles gesammelt habe', { sammler: 4 }],
-        ['Eine Methode, bei der es wirklich hängen bleibt', { markierer: 4 }],
-        ['Ein Plan, der mir sagt, was heute dran ist', { ueberfordert: 4 }],
-        ['Jemand, dem auffällt, ob ich dranbleibe', { einzel: 4 }],
-        ['Ein Rhythmus, statt immer nur kurz vorher', { sprinter: 4 }],
+        ['Someone to quiz me and notice when my answer was fuzzy', { koenner: 4 }],
+        ["Order in everything I've already collected", { sammler: 4 }],
+        ['A method that actually makes things stick', { markierer: 4 }],
+        ["A plan that tells me what's up today", { ueberfordert: 4 }],
+        ['Someone who notices whether I stick with it', { einzel: 4 }],
+        ['A rhythm, instead of always cramming right before', { sprinter: 4 }],
       ],
     },
   ];
 
   const MOODS = [
-    'Los geht’s',
-    'Läuft',
-    'Warm geworden',
-    'Halbzeit',
-    'Es wird persönlich',
-    'Gleich hast du’s',
-    'Vorletzte',
-    'Die entscheidet',
+    "Let's go",
+    'On a roll',
+    'Warming up',
+    'Halfway there',
+    'Getting personal',
+    'Almost there',
+    'Second to last',
+    'This one decides it',
   ];
 
   const PROFILES = {
     koenner: {
-      name: 'Der stille Könner',
-      short: 'Stiller Könner',
-      tagline: 'Du kannst es. Bis du es sagen sollst.',
+      name: 'The Quiet Achiever',
+      short: 'Quiet Achiever',
+      tagline: "You know it. Until you have to say it.",
       strength:
-        'Du arbeitest gründlich und verstehst Zusammenhänge wirklich — du bist keiner, der auswendig lernt, ohne zu kapieren. Beim Lesen hast du selten das Gefühl, etwas nicht zu verstehen.',
-      cost: 'Schriftlich fällt das kaum auf, weil du Zeit zum Sortieren hast. Mündlich kostet es dich ganze Notenstufen — und zwar bei Stoff, den du eigentlich beherrschst.',
-      featureTitle: 'Test yourself — auf jeder Karteikarte',
-      code: 'MUENDLICH',
+        "You work thoroughly and really understand how things connect — you're not someone who memorizes without understanding. When you read, you rarely feel like something doesn't click.",
+      cost: "In writing, this barely shows, because you have time to organize your thoughts. Out loud, it costs you whole letter grades — on material you actually know.",
+      featureTitle: '"Test yourself" — right on every flashcard',
+      code: 'SPEAKUP',
     },
     sammler: {
-      name: 'Der Sammler',
-      short: 'Sammler',
-      tagline: 'Du hast alles. Gelernt hast du davon nichts.',
+      name: 'The Collector',
+      short: 'Collector',
+      tagline: "You have everything. You've learned none of it.",
       strength:
-        'Dir entgeht nichts. Du hast jede Folie, jedes Skript, jede Mitschrift — wenn es darauf ankommt, findest du die Quelle. Das ist mehr, als die meisten von sich behaupten können.',
-      cost: 'Du verbringst die Tage vor der Prüfung damit, deinen eigenen Bestand zu sichten statt zu lernen. Der Stoff bleibt bis zuletzt eine Menge, kein Inhalt.',
-      featureTitle: 'Octas KI-Agent auf deinen eigenen Unterlagen',
-      code: 'ORDNUNG',
+        "Nothing slips past you. You have every slide, every handout, every note — when it counts, you can find the source. That's more than most people can say.",
+      cost: 'You spend the days before the exam sorting through your own archive instead of studying. The material stays a pile, not content, right up to the end.',
+      featureTitle: "Octa's AI agent, working on your own materials",
+      code: 'GETORGANIZED',
     },
     markierer: {
-      name: 'Der Markierer',
-      short: 'Markierer',
-      tagline: 'Bunt heißt nicht gelernt.',
+      name: 'The Highlighter',
+      short: 'Highlighter',
+      tagline: "Colorful doesn't mean learned.",
       strength:
-        'Du bist fleißig und bleibst dran — du gehörst nicht zu denen, die es einfach schleifen lassen. Die investierte Zeit ist da, sie zahlt nur nicht ein.',
-      cost: 'Du lernst doppelt so lange wie nötig für ein Ergebnis, das sich beim Lernen gut und in der Prüfung schlecht anfühlt.',
-      featureTitle: 'Octas Karteikarten und Quizze',
-      code: 'ABRUF',
+        "You're hardworking and you stick with it — you're not someone who just lets things slide. The time you put in is real, it just isn't paying off.",
+      cost: "You study twice as long as necessary for a result that feels great while studying and falls apart on exam day.",
+      featureTitle: "Octa's flashcards and quizzes",
+      code: 'RECALL',
     },
     ueberfordert: {
-      name: 'Der Überforderte',
-      short: 'Überforderter',
-      tagline: 'Nicht zu wenig Zeit. Zu viele Anfänge.',
+      name: 'The Overwhelmed',
+      short: 'Overwhelmed',
+      tagline: 'Not too little time. Too many false starts.',
       strength:
-        'Du willst es richtig machen. Genau deshalb bleibst du am Anfang stehen — du fängst nicht einfach irgendwo an, weil dir klar ist, dass die Reihenfolge zählt.',
-      cost: 'Du beginnst dieselben drei Kapitel immer wieder und kommst nie zu den hinteren. Am Ende hast du das Falsche gelernt, nicht zu wenig.',
-      featureTitle: 'Octas Lernplan',
-      code: 'STARTPUNKT',
+        "You want to do it right. That's exactly why you get stuck at the beginning — you don't just start anywhere, because you know the order matters.",
+      cost: "You keep starting the same three chapters over and over and never reach the later ones. In the end you studied the wrong things, not too little.",
+      featureTitle: "Octa's study plan",
+      code: 'STARTHERE',
     },
     einzel: {
-      name: 'Der Einzelkämpfer',
-      short: 'Einzelkämpfer',
-      tagline: 'Niemandem fällt auf, ob du es tust.',
+      name: 'The Lone Wolf',
+      short: 'Lone Wolf',
+      tagline: 'Nobody notices whether you do it.',
       strength:
-        'Du kannst konzentriert allein arbeiten — das können viele nicht. Wenn du einmal drin bist, brauchst du niemanden, der dich bei Laune hält.',
-      cost: 'Deine guten Wochen sind richtig gut. Nur folgen darauf zuverlässig zwei, in denen nichts passiert — und die fallen dir erst kurz vor der Prüfung auf.',
-      featureTitle: 'Octas Tribes',
+        "You can work alone and stay focused — a lot of people can't. Once you're in, you don't need anyone keeping you motivated.",
+      cost: "Your good weeks are really good. They're just reliably followed by two weeks where nothing happens — and you don't notice until right before the exam.",
+      featureTitle: "Octa's Tribes",
       code: 'TRIBE',
     },
     sprinter: {
-      name: 'Der Sprinter',
+      name: 'The Sprinter',
       short: 'Sprinter',
-      tagline: 'Du schaffst es. Behalten tust du es nicht.',
+      tagline: "You pull it off. You just don't retain it.",
       strength:
-        'Du funktionierst unter Druck, und zwar erstaunlich gut. Was andere in drei Wochen tun, ziehst du in drei Tagen durch — das ist eine echte Fähigkeit.',
-      cost: 'Es rächt sich nicht in dieser Prüfung, sondern in der nächsten, die darauf aufbaut. Und im Mündlichen, wo Stoff aus dem letzten Semester vorausgesetzt wird.',
-      featureTitle: 'Octas Lernplan mit Wiederholungslogik',
-      code: 'RHYTHMUS',
+        "You perform under pressure, and surprisingly well. What others need three weeks for, you pull off in three days — that's a real skill.",
+      cost: "It doesn't catch up with you on this exam, but the next one that builds on it. And in oral exams, where material from last semester is assumed knowledge.",
+      featureTitle: "Octa's study plan with built-in spaced review",
+      code: 'RHYTHM',
     },
   };
 
   const DETAIL = {
     koenner: {
       moment:
-        'Der Prüfer stellt die Frage, und du weißt genau, wo das im Skript steht — Seite, Absatz, sogar die Grafik daneben. Nur der Satz, der jetzt rauskommen müsste, formt sich nicht. Du sagst irgendwas Halbes und hörst dir dabei selbst zu.',
-      why: 'Das liegt nicht an Nervosität. Beim Lesen erkennst du den Stoff wieder, und Wiedererkennen fühlt sich exakt so an wie Können. In der Prüfung wird aber nicht Wiedererkennen abgefragt, sondern freies Abrufen — eine Fähigkeit, die du beim Lesen nie trainierst. Du übst also konsequent das eine und wirst im anderen geprüft.',
+        "The examiner asks the question, and you know exactly where it is in your notes — page, paragraph, even the diagram next to it. It's just the sentence that needs to come out now that won't form. You say something half-right and hear yourself doing it.",
+      why: "It's not nerves. When you read, you recognize the material, and recognition feels exactly like knowing. But exams don't test recognition, they test free recall — a skill you never train while reading. So you consistently practice one thing and get tested on another.",
       how: [
-        'Du lädst deine Unterlagen hoch — oder gibst nur das Thema ein. Octa erzeugt daraus die Karteikarten.',
-        'Auf jeder Karte sitzt der Knopf „Test yourself“. Du tippst ihn an und sprichst deine Antwort ein.',
-        'Octa antwortet gesprochen: was gefehlt hat, wo du unpräzise warst — dazu eine Eselsbrücke und ein Tipp fürs nächste Mal.',
+        'You upload your materials — or just enter the topic. Octa turns it into flashcards.',
+        'Every card has a "Test yourself" button. Tap it and say your answer out loud.',
+        'Octa answers back, out loud: what was missing, where you were vague — plus a memory trick and a tip for next time.',
       ],
       why_octa:
-        'Karteikarten allein lösen das nicht, weil du dort dich selbst bewertest — und wer den Stoff halb kann, merkt nicht, an welcher Stelle. In Octa sitzt deshalb auf jeder Karte ein „Test yourself“-Knopf: Du sprichst deine Antwort ein und bekommst gesprochenes Feedback dazu, samt Eselsbrücke.',
+        "Flashcards alone don't fix this, because you're the one grading yourself — and if you half-know something, you won't catch that your half-answer is incomplete. That's why every card in Octa has a \"Test yourself\" button: you speak your answer and get spoken feedback on it, plus a memory trick.",
     },
     sammler: {
       moment:
-        'Sonntagabend, der Ordner ist offen, vierzig Dateien. Du öffnest drei, schließt sie wieder, weil du nicht weißt, ob es die aktuelle Version ist. Nach vierzig Minuten hast du sortiert. Gelernt hast du nichts.',
-      why: 'Sammeln erzeugt dasselbe Gefühl wie Fortschritt, ohne einer zu sein. Jede gespeicherte Datei quittiert dir kurz, dass du etwas getan hast — und schiebt den Moment weiter nach hinten, in dem du dich inhaltlich damit auseinandersetzen müsstest. Je größer der Bestand wird, desto höher die Hürde, überhaupt anzufangen.',
+        "Sunday evening, the folder is open, forty files. You open three, close them again because you're not sure it's the current version. Forty minutes later you've sorted things. You've learned nothing.",
+      why: "Collecting feels like progress without being one. Every saved file gives you a small hit of having done something — and pushes back the moment you'd actually have to engage with the content. The bigger the pile gets, the higher the bar to even start.",
       how: [
-        'Alles rein, was du hast: Vorlesungs-PDFs, abfotografierte Mitschriften, Screenshots, lose Notizen.',
-        'Octa liest es, erkennt Themen und Dubletten und macht aus dem Wust eine Gliederung.',
-        'Zu jedem Block gibt es direkt Plan, Karten und Fragen. Du steigst beim Lernen ein statt beim Sortieren.',
+        'Upload everything you have: lecture PDFs, photographed notes, screenshots, loose scraps.',
+        'Octa reads it, spots topics and duplicates, and turns the mess into an outline.',
+        "Every block comes with a plan, flashcards, and questions attached. You start studying, not sorting.",
       ],
       why_octa:
-        'Der Teil, an dem du hängst, ist nicht das Lernen — es sind die drei Tage davor. Genau die fallen weg, wenn das Sichten nicht mehr deine Aufgabe ist.',
+        "The part you get stuck on isn't the studying — it's the three days before it. That's exactly what disappears once sorting stops being your job.",
     },
     markierer: {
       moment:
-        'Du gehst das Kapitel durch und alles kommt dir bekannt vor. Genau dieses Gefühl ist der Grund, warum du aufhörst. In der Prüfung steht die Frage dann da, und das Bekannte lässt sich nicht in einen Satz übersetzen.',
-      why: 'Markieren und Wiederlesen erzeugen Vertrautheit, und Vertrautheit fühlt sich täuschend nach Beherrschen an. In Untersuchungen schneiden Menschen nach dem Wiederlesen direkt danach sogar besser ab — nach ein paar Tagen aber deutlich schlechter als jene, die sich abgefragt haben. Und sie sind sich sicherer dabei. Das ist die eigentliche Falle: Du merkst es nicht.',
+        "You go through the chapter and everything looks familiar. That exact feeling is why you stop. Then the question shows up on the exam, and 'familiar' won't translate into a sentence.",
+      why: "Highlighting and rereading create familiarity, and familiarity feels deceptively like mastery. In studies, people who reread score even better right afterward — but clearly worse after a few days than people who tested themselves. And they feel more confident while being wrong. That's the real trap: you don't notice it happening.",
       how: [
-        'Kapitel hochladen — Skript, Folien oder abfotografierte Seiten.',
-        'Octa macht daraus Fragen, die du ohne Vorlage beantworten musst. Abrufen statt Wiedererkennen.',
-        'Was sitzt, kommt seltener. Was wackelt, kommt wieder — bis es hält.',
+        'Upload the chapter — notes, slides, or photographed pages.',
+        "Octa turns it into questions you have to answer without looking anything up. Recall instead of recognition.",
+        "What sticks comes up less often. What's shaky comes back — until it holds.",
       ],
       why_octa:
-        'Du weißt vermutlich längst, dass Abfragen besser wirkt. Der Grund, warum du es nicht tust, ist der Aufwand: Zwanzig Karten pro Kapitel sind vierzig Minuten Schreibarbeit vor dem Lernen. Genau dieser Aufwand fällt weg.',
+        "You probably already know self-testing works better. The reason you don't do it is the effort: twenty flashcards per chapter is forty minutes of writing before you even start studying. That effort disappears.",
     },
     ueberfordert: {
       moment:
-        'Du sitzt am Schreibtisch, alles liegt bereit. Und dann vergehen zwanzig Minuten damit, dass du zwischen drei Kapiteln hin und her springst, weil jedes gleich wichtig aussieht. Am Ende hast du wieder das angefangen, was du schon kennst.',
-      why: 'Das ist kein Disziplinproblem, sondern ein Entscheidungsproblem. Solange der gesamte Stoff gleichzeitig vor dir liegt, kostet dich jeder Lerntag zuerst die Frage, womit du beginnst — und diese Frage verbraucht genau die Konzentration, die du danach fürs Lernen bräuchtest.',
+        "You sit down at your desk, everything's ready. And then twenty minutes go by jumping between three chapters because each one looks equally important. In the end you started with the thing you already knew, again.",
+      why: "This isn't a discipline problem, it's a decision problem. As long as the entire subject sits in front of you at once, every study session costs you the question of where to start first — and that question eats exactly the focus you'd need for studying afterward.",
       how: [
-        'Stoff hochladen, Prüfungsdatum eintragen.',
-        'Octa rechnet vom Prüfungstag rückwärts und schneidet den Stoff in Tagesportionen.',
-        'Du gibst an, wie weit du im Stoff schon bist und welche Note du anstrebst. Octa erstellt daraus den Plan — und du lernst ab dann Schritt für Schritt nach Schema.',
+        'Upload the material, enter your exam date.',
+        'Octa works backward from exam day and cuts the material into daily portions.',
+        "You tell it how far you already are and what grade you're aiming for. Octa builds the plan — and from then on you study step by step, following the plan.",
       ],
       why_octa:
-        'Einen Plan kannst du dir selbst machen. Er hält nur bis zum ersten Tag, der ausfällt — und ab da steht dieselbe Entscheidungslast wieder vor dir, die dich ursprünglich blockiert hat.',
+        "You could build a plan yourself. It only holds up until the first day you miss — and from there, the same decision overload is back, the one that blocked you in the first place.",
     },
     einzel: {
       moment:
-        'Du hattest dir für heute drei Stunden vorgenommen. Um sieben verschiebst du auf morgen. Es kostet dich nichts, weil niemand davon wusste. Und morgen passiert dasselbe.',
-      why: 'Dir fehlt keine Methode, dir fehlt Verbindlichkeit. Ein Vorsatz, von dem niemand weiß, hat keinen Preis, wenn du ihn brichst — deshalb bricht er zuverlässig. Deine guten Wochen sind wirklich gut. Nur folgen darauf zwei, in denen nichts passiert, und das fällt dir erst kurz vor der Prüfung auf.',
+        "You'd planned three hours for today. By seven you push it to tomorrow. It costs you nothing, because nobody knew about it. And tomorrow the same thing happens.",
+      why: "You're not missing a method, you're missing accountability. A promise nobody knows about has no cost when you break it — so it reliably gets broken. Your good weeks are genuinely good. They're just followed by two weeks where nothing happens, and you don't notice until right before the exam.",
       how: [
-        'Du trittst einem Tribe bei — anderen, die auf dieselbe Art Prüfung hinarbeiten.',
-        'Deine Lernsessions sind dort sichtbar, ohne dass du etwas melden musst.',
-        'Bleibst du zwei Tage weg, fällt das auf. Nicht als Kontrolle, sondern als der Grund, es heute doch zu machen.',
+        "You join a Tribe — other students working toward the same kind of exam.",
+        'Your study sessions are visible there, without you having to report anything.',
+        "Skip two days and it shows. Not as surveillance, but as the reason to actually do it today.",
       ],
       why_octa:
-        'Du könntest das über einen Freund lösen. Nur fragt der nach zwei Wochen nicht mehr nach — und dann bist du wieder allein mit dem Vorsatz.',
+        "You could try to solve this with a friend. Except after two weeks they stop asking — and you're back to being alone with your intentions.",
     },
     sprinter: {
       moment:
-        'Die Prüfung lief gut, du warst zufrieden. Vier Wochen später sitzt du in der Veranstaltung, die darauf aufbaut, und merkst: von dem Stoff ist fast nichts mehr da.',
-      why: 'Das ist kein Charakterfehler, sondern schlicht, wie Gedächtnis arbeitet. Ohne Wiederholung über mehrere Tage verfällt Gelerntes — egal wie intensiv die eine Session war. Dein Tempo ist nicht das Problem. Das Problem ist, dass alles in einem einzigen Block passiert.',
+        "The exam went well, you were happy with it. Four weeks later you're sitting in the class that builds on it, and you realize: almost none of that material is still there.",
+      why: "It's not a character flaw, it's simply how memory works. Without review spread across several days, learned material fades — no matter how intense that one session was. Your pace isn't the problem. The problem is that everything happens in a single block.",
       how: [
-        'Stoff hochladen, Prüfungsdatum eintragen.',
-        'Octa zerlegt ihn in kurze Einheiten. Dein Tempo bleibt, nur liegt es nicht mehr an einem Stück.',
-        'Was du schon konntest, kommt genau dann wieder, wenn du es zu vergessen beginnst.',
+        'Upload the material, enter your exam date.',
+        'Octa breaks it into short sessions. Your pace stays the same, it just stops being crammed into one sitting.',
+        "What you already knew comes back exactly when you're about to start forgetting it.",
       ],
       why_octa:
-        'Verteiltes Wiederholen wirkt nur, wenn der Abstand stimmt: zu früh bringt nichts, zu spät ist es weg. Diesen Zeitpunkt triffst du von Hand nicht — du rätst ihn.',
+        "Spaced review only works if the timing is right: too early does nothing, too late and it's gone. You can't hit that timing by hand — you're guessing.",
     },
   };
 
   const NOTES = [
-    '<b>Warum das zählt:</b> Wer vorher festlegt, wann und womit er anfängt, setzt Vorhaben deutlich zuverlässiger um als wer es sich nur allgemein vornimmt. <cite>Gollwitzer &amp; Sheeran, Meta-Analyse 2006</cite>',
-    '<b>Warum das zählt:</b> Unsortiertes Material bindet Arbeitsgedächtnis, das dann fürs Verstehen fehlt. Sortieren fühlt sich nach Fortschritt an, ist aber noch kein Lernen. <cite>Cognitive Load Theory, Sweller u.&nbsp;a.</cite>',
-    '<b>Warum das zählt:</b> Nochmal lesen schneidet direkt danach besser ab — nach ein paar Tagen aber deutlich schlechter als Selbstabfragen. Und es macht dich sicherer, als du tatsächlich bist. <cite>Roediger &amp; Karpicke, Psychological Science 2006</cite>',
-    '<b>Warum das zählt:</b> Sich selbst abfragen gehört in einer großen Übersichtsarbeit zu nur zwei Methoden mit hoher Wirksamkeit — quer über Fächer, Altersgruppen und Prüfungsformen. <cite>Dunlosky u.&nbsp;a., Psychological Science in the Public Interest 2013</cite>',
-    '<b>Warum das zählt:</b> Derselbe Stoff über mehrere Tage verteilt bleibt deutlich länger hängen als am Stück gelernt. Verteiltes Lernen ist die zweite der beiden hochwirksamen Methoden. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
-    '<b>Warum das zählt:</b> Gemeinsam lernen wirkt nicht durch die Gesellschaft, sondern durch das, was sie erzwingt: erklären, abgefragt werden, sich festlegen. Fehlen diese drei, bringt eine Lerngruppe wenig.',
-    '<b>Warum das zählt:</b> Markieren und Wiederlesen sind die beiden beliebtesten Lernmethoden überhaupt — und landeten in derselben Übersichtsarbeit in der niedrigsten Wirksamkeitsklasse. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
-    '<b>Fast geschafft.</b> Diese Antwort wiegt am stärksten: Bei einem knappen Ergebnis gibt sie den Ausschlag.',
+    '<b>Why this matters:</b> People who decide in advance exactly when and how they’ll start follow through far more reliably than people who just intend to, in general. <cite>Gollwitzer &amp; Sheeran, meta-analysis 2006</cite>',
+    '<b>Why this matters:</b> Unsorted material takes up working memory that you then don’t have left for understanding. Sorting feels like progress, but it isn’t studying yet. <cite>Cognitive Load Theory, Sweller et al.</cite>',
+    '<b>Why this matters:</b> Rereading scores better right afterward — but clearly worse after a few days than testing yourself. And it makes you more confident than you actually are. <cite>Roediger &amp; Karpicke, Psychological Science 2006</cite>',
+    '<b>Why this matters:</b> Self-testing is one of only two methods rated highly effective in a major review — across subjects, age groups, and exam formats. <cite>Dunlosky et al., Psychological Science in the Public Interest 2013</cite>',
+    '<b>Why this matters:</b> The same material spread across several days sticks far longer than the same amount crammed into one session. Spaced study is the second of the two highly effective methods. <cite>Dunlosky et al. 2013</cite>',
+    '<b>Why this matters:</b> Studying together doesn’t work because of the company — it works because of what it forces you to do: explain, get quizzed, commit. Without those three things, a study group doesn’t help much.',
+    '<b>Why this matters:</b> Highlighting and rereading are the two most popular study methods of all — and landed in the lowest-effectiveness category in the same review. <cite>Dunlosky et al. 2013</cite>',
+    '<b>Almost there.</b> This answer carries the most weight: in a close call, it tips the result.',
   ];
 
   /* ---------------------------------------------------------- Grafiken -- */
@@ -1968,51 +1970,51 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
      Erst wenn klar ist, WAS gebraucht wird, kommt Octa als Umsetzung. */
   const CONCEPT = {
     koenner: {
-      titel: 'Aktives Abrufen — laut und ohne Vorlage',
-      was: 'Dir fehlt kein weiteres Verstehen, dir fehlt Übung im Herausholen. Konkret: den Stoff aus dem Kopf formulieren, ohne hinzusehen — und zwar sprechend, weil die Prüfung ebenfalls gesprochen stattfindet.',
-      warum: 'Wer sich selbst abfragt, schneidet nach einigen Tagen deutlich besser ab als wer denselben Stoff noch einmal liest. Abrufen ist nicht die Kontrolle des Gelernten, es ist der Lernvorgang selbst.',
-      huerde: 'Beim Abfragen allein merkst du nur nicht, wann deine Antwort schwammig war — wer den Stoff halb kann, hält die halbe Antwort für vollständig. Es braucht ein Gegenüber, das zuhört und benennt, was gefehlt hat.',
+      titel: 'Active recall — out loud and without notes',
+      was: "You don't need to understand more, you need practice pulling it out. Concretely: put the material into words from memory, without looking — and out loud, because the exam happens out loud too.",
+      warum: "People who quiz themselves score clearly better after a few days than people who reread the same material. Recall isn't a check on what you've learned — it is the learning.",
+      huerde: "Testing yourself alone just doesn't tell you when your answer was fuzzy — if you half-know something, you'll mistake the half-answer for a complete one. You need someone on the other end who listens and names what was missing.",
     },
     sammler: {
-      titel: 'Vom Material zum Stoff — in einem Schritt',
-      was: 'Dir fehlt keine weitere Datei, dir fehlt eine Reihenfolge: eine Gliederung, die aus dem Berg einen Weg macht, und Fragen, die dich zwingen, dich inhaltlich damit zu befassen statt es nur abzulegen.',
-      warum: 'Unsortiertes Material bindet Arbeitsgedächtnis, das dann fürs Verstehen fehlt. Solange Sichten und Lernen dieselbe Sitzung belegen, gewinnt das Sichten — es fühlt sich produktiv an und ist anspruchsloser.',
-      huerde: 'Von Hand ist genau dieser Schritt der teuerste. Vierzig Dateien sichten, ordnen und daraus Fragen bauen kostet exakt die Tage, die du zum Lernen bräuchtest.',
+      titel: 'From material to content — in one step',
+      was: "You don't need another file, you need an order: an outline that turns the pile into a path, and questions that force you to actually engage with the content instead of just filing it away.",
+      warum: "Unsorted material takes up working memory that you then don't have for understanding. As long as sorting and studying share the same session, sorting wins — it feels productive and it's easier.",
+      huerde: "By hand, this exact step is the most expensive one. Sorting through forty files and building questions out of them costs exactly the days you needed for studying.",
     },
     markierer: {
-      titel: 'Abrufen statt Wiedererkennen',
-      was: 'Der Wechsel ist klein und unbequem: Seite zuklappen, Frage ohne Vorlage beantworten. Was tatsächlich sitzt, zeigt sich erst, wenn die Vorlage weg ist — vorher misst du nur Vertrautheit.',
-      warum: 'Markieren und Wiederlesen landeten in der großen Übersichtsarbeit von Dunlosky u. a. in der niedrigsten Wirksamkeitsklasse. Selbstabfragen und verteiltes Lernen sind die einzigen beiden mit hoher Wirksamkeit.',
-      huerde: 'Du weißt das vermutlich längst. Der Grund, warum du es trotzdem nicht tust, ist der Aufwand: zwanzig Karten pro Kapitel sind vierzig Minuten Schreibarbeit — und zwar vor dem Lernen, wenn die Motivation ohnehin knapp ist.',
+      titel: 'Recall instead of recognition',
+      was: "The switch is small and uncomfortable: close the page, answer the question without looking. What actually sticks only shows once the notes are gone — before that, you're only measuring familiarity.",
+      warum: "In the large review by Dunlosky et al., highlighting and rereading landed in the lowest-effectiveness category. Self-testing and spaced study are the only two rated highly effective.",
+      huerde: "You probably already know this. The reason you don't do it anyway is the effort: twenty flashcards per chapter is forty minutes of writing — and it happens before you study, right when motivation is already thin.",
     },
     ueberfordert: {
-      titel: 'Eine Aufgabe statt zwölf Optionen',
-      was: 'Dir fehlt kein längerer Lerntag, dir fehlt eine bereits getroffene Entscheidung. Der Stoff muss vom Prüfungstag rückwärts in Tagesportionen geschnitten sein, damit beim Hinsetzen nur noch eine Sache dasteht.',
-      warum: 'Wer vorher festlegt, wann und womit er anfängt, setzt Vorhaben deutlich zuverlässiger um als wer es sich nur allgemein vornimmt. Die Entscheidung im Voraus zu treffen ist der eigentliche Hebel, nicht die Willenskraft am Tag selbst.',
-      huerde: 'Einen Plan kannst du dir selbst machen. Er hält bis zum ersten Tag, der ausfällt — ab da steht dieselbe Entscheidungslast wieder vor dir, jetzt zusätzlich mit Rückstand.',
+      titel: 'One task instead of twelve options',
+      was: "You don't need a longer study session, you need a decision that's already been made. The material has to be cut into daily portions working backward from exam day, so when you sit down there's only one thing in front of you.",
+      warum: 'People who decide in advance exactly when and how they’ll start follow through far more reliably than people who just intend to, in general. Making the decision ahead of time is the real lever — not willpower on the day itself.',
+      huerde: "You could build a plan yourself. It holds up until the first day you miss — from there, the same decision overload is back, now with a backlog on top of it.",
     },
     einzel: {
-      titel: 'Ein Vorsatz, von dem jemand weiß',
-      was: 'Dir fehlt keine Methode, dir fehlt ein äußerer Blick. Etwas, das aus einem privaten Vorsatz eine Verabredung macht: sichtbarer Fortschritt gegenüber Leuten, die auf dasselbe hinarbeiten.',
-      warum: 'Gemeinsam lernen wirkt nicht durch die Gesellschaft, sondern durch das, was sie erzwingt — sich festlegen, erklären, auffallen wenn man wegbleibt. Fehlen diese drei, bringt auch eine Lerngruppe wenig.',
-      huerde: 'Über einen Freund lässt sich das kaum lösen: Der fragt zwei Wochen nach und dann nicht mehr. Es braucht etwas, das ohne Erinnern und ohne Rechenschaftsbericht funktioniert.',
+      titel: 'A commitment someone else knows about',
+      was: "You don't need a method, you need outside visibility. Something that turns a private intention into a commitment: visible progress in front of people working toward the same thing.",
+      warum: "Studying together doesn't work because of the company — it works because of what it forces you to do: commit, explain, get noticed when you're absent. Without those three things, even a study group doesn't help much.",
+      huerde: "A friend can barely fix this: they'll ask twice, then stop. What you need is something that works without reminders and without a status report.",
     },
     sprinter: {
-      titel: 'Derselbe Stoff, über Tage verteilt',
-      was: 'Dein Tempo ist nicht das Problem — dass alles in einem einzigen Block passiert, ist es. Was du brauchst, ist dieselbe Menge in kurzen Einheiten und Wiederholungen genau dann, wenn du zu vergessen beginnst.',
-      warum: 'Verteiltes Lernen ist neben dem Selbstabfragen die zweite Methode mit hoher Wirksamkeit. Derselbe Aufwand über mehrere Tage verteilt bleibt erheblich länger verfügbar als am Stück gelernt.',
-      huerde: 'Den richtigen Wiederholungsabstand triffst du von Hand nicht — zu früh bringt nichts, zu spät ist es weg. Du müsstest für jede Karte mitführen, wann sie wieder dran ist.',
+      titel: 'The same material, spread across days',
+      was: "Your pace isn't the problem — everything happening in a single block is. What you need is the same amount of work in short sessions, with reviews timed for exactly when you start to forget.",
+      warum: "Spaced study is, alongside self-testing, the second highly effective method. The same amount of effort spread across several days stays available far longer than the same amount crammed into one sitting.",
+      huerde: "You can't hit the right review timing by hand — too early does nothing, too late and it's gone. You'd have to track, for every single flashcard, exactly when it's due again.",
     },
   };
 
   /* Passender App-Screenshot je Profil. */
   const MOCKUP_CAP = {
-    koenner: '„Test yourself“ auf der Karte — du sprichst die Antwort ein',
-    sammler: 'Aus dem gesammelten Material wird ein geordneter Lernplan',
-    markierer: 'Karteikarte aus deinem eigenen Material — abrufen statt wiederlesen',
-    ueberfordert: 'Der Lernplan zeigt, was heute dran ist — eine Aufgabe',
-    einzel: 'Tribes — dein Fortschritt ist für die Gruppe sichtbar',
-    sprinter: 'Wochenverlauf und Serie halten den Rhythmus',
+    koenner: '"Test yourself" on the flashcard — you speak your answer out loud',
+    sammler: 'Your collected material turns into an organized study plan',
+    markierer: 'Flashcard built from your own material — recall instead of rereading',
+    ueberfordert: "The study plan shows what's up today — one task",
+    einzel: "Tribes — your progress is visible to the group",
+    sprinter: 'Weekly history and streak keep the rhythm going',
   };
 
   /* ------------------------------------------------------------- Logik -- */
@@ -2140,7 +2142,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const item = QUESTIONS[step];
     locked = false;
     el('q').textContent = item.q;
-    el('count').textContent = `Frage ${step + 1} von ${QUESTIONS.length}`;
+    el('count').textContent = `Question ${step + 1} of ${QUESTIONS.length}`;
     el('mood').textContent = MOODS[step] || '';
     el('fill').style.width =
       Math.round(((step + 1) / QUESTIONS.length) * 100) + '%';
@@ -2229,15 +2231,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
      Store-Gesamtbewertung. */
   const R = {
     timmi: {
-      t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      t: 'Two days before the final, study plan in two minutes — ended up with an A.',
       w: 'Timmi.bremmen · App Store',
     },
     fifi: {
-      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
+      t: '"Simple, effective, and motivating" — it mostly just helps me stay organized.',
       w: 'So fifi · App Store',
     },
     dexter: {
-      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      t: 'Finally "one app that replaces many": flashcards, translator, and voice notes all together.',
       w: 'DexterBerlin36 · App Store',
     },
   };
@@ -2261,18 +2263,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="lt-bar-name">${PROFILES[k].short}</div>
           <div class="lt-bar-track"><span class="lt-bar-fill" data-v="${s[k]}"></span></div>
         </div>
-        <span class="lt-bar-val">${s[k]} Pkt.</span>
+        <span class="lt-bar-val">${s[k]} pts</span>
       </div>`
     ).join('');
 
     const reviews = REVIEWS[key] || [];
     const bewertungen = `
-      <h3>Was andere sagen</h3>
+      <h3>What others say</h3>
       <div class="lt-rating">
         <span class="lt-rating-num">${STORE.schnitt}</span>
         <span>
           <span class="lt-stars">★★★★★</span>
-          <span class="lt-rating-sub">${STORE.anzahl} Bewertungen im App&nbsp;Store · Stand ${STORE.stand}</span>
+          <span class="lt-rating-sub">${STORE.anzahl} ratings on the App&nbsp;Store · as of ${STORE.stand}</span>
         </span>
       </div>
       ${reviews
@@ -2288,69 +2290,69 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const cta = `
       <div class="lt-store">
         <p class="lt-store__note">
-          <strong>Octa gibt es derzeit nur für iPhone und iPad.</strong>
-          Eine <button class="lt-link" type="button" onclick="openWaitlist()">Android-Version</button>
-          ist in Arbeit.
+          <strong>Octa is currently available for iPhone and iPad only.</strong>
+          An <button class="lt-link" type="button" onclick="openWaitlist()">Android version</button>
+          is in the works.
         </p>
         <div class="lt-codebox">
-          <div class="lt-label">Dein Gratismonat als ${p.short}</div>
+          <div class="lt-label">Your free month as ${p.short}</div>
           <div class="lt-code" id="thecode">${p.code}</div>
-          <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
+          <button class="lt-copy" type="button" onclick="copyCode()">Copy code</button>
         </div>
         <a class="btn lt-btn-block" href="${storeLink(fach)}" target="_blank" rel="noopener"
-           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Octa im App Store laden</a>
+           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Get Octa on the App Store</a>
       </div>`;
 
     const mail = CONFIG.mailAktiv
       ? `<hr class="lt-divider">
          <div class="lt-befund" id="mailbox">
-           <h3 style="margin-bottom:.4rem">Lieber erstmal ohne App?</h3>
-           <p class="text-muted">Dann schicken wir dir deinen 7-Tage-Plan für ${p.name.toLowerCase()} — eine Aufgabe pro Tag, 20 bis 30 Minuten.</p>
-           <label for="mail">E-Mail</label>
-           <input id="mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
-           <label for="exam">Nächste Prüfung (optional)</label>
+           <h3 style="margin-bottom:.4rem">Rather skip the app for now?</h3>
+           <p class="text-muted">Then we'll send you your 7-day plan for ${p.name.toLowerCase()} — one task a day, 20 to 30 minutes.</p>
+           <label for="mail">Email</label>
+           <input id="mail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com">
+           <label for="exam">Next exam (optional)</label>
            <input id="exam" type="date">
-           <button class="btn btn--ghost lt-btn-block" type="button" onclick="sendMail('${p.code}')">Plan schicken</button>
-           <p class="lt-fine">Nur für den Plan und Erinnerungen zu deiner Prüfung. Jederzeit abbestellbar.</p>
+           <button class="btn btn--ghost lt-btn-block" type="button" onclick="sendMail('${p.code}')">Send plan</button>
+           <p class="lt-fine">Used only for the plan and reminders about your exam. Unsubscribe any time.</p>
          </div>`
       : '';
 
     return `
       <div class="lt-result-head">
         <img class="lt-result-img" src="/img/lerntypen/${key}.webp" srcset="/img/lerntypen/${key}@1x.webp 450w, /img/lerntypen/${key}.webp 900w" sizes="(max-width: 640px) 78vw, 340px" alt="Illustration: ${p.name}" />
-        <span class="eyebrow">Dein Ergebnis</span>
+        <span class="eyebrow">Your result</span>
         <h1 style="margin:.4rem 0 .5rem">${p.name}</h1>
         <p class="lt-tagline">${p.tagline}</p>
       </div>
 
       <div class="lt-befund">
-        <span class="eyebrow" style="margin-bottom:1rem">Auswertung</span>
+        <span class="eyebrow" style="margin-bottom:1rem">Breakdown</span>
         <div class="lt-bars">${bars}</div>
       </div>
 
-      <div class="lt-block"><h3>Was du gut kannst</h3><p>${p.strength}</p></div>
-      <div class="lt-block"><h3>Kennst du das?</h3><p class="lt-moment">${d.moment}</p></div>
-      <div class="lt-block"><h3>Warum das passiert</h3><p>${d.why}</p></div>
-      <div class="lt-block"><h3>Was dich das kostet</h3><p>${p.cost}</p></div>
+      <div class="lt-block"><h3>What you're good at</h3><p>${p.strength}</p></div>
+      <div class="lt-block"><h3>Sound familiar?</h3><p class="lt-moment">${d.moment}</p></div>
+      <div class="lt-block"><h3>Why this happens</h3><p>${d.why}</p></div>
+      <div class="lt-block"><h3>What it's costing you</h3><p>${p.cost}</p></div>
 
       <hr class="lt-divider">
 
       <div class="lt-block">
-        <span class="eyebrow">Das Prinzip</span>
+        <span class="eyebrow">The principle</span>
         <h3 style="margin:.75rem 0 .5rem">${c.titel}</h3>
         <p>${c.was}</p>
         <div class="lt-evidence-single">
-          <strong>Warum das wirkt</strong>
+          <strong>Why it works</strong>
           <p>${c.warum}</p>
         </div>
-        <p><strong>Die Hürde im Alltag:</strong> ${c.huerde}</p>
+        <p><strong>The everyday hurdle:</strong> ${c.huerde}</p>
       </div>
 
       <hr class="lt-divider">
 
       <div class="lt-block">
-        <span class="eyebrow">Die Umsetzung</span>
-        <h3 style="margin:.75rem 0 .5rem">Genau dafür haben wir Octa gebaut</h3>
+        <span class="eyebrow">Putting it into practice</span>
+        <h3 style="margin:.75rem 0 .5rem">This is exactly why we built Octa</h3>
         <div class="lt-app">
           <div class="lt-app__text">
             <p class="lt-app__feature">${p.featureTitle}</p>
@@ -2359,42 +2361,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <figure class="lt-phone">
             <img src="${mockSrc(key)}" sizes="(max-width: 720px) 60vw, 250px"
-                 alt="Octa-App: ${MOCKUP_CAP[key]}" loading="lazy" />
+                 alt="Octa app: ${MOCKUP_CAP[key]}" loading="lazy" />
             <figcaption>${MOCKUP_CAP[key]}</figcaption>
           </figure>
         </div>
       </div>
 
       <div class="lt-block">
-        <h3>Was Octa sonst noch macht</h3>
+        <h3>What else Octa does</h3>
         <ul class="lt-features">
           <li>
-            <strong>Unterlagen hochladen — oder einfach das Thema eingeben</strong>
-            Vorlesungs-PDF, Folien, abfotografierte Mitschrift oder Screenshot.
-            Hast du gerade nichts zur Hand, reicht ein Stichwort: Octa recherchiert
-            das Thema selbst und baut die Karten daraus.
+            <strong>Upload your materials — or just type in the topic</strong>
+            Lecture PDF, slides, photographed notes, or a screenshot.
+            Don't have anything handy? A keyword is enough: Octa researches
+            the topic itself and builds the flashcards from that.
           </li>
           <li>
-            <strong>Karteikarten und Quizze automatisch</strong>
-            Aus deinem eigenen Material, in Sekunden. Du schreibst keine
-            einzige Karte selbst.
+            <strong>Flashcards and quizzes, automatically</strong>
+            Built from your own material, in seconds. You never write a
+            single card yourself.
           </li>
           <li>
-            <strong>„Test yourself“ auf jeder Karteikarte</strong>
-            Antwort einsprechen statt tippen. Octa hört zu und antwortet
-            gesprochen: was gefehlt hat, dazu eine Eselsbrücke und ein Tipp.
-            Streng oder freundlich, je nach Einstellung.
+            <strong>"Test yourself" on every flashcard</strong>
+            Speak your answer instead of typing it. Octa listens and
+            answers back out loud: what was missing, plus a memory trick
+            and a tip. Strict or friendly, depending on your settings.
           </li>
           <li>
-            <strong>Lernplan bis zum Prüfungstermin</strong>
-            Rechnet vom Prüfungstag rückwärts, schneidet den Stoff in
-            Tagesportionen und bringt Wiederholungen zum richtigen Zeitpunkt
-            zurück.
+            <strong>Study plan through exam day</strong>
+            Works backward from your exam date, cuts the material into
+            daily portions, and brings back reviews at exactly the right
+            time.
           </li>
           <li>
             <strong>Tribes</strong>
-            Lerngruppen, in denen dein Fortschritt sichtbar ist — ohne dass du
-            etwas melden musst.
+            Study groups where your progress is visible — without you
+            having to report anything.
           </li>
         </ul>
       </div>
@@ -2408,7 +2410,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <hr class="lt-divider">
 
-      <button class="lt-back" type="button" onclick="location.reload()">← Test noch einmal machen</button>`;
+      <button class="lt-back" type="button" onclick="location.reload()">← Take the quiz again</button>`;
   }
 
 
@@ -2417,26 +2419,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   /* Wortlaut der Einwilligung. Wird mitgespeichert, damit später belegbar ist,
      wozu genau der Nutzer zugestimmt hat. Bei jeder Textänderung mitziehen. */
   const WL_EINWILLIGUNG =
-    'Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht.';
+    "I'd like to be notified by email as soon as the Android version of Octa is available. My email address will be used only for that and then deleted.";
 
   function openWaitlist() {
     const body = el('wl-body');
     if (CONFIG.waitlistEndpoint) {
       body.innerHTML = `
-        <label for="wl-mail">E-Mail</label>
-        <input id="wl-mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
+        <label for="wl-mail">Email</label>
+        <input id="wl-mail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com">
         <input id="wl-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="lt-hp">
         <label class="lt-check" for="wl-consent">
           <input id="wl-consent" type="checkbox">
-          <span>Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht. Die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> habe ich gelesen.</span>
+          <span>I'd like to be notified by email as soon as the Android version of Octa is available. My email address will be used only for that and then deleted. I've read the <a href="/datenschutz/" target="_blank" rel="noopener">privacy policy</a> (in German).</span>
         </label>
-        <button class="btn" type="button" id="wl-send" onclick="sendWaitlist()">Auf die Warteliste</button>
+        <button class="btn" type="button" id="wl-send" onclick="sendWaitlist()">Join the waitlist</button>
         <p class="lt-msg hide" id="wl-msg"></p>
-        <p class="lt-fine">Kein Newsletter, keine Werbung — genau eine Nachricht, wenn es so weit ist.</p>`;
+        <p class="lt-fine">No newsletter, no ads — just the one message, when it's ready.</p>`;
     } else {
       body.innerHTML = `
-        <p class="lt-fine" style="margin-bottom:1rem">Die Warteliste wird gerade eingerichtet. Bis dahin genügt eine kurze Mail — Betreff ist schon gesetzt.</p>
-        <a class="btn" href="mailto:${CONFIG.kontaktMail}?subject=Android-Warteliste">Per E-Mail eintragen</a>`;
+        <p class="lt-fine" style="margin-bottom:1rem">The waitlist is being set up right now. Until then, a quick email will do — the subject line is already set.</p>
+        <a class="btn" href="mailto:${CONFIG.kontaktMail}?subject=Android-Warteliste">Sign up by email</a>`;
     }
     el('waitlist').classList.remove('hide');
     if (window.plausible) window.plausible('warteliste_geoeffnet');
@@ -2465,18 +2467,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     if (!/^\S+@\S+\.\S+$/.test(mail)) {
       feld.style.borderColor = '#E5177B';
       feld.focus();
-      wlFehler('Diese E-Mail-Adresse sieht nicht vollständig aus.');
+      wlFehler("That email address doesn't look complete.");
       return;
     }
     if (!consent.checked) {
       consent.closest('.lt-check').classList.add('lt-check--miss');
       consent.focus();
-      wlFehler('Ohne dein Einverständnis dürfen wir die Adresse nicht speichern.');
+      wlFehler("We can't save your address without your consent.");
       return;
     }
 
     knopf.disabled = true;
-    knopf.textContent = 'Wird gesendet …';
+    knopf.textContent = 'Sending …';
 
     fetch(CONFIG.waitlistEndpoint, {
       method: 'POST',
@@ -2494,14 +2496,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       .then((d) => {
         if (!d || d.ok !== true) return Promise.reject('antwort');
         el('wl-body').innerHTML =
-          '<div class="lt-done-note"><strong>Du stehst auf der Liste.</strong><br />Wir schreiben dir, sobald die Android-Version da ist — und sonst nie.</div>';
+          "<div class=\"lt-done-note\"><strong>You're on the list.</strong><br />We'll email you the moment the Android version is ready — and never otherwise.</div>";
         if (window.plausible) window.plausible('warteliste_eingetragen');
       })
       .catch(() => {
         knopf.disabled = false;
-        knopf.textContent = 'Noch einmal versuchen';
+        knopf.textContent = 'Try again';
         wlFehler(
-          'Das hat gerade nicht geklappt. Versuch es noch einmal oder schreib uns an ' +
+          "That didn't go through. Try again, or email us at " +
             CONFIG.kontaktMail + '.'
         );
       });
@@ -2518,8 +2520,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const code = el('thecode').textContent;
     navigator.clipboard.writeText(code).then(() => {
       const b = document.querySelector('.lt-copy');
-      b.textContent = 'Kopiert';
-      setTimeout(() => (b.textContent = 'Code kopieren'), 1800);
+      b.textContent = 'Copied';
+      setTimeout(() => (b.textContent = 'Copy code'), 1800);
     });
   }
 
@@ -2539,7 +2541,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     };
     const done = () => {
       el('mailbox').innerHTML =
-        '<div class="lt-done-note"><strong>Ist unterwegs.</strong><br />Dein Plan liegt gleich in deinem Postfach — schau notfalls im Spam nach.</div>';
+        '<div class="lt-done-note"><strong>On its way.</strong><br />Your plan should be in your inbox shortly — check spam if you don’t see it.</div>';
     };
     if (!CONFIG.mailEndpoint) {
       console.warn('Kein mailEndpoint gesetzt. Payload:', payload);
@@ -2601,5 +2603,5 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     })();
   }
 
-  
+
 </script>

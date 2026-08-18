@@ -1,0 +1,315 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { OCTA } from '../../../../site';
+
+const canonical = 'https://octastudy.com/lernunterlagen/jura/823-bgb/';
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonical}#article`,
+      headline: 'Prüfungsschema § 823 Abs. 1 BGB — Deliktsrecht',
+      description:
+        'Vollständiges Prüfungsschema zu § 823 Abs. 1 BGB: Tatbestand, Rechtswidrigkeit, Verschulden und Rechtsfolge — mit Definitionen, Streitständen, PDF und Karteikarten-Deck.',
+      about: 'Deliktsrecht, § 823 BGB, Zivilrecht',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: canonical,
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="§ 823 BGB Schema — Prüfungsschema Deliktsrecht"
+  description="Vollständiges Prüfungsschema zu § 823 Abs. 1 BGB: Tatbestand, Rechtswidrigkeit, Verschulden, Rechtsfolge. Mit Definitionen, Streitständen, PDF zum Ausdrucken und Karteikarten-Deck."
+  breadcrumbs={[
+    { label: 'Lernunterlagen', href: '/lernunterlagen/' },
+    { label: 'Rechtswissenschaft', href: '/lernunterlagen/jura/' },
+    { label: '§ 823 BGB', href: '/lernunterlagen/jura/823-bgb/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Zivilrecht (BGB) · Deliktsrecht</p>
+    <h1>Prüfungsschema § 823 Abs. 1 BGB</h1>
+    <p class="lead intro">
+      Die zentrale Anspruchsgrundlage des Deliktsrechts — Grundlage fast jeder
+      Zivilrechtsklausur, in der es um Schadensersatz aus unerlaubter Handlung
+      geht. Vollständig aufgebaut, mit den Definitionen der
+      Tatbestandsmerkmale und den Streitständen, die in der Klausur erwartet
+      werden.
+    </p>
+
+    <div class="downloads">
+      <a class="btn" href="/downloads/jura/823-bgb-schema.pdf" download>
+        Schema als PDF herunterladen
+      </a>
+      <a class="btn btn--ghost" href="/downloads/jura/823-bgb-karteikarten.pdf" download>
+        Karteikarten-Deck herunterladen (PDF)
+      </a>
+    </div>
+
+    <h2 class="rule">Das vollständige Schema</h2>
+    <p class="schema-hint">Zum Aufklappen — jeder Punkt mit Definition.</p>
+
+    <div class="schema">
+      <details open>
+        <summary><span class="schema__num">I.</span> Tatbestand</summary>
+        <div class="schema__body">
+          <details>
+            <summary>1. Rechtsgutsverletzung</summary>
+            <p>
+              Verletzung eines der in § 823 I BGB genannten Rechtsgüter: Leben,
+              Körper, Gesundheit, Freiheit, Eigentum oder ein „sonstiges
+              Recht" — etwa der eingerichtete und ausgeübte Gewerbebetrieb
+              oder das allgemeine Persönlichkeitsrecht.
+            </p>
+          </details>
+          <details>
+            <summary>2. Verletzungshandlung</summary>
+            <p>
+              Handlung oder — bei bestehender Garantenstellung —
+              pflichtwidriges Unterlassen, das die Rechtsgutsverletzung
+              herbeigeführt hat.
+            </p>
+          </details>
+          <details>
+            <summary>3. Haftungsbegründende Kausalität</summary>
+            <p>
+              Ursächlicher Zusammenhang zwischen Handlung und
+              Rechtsgutsverletzung: Äquivalenz (conditio sine qua non),
+              Adäquanz und Schutzzweck der Norm.
+            </p>
+          </details>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="schema__num">II.</span> Rechtswidrigkeit</summary>
+        <div class="schema__body">
+          <p>
+            Bei Verletzung eines der genannten Rechtsgüter grundsätzlich
+            indiziert. Ausnahme: Vorliegen eines Rechtfertigungsgrundes, etwa
+            Notwehr (§ 227 BGB), Notstand (§§ 228, 904 BGB) oder eine
+            wirksame Einwilligung.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="schema__num">III.</span> Verschulden</summary>
+        <div class="schema__body">
+          <p>
+            Vorsatz oder Fahrlässigkeit, § 276 BGB. Zusätzlich zu prüfen: die
+            Verschuldensfähigkeit nach §§ 827, 828 BGB.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="schema__num">IV.</span> Haftungsausfüllende Kausalität</summary>
+        <div class="schema__body">
+          <p>
+            Ursächlicher Zusammenhang zwischen der Rechtsgutsverletzung und
+            dem konkret eingetretenen Schaden.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="schema__num">V.</span> Schaden</summary>
+        <div class="schema__body">
+          <p>Vermögens- oder Nichtvermögensschaden nach §§ 249 ff. BGB.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="schema__num">VI.</span> Rechtsfolge</summary>
+        <div class="schema__body">
+          <p>
+            Schadensersatz: grundsätzlich Naturalrestitution (§ 249 BGB), bei
+            Unmöglichkeit oder Unverhältnismäßigkeit Geldersatz (§ 251 BGB).
+            Ein Mitverschulden des Geschädigten wird über § 254 BGB
+            berücksichtigt.
+          </p>
+        </div>
+      </details>
+    </div>
+
+    <h2 class="rule">Typische Streitstände</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Unterlassen</span>
+        <h3>Garantenstellung</h3>
+        <p>
+          Bei Unterlassenstäterschaft ist die Garantenstellung eigenständig zu
+          prüfen — häufige Fallstricke bei Ingerenz und
+          Verkehrssicherungspflichten.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Rahmenrecht</span>
+        <h3>Eingerichteter und ausgeübter Gewerbebetrieb</h3>
+        <p>
+          Nur ein Rahmenrecht: Die Rechtswidrigkeit ist hier nicht indiziert,
+          sondern über eine Interessen- und Güterabwägung gesondert zu
+          begründen.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Vermögensschäden</span>
+        <h3>Kein allgemeiner Vermögensschutz</h3>
+        <p>
+          § 823 I BGB schützt nicht das Vermögen als solches — reine
+          Vermögensschäden ohne Verletzung eines benannten Rechtsguts sind
+          hierüber nicht ersatzfähig.
+        </p>
+      </div>
+    </div>
+
+    <div class="octa-cta">
+      <h2>Und direkt mündlich abfragen</h2>
+      <p>
+        Lade das Schema oder das Karteikarten-Deck von hier direkt in{' '}
+        {OCTA.name} hoch. {OCTA.pitch}
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
+          {OCTA.name} im App Store ansehen
+        </a>
+        <a class="btn btn--ghost" href="/lernunterlagen/jura/">
+          Weitere Schemata ansehen
+        </a>
+      </div>
+    </div>
+
+    <div class="note">
+      <p>
+        Dieses Schema dient ausschließlich der Vorbereitung auf Prüfungen. Es
+        stellt keine Rechtsberatung dar und ersetzt keine anwaltliche
+        Beratung im Einzelfall.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 46rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .schema-hint {
+    color: var(--text-subtle);
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+  }
+
+  .schema {
+    max-width: 54rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .schema > details {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.7rem;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .schema > details > summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 1rem 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg-soft);
+  }
+
+  .schema > details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .schema > details > summary::after {
+    content: '+';
+    margin-left: auto;
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .schema > details[open] > summary::after {
+    content: '–';
+  }
+
+  .schema__num {
+    color: var(--accent);
+    flex: none;
+  }
+
+  .schema__body {
+    padding: 0.4rem 1.3rem 1rem;
+  }
+
+  .schema__body details {
+    border-top: 1px solid var(--border);
+    padding: 0.7rem 0;
+  }
+
+  .schema__body details:first-child {
+    border-top: none;
+  }
+
+  .schema__body summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .schema__body summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .schema__body summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+  }
+
+  .schema__body details[open] summary::before {
+    content: '–';
+  }
+
+  .schema__body details p {
+    margin: 0.6rem 0 0 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .schema__body > p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
