@@ -5,7 +5,7 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
 
 <BaseLayout
   title="Lerntools"
-  description="Kostenlose Tools für Studierende: Notendurchschnitt berechnen und den eigenen Lerntyp bestimmen. Ohne Anmeldung, ohne Datenweitergabe, direkt im Browser."
+  description="Kostenlose Tools für Studierende: Notendurchschnitt berechnen und den eigenen Lerntyp bestimmen. Ohne Anmeldung, in unter einer Minute erledigt."
   breadcrumbs={[{ label: 'Tools', href: '/tools/' }]}
   wide
 >
@@ -13,9 +13,9 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
     <p class="eyebrow">Für jeden Studiengang</p>
     <h1>Lerntools</h1>
     <p class="lead intro">
-      Kleine Werkzeuge, die eine konkrete Aufgabe abnehmen. Alles läuft direkt in
-      deinem Browser — keine Anmeldung, keine Konten, und deine Eingaben werden
-      nirgendwo gespeichert.
+      Kleine Werkzeuge, die eine konkrete Aufgabe abnehmen, statt noch einen
+      Ratgeberartikel zu liefern. Alles läuft direkt im Browser, ohne
+      Anmeldung und ohne Konto — unabhängig davon, was oder wo du studierst.
     </p>
 
     <CharakterTrio class="tools-trio" eager />
@@ -43,6 +43,25 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
         </p>
         <p class="card__more">Weiterlesen →</p>
       </a>
+    </div>
+
+    <h2 class="rule">Warum wir Tools statt nur Artikel bauen</h2>
+    <div class="prose-inline">
+      <p>
+        Die Frage "welcher Lerntyp bin ich" oder "was ist mein
+        Notendurchschnitt" lässt sich mit einem Artikel nicht beantworten —
+        nur mit einer Berechnung, die auf die eigenen Angaben eingeht. Ein
+        Text kann höchstens erklären, wie man selbst rechnet oder testet;
+        ein Tool nimmt genau das ab. Deshalb bauen wir hier Rechner und
+        Tests statt weiterer Erklärseiten.
+      </p>
+      <p>
+        Jedes Tool ist bewusst schmal geschnitten: eine Aufgabe, ein
+        Ergebnis, keine Registrierung, die dazwischensteht. Für den
+        Lerntyp-Test werten wir anonymisierte Durchläufe aus, um die
+        Auswertung laufend zu verbessern — Details dazu stehen in der{' '}
+        <a href="/datenschutz/">Datenschutzerklärung</a>.
+      </p>
     </div>
 
     <div class="note">

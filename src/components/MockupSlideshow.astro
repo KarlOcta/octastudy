@@ -1,0 +1,167 @@
+---
+/**
+ * Rotierende App-Mockups mit Bildunterschrift. Zeigt mehrere Screens der App
+ * nacheinander statt nur einen einzelnen Screenshot — gibt einen besseren
+ * Eindruck, was die App eigentlich kann, ohne die Seite mit mehreren
+ * nebeneinanderstehenden Bildern zu überladen.
+ *
+ * Reiner CSS/Vanilla-JS-Crossfade, keine Abhängigkeit. Läuft automatisch um,
+ * Punkte darunter sind zusätzlich klickbar.
+ */
+export interface Slide {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+export interface Props {
+  slides: Slide[];
+  /** Eindeutige ID, falls mehrere Slideshows auf derselben Seite laufen */
+  id: string;
+  /** Umschaltintervall in Millisekunden */
+  intervalMs?: number;
+  class?: string;
+}
+
+const { slides, id, intervalMs = 3800, class: extra = '' } = Astro.props;
+---
+
+<div class={`mockup-slides ${extra}`} id={id} data-interval={intervalMs}>
+  <div class="mockup-slides__frame">
+    {
+      slides.map((s, i) => (
+        <img
+          src={s.src}
+          alt={s.alt}
+          width={s.width}
+          height={s.height}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          class="mockup-slides__img"
+          data-active={i === 0 ? 'true' : 'false'}
+        />
+      ))
+    }
+  </div>
+  <p class="mockup-slides__caption">
+    {
+      slides.map((s, i) => (
+        <span data-active={i === 0 ? 'true' : 'false'}>{s.caption}</span>
+      ))
+    }
+  </p>
+  <div class="mockup-slides__dots" role="tablist" aria-label="Screens">
+    {
+      slides.map((_, i) => (
+        <button
+          type="button"
+          class="mockup-slides__dot"
+          data-index={i}
+          aria-current={i === 0 ? 'true' : undefined}
+          aria-label={`Screen ${i + 1} von ${slides.length}`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  function initSlideshow(root: HTMLElement) {
+    const imgs = Array.from(root.querySelectorAll<HTMLImageElement>('.mockup-slides__img'));
+    const caps = Array.from(root.querySelectorAll<HTMLSpanElement>('.mockup-slides__caption span'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.mockup-slides__dot'));
+    if (imgs.length < 2) return;
+
+    let active = 0;
+    const interval = Number(root.dataset.interval) || 3800;
+
+    const show = (i: number) => {
+      imgs[active].dataset.active = 'false';
+      caps[active].dataset.active = 'false';
+      dots[active].removeAttribute('aria-current');
+      active = i;
+      imgs[active].dataset.active = 'true';
+      caps[active].dataset.active = 'true';
+      dots[active].setAttribute('aria-current', 'true');
+    };
+
+    let timer = setInterval(() => show((active + 1) % imgs.length), interval);
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        show(Number(dot.dataset.index));
+        timer = setInterval(() => show((active + 1) % imgs.length), interval);
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.mockup-slides').forEach(initSlideshow);
+</script>
+
+<style>
+  .mockup-slides {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mockup-slides__frame {
+    position: relative;
+    width: 100%;
+  }
+
+  .mockup-slides__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .mockup-slides__img[data-active='true'] {
+    opacity: 1;
+    position: relative;
+  }
+
+  .mockup-slides__caption {
+    position: relative;
+    min-height: 2.4em;
+    margin: 0.6rem 0 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .mockup-slides__caption span {
+    display: none;
+  }
+
+  .mockup-slides__caption span[data-active='true'] {
+    display: block;
+  }
+
+  .mockup-slides__dots {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .mockup-slides__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: var(--border-strong, #d8d6e8);
+    cursor: pointer;
+  }
+
+  .mockup-slides__dot[aria-current='true'] {
+    background: var(--accent);
+  }
+</style>

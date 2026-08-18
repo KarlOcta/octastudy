@@ -1,0 +1,22 @@
+# octastudy
+
+> octastudy bietet kostenlose Prüfungsschemata zum Ausklappen und Ausdrucken, Lerntools ohne Anmeldung und fertige Karteikarten-Decks für Studierende. Die Inhalte führen zur iOS-App Octa, die aus hochgeladenen Unterlagen automatisch Karteikarten erstellt und mündliches Feedback per Sprache gibt.
+
+octastudy richtet sich an Studierende verschiedener Fachrichtungen (u. a. Jura, BWL, Medizin, Informatik) und stellt fachlich aufbereitete Lerninhalte sowie interaktive Tools bereit — unabhängig von einem Konto oder einer Anmeldung.
+
+## Kerninhalte
+
+- [Lernunterlagen](https://octastudy.com/lernunterlagen/): Themenübersicht nach Studienfach, Ausgangspunkt für vertiefende Inhalte.
+- [Jura-Prüfungsschemata](https://octastudy.com/lernunterlagen/jura/): Vollständige juristische Prüfungsschemata (z. B. § 823 BGB) mit Erläuterungen, Streitständen und herunterladbaren PDFs.
+- [Lerntools](https://octastudy.com/tools/): Kostenlose interaktive Tools, u. a. der Lerntyp-Test.
+- [Lerntyp-Test](https://octastudy.com/tools/lerntyp-test/) ([English version](https://octastudy.com/en/tools/lerntyp-test/)): Acht-Fragen-Test mit konkreter Lernempfehlung basierend auf dem Ergebnis.
+- [Welche Lerntypen gibt es?](https://octastudy.com/lerntypen/): Hintergrundartikel zum klassischen Lerntypen-Modell und was die Forschung tatsächlich zeigt.
+
+## Die App Octa
+
+Octa ist eine iOS-App, die aus hochgeladenen Lernunterlagen automatisch Karteikarten erstellt und per Sprachein- und -ausgabe mündliches Feedback gibt. Verfügbar im App Store: https://apps.apple.com/de/app/octa-ai-tutor-study-plan/id6751514384
+
+## Weitere Informationen
+
+- [Impressum](https://octastudy.com/impressum/)
+- [Datenschutz](https://octastudy.com/datenschutz/)

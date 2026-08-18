@@ -1,10 +1,36 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { OCTA } from '../../../../site';
+import MockupSlideshow from '../../../../components/MockupSlideshow.astro';
+import { OCTA, APPSTORE_CPP } from '../../../../site';
 
 const canonical = 'https://octastudy.com/lernunterlagen/jura/823-bgb/';
 const datePublished = '2026-08-18';
 const dateModified = '2026-08-18';
+const storeLink = APPSTORE_CPP.jura || OCTA.appStoreUrl;
+
+const SLIDES = [
+  {
+    src: '/img/mockups/octa-karteikarten-jura.webp',
+    alt: 'Octa zeigt eine Karteikarte mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage',
+    caption: 'Karteikarten automatisch aus deinen Unterlagen',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-lernplan-jura.webp',
+    alt: 'Octa zeigt einen Lernplan mit Lernpfad und Fortschrittsanzeige bis zur Klausur',
+    caption: 'Lernplan bis zu deinem Prüfungstermin',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-pruefer-jura.webp',
+    alt: 'Octa fragt eine Frage mündlich ab und wartet auf die gesprochene Antwort',
+    caption: 'Mündlich abgefragt statt nur durchgelesen',
+    width: 360,
+    height: 761,
+  },
+];
 
 const FAQ = [
   {
@@ -107,20 +133,13 @@ const jsonLd = JSON.stringify({
           <p class="octa-hint__other" id="octa-hint-other">
             {OCTA.pitch} Aktuell nur für iPhone und iPad.
           </p>
-          <a class="octa-hint__link" href={OCTA.appStoreUrl} rel="noopener">
+          <a class="octa-hint__link" href={storeLink} rel="noopener">
             {OCTA.name} im App Store ansehen →
           </a>
         </div>
       </div>
 
-      <img
-        class="hero-mockup"
-        src="/img/mockups/octa-karteikarten-jura.webp"
-        alt="Octa-App zeigt eine Karteikarte zu § 823 BGB mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage"
-        width="360"
-        height="761"
-        loading="eager"
-      />
+      <MockupSlideshow id="hero-slides" slides={SLIDES} class="hero-mockup" />
     </div>
 
     <script is:inline>
@@ -135,7 +154,7 @@ const jsonLd = JSON.stringify({
       })();
     </script>
 
-    <h2 class="rule">Das vollständige Schema</h2>
+    <h2 class="rule rule--tight">Das vollständige Schema</h2>
     <p class="schema-hint">Zum Aufklappen — jeder Punkt mit Definition.</p>
 
     <div class="schema">
@@ -265,20 +284,24 @@ const jsonLd = JSON.stringify({
       }
     </div>
 
-    <div class="octa-cta">
-      <h2>Und direkt mündlich abfragen</h2>
-      <p>
-        Lade das Schema oder das Karteikarten-Deck von hier direkt in{' '}
-        {OCTA.name} hoch. {OCTA.pitch}
-      </p>
-      <div class="btn-row">
-        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
-          {OCTA.name} im App Store ansehen
-        </a>
-        <a class="btn btn--ghost" href="/lernunterlagen/jura/">
-          Weitere Schemata ansehen
-        </a>
+    <div class="octa-cta octa-cta--closing">
+      <img class="octa-cta__mascot" src={OCTA.mascot} alt="" aria-hidden="true" width="110" height="73" />
+      <div class="octa-cta__text">
+        <h2>Und direkt mündlich abfragen</h2>
+        <p>
+          Lade das Schema oder das Karteikarten-Deck von hier direkt in{' '}
+          {OCTA.name} hoch. {OCTA.pitch}
+        </p>
+        <div class="btn-row">
+          <a class="btn" href={storeLink} rel="noopener">
+            {OCTA.name} im App Store ansehen
+          </a>
+          <a class="btn btn--ghost" href="/lernunterlagen/jura/">
+            Weitere Schemata ansehen
+          </a>
+        </div>
       </div>
+      <MockupSlideshow id="closing-slides" slides={SLIDES} class="octa-cta__mockup" intervalMs={4200} />
     </div>
 
     <div class="note">
@@ -300,22 +323,22 @@ const jsonLd = JSON.stringify({
 
   .intro {
     max-width: 46rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .hero-block {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 200px;
-    gap: 1.75rem;
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 1.1rem;
     align-items: start;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .downloads {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .octa-hint {
@@ -345,10 +368,8 @@ const jsonLd = JSON.stringify({
   }
 
   .hero-mockup {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
     justify-self: end;
+    max-width: 160px;
   }
 
   @media (max-width: 760px) {
@@ -359,6 +380,10 @@ const jsonLd = JSON.stringify({
     .hero-mockup {
       display: none;
     }
+  }
+
+  .rule--tight {
+    margin-top: 0.75rem;
   }
 
   .faq {
@@ -503,5 +528,49 @@ const jsonLd = JSON.stringify({
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
+  }
+
+  .octa-cta--closing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    gap: 1.5rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .octa-cta__mascot {
+    position: absolute;
+    top: -1.6rem;
+    left: -0.6rem;
+    width: 64px;
+    height: auto;
+  }
+
+  .octa-cta__text {
+    padding-left: 2.4rem;
+  }
+
+  .octa-cta__mockup {
+    max-width: 150px;
+    justify-self: end;
+  }
+
+  @media (max-width: 700px) {
+    .octa-cta--closing {
+      grid-template-columns: 1fr;
+    }
+
+    .octa-cta__mockup {
+      display: none;
+    }
+
+    .octa-cta__mascot {
+      position: static;
+      margin-bottom: 0.6rem;
+    }
+
+    .octa-cta__text {
+      padding-left: 0;
+    }
   }
 </style>
