@@ -3,6 +3,36 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { OCTA } from '../../../../site';
 
 const canonical = 'https://octastudy.com/lernunterlagen/jura/823-bgb/';
+const datePublished = '2026-08-18';
+const dateModified = '2026-08-18';
+
+const FAQ = [
+  {
+    frage: 'Welche sechs Prüfungspunkte hat § 823 I BGB?',
+    antwort:
+      'Rechtsgutsverletzung, Verletzungshandlung, haftungsbegründende Kausalität, Rechtswidrigkeit, Verschulden und haftungsausfüllende Kausalität mit Schaden — in dieser Reihenfolge.',
+  },
+  {
+    frage: 'Was bedeutet haftungsbegründende Kausalität bei § 823 BGB?',
+    antwort:
+      'Der ursächliche Zusammenhang zwischen der Verletzungshandlung und der Rechtsgutsverletzung — geprüft über Äquivalenz (conditio sine qua non), Adäquanz und den Schutzzweck der Norm.',
+  },
+  {
+    frage: 'Wann ist die Rechtswidrigkeit bei § 823 I BGB indiziert?',
+    antwort:
+      'Durch die Erfüllung des Tatbestands. Ausnahme: Es liegt ein Rechtfertigungsgrund vor, etwa Notwehr (§ 227 BGB), Notstand (§§ 228, 904 BGB) oder eine wirksame Einwilligung.',
+  },
+  {
+    frage: 'Warum ist der eingerichtete und ausgeübte Gewerbebetrieb nur ein Rahmenrecht?',
+    antwort:
+      'Weil die Rechtswidrigkeit hier nicht indiziert ist, sondern über eine Interessen- und Güterabwägung eigenständig begründet werden muss — anders als bei den ausdrücklich genannten Rechtsgütern.',
+  },
+  {
+    frage: 'Schützt § 823 I BGB reine Vermögensschäden?',
+    antwort:
+      'Nein. Ohne Verletzung eines der ausdrücklich genannten Rechtsgüter (Leben, Körper, Gesundheit, Freiheit, Eigentum, sonstiges Recht) sind reine Vermögensschäden über § 823 I BGB nicht ersatzfähig.',
+  },
+];
 
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -16,7 +46,18 @@ const jsonLd = JSON.stringify({
       about: 'Deliktsrecht, § 823 BGB, Zivilrecht',
       inLanguage: 'de-DE',
       isAccessibleForFree: true,
+      datePublished,
+      dateModified,
       url: canonical,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.frage,
+        acceptedAnswer: { '@type': 'Answer', text: f.antwort },
+      })),
     },
   ],
 });
@@ -37,6 +78,7 @@ const jsonLd = JSON.stringify({
   <div class="wrap schema-page">
     <p class="eyebrow">Zivilrecht (BGB) · Deliktsrecht</p>
     <h1>Prüfungsschema § 823 Abs. 1 BGB</h1>
+    <p class="stand">Zuletzt geprüft: August 2026</p>
     <p class="lead intro">
       Die zentrale Anspruchsgrundlage des Deliktsrechts — Grundlage fast jeder
       Zivilrechtsklausur, in der es um Schadensersatz aus unerlaubter Handlung
@@ -45,14 +87,53 @@ const jsonLd = JSON.stringify({
       werden.
     </p>
 
-    <div class="downloads">
-      <a class="btn" href="/downloads/jura/823-bgb-schema.pdf" download>
-        Schema als PDF herunterladen
-      </a>
-      <a class="btn btn--ghost" href="/downloads/jura/823-bgb-karteikarten.pdf" download>
-        Karteikarten-Deck herunterladen (PDF)
-      </a>
+    <div class="hero-block">
+      <div class="downloads-col">
+        <div class="downloads">
+          <a class="btn" href="/downloads/jura/823-bgb-schema.pdf" target="_blank" rel="noopener">
+            Schema als PDF herunterladen
+          </a>
+          <a class="btn btn--ghost" href="/downloads/jura/823-bgb-karteikarten.pdf" target="_blank" rel="noopener">
+            Karteikarten-Deck herunterladen (PDF)
+          </a>
+        </div>
+
+        <div class="octa-hint" id="octa-hint">
+          <p class="octa-hint__ios" id="octa-hint-ios" hidden>
+            <strong>Auf dem iPhone:</strong> PDF öffnen, unten auf das
+            Teilen-Symbol tippen und {OCTA.name} auswählen — die App liest die
+            Datei direkt ein und macht daraus Karteikarten.
+          </p>
+          <p class="octa-hint__other" id="octa-hint-other">
+            {OCTA.pitch} Aktuell nur für iPhone und iPad.
+          </p>
+          <a class="octa-hint__link" href={OCTA.appStoreUrl} rel="noopener">
+            {OCTA.name} im App Store ansehen →
+          </a>
+        </div>
+      </div>
+
+      <img
+        class="hero-mockup"
+        src="/img/mockups/octa-karteikarten-jura.webp"
+        alt="Octa-App zeigt eine Karteikarte zu § 823 BGB mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage"
+        width="360"
+        height="761"
+        loading="eager"
+      />
     </div>
+
+    <script is:inline>
+      (function () {
+        var isIOS =
+          /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS) {
+          document.getElementById('octa-hint-ios').hidden = false;
+          document.getElementById('octa-hint-other').hidden = true;
+        }
+      })();
+    </script>
 
     <h2 class="rule">Das vollständige Schema</h2>
     <p class="schema-hint">Zum Aufklappen — jeder Punkt mit Definition.</p>
@@ -172,6 +253,18 @@ const jsonLd = JSON.stringify({
       </div>
     </div>
 
+    <h2 class="rule">Kurz gefragt</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.frage}</summary>
+            <p>{f.antwort}</p>
+          </details>
+        ))
+      }
+    </div>
+
     <div class="octa-cta">
       <h2>Und direkt mündlich abfragen</h2>
       <p>
@@ -199,16 +292,115 @@ const jsonLd = JSON.stringify({
 </BaseLayout>
 
 <style>
+  .stand {
+    color: var(--text-subtle);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.9rem;
+  }
+
   .intro {
     max-width: 46rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 1.75rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
   }
 
   .downloads {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .octa-hint {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1.1rem;
+    max-width: 34rem;
+  }
+
+  .octa-hint p {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .octa-hint__link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .octa-hint__link:hover {
+    text-decoration: underline;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    justify-self: end;
+  }
+
+  @media (max-width: 760px) {
+    .hero-block {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-mockup {
+      display: none;
+    }
+  }
+
+  .faq {
+    max-width: 54rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .schema-hint {
