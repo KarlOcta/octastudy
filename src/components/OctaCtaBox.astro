@@ -1,0 +1,133 @@
+---
+/**
+ * Wiederverwendbare Octa-CTA-Box: farblich abgesetzte Lavendelfläche mit
+ * Maskottchen, Text, App-Store-Button und optional einer rotierenden
+ * Mockup-Slideshow. Wird sowohl direkt unter dem Hero-Bereich als auch am
+ * Seitenende einer Schema-Seite eingebunden, damit beide CTA-Momente
+ * gleich aussehen und sich klar vom eigentlichen Content abheben.
+ */
+import MockupSlideshow, { type Slide } from './MockupSlideshow.astro';
+
+export interface Props {
+  /** Eindeutige ID für die Slideshow (falls slides gesetzt sind) */
+  id: string;
+  title: string;
+  storeLink: string;
+  primaryLabel: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  slides?: Slide[];
+  intervalMs?: number;
+  /** Kein zusätzlicher Top-Margin — z. B. wenn die Box schon in einem Grid neben anderem Content sitzt */
+  flush?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  title,
+  storeLink,
+  primaryLabel,
+  secondaryLabel,
+  secondaryHref,
+  slides,
+  intervalMs,
+  flush = false,
+  class: extra = '',
+} = Astro.props;
+---
+
+<div class={`octa-cta ${slides ? 'octa-cta--with-mockup' : 'octa-cta--compact'} ${flush ? 'octa-cta--flush' : ''} ${extra}`}>
+  <img
+    class="octa-cta__mascot"
+    src="/img/octa-mascot-transparent.webp"
+    alt=""
+    aria-hidden="true"
+    width="110"
+    height="84"
+  />
+  <div class="octa-cta__text">
+    <h2>{title}</h2>
+    <p><slot /></p>
+    <div class="btn-row">
+      <a class="btn" href={storeLink} rel="noopener">{primaryLabel}</a>
+      {secondaryHref && secondaryLabel && (
+        <a class="btn btn--ghost" href={secondaryHref}>
+          {secondaryLabel}
+        </a>
+      )}
+    </div>
+  </div>
+  {
+    slides && (
+      <div class="octa-cta__mockup">
+        <MockupSlideshow id={id} slides={slides} intervalMs={intervalMs} />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .octa-cta {
+    position: relative;
+    display: grid;
+  }
+
+  .octa-cta--flush {
+    margin-top: 0;
+  }
+
+  .octa-cta--with-mockup {
+    grid-template-columns: minmax(0, 1fr) 130px;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .octa-cta--compact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .octa-cta__mascot {
+    position: absolute;
+    top: -1.6rem;
+    left: -0.6rem;
+    width: 56px;
+    height: auto;
+  }
+
+  .octa-cta__text {
+    padding-left: 2.2rem;
+  }
+
+  .octa-cta__text h2 {
+    font-size: 1.25rem;
+  }
+
+  .octa-cta__mockup {
+    width: 130px;
+    max-width: 130px;
+    justify-self: end;
+  }
+
+  @media (max-width: 560px) {
+    .octa-cta--with-mockup {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .octa-cta__mockup {
+      width: 110px;
+      max-width: 110px;
+      justify-self: center;
+      margin: 1rem auto 0;
+    }
+
+    .octa-cta__mascot {
+      position: static;
+      margin-bottom: 0.6rem;
+    }
+
+    .octa-cta__text {
+      padding-left: 0;
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import MockupSlideshow from '../../../../components/MockupSlideshow.astro';
+import OctaCtaBox from '../../../../components/OctaCtaBox.astro';
 import { OCTA, APPSTORE_CPP } from '../../../../site';
 
 const canonical = 'https://octastudy.com/lernunterlagen/jura/823-bgb/';
@@ -114,47 +114,27 @@ const jsonLd = JSON.stringify({
     </p>
 
     <div class="hero-block">
-      <div class="downloads-col">
-        <div class="downloads">
-          <a class="btn" href="/downloads/jura/823-bgb-schema.pdf" target="_blank" rel="noopener">
-            Schema als PDF herunterladen
-          </a>
-          <a class="btn btn--ghost" href="/downloads/jura/823-bgb-karteikarten.pdf" target="_blank" rel="noopener">
-            Karteikarten-Deck herunterladen (PDF)
-          </a>
-        </div>
-
-        <div class="octa-hint" id="octa-hint">
-          <p class="octa-hint__ios" id="octa-hint-ios" hidden>
-            <strong>Auf dem iPhone:</strong> PDF öffnen, unten auf das
-            Teilen-Symbol tippen und {OCTA.name} auswählen — die App liest die
-            Datei direkt ein und macht daraus Karteikarten.
-          </p>
-          <p class="octa-hint__other" id="octa-hint-other">
-            {OCTA.pitch} Aktuell nur für iPhone und iPad.
-          </p>
-          <a class="octa-hint__link" href={storeLink} rel="noopener">
-            {OCTA.name} im App Store ansehen →
-          </a>
-        </div>
+      <div class="downloads">
+        <a class="btn" href="/downloads/jura/823-bgb-schema.pdf" download>
+          Schema als PDF herunterladen
+        </a>
+        <a class="btn btn--ghost" href="/downloads/jura/823-bgb-karteikarten.pdf" download>
+          Karteikarten-Deck herunterladen (PDF)
+        </a>
       </div>
-
-      <div class="hero-mockup">
-        <MockupSlideshow id="hero-slides" slides={SLIDES} />
-      </div>
+      <p class="downloads-hint">Wird direkt heruntergeladen — von dort per „Teilen" in {OCTA.name} hochladen.</p>
     </div>
 
-    <script is:inline>
-      (function () {
-        var isIOS =
-          /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        if (isIOS) {
-          document.getElementById('octa-hint-ios').hidden = false;
-          document.getElementById('octa-hint-other').hidden = true;
-        }
-      })();
-    </script>
+    <OctaCtaBox
+      id="hero-slides"
+      title="Direkt in Octa weiterlernen"
+      storeLink={storeLink}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      slides={SLIDES}
+    >
+      {OCTA.pitch} Lade das Schema oder die Karteikarten hoch, sobald du sie
+      heruntergeladen hast. Aktuell nur für iPhone und iPad.
+    </OctaCtaBox>
 
     <h2 class="rule rule--tight">Das vollständige Schema</h2>
     <p class="schema-hint">Zum Aufklappen — jeder Punkt mit Definition.</p>
@@ -286,27 +266,18 @@ const jsonLd = JSON.stringify({
       }
     </div>
 
-    <div class="octa-cta octa-cta--closing">
-      <img class="octa-cta__mascot" src="/img/octa-mascot-transparent.webp" alt="" aria-hidden="true" width="110" height="84" />
-      <div class="octa-cta__text">
-        <h2>Und direkt mündlich abfragen</h2>
-        <p>
-          Lade das Schema oder das Karteikarten-Deck von hier direkt in{' '}
-          {OCTA.name} hoch. {OCTA.pitch}
-        </p>
-        <div class="btn-row">
-          <a class="btn" href={storeLink} rel="noopener">
-            {OCTA.name} im App Store ansehen
-          </a>
-          <a class="btn btn--ghost" href="/lernunterlagen/jura/">
-            Weitere Schemata ansehen
-          </a>
-        </div>
-      </div>
-      <div class="octa-cta__mockup">
-        <MockupSlideshow id="closing-slides" slides={SLIDES} intervalMs={4200} />
-      </div>
-    </div>
+    <OctaCtaBox
+      id="closing-slides"
+      title="Und direkt mündlich abfragen"
+      storeLink={storeLink}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Weitere Schemata ansehen"
+      secondaryHref="/lernunterlagen/jura/"
+      slides={SLIDES}
+      intervalMs={4200}
+    >
+      Lade das Schema oder das Karteikarten-Deck von hier direkt in {OCTA.name} hoch. {OCTA.pitch}
+    </OctaCtaBox>
 
     <div class="note">
       <p>
@@ -331,62 +302,20 @@ const jsonLd = JSON.stringify({
   }
 
   .hero-block {
-    position: relative;
-    max-width: 46rem;
-    padding-right: 155px;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.6rem;
   }
 
   .downloads {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 0.7rem;
   }
 
-  .octa-hint {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 0.9rem 1.1rem;
-    max-width: 34rem;
-  }
-
-  .octa-hint p {
-    margin: 0 0 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.55;
-  }
-
-  .octa-hint__link {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .octa-hint__link:hover {
-    text-decoration: underline;
-  }
-
-  .hero-mockup {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 135px;
-  }
-
-  @media (max-width: 760px) {
-    .hero-block {
-      padding-right: 0;
-    }
-
-    .hero-mockup {
-      position: static;
-      width: 120px;
-      margin: 0.2rem auto 0;
-    }
+  .downloads-hint {
+    margin: 0.6rem 0 0;
+    font-size: 0.82rem;
+    color: var(--text-subtle);
+    line-height: 1.5;
   }
 
   .rule--tight {
@@ -537,48 +466,5 @@ const jsonLd = JSON.stringify({
     margin: 0;
   }
 
-  .octa-cta--closing {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 150px;
-    gap: 1.5rem;
-    align-items: center;
-    position: relative;
-  }
 
-  .octa-cta__mascot {
-    position: absolute;
-    top: -1.6rem;
-    left: -0.6rem;
-    width: 64px;
-    height: auto;
-  }
-
-  .octa-cta__text {
-    padding-left: 2.4rem;
-  }
-
-  .octa-cta__mockup {
-    width: 140px;
-    max-width: 140px;
-    justify-self: end;
-  }
-
-  @media (max-width: 700px) {
-    .octa-cta--closing {
-      grid-template-columns: 1fr;
-    }
-
-    .octa-cta__mockup {
-      display: none;
-    }
-
-    .octa-cta__mascot {
-      position: static;
-      margin-bottom: 0.6rem;
-    }
-
-    .octa-cta__text {
-      padding-left: 0;
-    }
-  }
 </style>
