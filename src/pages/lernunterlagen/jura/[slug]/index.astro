@@ -41,6 +41,10 @@ const SLIDES = [
 
 const breadcrumbLabel = entry.h1.replace(/^Prüfungsschema\s*/, '').replace(/^Notwehr\s*—\s*/, 'Notwehr — ');
 
+const relatedEntries = (entry.related || [])
+  .map((slug) => schemata.find((e) => e.slug === slug))
+  .filter(Boolean);
+
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
@@ -158,6 +162,22 @@ const jsonLd = JSON.stringify({
         ))
       }
     </div>
+
+    {
+      relatedEntries.length > 0 && (
+        <Fragment>
+          <h2 class="rule">Verwandte Schemata</h2>
+          <div class="related-grid">
+            {relatedEntries.map((r) => (
+              <a class="related-card" href={`/lernunterlagen/jura/${r.slug}/`}>
+                <span class="related-card__label">{r.keyword.replace(/\s*Schema$/, '')}</span>
+                <span class="related-card__sub">{r.teilgebiet}</span>
+              </a>
+            ))}
+          </div>
+        </Fragment>
+      )
+    }
 
     <OctaCtaBox
       id="closing-slides"
@@ -357,5 +377,40 @@ const jsonLd = JSON.stringify({
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
+  }
+
+  .related-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-soft);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .related-card:hover {
+    border-color: var(--accent-soft);
+    background: var(--accent-soft);
+  }
+
+  .related-card__label {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .related-card__sub {
+    color: var(--text-subtle);
+    font-size: 0.8rem;
   }
 </style>

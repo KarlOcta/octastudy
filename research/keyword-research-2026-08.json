@@ -1,0 +1,2255 @@
+{
+  "meta": {
+    "titel": "Keyword-Research-Export octastudy.com",
+    "erstellt": "2026-08-19",
+    "quelle": "Semrush (Datenbank: de) — phrase_these, phrase_related, phrase_questions",
+    "hinweis": "Letzter Export vor Kündigung des Semrush-Abos. Diese Datei ist ab sofort die einzige Keyword-Datenquelle für den Seitenaufbau. Werte sind Monatsvolumen Deutschland, Stand August 2026.",
+    "kd_lesart": "Keyword Difficulty 0–100. Unter 20 = für eine junge Domain realistisch, 20–30 = mit gutem Content machbar, über 30 = erst mit Domain-Autorität.",
+    "bestehende_seiten": [
+      "823-bgb",
+      "985-bgb",
+      "812-bgb",
+      "280-bgb",
+      "929-bgb",
+      "263-stgb",
+      "242-stgb",
+      "223-stgb",
+      "315c-stgb",
+      "notwehr"
+    ],
+    "bewaehrtes_muster": "Titel/H1 führen mit \"§ [Nr] [Gesetzbuch] Schema\". Ausnahme, wenn der Sachbegriff mehr Volumen hat als die Paragraphennummer (Beispiel: \"Notwehr Schema\" 880 vs. \"32 stgb schema\" 170)."
+  },
+  "empfohlene_reihenfolge": [
+    {
+      "schritt": 1,
+      "cluster": [
+        "jura-strafrecht-at",
+        "jura-strafrecht-bt"
+      ],
+      "begruendung": "Volumenstärkste und günstigste Keywords (KD 7–16) im gesamten Datensatz, identische Seitenvorlage wie die bestehenden 10 Seiten — reine Batch-Produktion ohne neue Technik."
+    },
+    {
+      "schritt": 2,
+      "cluster": [
+        "jura-oeffentliches-recht"
+      ],
+      "begruendung": "Schließt das Jura-Silo ab; die Platzhalter-Chips stehen bereits auf der Hub-Seite. Danach ist Rechtswissenschaft vollständig."
+    },
+    {
+      "schritt": 3,
+      "cluster": [
+        "jura-zivilrecht"
+      ],
+      "begruendung": "Füllt die Lücken im bestehenden Zivilrechts-Silo (AGB, Anfechtung, Stellvertretung)."
+    },
+    {
+      "schritt": 4,
+      "cluster": [
+        "mint-technische-mechanik",
+        "mint-thermodynamik",
+        "mint-elektrotechnik",
+        "mint-hoehere-mathematik"
+      ],
+      "begruendung": "Neues Fach-Silo mit dem zweitbesten KD-Profil. Format \"Formelsammlung\" ist 1:1 auf die bestehende PDF+Karteikarten-Pipeline übertragbar. Deckt vier App-Store-CPPs gleichzeitig ab."
+    },
+    {
+      "schritt": 5,
+      "cluster": [
+        "bwl-rechnungswesen"
+      ],
+      "begruendung": "Größte Studierendengruppe Deutschlands und höchste CPCs; KD im Rewe-Teil noch machbar."
+    },
+    {
+      "schritt": 6,
+      "cluster": [
+        "chemie",
+        "biologie",
+        "medizin",
+        "psychologie"
+      ],
+      "begruendung": "Erst angehen, wenn die Domain durch Jura + MINT Autorität aufgebaut hat."
+    }
+  ],
+  "cluster": [
+    {
+      "id": "jura-strafrecht-at",
+      "fach": "Rechtswissenschaft",
+      "silo": "Strafrecht Allgemeiner Teil",
+      "appstore_cpp_key": "jura",
+      "content_muster": "Prüfungsschema",
+      "prioritaet": 1,
+      "notiz": "Versuch/Rücktritt und Täterschaft/Teilnahme sind die volumenstärksten Themen des gesamten Jura-Silos bei KD 10–16.",
+      "summe_volumen": 13800,
+      "median_kd": 10,
+      "anzahl_keywords": 22,
+      "keywords": [
+        {
+          "keyword": "22 stgb",
+          "volume": 2900,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 24,
+          "intent": "informational"
+        },
+        {
+          "keyword": "versuch schema",
+          "volume": 1600,
+          "cpc_eur": 0.27,
+          "competition": 0.03,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "mittäterschaft schema",
+          "volume": 1600,
+          "cpc_eur": 0.21,
+          "competition": 0.04,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schema versuch",
+          "volume": 1300,
+          "cpc_eur": 0.27,
+          "competition": 0.0,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "stgb 23",
+          "volume": 1000,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "untauglicher versuch",
+          "volume": 1000,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anstiftung schema",
+          "volume": 720,
+          "cpc_eur": 0.25,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "beihilfe schema",
+          "volume": 590,
+          "cpc_eur": 0.32,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "tatentschluss definition",
+          "volume": 590,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "subjektiver tatbestand",
+          "volume": 480,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 15,
+          "intent": "informational"
+        },
+        {
+          "keyword": "objektiver tatbestand",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "34 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.11,
+          "competition": 0.01,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "fahrlässigkeitsdelikt schema",
+          "volume": 260,
+          "cpc_eur": 0.21,
+          "competition": 0.04,
+          "kd": 12,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "unterlassungsdelikt schema",
+          "volume": 210,
+          "cpc_eur": 0.09,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "notstand schema",
+          "volume": 210,
+          "cpc_eur": 0.25,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "rechtfertigender notstand schema",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "rücktritt vom versuch schema",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "13 stgb schema",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "27 stgb schema",
+          "volume": 70,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "26 stgb schema",
+          "volume": 70,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "25 stgb schema",
+          "volume": 40,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 0,
+          "intent": null
+        },
+        {
+          "keyword": "22 stgb schema",
+          "volume": 20,
+          "cpc_eur": 0.0,
+          "competition": 0.03,
+          "kd": 0,
+          "intent": null
+        }
+      ]
+    },
+    {
+      "id": "jura-oeffentliches-recht",
+      "fach": "Rechtswissenschaft",
+      "silo": "Öffentliches Recht (GG / VwGO)",
+      "appstore_cpp_key": "jura",
+      "content_muster": "Prüfungsschema",
+      "prioritaet": 1,
+      "notiz": "Direkte Fortsetzung des bestehenden Jura-Silos. Gleiche Seitenvorlage, gleiche PDF-Pipeline. Achtung: \"verwaltungsakt definition\" (1900) ist eine Definitions-, keine Schema-Suche — eigener Seitentyp oder eigener Abschnitt.",
+      "summe_volumen": 11960,
+      "median_kd": 12,
+      "anzahl_keywords": 24,
+      "keywords": [
+        {
+          "keyword": "verfassungsbeschwerde schema",
+          "volume": 1900,
+          "cpc_eur": 0.21,
+          "competition": 0.1,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verwaltungsakt definition",
+          "volume": 1900,
+          "cpc_eur": 0.22,
+          "competition": 0.14,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verhältnismäßigkeitsprüfung",
+          "volume": 1600,
+          "cpc_eur": 0.11,
+          "competition": 0.01,
+          "kd": 26,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anfechtungsklage schema",
+          "volume": 1300,
+          "cpc_eur": 0.15,
+          "competition": 0.05,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "organstreitverfahren schema",
+          "volume": 1000,
+          "cpc_eur": 0.1,
+          "competition": 0.09,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verpflichtungsklage schema",
+          "volume": 720,
+          "cpc_eur": 0.08,
+          "competition": 0.03,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "fortsetzungsfeststellungsklage schema",
+          "volume": 590,
+          "cpc_eur": 0.02,
+          "competition": 0.03,
+          "kd": 10,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "feststellungsklage schema",
+          "volume": 590,
+          "cpc_eur": 0.09,
+          "competition": 0.04,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "gesetzgebungsverfahren schema",
+          "volume": 590,
+          "cpc_eur": 0.05,
+          "competition": 0.01,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "grundrechtsprüfung schema",
+          "volume": 320,
+          "cpc_eur": 0.21,
+          "competition": 0.07,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verfassungsbeschwerde zulässigkeit",
+          "volume": 260,
+          "cpc_eur": 0.13,
+          "competition": 0.16,
+          "kd": 18,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "art 3 gg schema",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 9,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "grundrechte prüfungsschema",
+          "volume": 140,
+          "cpc_eur": 0.16,
+          "competition": 0.06,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verhältnismäßigkeit schema",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "art 12 gg schema",
+          "volume": 140,
+          "cpc_eur": 0.04,
+          "competition": 0.06,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "art 14 gg schema",
+          "volume": 110,
+          "cpc_eur": 0.02,
+          "competition": 0.06,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "verwaltungsakt schema",
+          "volume": 110,
+          "cpc_eur": 0.22,
+          "competition": 0.15,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "art 5 gg schema",
+          "volume": 90,
+          "cpc_eur": 0.1,
+          "competition": 0.14,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "art 8 gg schema",
+          "volume": 70,
+          "cpc_eur": 0.08,
+          "competition": 0.13,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "polizeirecht schema",
+          "volume": 50,
+          "cpc_eur": 0.0,
+          "competition": 0.03,
+          "kd": 0,
+          "intent": null
+        },
+        {
+          "keyword": "allgemeines persönlichkeitsrecht schema",
+          "volume": 40,
+          "cpc_eur": 0.0,
+          "competition": 0.03,
+          "kd": 0,
+          "intent": null
+        },
+        {
+          "keyword": "normenkontrolle schema",
+          "volume": 40,
+          "cpc_eur": 0.04,
+          "competition": 0.07,
+          "kd": 0,
+          "intent": null
+        },
+        {
+          "keyword": "art 2 gg schema",
+          "volume": 30,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 0,
+          "intent": null
+        },
+        {
+          "keyword": "ermessensfehler schema",
+          "volume": 20,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 0,
+          "intent": null
+        }
+      ]
+    },
+    {
+      "id": "jura-strafrecht-bt",
+      "fach": "Rechtswissenschaft",
+      "silo": "Strafrecht Besonderer Teil",
+      "appstore_cpp_key": "jura",
+      "content_muster": "Prüfungsschema",
+      "prioritaet": 1,
+      "notiz": "Sehr homogener Cluster: 30 Delikte, jeweils 110–880 Volumen bei KD 7–14. Ideal für Batch-Produktion mit der bestehenden JSON+Astro-Pipeline.",
+      "summe_volumen": 10670,
+      "median_kd": 9,
+      "anzahl_keywords": 30,
+      "keywords": [
+        {
+          "keyword": "raub schema",
+          "volume": 880,
+          "cpc_eur": 0.17,
+          "competition": 0.07,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "urkundenfälschung schema",
+          "volume": 720,
+          "cpc_eur": 0.25,
+          "competition": 0.04,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "unterschlagung schema",
+          "volume": 720,
+          "cpc_eur": 0.18,
+          "competition": 0.1,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "nötigung schema",
+          "volume": 590,
+          "cpc_eur": 0.2,
+          "competition": 0.1,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "222 stgb schema",
+          "volume": 590,
+          "cpc_eur": 0.45,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "mord schema",
+          "volume": 480,
+          "cpc_eur": 0.1,
+          "competition": 0.09,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "erpressung schema",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 9,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "untreue schema",
+          "volume": 390,
+          "cpc_eur": 0.23,
+          "competition": 0.07,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "227 stgb schema",
+          "volume": 390,
+          "cpc_eur": 0.04,
+          "competition": 0.03,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "142 stgb schema",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "267 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.25,
+          "competition": 0.02,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "303 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.24,
+          "competition": 0.14,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "240 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.12,
+          "competition": 0.07,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "224 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.11,
+          "competition": 0.03,
+          "kd": 9,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "gefährliche körperverletzung schema",
+          "volume": 320,
+          "cpc_eur": 0.05,
+          "competition": 0.02,
+          "kd": 12,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "316 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "246 stgb schema",
+          "volume": 320,
+          "cpc_eur": 0.27,
+          "competition": 0.09,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "hehlerei schema",
+          "volume": 320,
+          "cpc_eur": 0.07,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "249 stgb schema",
+          "volume": 260,
+          "cpc_eur": 0.26,
+          "competition": 0.04,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "sachbeschädigung schema",
+          "volume": 260,
+          "cpc_eur": 0.25,
+          "competition": 0.12,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "239 stgb schema",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "freiheitsberaubung schema",
+          "volume": 260,
+          "cpc_eur": 0.25,
+          "competition": 0.03,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "244 stgb schema",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "266 stgb schema",
+          "volume": 260,
+          "cpc_eur": 0.21,
+          "competition": 0.08,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "totschlag schema",
+          "volume": 210,
+          "cpc_eur": 0.15,
+          "competition": 0.03,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "253 stgb schema",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "212 stgb schema",
+          "volume": 170,
+          "cpc_eur": 0.13,
+          "competition": 0.05,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "211 stgb schema",
+          "volume": 170,
+          "cpc_eur": 0.13,
+          "competition": 0.11,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "259 stgb schema",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "255 stgb schema",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 7,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "jura-zivilrecht",
+      "fach": "Rechtswissenschaft",
+      "silo": "Zivilrecht (BGB) — Ergänzung",
+      "appstore_cpp_key": "jura",
+      "content_muster": "Prüfungsschema",
+      "prioritaet": 1,
+      "notiz": "AGB-Kontrolle, Anfechtung und Stellvertretung sind die stärksten Lücken im bestehenden Zivilrechts-Silo.",
+      "summe_volumen": 8770,
+      "median_kd": 10,
+      "anzahl_keywords": 29,
+      "keywords": [
+        {
+          "keyword": "agb kontrolle schema",
+          "volume": 880,
+          "cpc_eur": 0.19,
+          "competition": 0.12,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anfechtung schema",
+          "volume": 720,
+          "cpc_eur": 0.34,
+          "competition": 0.04,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "stellvertretung schema",
+          "volume": 720,
+          "cpc_eur": 0.07,
+          "competition": 0.1,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "1004 bgb schema",
+          "volume": 590,
+          "cpc_eur": 0.06,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schema agb kontrolle",
+          "volume": 590,
+          "cpc_eur": 0.19,
+          "competition": 0.0,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "agb kontrolle",
+          "volume": 590,
+          "cpc_eur": 0.62,
+          "competition": 0.0,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "831 bgb schema",
+          "volume": 480,
+          "cpc_eur": 0.05,
+          "competition": 0.05,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "agb prüfung",
+          "volume": 390,
+          "cpc_eur": 0.74,
+          "competition": 0.0,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "stellvertretung bgb",
+          "volume": 390,
+          "cpc_eur": 0.28,
+          "competition": 0.0,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "prüfung von agb",
+          "volume": 320,
+          "cpc_eur": 0.62,
+          "competition": 0.0,
+          "kd": 11,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anspruchsgrundlagen bgb",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anspruchsgrundlage",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "zustandekommen kaufvertrag",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "agb prüfen",
+          "volume": 260,
+          "cpc_eur": 0.62,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kaufvertrag schema",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "gutachtenstil aufbau",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.03,
+          "kd": 21,
+          "intent": "informational"
+        },
+        {
+          "keyword": "433 bgb schema",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "culpa in contrahendo schema",
+          "volume": 170,
+          "cpc_eur": 0.13,
+          "competition": 0.1,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schadensersatz schema",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "werkvertrag schema",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "ebv schema",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.04,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "123 bgb schema",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "437 bgb schema",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "346 bgb schema",
+          "volume": 90,
+          "cpc_eur": 0.26,
+          "competition": 0.06,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "rücktritt schema bgb",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.04,
+          "kd": 7,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "164 bgb schema",
+          "volume": 90,
+          "cpc_eur": 0.11,
+          "competition": 0.1,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "geschäftsführung ohne auftrag schema",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 6,
+          "intent": "informational"
+        },
+        {
+          "keyword": "275 bgb schema",
+          "volume": 70,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 7,
+          "intent": "informational"
+        },
+        {
+          "keyword": "987 bgb schema",
+          "volume": 70,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 7,
+          "intent": "commercial"
+        }
+      ]
+    },
+    {
+      "id": "mint-thermodynamik",
+      "fach": "Maschinenbau / Verfahrenstechnik",
+      "silo": "Thermodynamik",
+      "appstore_cpp_key": "maschinenbau",
+      "content_muster": "Formelsammlung / Rechenweg",
+      "prioritaet": 2,
+      "notiz": "\"formelsammlung thermodynamik\" bei KD 9 und \"thermodynamik formelsammlung\" bei KD 6 — zwei Varianten desselben Intents, beide extrem günstig.",
+      "summe_volumen": 14640,
+      "median_kd": 20,
+      "anzahl_keywords": 17,
+      "keywords": [
+        {
+          "keyword": "thermodynamik",
+          "volume": 4400,
+          "cpc_eur": 0.55,
+          "competition": 0.0,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "thermodynamik hauptsätze",
+          "volume": 1900,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 23,
+          "intent": "informational"
+        },
+        {
+          "keyword": "carnot prozess",
+          "volume": 1900,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "hauptsatz thermodynamik",
+          "volume": 1600,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 23,
+          "intent": "informational"
+        },
+        {
+          "keyword": "erster hauptsatz der thermodynamik",
+          "volume": 1000,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "größe der thermodynamik",
+          "volume": 720,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 15,
+          "intent": "informational"
+        },
+        {
+          "keyword": "wärmemenge berechnen",
+          "volume": 480,
+          "cpc_eur": 0.76,
+          "competition": 0.0,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "berechnung der wärmemenge",
+          "volume": 390,
+          "cpc_eur": 1.12,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "erster hauptsatz thermodynamik",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 21,
+          "intent": "informational"
+        },
+        {
+          "keyword": "gesetze der thermodynamik",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "wärmeenergie formel",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "wärmemenge berechnung",
+          "volume": 260,
+          "cpc_eur": 1.07,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "entropie berechnen",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "formelsammlung thermodynamik",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "isenthalp",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "thermodynamik formelsammlung",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.24,
+          "kd": 6,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kreisprozesse thermodynamik",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 21,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "mint-technische-mechanik",
+      "fach": "Maschinenbau / Bauingenieurwesen",
+      "silo": "Technische Mechanik",
+      "appstore_cpp_key": "maschinenbau",
+      "content_muster": "Formelsammlung / Rechenweg",
+      "prioritaet": 2,
+      "notiz": "Zweitbeste Nische nach Jura. \"Formelsammlung\" ist das strukturelle Analogon zum \"Prüfungsschema\": kanonische Referenz, die als PDF heruntergeladen wird. CPPs vorhanden für maschinenbau, bauingenieurwesen, wirtschaftsingenieurwesen.",
+      "summe_volumen": 5090,
+      "median_kd": 13,
+      "anzahl_keywords": 19,
+      "keywords": [
+        {
+          "keyword": "mohrscher spannungskreis",
+          "volume": 720,
+          "cpc_eur": 1.17,
+          "competition": 0.01,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "spannung dehnung diagramm",
+          "volume": 590,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "technische mechanik 1",
+          "volume": 480,
+          "cpc_eur": 0.26,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "auflagerkräfte berechnen",
+          "volume": 390,
+          "cpc_eur": 0.85,
+          "competition": 0.02,
+          "kd": 25,
+          "intent": "informational"
+        },
+        {
+          "keyword": "festigkeitslehre",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "flächenträgheitsmoment berechnen",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "biegemoment berechnen",
+          "volume": 320,
+          "cpc_eur": 1.07,
+          "competition": 0.04,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kräftedreieck",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "streckenlast berechnen",
+          "volume": 210,
+          "cpc_eur": 0.73,
+          "competition": 0.02,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "momentengleichgewicht",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 15,
+          "intent": "informational"
+        },
+        {
+          "keyword": "statischer moment",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "statisches system",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 5,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schnittgrößen berechnen",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 8,
+          "intent": "informational"
+        },
+        {
+          "keyword": "freikörperbild",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "positives schnittufer",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "fachwerk berechnen",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schwerpunktberechnung tm1",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "mechanik gelenke",
+          "volume": 110,
+          "cpc_eur": 0.81,
+          "competition": 0.0,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "technische mechanik formelsammlung",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.99,
+          "kd": 10,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "mint-elektrotechnik",
+      "fach": "Elektrotechnik",
+      "silo": "Grundlagen der Elektrotechnik",
+      "appstore_cpp_key": "elektrotechnik",
+      "content_muster": "Formelsammlung / Rechenweg",
+      "prioritaet": 2,
+      "notiz": "\"zeigerdiagramm elektrotechnik\" mit KD 4 ist der niedrigste gemessene Wert im gesamten Datensatz.",
+      "summe_volumen": 3070,
+      "median_kd": 15,
+      "anzahl_keywords": 10,
+      "keywords": [
+        {
+          "keyword": "spannungsteiler formel",
+          "volume": 1000,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 24,
+          "intent": "informational"
+        },
+        {
+          "keyword": "stromteiler formel",
+          "volume": 480,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kirchhoffsche regeln",
+          "volume": 480,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "maschenstromverfahren",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 26,
+          "intent": "informational"
+        },
+        {
+          "keyword": "knotenpotentialverfahren",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 15,
+          "intent": "informational"
+        },
+        {
+          "keyword": "komplexe wechselstromrechnung",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 12,
+          "intent": "informational"
+        },
+        {
+          "keyword": "transistor grundschaltungen",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "zeigerdiagramm elektrotechnik",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 4,
+          "intent": "informational"
+        },
+        {
+          "keyword": "bode diagramm zeichnen",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 9,
+          "intent": "informational"
+        },
+        {
+          "keyword": "operationsverstärker grundschaltungen",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 17,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "bwl-rechnungswesen",
+      "fach": "BWL",
+      "silo": "Rechnungswesen & Investitionsrechnung",
+      "appstore_cpp_key": "bwl",
+      "content_muster": "Formel / Rechenschema",
+      "prioritaet": 3,
+      "notiz": "Höchstes kommerzielles Signal im Datensatz (CPC bis 2,11 €). KD 19–27 im Rewe-Teil ist machbar; die Kennzahlen-Keywords (KD 30+) erst später angehen.",
+      "summe_volumen": 27380,
+      "median_kd": 27,
+      "anzahl_keywords": 24,
+      "keywords": [
+        {
+          "keyword": "betriebsabrechnungsbogen",
+          "volume": 2900,
+          "cpc_eur": 1.21,
+          "competition": 0.02,
+          "kd": 27,
+          "intent": "informational"
+        },
+        {
+          "keyword": "deckungsbeitrag berechnen",
+          "volume": 2400,
+          "cpc_eur": 0.62,
+          "competition": 0.1,
+          "kd": 36,
+          "intent": "informational"
+        },
+        {
+          "keyword": "break even point formel",
+          "volume": 2400,
+          "cpc_eur": 0.67,
+          "competition": 0.04,
+          "kd": 33,
+          "intent": "informational"
+        },
+        {
+          "keyword": "bilanz aufbau",
+          "volume": 2400,
+          "cpc_eur": 1.4,
+          "competition": 0.11,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kostenstellenrechnung",
+          "volume": 1900,
+          "cpc_eur": 1.26,
+          "competition": 0.03,
+          "kd": 26,
+          "intent": "informational"
+        },
+        {
+          "keyword": "zuschlagskalkulation",
+          "volume": 1900,
+          "cpc_eur": 1.8,
+          "competition": 0.01,
+          "kd": 27,
+          "intent": "informational"
+        },
+        {
+          "keyword": "roi berechnen",
+          "volume": 1900,
+          "cpc_eur": 1.81,
+          "competition": 0.05,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "cashflow berechnen",
+          "volume": 1600,
+          "cpc_eur": 1.33,
+          "competition": 0.2,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kostenartenrechnung",
+          "volume": 1300,
+          "cpc_eur": 1.27,
+          "competition": 0.02,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "abschreibung berechnen",
+          "volume": 1300,
+          "cpc_eur": 1.06,
+          "competition": 0.19,
+          "kd": 34,
+          "intent": "informational"
+        },
+        {
+          "keyword": "maschinenstundensatz berechnen",
+          "volume": 1300,
+          "cpc_eur": 1.48,
+          "competition": 0.04,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "afa berechnen",
+          "volume": 720,
+          "cpc_eur": 1.68,
+          "competition": 0.55,
+          "kd": 23,
+          "intent": "informational"
+        },
+        {
+          "keyword": "gewinnvergleichsrechnung",
+          "volume": 720,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "eigenkapitalquote berechnen",
+          "volume": 720,
+          "cpc_eur": 0.87,
+          "competition": 0.09,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "guv aufbau",
+          "volume": 590,
+          "cpc_eur": 0.87,
+          "competition": 0.06,
+          "kd": 21,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anlagenspiegel",
+          "volume": 590,
+          "cpc_eur": 0.57,
+          "competition": 0.01,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "rentabilität formel",
+          "volume": 590,
+          "cpc_eur": 2.11,
+          "competition": 0.01,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "handelskalkulation schema",
+          "volume": 480,
+          "cpc_eur": 1.6,
+          "competition": 0.01,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kalkulatorische zinsen berechnen",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "annuitätenmethode",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "kapitalwertmethode formel",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "deckungsbeitragsrechnung formel",
+          "volume": 260,
+          "cpc_eur": 0.32,
+          "competition": 0.04,
+          "kd": 33,
+          "intent": "informational"
+        },
+        {
+          "keyword": "working capital berechnen",
+          "volume": 170,
+          "cpc_eur": 1.26,
+          "competition": 0.08,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "buchungssätze übersicht",
+          "volume": 140,
+          "cpc_eur": 1.2,
+          "competition": 0.03,
+          "kd": 27,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "lernen-generisch",
+      "fach": "Fachübergreifend",
+      "silo": "Lernmethodik",
+      "appstore_cpp_key": "andere",
+      "content_muster": "Ratgeber / Tool",
+      "prioritaet": 3,
+      "notiz": "Direkteste Produktnähe (karteikarten app, karteikarten erstellen) — aber auch kommerzielle Intents mit KD 30–45. Als Conversion-Seiten wertvoll, nicht als schnelle Ranking-Gewinne.",
+      "summe_volumen": 11410,
+      "median_kd": 30,
+      "anzahl_keywords": 6,
+      "keywords": [
+        {
+          "keyword": "karteikarten erstellen",
+          "volume": 3600,
+          "cpc_eur": 0.49,
+          "competition": 0.52,
+          "kd": 30,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "karteikarten app",
+          "volume": 2900,
+          "cpc_eur": 0.58,
+          "competition": 0.36,
+          "kd": 45,
+          "intent": "informational"
+        },
+        {
+          "keyword": "schemata",
+          "volume": 1900,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "lernplan erstellen",
+          "volume": 1600,
+          "cpc_eur": 0.7,
+          "competition": 0.3,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "spaced repetition",
+          "volume": 1300,
+          "cpc_eur": 0.42,
+          "competition": 0.01,
+          "kd": 33,
+          "intent": "informational"
+        },
+        {
+          "keyword": "lernmethoden übersicht",
+          "volume": 110,
+          "cpc_eur": 1.2,
+          "competition": 0.16,
+          "kd": 28,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "mint-hoehere-mathematik",
+      "fach": "Fachübergreifend (Ingenieurwesen)",
+      "silo": "Höhere Mathematik",
+      "appstore_cpp_key": "maschinenbau",
+      "content_muster": "Tabelle / Regelübersicht",
+      "prioritaet": 3,
+      "notiz": "Fachübergreifend nutzbar — bedient Maschinenbau, E-Technik und Informatik gleichzeitig. Gute interne Verlinkungsdrehscheibe.",
+      "summe_volumen": 2140,
+      "median_kd": 16,
+      "anzahl_keywords": 5,
+      "keywords": [
+        {
+          "keyword": "ableitungsregeln übersicht",
+          "volume": 880,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "taylorreihe formel",
+          "volume": 590,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 24,
+          "intent": "informational"
+        },
+        {
+          "keyword": "laplace transformation tabelle",
+          "volume": 320,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 14,
+          "intent": "informational"
+        },
+        {
+          "keyword": "fourier transformation tabelle",
+          "volume": 210,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 19,
+          "intent": "informational"
+        },
+        {
+          "keyword": "matrizen rechenregeln",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 13,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "psychologie",
+      "fach": "Psychologie",
+      "silo": "Grundlagen & Diagnostik",
+      "appstore_cpp_key": "psychologie",
+      "content_muster": "Theorie-Erklärung",
+      "prioritaet": 4,
+      "notiz": "Hohes Volumen, aber überwiegend KD 28–45. Einstieg über Methodenlehre (testgütekriterien KD 17, gedächtnismodell KD 16).",
+      "summe_volumen": 35570,
+      "median_kd": 29,
+      "anzahl_keywords": 12,
+      "keywords": [
+        {
+          "keyword": "kognitive dissonanz",
+          "volume": 18100,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 45,
+          "intent": "informational"
+        },
+        {
+          "keyword": "maslow bedürfnispyramide",
+          "volume": 5400,
+          "cpc_eur": 0.21,
+          "competition": 0.02,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "klassische konditionierung",
+          "volume": 4400,
+          "cpc_eur": 0.26,
+          "competition": 0.01,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "operante konditionierung",
+          "volume": 4400,
+          "cpc_eur": 0.14,
+          "competition": 0.01,
+          "kd": 28,
+          "intent": "informational"
+        },
+        {
+          "keyword": "big five persönlichkeitsmodell",
+          "volume": 1300,
+          "cpc_eur": 0.38,
+          "competition": 0.12,
+          "kd": 41,
+          "intent": "informational"
+        },
+        {
+          "keyword": "bindungstheorie bowlby",
+          "volume": 880,
+          "cpc_eur": 0.16,
+          "competition": 0.05,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "reliabilität validität objektivität",
+          "volume": 480,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 24,
+          "intent": "informational"
+        },
+        {
+          "keyword": "piaget stufen",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "icd 10 klassifikation",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.04,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "testgütekriterien",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "gedächtnismodell",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "dsm 5 kriterien",
+          "volume": 70,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 22,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "medizin",
+      "fach": "Medizin",
+      "silo": "Vorklinik & Klinik",
+      "appstore_cpp_key": "medizin",
+      "content_muster": "Ablauf / Übersicht",
+      "prioritaet": 4,
+      "notiz": "Gespalten: Große Anatomie-Begriffe sind hart (KD 30–46), aber \"ekg befundung\" (KD 13) und \"physikum lernplan\" (KD 10) sind Einstiegspunkte. YMYL-Thema — medizinische Inhalte brauchen fachliche Gegenlesung.",
+      "summe_volumen": 23110,
+      "median_kd": 30,
+      "anzahl_keywords": 16,
+      "keywords": [
+        {
+          "keyword": "herz anatomie",
+          "volume": 12100,
+          "cpc_eur": 0.36,
+          "competition": 0.15,
+          "kd": 42,
+          "intent": "informational"
+        },
+        {
+          "keyword": "säure basen haushalt",
+          "volume": 4400,
+          "cpc_eur": 0.26,
+          "competition": 0.95,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "niere funktion",
+          "volume": 2900,
+          "cpc_eur": 1.04,
+          "competition": 0.07,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "hirnnerven merkspruch",
+          "volume": 720,
+          "cpc_eur": 0.2,
+          "competition": 0.01,
+          "kd": 25,
+          "intent": "informational"
+        },
+        {
+          "keyword": "zellzyklus phasen",
+          "volume": 720,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anatomie lernen",
+          "volume": 480,
+          "cpc_eur": 0.93,
+          "competition": 0.88,
+          "kd": 30,
+          "intent": "commercial"
+        },
+        {
+          "keyword": "ekg befundung",
+          "volume": 390,
+          "cpc_eur": 1.45,
+          "competition": 0.06,
+          "kd": 13,
+          "intent": "informational"
+        },
+        {
+          "keyword": "hirnnerven übersicht",
+          "volume": 260,
+          "cpc_eur": 0.1,
+          "competition": 0.05,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "laborwerte tabelle",
+          "volume": 260,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 46,
+          "intent": "informational"
+        },
+        {
+          "keyword": "physikum lernplan",
+          "volume": 170,
+          "cpc_eur": 0.77,
+          "competition": 0.09,
+          "kd": 10,
+          "intent": "informational"
+        },
+        {
+          "keyword": "immunsystem übersicht",
+          "volume": 140,
+          "cpc_eur": 0.62,
+          "competition": 0.03,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "anamnese schema",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "blutkreislauf schema",
+          "volume": 140,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 34,
+          "intent": "informational"
+        },
+        {
+          "keyword": "blutgasanalyse interpretation",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "nervensystem übersicht",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.05,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "hormone übersicht",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 24,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "biologie",
+      "fach": "Biologie",
+      "silo": "Zellbiologie & Genetik",
+      "appstore_cpp_key": "biologie",
+      "content_muster": "Ablauf / Prozess",
+      "prioritaet": 4,
+      "notiz": "Solide Mittelklasse (KD 13–28). Konkurriert stark mit Schul-Content — Differenzierung über Uni-Niveau nötig.",
+      "summe_volumen": 11340,
+      "median_kd": 20,
+      "anzahl_keywords": 6,
+      "keywords": [
+        {
+          "keyword": "mendelsche regeln",
+          "volume": 8100,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 28,
+          "intent": "informational"
+        },
+        {
+          "keyword": "mitose meiose unterschied",
+          "volume": 1000,
+          "cpc_eur": 0.12,
+          "competition": 0.01,
+          "kd": 16,
+          "intent": "informational"
+        },
+        {
+          "keyword": "photosynthese ablauf",
+          "volume": 720,
+          "cpc_eur": 0.26,
+          "competition": 0.01,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "proteinbiosynthese ablauf",
+          "volume": 720,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "enzyme funktion",
+          "volume": 480,
+          "cpc_eur": 0.16,
+          "competition": 0.01,
+          "kd": 27,
+          "intent": "informational"
+        },
+        {
+          "keyword": "zellatmung ablauf",
+          "volume": 320,
+          "cpc_eur": 0.14,
+          "competition": 0.01,
+          "kd": 13,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "informatik",
+      "fach": "Informatik",
+      "silo": "Grundlagen",
+      "appstore_cpp_key": "informatik",
+      "content_muster": "Übersicht / Tabelle",
+      "prioritaet": 4,
+      "notiz": "Viele deutsche Suchbegriffe haben praktisch kein Volumen — deutsche Informatikstudierende suchen überwiegend auf Englisch. Falls ausgebaut, dann eher unter /en/.",
+      "summe_volumen": 3160,
+      "median_kd": 22,
+      "anzahl_keywords": 5,
+      "keywords": [
+        {
+          "keyword": "landau notation",
+          "volume": 1300,
+          "cpc_eur": 0.04,
+          "competition": 0.33,
+          "kd": 22,
+          "intent": "informational"
+        },
+        {
+          "keyword": "tcp ip modell",
+          "volume": 1000,
+          "cpc_eur": 0.32,
+          "competition": 0.01,
+          "kd": 20,
+          "intent": "informational"
+        },
+        {
+          "keyword": "osi modell schichten",
+          "volume": 480,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 29,
+          "intent": "informational"
+        },
+        {
+          "keyword": "normalformen datenbank",
+          "volume": 210,
+          "cpc_eur": 0.45,
+          "competition": 0.06,
+          "kd": 27,
+          "intent": "informational"
+        },
+        {
+          "keyword": "uml diagramme übersicht",
+          "volume": 170,
+          "cpc_eur": 0.0,
+          "competition": 0.02,
+          "kd": 15,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "chemie",
+      "fach": "Chemie",
+      "silo": "Allgemeine & Organische Chemie",
+      "appstore_cpp_key": "chemie",
+      "content_muster": "Rechenweg / Mechanismus",
+      "prioritaet": 4,
+      "notiz": "\"ph wert berechnen\" (1900, KD 18) ist der klare Einstiegspunkt.",
+      "summe_volumen": 2270,
+      "median_kd": 18,
+      "anzahl_keywords": 4,
+      "keywords": [
+        {
+          "keyword": "ph wert berechnen",
+          "volume": 1900,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "redoxreaktionen aufstellen",
+          "volume": 170,
+          "cpc_eur": 0.01,
+          "competition": 0.02,
+          "kd": 17,
+          "intent": "informational"
+        },
+        {
+          "keyword": "periodensystem lernen",
+          "volume": 110,
+          "cpc_eur": 0.0,
+          "competition": 0.05,
+          "kd": 18,
+          "intent": "informational"
+        },
+        {
+          "keyword": "reaktionsmechanismen organische chemie",
+          "volume": 90,
+          "cpc_eur": 0.0,
+          "competition": 0.04,
+          "kd": 23,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "bwl-strategie-marketing",
+      "fach": "BWL",
+      "silo": "Strategie & Marketing",
+      "appstore_cpp_key": "bwl",
+      "content_muster": "Framework-Erklärung",
+      "prioritaet": 5,
+      "notiz": "Sehr hohes Volumen, aber KD 26–41 — fest in der Hand von Studyflix, StudySmarter und Unternehmensberatungs-Blogs. Erst angehen, wenn die Domain Autorität aufgebaut hat.",
+      "summe_volumen": 47180,
+      "median_kd": 31,
+      "anzahl_keywords": 8,
+      "keywords": [
+        {
+          "keyword": "abc analyse",
+          "volume": 9900,
+          "cpc_eur": 1.08,
+          "competition": 0.01,
+          "kd": 32,
+          "intent": "informational"
+        },
+        {
+          "keyword": "bcg matrix",
+          "volume": 9900,
+          "cpc_eur": 1.26,
+          "competition": 0.01,
+          "kd": 38,
+          "intent": "informational"
+        },
+        {
+          "keyword": "balanced scorecard",
+          "volume": 8100,
+          "cpc_eur": 2.19,
+          "competition": 0.02,
+          "kd": 41,
+          "intent": "informational"
+        },
+        {
+          "keyword": "produktlebenszyklus",
+          "volume": 6600,
+          "cpc_eur": 1.5,
+          "competition": 0.01,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "ansoff matrix",
+          "volume": 5400,
+          "cpc_eur": 1.14,
+          "competition": 0.01,
+          "kd": 27,
+          "intent": "informational"
+        },
+        {
+          "keyword": "pestel analyse",
+          "volume": 4400,
+          "cpc_eur": 0.98,
+          "competition": 0.02,
+          "kd": 31,
+          "intent": "informational"
+        },
+        {
+          "keyword": "porters five forces",
+          "volume": 2400,
+          "cpc_eur": 1.31,
+          "competition": 0.01,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "marketing mix 4p",
+          "volume": 480,
+          "cpc_eur": 0.9,
+          "competition": 0.03,
+          "kd": 26,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "vwl",
+      "fach": "VWL",
+      "silo": "Volkswirtschaftslehre",
+      "appstore_cpp_key": "bwl",
+      "content_muster": "Formel / Rechenschema",
+      "prioritaet": 5,
+      "notiz": "Dünne Datenlage, KD 30+. Niedrige Priorität.",
+      "summe_volumen": 1690,
+      "median_kd": 32,
+      "anzahl_keywords": 2,
+      "keywords": [
+        {
+          "keyword": "bip berechnen",
+          "volume": 1300,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 30,
+          "intent": "informational"
+        },
+        {
+          "keyword": "preiselastizität berechnen",
+          "volume": 390,
+          "cpc_eur": 0.0,
+          "competition": 0.01,
+          "kd": 32,
+          "intent": "informational"
+        }
+      ]
+    },
+    {
+      "id": "lehramt",
+      "fach": "Lehramt",
+      "silo": "Didaktik",
+      "appstore_cpp_key": "lehramt",
+      "content_muster": "Vorlage / Aufbau",
+      "prioritaet": 5,
+      "notiz": "Kleiner Cluster, aber sehr passgenaues Vorlagen-Format.",
+      "summe_volumen": 1180,
+      "median_kd": 24,
+      "anzahl_keywords": 2,
+      "keywords": [
+        {
+          "keyword": "didaktische analyse",
+          "volume": 590,
+          "cpc_eur": 0.0,
+          "competition": 0.33,
+          "kd": 24,
+          "intent": "informational"
+        },
+        {
+          "keyword": "lernziele formulieren",
+          "volume": 590,
+          "cpc_eur": 0.0,
+          "competition": 0.0,
+          "kd": 20,
+          "intent": "informational"
+        }
+      ]
+    }
+  ]
+}
