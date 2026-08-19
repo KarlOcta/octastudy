@@ -1,0 +1,451 @@
+[
+  {
+    "slug": "823-bgb",
+    "silo": "zivilrecht",
+    "rechtsgebiet": "Zivilrecht (BGB)",
+    "teilgebiet": "Deliktsrecht",
+    "h1": "Prüfungsschema § 823 Abs. 1 BGB",
+    "metaTitle": "§ 823 BGB Schema — Prüfungsschema Deliktsrecht",
+    "metaDescription": "Vollständiges Prüfungsschema zu § 823 Abs. 1 BGB: Tatbestand, Rechtswidrigkeit, Verschulden, Rechtsfolge. Mit Definitionen, Streitständen, PDF zum Ausdrucken und Karteikarten-Deck.",
+    "keyword": "823 BGB Schema",
+    "datePublished": "2026-08-18",
+    "dateModified": "2026-08-19",
+    "intro": "Die zentrale Anspruchsgrundlage des Deliktsrechts — Grundlage fast jeder Zivilrechtsklausur, in der es um Schadensersatz aus unerlaubter Handlung geht. Vollständig aufgebaut, mit den Definitionen der Tatbestandsmerkmale und den Streitständen, die in der Klausur erwartet werden.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Tatbestand",
+        "points": [
+          { "label": "1. Rechtsgutsverletzung", "text": "Verletzung eines der in § 823 I BGB genannten Rechtsgüter: Leben, Körper, Gesundheit, Freiheit, Eigentum oder ein „sonstiges Recht\" — etwa der eingerichtete und ausgeübte Gewerbebetrieb oder das allgemeine Persönlichkeitsrecht." },
+          { "label": "2. Verletzungshandlung", "text": "Handlung oder — bei bestehender Garantenstellung — pflichtwidriges Unterlassen, das die Rechtsgutsverletzung herbeigeführt hat." },
+          { "label": "3. Haftungsbegründende Kausalität", "text": "Ursächlicher Zusammenhang zwischen Handlung und Rechtsgutsverletzung: Äquivalenz (conditio sine qua non), Adäquanz und Schutzzweck der Norm." }
+        ]
+      },
+      { "roman": "II.", "title": "Rechtswidrigkeit", "text": "Bei Verletzung eines der genannten Rechtsgüter grundsätzlich indiziert. Ausnahme: Vorliegen eines Rechtfertigungsgrundes, etwa Notwehr (§ 227 BGB), Notstand (§§ 228, 904 BGB) oder eine wirksame Einwilligung." },
+      { "roman": "III.", "title": "Verschulden", "text": "Vorsatz oder Fahrlässigkeit, § 276 BGB. Zusätzlich zu prüfen: die Verschuldensfähigkeit nach §§ 827, 828 BGB." },
+      { "roman": "IV.", "title": "Haftungsausfüllende Kausalität", "text": "Ursächlicher Zusammenhang zwischen der Rechtsgutsverletzung und dem konkret eingetretenen Schaden." },
+      { "roman": "V.", "title": "Schaden", "text": "Vermögens- oder Nichtvermögensschaden nach §§ 249 ff. BGB." },
+      { "roman": "VI.", "title": "Rechtsfolge", "text": "Schadensersatz: grundsätzlich Naturalrestitution (§ 249 BGB), bei Unmöglichkeit oder Unverhältnismäßigkeit Geldersatz (§ 251 BGB). Ein Mitverschulden des Geschädigten wird über § 254 BGB berücksichtigt." }
+      ],
+    "streitstaende": [
+      { "tag": "Unterlassen", "title": "Garantenstellung", "text": "Bei Unterlassenstäterschaft ist die Garantenstellung eigenständig zu prüfen — häufige Fallstricke bei Ingerenz und Verkehrssicherungspflichten." },
+      { "tag": "Rahmenrecht", "title": "Eingerichteter und ausgeübter Gewerbebetrieb", "text": "Nur ein Rahmenrecht: Die Rechtswidrigkeit ist hier nicht indiziert, sondern über eine Interessen- und Güterabwägung gesondert zu begründen." },
+      { "tag": "Vermögensschäden", "title": "Kein allgemeiner Vermögensschutz", "text": "§ 823 I BGB schützt nicht das Vermögen als solches — reine Vermögensschäden ohne Verletzung eines benannten Rechtsguts sind hierüber nicht ersatzfähig." }
+    ],
+    "faq": [
+      { "q": "Welche sechs Prüfungspunkte hat § 823 I BGB?", "a": "Rechtsgutsverletzung, Verletzungshandlung, haftungsbegründende Kausalität, Rechtswidrigkeit, Verschulden und haftungsausfüllende Kausalität mit Schaden — in dieser Reihenfolge." },
+      { "q": "Was bedeutet haftungsbegründende Kausalität bei § 823 BGB?", "a": "Der ursächliche Zusammenhang zwischen der Verletzungshandlung und der Rechtsgutsverletzung — geprüft über Äquivalenz (conditio sine qua non), Adäquanz und den Schutzzweck der Norm." },
+      { "q": "Wann ist die Rechtswidrigkeit bei § 823 I BGB indiziert?", "a": "Durch die Erfüllung des Tatbestands. Ausnahme: Es liegt ein Rechtfertigungsgrund vor, etwa Notwehr (§ 227 BGB), Notstand (§§ 228, 904 BGB) oder eine wirksame Einwilligung." },
+      { "q": "Warum ist der eingerichtete und ausgeübte Gewerbebetrieb nur ein Rahmenrecht?", "a": "Weil die Rechtswidrigkeit hier nicht indiziert ist, sondern über eine Interessen- und Güterabwägung eigenständig begründet werden muss — anders als bei den ausdrücklich genannten Rechtsgütern." },
+      { "q": "Schützt § 823 I BGB reine Vermögensschäden?", "a": "Nein. Ohne Verletzung eines der ausdrücklich genannten Rechtsgüter (Leben, Körper, Gesundheit, Freiheit, Eigentum, sonstiges Recht) sind reine Vermögensschäden über § 823 I BGB nicht ersatzfähig." }
+    ]
+  },
+  {
+    "slug": "985-bgb",
+    "silo": "zivilrecht",
+    "rechtsgebiet": "Zivilrecht (BGB)",
+    "teilgebiet": "Sachenrecht",
+    "h1": "Prüfungsschema § 985 BGB",
+    "metaTitle": "§ 985 BGB Schema — Herausgabeanspruch (EBV)",
+    "metaDescription": "Prüfungsschema zu § 985 BGB: Eigentümer, Besitzer, Recht zum Besitz nach § 986 BGB, Erlöschen des Anspruchs. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "985 BGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "Der Vindikationsanspruch aus § 985 BGB ist der zentrale dingliche Herausgabeanspruch des Eigentumsrechts und Ausgangspunkt für das gesamte Eigentümer-Besitzer-Verhältnis (EBV) der §§ 987 ff. BGB. Klausurrelevant ist vor allem die Feststellung des Rechts zum Besitz nach § 986 BGB, da hier die gesamte schuldrechtliche Wertung des Falls (Kauf, Miete, Sicherungsübereignung) einfließt.",
+    "schema": [
+      { "roman": "I.", "title": "Anspruchsteller ist Eigentümer", "text": "Der Anspruchsteller muss zum maßgeblichen Zeitpunkt (grundsätzlich letzte mündliche Verhandlung) Eigentümer der Sache sein. Bei beweglichen Sachen ist die Eigentumslage nach §§ 929 ff. BGB zu prüfen, bei Grundstücken nach §§ 873, 925 BGB; zu beachten sind gutgläubiger Erwerb (§§ 932 ff. BGB) und mögliche Zwischenerwerbe Dritter." },
+      { "roman": "II.", "title": "Anspruchsgegner ist Besitzer", "text": "Der Anspruchsgegner muss im Zeitpunkt der letzten mündlichen Verhandlung unmittelbarer oder mittelbarer Besitzer (§ 868 BGB) der Sache sein. Besitzdiener (§ 855 BGB) sind nicht passivlegitimiert; richtiger Anspruchsgegner ist dann der Besitzherr." },
+      {
+        "roman": "III.",
+        "title": "Kein Recht zum Besitz (§ 986 BGB)",
+        "text": "Der Besitzer darf kein Recht zum Besitz gegenüber dem Eigentümer haben — sei es aus schuldrechtlichen Verhältnissen (§§ 535, 598, 604 BGB), dinglichen Rechten (Nießbrauch, Pfandrecht) oder gesetzlichen Vorschriften.",
+        "points": [
+          { "label": "1. Unmittelbares Besitzrecht", "text": "Regelmäßig folgt das Besitzrecht aus einem wirksamen Kausalverhältnis zwischen den Parteien (z. B. Kaufvertrag mit Eigentumsvorbehalt, Mietvertrag)." },
+          { "label": "2. Abgeleitetes Recht Dritter, § 986 I 1 Var. 2 BGB", "text": "Ist der Besitzer nicht unmittelbar berechtigt, kann er sich auf ein Recht des mittelbaren Besitzers berufen, wenn dieser dem Eigentümer gegenüber zur Überlassung befugt war (mehrstufiges Besitzmittlungsverhältnis, § 871 BGB)." }
+        ]
+      },
+      { "roman": "IV.", "title": "Kein Erlöschen des Anspruchs", "text": "Der Anspruch darf nicht durch Erfüllung (§ 362 BGB), Unmöglichkeit (§ 275 BGB) oder Verjährung erloschen sein. § 985 BGB verjährt gemäß § 197 I Nr. 1 BGB erst in 30 Jahren." }
+    ],
+    "streitstaende": [
+      { "tag": "Konkurrenzen", "title": "Sperrwirkung des EBV", "text": "Nach h. M. verdrängen die §§ 987 ff. BGB als abschließende Sonderregelung Ansprüche aus Delikt (§§ 823 ff. BGB) und Bereicherungsrecht (§§ 812 ff. BGB), solange der Besitzer unentgeltlich, gutgläubig und unverklagt besitzt." },
+      { "tag": "Besitzrecht", "title": "Fortbestehen nach Vertragsende", "text": "Grundsätzlich entfällt das Besitzrecht mit wirksamer Kündigung oder Anfechtung des Kausalgeschäfts, sodass die Vindikation ab diesem Zeitpunkt durchgreift — Ausnahme: ein besonderes Zurückbehaltungsrecht." },
+      { "tag": "Besitzmittlung", "title": "Mehrstufiges Besitzmittlungsverhältnis", "text": "Bei mehrstufigen Besitzketten (§ 871 BGB) bleibt das Besitzrecht des unmittelbaren Besitzers nach h. M. bestehen, solange es auf ein wirksames Recht des mittelbaren Besitzers zurückgeführt werden kann." }
+    ],
+    "faq": [
+      { "q": "Wie ist das Prüfungsschema zu § 985 BGB aufgebaut?", "a": "Die Prüfung gliedert sich in vier Stufen: Eigentümerstellung des Anspruchstellers, Besitzerstellung des Anspruchsgegners, Fehlen eines Rechts zum Besitz nach § 986 BGB und Nichterlöschen des Anspruchs." },
+      { "q": "Was ist der Unterschied zwischen unmittelbarem und mittelbarem Besitz bei § 985 BGB?", "a": "Unmittelbarer Besitzer ist, wer die tatsächliche Sachherrschaft ausübt (§ 854 BGB); mittelbarer Besitzer, wer die Sache über einen anderen aufgrund eines Besitzmittlungsverhältnisses (§ 868 BGB) besitzt. Beide können passivlegitimiert sein." },
+      { "q": "Wann hat der Besitzer ein Recht zum Besitz im Sinne des § 986 BGB?", "a": "Insbesondere bei wirksamen schuldrechtlichen Verträgen wie Miete, Leihe oder Verwahrung sowie bei dinglichen Rechten wie Nießbrauch oder Pfandrecht. Auch ein von einem berechtigten mittelbaren Besitzer abgeleitetes Recht genügt." },
+      { "q": "Verdrängt das EBV Ansprüche aus § 823 BGB und § 812 BGB?", "a": "Nach h. M. entfaltet das EBV im Verhältnis eines redlichen, unverklagten und unentgeltlichen Besitzers eine Sperrwirkung. Sie greift nicht, sobald der Besitzer bösgläubig ist, verklagt wurde oder deliktisch qualifiziert gehandelt hat (§ 992 BGB)." },
+      { "q": "Wie lange verjährt der Herausgabeanspruch aus § 985 BGB?", "a": "Der Anspruch verjährt gemäß § 197 I Nr. 1 BGB in 30 Jahren und damit erheblich länger als die regelmäßige Verjährungsfrist des § 195 BGB von drei Jahren." }
+    ]
+  },
+  {
+    "slug": "812-bgb",
+    "silo": "zivilrecht",
+    "rechtsgebiet": "Zivilrecht (BGB)",
+    "teilgebiet": "Bereicherungsrecht",
+    "h1": "Prüfungsschema § 812 Abs. 1 BGB",
+    "metaTitle": "§ 812 BGB Schema — Prüfungsschema Bereicherungsrecht",
+    "metaDescription": "Prüfungsschema zu § 812 Abs. 1 BGB: Leistungs- und Nichtleistungskondiktion, Rechtsgrund, Rechtsfolge nach § 818 BGB. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "812 BGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "§ 812 Abs. 1 BGB ist eine der klausurträchtigsten Normen des Zivilrechts, da sie regelmäßig als Auffangnorm nach gescheiterten vertraglichen oder deliktischen Ansprüchen zu prüfen ist. Die Norm unterscheidet systematisch zwischen Leistungs- und Nichtleistungskondiktion, deren sauberes Auseinanderhalten im Dreiecksverhältnis examensrelevant ist.",
+    "schema": [
+      { "roman": "I.", "title": "Etwas erlangt", "text": "Der Anspruchsgegner muss einen vermögenswerten Vorteil irgendeiner Art erlangt haben — Besitz, Eigentum, Forderungen, Befreiung von einer Verbindlichkeit oder sonstige geldwerte Positionen." },
+      {
+        "roman": "II.",
+        "title": "Durch Leistung oder in sonstiger Weise",
+        "text": "Maßgeblich ist, auf welchem Weg der Vorteil erlangt wurde, da hiervon Prüfungsstruktur und Passivlegitimation abhängen.",
+        "points": [
+          { "label": "1. Leistung (Alt. 1)", "text": "Jede bewusste und zweckgerichtete Mehrung fremden Vermögens. Maßgeblich ist der objektive Empfängerhorizont: Wer hat aus Sicht des Empfängers wessen Verbindlichkeit erfüllen wollen?" },
+          { "label": "2. Nichtleistungskondiktion (Alt. 2)", "text": "Erfasst Fälle ohne bewusste Zuwendung — Eingriff, Verwendung oder Rückgriff. Wegen des Subsidiaritätsgrundsatzes nur zu prüfen, wenn keine Leistungsbeziehung zwischen den Parteien besteht." }
+        ]
+      },
+      {
+        "roman": "III.",
+        "title": "Ohne Rechtsgrund",
+        "text": "Es darf kein Rechtsgrund (causa) bestehen, der die Vermögensverschiebung rechtfertigt.",
+        "points": [
+          { "label": "1. Bei der Leistungskondiktion", "text": "Fehlt der Rechtsgrund, wenn der bezweckte Erfolg (regelmäßig Erfüllung einer vermeintlichen Verbindlichkeit) nicht eingetreten ist — etwa weil der Vertrag nichtig, angefochten oder gar nicht zustande gekommen ist." },
+          { "label": "2. Sperrwirkungen beachten", "text": "§ 814 BGB (Ausschluss bei Kenntnis der Nichtschuld), § 815 BGB (Zweckverfehlung) und § 817 S. 2 BGB (beiderseitiger Gesetzes-/Sittenverstoß) können die Rückforderung ausschließen." }
+        ]
+      },
+      { "roman": "IV.", "title": "Rechtsfolge", "text": "Nach § 818 I BGB ist das Erlangte nebst Nutzungen herauszugeben, bei Unmöglichkeit Wertersatz (§ 818 II BGB). Der Schuldner kann sich auf Entreicherung berufen (§ 818 III BGB) — ausgeschlossen bei Kenntnis des fehlenden Rechtsgrunds (§ 819 I BGB)." }
+    ],
+    "streitstaende": [
+      { "tag": "Dogmatik", "title": "Leistungs- vs. Nichtleistungskondiktion", "text": "Ob ein Vorteil durch Leistung oder „in sonstiger Weise\" erlangt wurde, entscheidet sich nach h. M. ausschließlich nach dem objektiven Empfängerhorizont, nicht nach subjektiven Vorstellungen des Zuwendenden." },
+      { "tag": "Systematik", "title": "Vorrang der Leistungskondiktion", "text": "Besteht zwischen den Parteien eine — auch nichtige — Leistungsbeziehung, ist die Eingriffskondiktion gesperrt, um die Wertungen des Leistungsverhältnisses nicht zu unterlaufen." },
+      { "tag": "Dreiecksverhältnis", "title": "Durchgriffskondiktion bei Anweisungsfällen", "text": "Bei fehlerhafter Anweisung lehnt die h. M. eine Durchgriffskondiktion beim Zuwendungsempfänger ab und verweist auf die getrennte Rückabwicklung in Deckungs- und Valutaverhältnis." }
+    ],
+    "faq": [
+      { "q": "Wie prüft man § 812 BGB im Gutachten?", "a": "Man prüft, ob der Anspruchsgegner „etwas erlangt\" hat, ordnet dies als Leistung oder sonstige Zuwendung ein und stellt fest, ob hierfür ein Rechtsgrund bestand. Fehlt der Rechtsgrund und greifen keine Sperrwirkungen, folgt die Rechtsfolge aus § 818 BGB." },
+      { "q": "Was ist der Unterschied zwischen Leistungs- und Nichtleistungskondiktion?", "a": "Die Leistungskondiktion betrifft bewusste, zweckgerichtete Vermögensmehrung, etwa bei einem nichtigen Kaufvertrag. Die Nichtleistungskondiktion erfasst Vorteile ohne eine solche Zuwendung, etwa durch Eingriff, und ist gegenüber der Leistungskondiktion subsidiär." },
+      { "q": "Wann ist die Eingriffskondiktion gesperrt?", "a": "Wenn zwischen den Beteiligten eine Leistungsbeziehung besteht, weil dann vorrangig die Leistungskondiktion zu prüfen ist — sonst würden Einwendungen aus dem Leistungsverhältnis, etwa § 814 BGB, umgangen." },
+      { "q": "Was bedeutet Entreicherung nach § 818 Abs. 3 BGB?", "a": "Der Bereicherungsschuldner besitzt den erlangten Vorteil nicht mehr und ist daher nicht mehr bereichert. Der Einwand ist nach § 819 I BGB ausgeschlossen, wenn der Schuldner den Mangel des Rechtsgrunds kannte." },
+      { "q": "Welche Rolle spielt § 814 BGB bei § 812 BGB?", "a": "§ 814 BGB schließt die Rückforderung aus, wenn der Leistende bei Erbringung der Leistung positiv wusste, dass er nicht verpflichtet war. Er greift nur bei der Leistungskondiktion und nicht bei bloß fahrlässiger Unkenntnis." }
+    ]
+  },
+  {
+    "slug": "280-bgb",
+    "silo": "zivilrecht",
+    "rechtsgebiet": "Zivilrecht (BGB)",
+    "teilgebiet": "Allgemeines Schuldrecht",
+    "h1": "Prüfungsschema § 280 Abs. 1 BGB",
+    "metaTitle": "§ 280 BGB Schema — Schadensersatz statt/neben der Leistung",
+    "metaDescription": "Prüfungsschema zu § 280 Abs. 1 BGB: Pflichtverletzung, Vertretenmüssen, Abgrenzung zu §§ 281–283 BGB. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "280 BGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "§ 280 Abs. 1 BGB ist die zentrale Grundnorm des Leistungsstörungsrechts und Ausgangspunkt praktisch jeder Klausur mit vertraglichem Schadensersatzanspruch. Besondere Sorgfalt erfordert die Abgrenzung zwischen Schadensersatz statt der Leistung (§§ 281–283 BGB) und Schadensersatz neben der Leistung.",
+    "schema": [
+      { "roman": "I.", "title": "Schuldverhältnis", "text": "Zwischen den Parteien muss ein Schuldverhältnis i. S. d. § 241 BGB bestehen — vertraglich, vorvertraglich (§ 311 II BGB) oder gesetzlich." },
+      {
+        "roman": "II.",
+        "title": "Pflichtverletzung",
+        "text": "Der Schuldner muss objektiv gegen eine aus dem Schuldverhältnis folgende Pflicht verstoßen haben — Leistungspflichten oder Schutzpflichten (§ 241 II BGB).",
+        "points": [
+          { "label": "1. Nichtleistung", "text": "Der Schuldner erbringt die geschuldete Leistung überhaupt nicht (Unmöglichkeit § 275 BGB, oder Verzug)." },
+          { "label": "2. Schlechtleistung", "text": "Die erbrachte Leistung weicht qualitativ oder quantitativ ab — insbesondere Sach- oder Rechtsmängel (§§ 434, 633 BGB)." },
+          { "label": "3. Schutzpflichtverletzung", "text": "Verletzung von Aufklärungs-, Obhuts- oder Rücksichtnahmepflichten nach § 241 II BGB." }
+        ]
+      },
+      { "roman": "III.", "title": "Vertretenmüssen", "text": "Der Schuldner muss die Pflichtverletzung gemäß § 276 BGB zu vertreten haben. Nach § 280 I 2 BGB wird das Vertretenmüssen vermutet — den Schuldner trifft die Beweislast für die Exkulpation. Zurechnung von Erfüllungsgehilfen über § 278 BGB." },
+      { "roman": "IV.", "title": "Schaden", "text": "Beim Gläubiger muss ein nach §§ 249 ff. BGB ersatzfähiger Schaden eingetreten sein — ermittelt nach der Differenzhypothese des § 249 I BGB." },
+      { "roman": "V.", "title": "Kausalität", "text": "Zwischen Pflichtverletzung und Schaden muss haftungsausfüllende Kausalität bestehen; die Pflichtverletzung muss conditio sine qua non für den Schaden sein." },
+      { "roman": "Hinweis", "title": "Schadensersatz statt der Leistung", "text": "§ 280 I BGB allein trägt nur Schadensersatz neben der Leistung. Für Schadensersatz statt der Leistung sind zusätzlich zu prüfen: § 281 BGB (Fristsetzung zur Nacherfüllung, ggf. entbehrlich nach Abs. 2), § 282 BGB (Schutzpflichtverletzung) oder § 283 BGB (nachträgliche Unmöglichkeit)." }
+    ],
+    "streitstaende": [
+      { "tag": "Abgrenzung", "title": "Schadensersatz statt vs. neben der Leistung", "text": "Entscheidend ist, ob der Schaden durch rechtzeitige Nacherfüllung noch hätte vermieden werden können. Verzögerungsschäden sind neben der Leistung, der endgültige Ausfall der Leistung ist statt der Leistung zu ersetzen." },
+      { "tag": "§ 281 II BGB", "title": "Entbehrlichkeit der Fristsetzung", "text": "Umstritten, wie streng die Anforderungen an eine „ernsthafte und endgültige\" Erfüllungsverweigerung zu ziehen sind — die h. M. verlangt ein eindeutiges „letztes Wort\" des Schuldners." },
+      { "tag": "Konkurrenzen", "title": "Verhältnis zu §§ 437, 634 BGB", "text": "Im Kauf- und Werkvertragsrecht wird § 280 I BGB nicht verdrängt, sondern über die Verweisungsnormen § 437 Nr. 3 bzw. § 634 Nr. 4 BGB aktiviert und um die Sondervorschriften (Verjährung, Nacherfüllungsvorrang) ergänzt." }
+    ],
+    "faq": [
+      { "q": "Wie lautet das Schema zu § 280 BGB?", "a": "Schuldverhältnis, Pflichtverletzung, Vertretenmüssen (mit Verschuldensvermutung), Schaden und Kausalität. Bei Schadensersatz statt der Leistung zusätzlich §§ 281, 282 oder 283 BGB." },
+      { "q": "Was ist der Unterschied zwischen Schadensersatz statt und neben der Leistung?", "a": "Schadensersatz neben der Leistung ersetzt Schäden trotz (späterer) Erfüllung und erfordert nur § 280 I BGB. Schadensersatz statt der Leistung tritt an die Stelle der Primärleistung und verlangt zusätzlich §§ 281–283 BGB." },
+      { "q": "Wann ist die Fristsetzung nach § 281 BGB entbehrlich?", "a": "Wenn der Schuldner die Leistung ernsthaft und endgültig verweigert oder besondere Umstände die sofortige Geltendmachung rechtfertigen (§ 281 II BGB)." },
+      { "q": "Wer trägt die Beweislast für das Vertretenmüssen bei § 280 BGB?", "a": "Nach § 280 I 2 BGB wird das Vertretenmüssen vermutet; der Schuldner muss sich exkulpieren, also sein Nichtvertretenmüssen beweisen." },
+      { "q": "Gilt § 280 BGB auch im Kaufrecht neben § 437 BGB?", "a": "§ 280 I BGB ist im Kaufrecht über die Verweisung des § 437 Nr. 3 BGB anzuwenden, sobald Mangel und Gefahrübergang vorliegen — ergänzt um die kaufrechtlichen Besonderheiten." }
+    ]
+  },
+  {
+    "slug": "929-bgb",
+    "silo": "zivilrecht",
+    "rechtsgebiet": "Zivilrecht (BGB)",
+    "teilgebiet": "Sachenrecht",
+    "h1": "Prüfungsschema § 929 S. 1 BGB",
+    "metaTitle": "§ 929 BGB Schema — Übereignung beweglicher Sachen",
+    "metaDescription": "Prüfungsschema zu § 929 S. 1 BGB: Einigung, Übergabe, Berechtigung, gutgläubiger Erwerb nach § 932 BGB. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "929 BGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "Die Übereignung nach § 929 S. 1 BGB ist die zentrale Norm des Mobiliarsachenrechts und in nahezu jeder sachenrechtlichen Klausur relevant. Examensrelevant wird die Norm vor allem im Zusammenspiel mit dem gutgläubigen Erwerb (§ 932 BGB), wenn der Veräußerer nicht Eigentümer ist.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Einigung",
+        "text": "Durch zwei korrespondierende Willenserklärungen zustande kommender dinglicher Vertrag, gerichtet auf den unmittelbaren Eigentumsübergang.",
+        "points": [
+          { "label": "1. Angebot und Annahme", "text": "Auf die dingliche Einigung finden die allgemeinen Vorschriften über Willenserklärungen entsprechend Anwendung (§§ 104 ff., 116 ff., 145 ff. BGB)." },
+          { "label": "2. Bestimmtheitsgrundsatz", "text": "Die Einigung muss sich auf eine konkret individualisierte Sache beziehen — bei mehreren Sachen muss im Übereignungszeitpunkt feststehen, welche gemeint ist." }
+        ]
+      },
+      {
+        "roman": "II.",
+        "title": "Übergabe oder Übergabesurrogat",
+        "text": "Vollständige Verschaffung des unmittelbaren Besitzes durch den Veräußerer an den Erwerber.",
+        "points": [
+          { "label": "1. Übergabe i. S. d. § 929 S. 1 BGB", "text": "Ein tatsächlicher, vom Willen getragener Besitzwechsel; der Veräußerer muss den Besitz vollständig aufgeben." },
+          { "label": "2. Übergabesurrogate", "text": "Statt realer Übergabe genügen §§ 930, 931 BGB — Besitzkonstitut oder Abtretung des Herausgabeanspruchs. Beim gutgläubigen Erwerb wirken sich diese über §§ 933, 934 BGB restriktiv aus." }
+        ]
+      },
+      { "roman": "III.", "title": "Einigsein bei Übergabe", "text": "Einigung und Übergabe müssen im Übergabezeitpunkt fortbestehen. Ein wirksamer Widerruf oder eine Anfechtung vor Vollzug lässt das „Einigsein\" entfallen." },
+      {
+        "roman": "IV.",
+        "title": "Berechtigung des Veräußerers",
+        "text": "Der Veräußerer muss Eigentümer oder anderweitig zur Verfügung berechtigt sein (§ 185 BGB).",
+        "points": [
+          { "label": "1. Fehlende Berechtigung", "text": "Fehlt sie, geht das Eigentum nach § 929 S. 1 BGB grundsätzlich nicht über." },
+          { "label": "2. Gutgläubiger Erwerb, § 932 BGB", "text": "Subsidiär: Rechtsgeschäft nach § 929 S. 1 BGB, guter Glaube des Erwerbers (§ 932 II BGB), kein Abhandenkommen (§ 935 BGB) und — je nach Übergabeform — Modifikationen der §§ 933, 934 BGB." }
+        ]
+      }
+    ],
+    "streitstaende": [
+      { "tag": "§ 932 BGB", "title": "Gutgläubiger Erwerb vom Nichtberechtigten", "text": "Streitig ist, welche Nachforschungspflichten den Erwerber treffen, insbesondere im privaten Gebrauchtwarenhandel oder bei auffällig günstigen Kaufpreisen — grobe Fahrlässigkeit schadet nach § 932 II BGB." },
+      { "tag": "§ 935 BGB", "title": "Ausschluss bei Abhandenkommen", "text": "Der gutgläubige Erwerb ist ausgeschlossen, wenn die Sache dem Eigentümer gestohlen wurde oder abhandengekommen ist — Ausnahme für Geld, Inhaberpapiere und öffentliche Versteigerungen." },
+      { "tag": "Übergabe", "title": "Geheißerwerb und mittelbarer Besitz", "text": "Erfolgt die Übergabe durch eine vom Veräußerer angewiesene Geheißperson, ist streitig, unter welchen Voraussetzungen dieser mittelbare Übergabevollzug § 929 S. 1 BGB genügt." }
+    ],
+    "faq": [
+      { "q": "Wie ist das Schema zu § 929 BGB aufgebaut?", "a": "Einigung, Übergabe (oder Surrogat nach §§ 930, 931 BGB), Einigsein bei Übergabe und Berechtigung des Veräußerers. Fehlt die Berechtigung, folgt als Auffangprüfung der gutgläubige Erwerb nach § 932 BGB." },
+      { "q": "Was ist der Unterschied zwischen § 929 S. 1 und § 929 S. 2 BGB?", "a": "S. 1 verlangt Einigung und tatsächliche Übergabe. S. 2 regelt den Fall, dass der Erwerber bereits Besitzer ist, sodass die bloße dingliche Einigung genügt (Übereignung „kurzer Hand\")." },
+      { "q": "Wann liegt ein Abhandenkommen nach § 935 BGB vor?", "a": "Bei unfreiwilligem Verlust des unmittelbaren Besitzes durch den Eigentümer, etwa bei Diebstahl. Dann ist der gutgläubige Erwerb ausgeschlossen — außer bei Geld, Inhaberpapieren und öffentlichen Versteigerungen." },
+      { "q": "Warum ist das Abstraktionsprinzip bei § 929 BGB klausurrelevant?", "a": "Weil Verpflichtungsgeschäft (§ 433 BGB) und Verfügungsgeschäft (§ 929 BGB) rechtlich getrennt zu behandeln sind: Die Nichtigkeit des Kaufvertrags führt nicht automatisch zur Nichtigkeit der Übereignung." },
+      { "q": "Was ändert sich bei den Übergabesurrogaten §§ 930, 931 BGB?", "a": "An die Stelle der realen Übergabe tritt die Vereinbarung eines Besitzmittlungsverhältnisses bzw. die Abtretung des Herausgabeanspruchs. Für den gutgläubigen Erwerb gelten die verschärften §§ 933, 934 BGB." }
+    ]
+  },
+  {
+    "slug": "263-stgb",
+    "silo": "strafrecht",
+    "rechtsgebiet": "Strafrecht (StGB)",
+    "teilgebiet": "Vermögensdelikte",
+    "h1": "Prüfungsschema § 263 StGB — Betrug",
+    "metaTitle": "§ 263 StGB Schema — Prüfungsschema Betrug",
+    "metaDescription": "Prüfungsschema zu § 263 StGB (Betrug): Täuschung, Irrtum, Vermögensverfügung, Vermögensschaden, Bereicherungsabsicht. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "263 StGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "§ 263 StGB gehört zu den am häufigsten geprüften Delikten im 1. und 2. Staatsexamen, da er die zentralen Strukturprobleme des Vermögensstrafrechts bündelt: die Abgrenzung zu § 242 StGB über die Vermögensverfügung sowie die dogmatisch umstrittene Bestimmung des Vermögensschadens.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Tatbestand",
+        "points": [
+          { "label": "1. Täuschung über Tatsachen", "text": "Jedes Verhalten, das objektiv geeignet und subjektiv darauf gerichtet ist, eine Fehlvorstellung über Tatsachen hervorzurufen — ausdrücklich, konkludent oder bei Garantenpflicht durch Unterlassen." },
+          { "label": "2. Irrtum", "text": "Positive Fehlvorstellung über Tatsachen beim Getäuschten, kausal auf der Täuschung beruhend. Bloße Unkenntnis oder Gleichgültigkeit genügt nicht." },
+          { "label": "3. Vermögensverfügung", "text": "Jedes Handeln, Dulden oder Unterlassen des Irrenden, das unmittelbar zur Vermögensminderung führt — freiwillig, sonst liegt Diebstahl/Raub näher." },
+          { "label": "4. Vermögensschaden", "text": "Nach dem Prinzip der Gesamtsaldierung: Vergleich des Vermögenswerts vor/nach der Verfügung, sofern keine gleichwertige Kompensation vorliegt." }
+        ]
+      },
+      {
+        "roman": "II.",
+        "title": "Subjektiver Tatbestand",
+        "points": [
+          { "label": "1. Vorsatz", "text": "Bezüglich sämtlicher objektiver Tatbestandsmerkmale, mindestens dolus eventualis." },
+          { "label": "2. Bereicherungsabsicht", "text": "Absicht, sich oder einen Dritten in stoffgleicher Weise zum Schaden zu bereichern; die erstrebte Bereicherung muss zudem rechtswidrig sein." }
+        ]
+      },
+      { "roman": "III.", "title": "Rechtswidrigkeit", "text": "Wird durch die Tatbestandsverwirklichung indiziert; Rechtfertigungsgründe (§§ 32, 34 StGB) sind stets zu prüfen, aber im Regelfall fernliegend." },
+      { "roman": "IV.", "title": "Schuld", "text": "Schuldfähigkeit (§§ 19 ff. StGB) sowie das Fehlen von Entschuldigungs- bzw. Schuldausschließungsgründen." }
+    ],
+    "streitstaende": [
+      { "tag": "Täuschung", "title": "Konkludente Täuschung", "text": "Umstritten ist, welcher Erklärungswert einem tatsächlichen Verhalten nach der Verkehrsanschauung zukommt — besonders relevant bei Zahlungswille und -fähigkeit im Vertragsschluss." },
+      { "tag": "Vermögensschaden", "title": "Individueller Schadenseinschlag", "text": "Die Rechtsprechung korrigiert den rein wirtschaftlichen Vermögensbegriff: Ein Schaden liegt ausnahmsweise auch bei objektiver Gleichwertigkeit vor, wenn der Verfügende die Leistung nicht zumutbar nutzen kann." },
+      { "tag": "Zweckverfehlung", "title": "Zweckverfehlungslehre beim Spendenbetrug", "text": "Beim Spendenbetrug ist umstritten, ob ein Schaden vorliegt, wenn ein sozial anerkannter Zweck durch die Täuschung verfehlt wird, ohne dass objektiv eine Gegenleistung geschuldet war." }
+    ],
+    "faq": [
+      { "q": "Wie ist das Prüfungsschema für § 263 StGB Betrug aufgebaut?", "a": "Tatbestand (Täuschung, Irrtum, Vermögensverfügung, Vermögensschaden nach Gesamtsaldierung), subjektiver Tatbestand (Vorsatz und stoffgleiche Bereicherungsabsicht), Rechtswidrigkeit und Schuld." },
+      { "q": "Was ist der Unterschied zwischen Betrug und Diebstahl?", "a": "Beim Betrug verfügt der Getäuschte freiwillig aufgrund eines Irrtums über sein Vermögen; beim Diebstahl nimmt der Täter die Sache eigenmächtig weg. Entscheidend ist, ob ein eigener Übertragungswille bestand." },
+      { "q": "Was bedeutet Stoffgleichheit bei § 263 StGB?", "a": "Der erstrebte Vermögensvorteil muss unmittelbar die Kehrseite des beim Opfer eingetretenen Schadens sein, also aus derselben Vermögensverfügung stammen." },
+      { "q": "Wann liegt ein Vermögensschaden beim Eingehungsbetrug vor?", "a": "Bereits mit Vertragsschluss, wenn der Anspruch des Getäuschten wirtschaftlich weniger wert ist als die von ihm eingegangene Verpflichtung — bewertet im Vergleich der beiderseitigen Vertragspositionen." },
+      { "q": "Wie prüft man einen Dreiecksbetrug richtig?", "a": "Zusätzlich muss eine Verfügungsbefugnis bzw. ein Näheverhältnis des Verfügenden zum geschädigten Vermögen geprüft werden (Lagertheorie), da Verfügender und Geschädigter auseinanderfallen." }
+    ]
+  },
+  {
+    "slug": "242-stgb",
+    "silo": "strafrecht",
+    "rechtsgebiet": "Strafrecht (StGB)",
+    "teilgebiet": "Vermögensdelikte",
+    "h1": "Prüfungsschema § 242 StGB — Diebstahl",
+    "metaTitle": "§ 242 StGB Schema — Prüfungsschema Diebstahl",
+    "metaDescription": "Prüfungsschema zu § 242 StGB (Diebstahl): fremde bewegliche Sache, Wegnahme, Zueignungsabsicht. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "242 StGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "Der Diebstahl gemäß § 242 StGB ist das Grunddelikt der Eigentumsdelikte und Basis für die Qualifikationstatbestände der §§ 243, 244 StGB. Die Begriffe Gewahrsam, Wegnahme und Zueignungsabsicht sind Dauerbrenner in Klausuren und mündlichen Prüfungen.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Tatbestand",
+        "points": [
+          { "label": "1. Fremde bewegliche Sache", "text": "Sache ist jeder körperliche Gegenstand (§ 90 BGB); beweglich, wenn fortbewegbar; fremd, wenn im Eigentum eines anderen stehend und nicht herrenlos." },
+          { "label": "2. Wegnahme", "text": "Bruch fremden und Begründung neuen Gewahrsams. Gewahrsam ist die von natürlichem Herrschaftswillen getragene tatsächliche Sachherrschaft nach der Verkehrsanschauung." }
+        ]
+      },
+      { "roman": "II.", "title": "Vorsatz", "text": "Bezüglich sämtlicher objektiver Tatbestandsmerkmale, mindestens dolus eventualis (§ 15 StGB)." },
+      {
+        "roman": "III.",
+        "title": "Absicht rechtswidriger Zueignung",
+        "points": [
+          { "label": "1. Aneignungskomponente", "text": "Dolus directus 1. Grades erforderlich: Der Täter will sich oder einem Dritten die Sache oder ihren Sachwert zumindest vorübergehend einverleiben." },
+          { "label": "2. Enteignungskomponente", "text": "Dolus eventualis genügt: Der Täter will den Eigentümer zumindest dauerhaft aus seiner Position verdrängen." }
+        ]
+      },
+      { "roman": "IV.", "title": "Rechtswidrigkeit der Zueignung", "text": "Die erstrebte Zueignung muss objektiv rechtswidrig sein — dem Täter darf kein fälliger, einredefreier Anspruch auf die konkrete Sache zustehen." },
+      { "roman": "V.", "title": "Rechtswidrigkeit", "text": "Keine allgemeinen Rechtfertigungsgründe (§§ 32, 34 StGB, § 859 BGB)." },
+      { "roman": "VI.", "title": "Schuld", "text": "Schuldfähigkeit (§§ 19, 20 StGB) und keine Entschuldigungsgründe (§ 35 StGB)." }
+    ],
+    "streitstaende": [
+      { "tag": "Gewahrsam", "title": "Gewahrsamsbegriff beim Ladendiebstahl", "text": "Nach der h. M. (Apprehensionstheorie) genügt bereits das Einstecken der Ware; nach der Ablationstheorie erst das Passieren der Kasse." },
+      { "tag": "Zueignung", "title": "Zueignung vs. Sachentziehung", "text": "Fehlt die Enteignungsabsicht, kommt allenfalls straflose Gebrauchsanmaßung in Betracht — problematisch bei Substanzverbrauch während des Gebrauchs." },
+      { "tag": "Stoffgleichheit", "title": "Zueignungsabsicht bei vertretbaren Sachen", "text": "Bei Bargeld genügt nach der Sachwerttheorie die Absicht, den verkörperten Wert einzuverleiben — die Rückgabe gleichartiger Sachen lässt die Zueignungsabsicht nicht entfallen." }
+    ],
+    "faq": [
+      { "q": "Wonach richtet sich das Prüfungsschema für § 242 StGB in der Klausur?", "a": "Tatbestand (fremde bewegliche Sache, Wegnahme), Vorsatz, Absicht rechtswidriger Zueignung (Aneignungs- und Enteignungskomponente), Rechtswidrigkeit der Zueignung, allgemeine Rechtswidrigkeit und Schuld." },
+      { "q": "Was ist der Unterschied zwischen Gewahrsam und Eigentum?", "a": "Eigentum ist eine rechtliche Position nach § 903 BGB, Gewahrsam eine rein tatsächliche Sachherrschaft. Der Dieb erlangt nur Gewahrsam, niemals Eigentum." },
+      { "q": "Wann liegt bei einem Ladendiebstahl vollendete Wegnahme vor?", "a": "Nach der h. M. genügt das Einstecken der Ware in Tasche oder Kleidung, sofern eine ungehinderte Zugriffsmöglichkeit besteht — ein Verlassen des Geschäfts ist nicht erforderlich." },
+      { "q": "Was bedeutet Enteignungskomponente bei der Zueignungsabsicht?", "a": "Der Wille, den Eigentümer dauerhaft aus seiner Position zu verdrängen; hierfür genügt bereits dolus eventualis, anders als bei der Aneignungskomponente." },
+      { "q": "Warum ist § 242 StGB die Grundlage für § 243 und § 244 StGB?", "a": "Beide Normen setzen tatbestandlich einen vollendeten oder versuchten Diebstahl nach § 242 StGB voraus — ohne sauber geprüften Grundtatbestand lässt sich keine Qualifikation bejahen." }
+    ]
+  },
+  {
+    "slug": "223-stgb",
+    "silo": "strafrecht",
+    "rechtsgebiet": "Strafrecht (StGB)",
+    "teilgebiet": "Körperverletzungsdelikte",
+    "h1": "Prüfungsschema § 223 StGB — Körperverletzung",
+    "metaTitle": "§ 223 StGB Schema — Prüfungsschema Körperverletzung",
+    "metaDescription": "Prüfungsschema zu § 223 StGB: körperliche Misshandlung, Gesundheitsschädigung, Einwilligung nach § 228 StGB. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "223 StGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "§ 223 StGB ist das Grunddelikt aller Körperverletzungsdelikte und Anknüpfungspunkt für sämtliche Qualifikationen der §§ 224 ff. StGB. Klausurrelevant ist vor allem die Einwilligungsproblematik des § 228 StGB, die regelmäßig in Sport-, Tätowierungs- und Heileingriffsfällen abgeprüft wird.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Tatbestand",
+        "points": [
+          { "label": "1. Körperliche Misshandlung", "text": "Eine üble, unangemessene Behandlung, die das körperliche Wohlbefinden nicht nur unerheblich beeinträchtigt." },
+          { "label": "2. Gesundheitsschädigung", "text": "Hervorrufen oder Steigern eines pathologischen Zustands — nach h. M. auch psychische Krankheitszustände mit Krankheitswert." }
+        ]
+      },
+      { "roman": "II.", "title": "Vorsatz", "text": "Bezüglich der körperlichen Misshandlung bzw. Gesundheitsschädigung, § 15 StGB. Dolus eventualis genügt." },
+      {
+        "roman": "III.",
+        "title": "Rechtswidrigkeit",
+        "points": [
+          { "label": "1. Indizwirkung", "text": "Die Tatbestandsmäßigkeit indiziert regelmäßig die Rechtswidrigkeit." },
+          { "label": "2. Einwilligung, § 228 StGB", "text": "Entfällt bei wirksamer Einwilligung — unwirksam, wenn die Tat trotz Einwilligung gegen die guten Sitten verstößt." },
+          { "label": "3. Mutmaßliche Einwilligung", "text": "Bei fehlender Einwilligungsmöglichkeit (z. B. Bewusstlosigkeit) rechtfertigend, wenn sie dem mutmaßlichen Willen entspricht — praktisch bei Heileingriffen." }
+        ]
+      },
+      { "roman": "IV.", "title": "Schuld", "text": "Schuldfähigkeit (§§ 19, 20, 21 StGB), Unrechtsbewusstsein bzw. Verbotsirrtum (§ 17 StGB)." }
+    ],
+    "streitstaende": [
+      { "tag": "Rechtfertigung", "title": "Einwilligung und Sittenwidrigkeit, § 228 StGB", "text": "Die Rechtsprechung stellt maßgeblich auf eine konkrete Todesgefahr im Tatzeitpunkt ab; Teile der Literatur fordern eine umfassendere Wertung von Motiv und Zweck." },
+      { "tag": "Tatbestand", "title": "Abgrenzung zur Beleidigung bei psychischer Einwirkung", "text": "Nach h. M. genügt es, wenn die psychische Einwirkung einen pathologisch feststellbaren Zustand von einigem Gewicht auslöst — bloße Unlustgefühle genügen nicht." },
+      { "tag": "Rechtfertigung", "title": "Mutmaßliche Einwilligung bei Heileingriffen", "text": "Der ärztliche Heileingriff erfüllt nach ständiger Rechtsprechung § 223 StGB unabhängig vom Behandlungserfolg; rechtfertigend wirkt die Einwilligung des aufgeklärten Patienten oder — im Notfall — die mutmaßliche Einwilligung." }
+    ],
+    "faq": [
+      { "q": "Wie lautet das Schema zu § 223 StGB?", "a": "Tatbestand (körperliche Misshandlung oder Gesundheitsschädigung mit Vorsatz), Rechtswidrigkeit (insbesondere Einwilligung § 228 StGB) und Schuld. Beide Tatbestandsvarianten stehen alternativ zueinander." },
+      { "q": "Was ist der Unterschied zwischen körperlicher Misshandlung und Gesundheitsschädigung?", "a": "Die Misshandlung erfasst jede üble, unangemessene Behandlung; die Gesundheitsschädigung das Hervorrufen eines pathologischen Zustands. Beide können nebeneinander vorliegen." },
+      { "q": "Wann ist eine Einwilligung nach § 228 StGB unwirksam?", "a": "Wenn die konkrete Tat trotz der Einwilligung gegen die guten Sitten verstößt — die Rechtsprechung nimmt dies insbesondere bei konkreter Todesgefahr im Tatzeitpunkt an." },
+      { "q": "Ist ein ärztlicher Heileingriff eine Körperverletzung im Sinne des § 223 StGB?", "a": "Nach ständiger Rechtsprechung erfüllt jeder körperliche Eingriff eines Arztes den Tatbestand, unabhängig vom Erfolg. Gerechtfertigt ist er regelmäßig durch die Einwilligung des aufgeklärten Patienten." },
+      { "q": "Reicht bedingter Vorsatz für § 223 StGB aus?", "a": "Ja, für den subjektiven Tatbestand genügt gemäß § 15 StGB dolus eventualis, also das billigende Inkaufnehmen der Misshandlung oder Gesundheitsschädigung." }
+    ]
+  },
+  {
+    "slug": "315c-stgb",
+    "silo": "strafrecht",
+    "rechtsgebiet": "Strafrecht (StGB)",
+    "teilgebiet": "Straßenverkehrsdelikte",
+    "h1": "Prüfungsschema § 315c StGB",
+    "metaTitle": "§ 315c StGB Schema — Gefährdung des Straßenverkehrs",
+    "metaDescription": "Prüfungsschema zu § 315c StGB: Fahruntüchtigkeit, die „sieben Todsünden\", konkrete Gefährdung. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "315c StGB Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "§ 315c StGB gehört zu den examensrelevantesten Delikten des Nebenstrafrechts, da er regelmäßig mit § 316 StGB und fahrlässigen Körperverletzungs- oder Tötungsdelikten kombiniert wird. Als konkretes Gefährdungsdelikt muss im Gutachten der Eintritt einer tatsächlichen Gefahrenlage sauber subsumiert werden.",
+    "schema": [
+      { "roman": "I.", "title": "Führen eines Fahrzeugs im Straßenverkehr", "text": "Führer ist, wer das Fahrzeug unter bestimmungsgemäßer Ausnutzung seiner Antriebskräfte in Bewegung setzt oder während der Fahrt beherrscht. „Straßenverkehr\" erfasst öffentlich zugängliche Verkehrsflächen." },
+      {
+        "roman": "II.",
+        "title": "Regelbeispiel nach Abs. 1",
+        "points": [
+          { "label": "1. Nr. 1 — geistige/körperliche Mängel", "text": "Fahren infolge Alkohol, berauschender Mittel oder körperlicher Mängel, wodurch der Täter nicht sicher fahren kann — absolute oder relative Fahrunsicherheit." },
+          { "label": "2. Nr. 2 — die „sieben Todsünden\"", "text": "Grob verkehrswidriges und rücksichtsloses Verhalten in den abschließend aufgezählten Fallgruppen (Vorfahrt, Überholen, Fußgängerüberweg, überhöhte Geschwindigkeit u. a.)." }
+        ]
+      },
+      { "roman": "III.", "title": "Konkrete Gefährdung", "text": "Eine kritische Verkehrssituation, in der es nach allgemeiner Lebenserfahrung nur noch vom Zufall abhing, ob ein Schaden eintritt (Beinahe-Unfall) — für Leib/Leben eines anderen oder fremde Sachen von bedeutendem Wert." },
+      { "roman": "IV.", "title": "Vorsatz", "text": "Mindestens dolus eventualis; nach Abs. 3 genügt teils Fahrlässigkeit bezüglich der Gefahrherbeiführung (Nr. 1) oder vollständig fahrlässige Begehung (Nr. 2)." },
+      { "roman": "V.", "title": "Rechtswidrigkeit und Schuld", "text": "Indiziert durch die Tatbestandsmäßigkeit; Prüfung der Schuldfähigkeit, insbesondere bei alkoholbedingter Enthemmung (§§ 20, 21 StGB)." }
+    ],
+    "streitstaende": [
+      { "tag": "Klausurklassiker", "title": "Absolute vs. relative Fahruntüchtigkeit", "text": "Ab 1,1 ‰ BAK wird absolute Fahruntüchtigkeit unwiderleglich vermutet. Bei niedrigeren Werten (ab ca. 0,3 ‰) ist relative Fahruntüchtigkeit durch zusätzliche Beweisanzeichen zu belegen." },
+      { "tag": "Dogmatik", "title": "Begriff der konkreten Gefahr", "text": "Die h. M. verlangt eine Situation, in der ein Schadenseintritt nur dem Zufall zu verdanken war — eine bloß abstrakt erhöhte Gefahrenlage genügt nicht." },
+      { "tag": "Konkurrenzen", "title": "Verhältnis zu § 316 StGB", "text": "§ 315c StGB verdrängt § 316 StGB als lex specialis, sobald die konkrete Gefahr tatsächlich eingetreten ist; ansonsten bleibt nur § 316 StGB einschlägig." }
+    ],
+    "faq": [
+      { "q": "Wie ist das Prüfungsschema zu § 315c StGB aufgebaut?", "a": "Führen eines Fahrzeugs im Straßenverkehr, Regelbeispiel nach Abs. 1 Nr. 1 oder Nr. 2, konkrete Gefährdung, Vorsatz (mit Sonderregel Abs. 3), Rechtswidrigkeit und Schuld." },
+      { "q": "Ab welcher Promille-Grenze liegt absolute Fahruntüchtigkeit vor?", "a": "Nach ständiger Rechtsprechung ab 1,1 ‰ BAK, ohne dass weitere Ausfallerscheinungen nachgewiesen werden müssen." },
+      { "q": "Was sind die „sieben Todsünden\" des § 315c StGB?", "a": "Die in Abs. 1 Nr. 2 lit. a–g abschließend aufgezählten groben Verkehrsverstöße, etwa Vorfahrtsverletzung oder falsches Überholen — zusätzlich grob verkehrswidrig und rücksichtslos begangen." },
+      { "q": "Wie verhält sich § 315c StGB zu § 316 StGB in der Klausur?", "a": "§ 315c StGB geht als spezielleres Gefährdungsdelikt vor, sobald tatsächlich eine konkrete Gefahr eingetreten ist. Fehlt diese, verbleibt es bei § 316 StGB." },
+      { "q": "Reicht ein bloßer Fahrfehler ohne Unfall für eine konkrete Gefährdung aus?", "a": "Nein, erforderlich ist ein Beinahe-Unfall, bei dem nach allgemeiner Lebenserfahrung nur der Zufall einen Schaden verhindert hat." }
+    ]
+  },
+  {
+    "slug": "notwehr",
+    "silo": "strafrecht",
+    "rechtsgebiet": "Strafrecht (StGB)",
+    "teilgebiet": "Allgemeiner Teil · Rechtfertigungsgründe",
+    "h1": "Notwehr — Prüfungsschema § 32 StGB",
+    "metaTitle": "Notwehr Schema — Prüfungsschema § 32 StGB",
+    "metaDescription": "Prüfungsschema zur Notwehr (§ 32 StGB): Notwehrlage, Erforderlichkeit, Gebotenheit, Verteidigungswille. Mit Streitständen, PDF und Karteikarten-Deck.",
+    "keyword": "Notwehr Schema",
+    "datePublished": "2026-08-19",
+    "dateModified": "2026-08-19",
+    "intro": "Die Notwehr nach § 32 StGB ist der praxisrelevanteste Rechtfertigungsgrund im Strafrecht und fester Bestandteil nahezu jeder Klausur mit Körperverletzungs- oder Tötungsdelikt. Gerade die sozialethischen Einschränkungen und die Notwehrprovokation sind beliebte Zusatzprobleme.",
+    "schema": [
+      {
+        "roman": "I.",
+        "title": "Notwehrlage",
+        "points": [
+          { "label": "1. Angriff", "text": "Jede von einem Menschen ausgehende Bedrohung eines notwehrfähigen Rechtsguts (Leben, Körper, Freiheit, Eigentum, Ehre)." },
+          { "label": "2. Gegenwärtigkeit", "text": "Der Angriff steht unmittelbar bevor, hat begonnen oder dauert noch an (§ 32 II StGB)." },
+          { "label": "3. Rechtswidrigkeit des Angriffs", "text": "Der Angriff darf nicht seinerseits gerechtfertigt sein; auf Verschulden oder Schuldfähigkeit des Angreifers kommt es nicht an." }
+        ]
+      },
+      {
+        "roman": "II.",
+        "title": "Notwehrhandlung",
+        "points": [
+          { "label": "1. Erforderlichkeit", "text": "Geeignet, den Angriff sofort und endgültig zu beenden, und das relativ mildeste unter mehreren gleich wirksamen Mitteln — Ex-ante-Betrachtung, kein Rückzug verlangt." },
+          { "label": "2. Gebotenheit", "text": "Normatives Korrektiv: Einschränkungen bei krassem Missverhältnis, Angriffen von Kindern/Schuldunfähigen, Bagatellangriffen oder engen persönlichen Beziehungen." }
+        ]
+      },
+      { "roman": "III.", "title": "Verteidigungswille", "text": "Der Handelnde muss in Kenntnis der Notwehrlage und mit Verteidigungswillen handeln — dieser genügt bereits, wenn er neben anderen Motiven nicht völlig in den Hintergrund tritt." },
+      { "roman": "IV.", "title": "Notwehrexzess, § 33 StGB", "text": "Überschreitet der Täter aus Verwirrung, Furcht oder Schrecken die Grenzen der Notwehr, entfällt die Rechtfertigung, er handelt aber nach § 33 StGB entschuldigt — zu unterscheiden: intensiver und extensiver Exzess." }
+    ],
+    "streitstaende": [
+      { "tag": "Einschränkung", "title": "Sozialethische Einschränkungen der Notwehr", "text": "Bei krassem Missverhältnis der betroffenen Güter oder Angriffen erkennbar schuldunfähiger Personen wird die Gebotenheit verneint bzw. der Verteidiger auf mildere Mittel verwiesen." },
+      { "tag": "Klausurklassiker", "title": "Notwehrprovokation (actio illicita in causa)", "text": "Hat der Angegriffene den Angriff vorwerfbar selbst herausgefordert, wird sein Notwehrrecht auf Ebene der Gebotenheit eingeschränkt — abgestuft nach Grad der Provokation." },
+      { "tag": "Praxis", "title": "Erforderlichkeit bei Waffeneinsatz", "text": "Die Rechtsprechung verlangt bei gefährlichen Werkzeugen grundsätzlich eine Ankündigung bzw. einen Warnschuss, bevor der finale Einsatz gegen den Körper erforderlich ist." }
+    ],
+    "faq": [
+      { "q": "Was ist das Notwehr-Schema nach § 32 StGB?", "a": "Notwehrlage (gegenwärtiger, rechtswidriger Angriff auf ein notwehrfähiges Rechtsgut), Notwehrhandlung (Erforderlichkeit und Gebotenheit) sowie Verteidigungswille — geprüft innerhalb der Rechtswidrigkeit eines Delikts." },
+      { "q": "Was ist der Unterschied zwischen Erforderlichkeit und Gebotenheit bei der Notwehr?", "a": "Erforderlichkeit fragt rein faktisch nach dem mildesten geeigneten Mittel. Gebotenheit ist ein normatives Korrektiv, das die Notwehr in sozialethisch begründeten Ausnahmefällen einschränkt." },
+      { "q": "Muss ich vor einem Angriff ausweichen, bevor ich mich verteidigen darf?", "a": "Grundsätzlich nein — „das Recht braucht dem Unrecht nicht zu weichen\". Eine Ausweichpflicht kann sich ausnahmsweise aus den sozialethischen Einschränkungen ergeben." },
+      { "q": "Was ist der Unterschied zwischen Notwehr und Notwehrexzess?", "a": "Notwehr rechtfertigt die Tat innerhalb der Grenzen von Erforderlichkeit und Gebotenheit. Beim Notwehrexzess (§ 33 StGB) werden diese Grenzen aus Verwirrung, Furcht oder Schrecken überschritten — die Tat bleibt rechtswidrig, der Täter handelt aber entschuldigt." },
+      { "q": "Was bedeutet Notwehrprovokation?", "a": "Der spätere Verteidiger hat den Angriff durch eigenes vorwerfbares Vorverhalten mitverursacht. Je nach Verschuldensgrad wird sein Notwehrrecht über die Gebotenheit eingeschränkt oder ausnahmsweise ganz versagt." }
+    ]
+  }
+]

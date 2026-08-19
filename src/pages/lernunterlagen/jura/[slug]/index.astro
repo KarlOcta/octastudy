@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../../components/OctaCtaBox.astro';
+import { OCTA, APPSTORE_CPP } from '../../../../site';
+import schemata from '../../../../data/jura-schemata.json';
+
+export function getStaticPaths() {
+  return schemata.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const canonical = `https://octastudy.com/lernunterlagen/jura/${entry.slug}/`;
+const storeLink = APPSTORE_CPP.jura || OCTA.appStoreUrl;
+
+const SLIDES = [
+  {
+    src: '/img/mockups/octa-karteikarten-jura.webp',
+    alt: 'Octa zeigt eine Karteikarte mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage',
+    caption: 'Karteikarten aus deinen Unterlagen',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-lernplan-jura.webp',
+    alt: 'Octa zeigt einen Lernplan mit Lernpfad und Fortschrittsanzeige bis zur Klausur',
+    caption: 'Lernplan bis zur nächsten Prüfung',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-pruefer-jura.webp',
+    alt: 'Octa fragt eine Frage mündlich ab und wartet auf die gesprochene Antwort',
+    caption: 'Mündlich abgefragt, nicht nur gelesen',
+    width: 360,
+    height: 761,
+  },
+];
+
+const breadcrumbLabel = entry.h1.replace(/^Prüfungsschema\s*/, '').replace(/^Notwehr\s*—\s*/, 'Notwehr — ');
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonical}#article`,
+      headline: entry.h1,
+      description: entry.metaDescription,
+      about: `${entry.teilgebiet}, ${entry.h1}, ${entry.rechtsgebiet}`,
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      datePublished: entry.datePublished,
+      dateModified: entry.dateModified,
+      url: canonical,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: entry.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={entry.metaTitle}
+  description={entry.metaDescription}
+  breadcrumbs={[
+    { label: 'Lernunterlagen', href: '/lernunterlagen/' },
+    { label: 'Rechtswissenschaft', href: '/lernunterlagen/jura/' },
+    { label: breadcrumbLabel, href: `/lernunterlagen/jura/${entry.slug}/` },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">{entry.rechtsgebiet} · {entry.teilgebiet}</p>
+    <h1>{entry.h1}</h1>
+    <p class="stand">Zuletzt geprüft: August 2026</p>
+    <p class="lead intro">{entry.intro}</p>
+
+    <div class="hero-block">
+      <div class="downloads">
+        <a class="btn" href={`/downloads/jura/${entry.slug}-schema.pdf`} download>
+          Schema als PDF herunterladen
+        </a>
+        <a class="btn btn--ghost" href={`/downloads/jura/${entry.slug}-karteikarten.pdf`} download>
+          Karteikarten-Deck herunterladen (PDF)
+        </a>
+      </div>
+      <p class="downloads-hint">Wird direkt heruntergeladen — von dort per „Teilen" in {OCTA.name} hochladen.</p>
+    </div>
+
+    <OctaCtaBox
+      id="hero-slides"
+      title="Direkt in Octa weiterlernen"
+      storeLink={storeLink}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      slides={SLIDES}
+    >
+      {OCTA.pitch} Lade das Schema oder die Karteikarten hoch, sobald du sie
+      heruntergeladen hast. Aktuell nur für iPhone und iPad.
+    </OctaCtaBox>
+
+    <h2 class="rule rule--tight">Das vollständige Schema</h2>
+    <p class="schema-hint">Zum Aufklappen — jeder Punkt mit Definition.</p>
+
+    <div class="schema">
+      {
+        entry.schema.map((section, i) => (
+          <details open={i === 0}>
+            <summary>
+              <span class="schema__num">{section.roman}</span> {section.title}
+            </summary>
+            <div class="schema__body">
+              {section.text && <p>{section.text}</p>}
+              {section.points && section.points.map((pt) => (
+                <details>
+                  <summary>{pt.label}</summary>
+                  <p>{pt.text}</p>
+                </details>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule">Typische Streitstände</h2>
+    <div class="grid">
+      {
+        entry.streitstaende.map((s) => (
+          <div class="card">
+            <span class="card__tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule">Kurz gefragt</h2>
+    <div class="faq">
+      {
+        entry.faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <OctaCtaBox
+      id="closing-slides"
+      title="Und direkt mündlich abfragen"
+      storeLink={storeLink}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Weitere Schemata ansehen"
+      secondaryHref="/lernunterlagen/jura/"
+      slides={SLIDES}
+      intervalMs={4200}
+    >
+      Lade das Schema oder das Karteikarten-Deck von hier direkt in {OCTA.name} hoch. {OCTA.pitch}
+    </OctaCtaBox>
+
+    <div class="note">
+      <p>
+        Dieses Schema dient ausschließlich der Vorbereitung auf Prüfungen. Es
+        stellt keine Rechtsberatung dar und ersetzt keine anwaltliche
+        Beratung im Einzelfall.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .stand {
+    color: var(--text-subtle);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.9rem;
+  }
+
+  .intro {
+    max-width: 46rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-block {
+    margin-bottom: 1.6rem;
+  }
+
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .downloads-hint {
+    margin: 0.6rem 0 0;
+    font-size: 0.82rem;
+    color: var(--text-subtle);
+    line-height: 1.5;
+  }
+
+  .rule--tight {
+    margin-top: 0.15rem;
+  }
+
+  .faq {
+    max-width: 54rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .schema-hint {
+    color: var(--text-subtle);
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+  }
+
+  .schema {
+    max-width: 54rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .schema > details {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.7rem;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .schema > details > summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 1rem 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg-soft);
+  }
+
+  .schema > details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .schema > details > summary::after {
+    content: '+';
+    margin-left: auto;
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .schema > details[open] > summary::after {
+    content: '–';
+  }
+
+  .schema__num {
+    color: var(--accent);
+    flex: none;
+  }
+
+  .schema__body {
+    padding: 0.4rem 1.3rem 1rem;
+  }
+
+  .schema__body details {
+    border-top: 1px solid var(--border);
+    padding: 0.7rem 0;
+  }
+
+  .schema__body details:first-child {
+    border-top: none;
+  }
+
+  .schema__body summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .schema__body summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .schema__body summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+  }
+
+  .schema__body details[open] summary::before {
+    content: '–';
+  }
+
+  .schema__body details p {
+    margin: 0.6rem 0 0 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .schema__body > p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
