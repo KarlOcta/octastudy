@@ -1,39 +1,42 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { OCTA } from '../../../site';
+import schemata from '../../../data/jura-schemata.json';
 
-const silos = [
+const RECHTSGEBIETE = [
   {
-    title: 'Zivilrecht (BGB)',
-    slug: 'zivilrecht',
-    text: 'Deliktsrecht, Bereicherungsrecht, Leistungsstörungen, Sachenrecht — von § 823 BGB über § 812 BGB bis zur Übereignung nach § 929 BGB.',
-    examples: [
-      { label: '§ 823 I BGB', href: '/lernunterlagen/jura/823-bgb/' },
-      { label: '§ 985 BGB', href: '/lernunterlagen/jura/985-bgb/' },
-      { label: '§ 812 BGB', href: '/lernunterlagen/jura/812-bgb/' },
-      { label: '§ 280 BGB', href: '/lernunterlagen/jura/280-bgb/' },
-      { label: '§ 929 BGB', href: '/lernunterlagen/jura/929-bgb/' },
-    ],
+    key: 'Zivilrecht (BGB)',
+    text: 'BGB Allgemeiner Teil, Deliktsrecht, Bereicherungsrecht, Leistungsstörungen, Sachenrecht und Schuldrecht Besonderer Teil — von der Willenserklärung bis zur Übereignung.',
   },
   {
-    title: 'Strafrecht (StGB)',
-    slug: 'strafrecht',
-    text: 'Die klassischen Klausurdelikte mit vollständigem Aufbau: objektiver und subjektiver Tatbestand, Rechtswidrigkeit, Schuld, Strafzumessung.',
-    examples: [
-      { label: '§ 263 StGB', href: '/lernunterlagen/jura/263-stgb/' },
-      { label: '§ 242 StGB', href: '/lernunterlagen/jura/242-stgb/' },
-      { label: '§ 223 StGB', href: '/lernunterlagen/jura/223-stgb/' },
-      { label: '§ 315c StGB', href: '/lernunterlagen/jura/315c-stgb/' },
-      { label: '§ 32 StGB (Notwehr)', href: '/lernunterlagen/jura/notwehr/' },
-    ],
+    key: 'Strafrecht (StGB)',
+    text: 'Allgemeiner Teil (Versuch, Täterschaft, Rechtfertigungsgründe) und Besonderer Teil — Vermögens-, Körperverletzungs-, Tötungs- und Straßenverkehrsdelikte.',
   },
   {
-    title: 'Öffentliches Recht (GG)',
-    slug: 'oeffentliches-recht',
-    text: 'Grundrechtsprüfung und Verfassungsprozessrecht — Schutzbereich, Eingriff, Rechtfertigung, und die Zulässigkeit der Verfassungsbeschwerde.',
-    examples: [{ label: 'Grundrechtsprüfung' }, { label: 'Verfassungsbeschwerde' }],
+    key: 'Öffentliches Recht (GG)',
+    text: 'Grundrechte, Staatsorganisationsrecht und Verfassungsprozessrecht sowie die zentralen Klagearten des Verwaltungsprozessrechts.',
   },
 ];
+
+function shortLabel(entry) {
+  return entry.keyword.replace(/\s*Schema$/, '');
+}
+
+const groups = RECHTSGEBIETE.map((rg) => {
+  const entries = schemata.filter((e) => e.rechtsgebiet === rg.key);
+  const byTeilgebiet = [];
+  for (const e of entries) {
+    let bucket = byTeilgebiet.find((b) => b.teilgebiet === e.teilgebiet);
+    if (!bucket) {
+      bucket = { teilgebiet: e.teilgebiet, entries: [] };
+      byTeilgebiet.push(bucket);
+    }
+    bucket.entries.push(e);
+  }
+  return { ...rg, count: entries.length, byTeilgebiet };
+});
+
+const total = schemata.length;
 ---
 
 <BaseLayout
@@ -49,31 +52,35 @@ const silos = [
     <p class="eyebrow">Lernunterlagen</p>
     <h1>Rechtswissenschaft</h1>
     <p class="lead intro">
-      Jedes Schema hier ist vollständig aufgebaut — hierarchisch von der ersten
-      Prüfungsstufe bis zur letzten, mit den Definitionen der
+      {total} Prüfungsschemata, jedes vollständig aufgebaut — hierarchisch von
+      der ersten Prüfungsstufe bis zur letzten, mit den Definitionen der
       Tatbestandsmerkmale und den Streitständen, die in der Klausur erwartet
       werden. Dazu jeweils ein PDF zum Ausdrucken und ein Karteikarten-Deck.
     </p>
 
-    <div class="grid">
-      {
-        silos.map((silo) => (
-          <div class="card">
-            <h3>{silo.title}</h3>
-            <p>{silo.text}</p>
-            <ul class="chips" aria-label={`Schemata: ${silo.title}`}>
-              {silo.examples.map((ex) =>
-                ex.href ? (
-                  <li><a href={ex.href}>{ex.label} →</a></li>
-                ) : (
-                  <li>{ex.label}</li>
-                )
-              )}
-            </ul>
+    {
+      groups.map((g) => (
+        <section class="silo">
+          <div class="silo__head">
+            <h2>{g.key}</h2>
+            <span class="silo__count">{g.count} Schemata</span>
           </div>
-        ))
-      }
-    </div>
+          <p class="silo__text">{g.text}</p>
+          {g.byTeilgebiet.map((b) => (
+            <div class="teilgebiet">
+              <h3>{b.teilgebiet}</h3>
+              <ul class="chips" aria-label={`Schemata: ${b.teilgebiet}`}>
+                {b.entries.map((e) => (
+                  <li>
+                    <a href={`/lernunterlagen/jura/${e.slug}/`}>{shortLabel(e)} →</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ))
+    }
 
     <h2 class="rule">Wie eine Schema-Seite aufgebaut ist</h2>
     <ol>
@@ -112,13 +119,65 @@ const silos = [
 <style>
   .intro {
     max-width: 44rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .silo {
+    margin-bottom: 2.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .silo:last-of-type {
+    border-bottom: none;
+  }
+
+  .silo__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .silo__head h2 {
+    margin: 0;
+  }
+
+  .silo__count {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 100px;
+    padding: 0.15rem 0.65rem;
+  }
+
+  .silo__text {
+    max-width: 50rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 1.3rem;
+  }
+
+  .teilgebiet {
+    margin-bottom: 1.1rem;
+  }
+
+  .teilgebiet:last-child {
+    margin-bottom: 0;
+  }
+
+  .teilgebiet h3 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-subtle);
+    margin: 0 0 0.5rem;
   }
 
   .chips {
     list-style: none;
     padding: 0;
-    margin: 1rem 0 0;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
@@ -130,26 +189,20 @@ const silos = [
     font-family: var(--font-mono);
   }
 
-  .chips li,
-  .chips li a {
-    color: var(--text-muted);
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 0.15rem 0.6rem;
-  }
-
   .chips li a {
     display: inline-block;
     text-decoration: none;
     color: var(--accent);
-    border-color: var(--accent-soft);
+    border: 1px solid var(--accent-soft);
     background: var(--accent-soft);
+    border-radius: 100px;
+    padding: 0.15rem 0.6rem;
     font-weight: 700;
   }
 
   .chips li a:hover {
     background: var(--accent);
+    border-color: var(--accent);
     color: #fff;
   }
 </style>
