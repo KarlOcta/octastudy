@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../../../components/OctaCtaBox.astro';
+import { OCTA, APPSTORE_CPP } from '../../../../../site';
+import schemata from '../../../../../data/jura-schemata.json';
+import klausurfaelle from '../../../../../data/jura-klausurfaelle.json';
+
+export function getStaticPaths() {
+  return klausurfaelle.map((fall) => {
+    const entry = schemata.find((e) => e.slug === fall.slug);
+    return {
+      params: { slug: fall.slug },
+      props: { fall, entry },
+    };
+  });
+}
+
+const { fall, entry } = Astro.props;
+const canonical = `https://octastudy.com/lernunterlagen/jura/${fall.slug}/klausurfall/`;
+const schemaUrl = `/lernunterlagen/jura/${fall.slug}/`;
+const storeLink = APPSTORE_CPP.jura || OCTA.appStoreUrl;
+
+const SLIDES = [
+  {
+    src: '/img/mockups/octa-karteikarten-jura.webp',
+    alt: 'Octa zeigt eine Karteikarte mit Frage, Antwortfeld und Mikrofon-Button für die mündliche Abfrage',
+    caption: 'Karteikarten aus deinen Unterlagen',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-lernplan-jura.webp',
+    alt: 'Octa zeigt einen Lernplan mit Lernpfad und Fortschrittsanzeige bis zur Klausur',
+    caption: 'Lernplan bis zur nächsten Prüfung',
+    width: 360,
+    height: 761,
+  },
+  {
+    src: '/img/mockups/octa-pruefer-jura.webp',
+    alt: 'Octa fragt eine Frage mündlich ab und wartet auf die gesprochene Antwort',
+    caption: 'Mündlich abgefragt, nicht nur gelesen',
+    width: 360,
+    height: 761,
+  },
+];
+
+const breadcrumbLabel = entry.h1.replace(/^Prüfungsschema\s*/, '').replace(/^Notwehr\s*—\s*/, 'Notwehr — ');
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${canonical}#article`,
+  headline: fall.h1,
+  description: fall.metaDescription,
+  about: `${fall.teilgebiet}, ${fall.bezug}, ${fall.rechtsgebiet}`,
+  inLanguage: 'de-DE',
+  isAccessibleForFree: true,
+  datePublished: fall.datePublished,
+  dateModified: fall.dateModified,
+  url: canonical,
+  isPartOf: { '@type': 'WebPage', '@id': `https://octastudy.com${schemaUrl}#article` },
+});
+---
+
+<BaseLayout
+  title={fall.metaTitle}
+  description={fall.metaDescription}
+  breadcrumbs={[
+    { label: 'Lernunterlagen', href: '/lernunterlagen/' },
+    { label: 'Rechtswissenschaft', href: '/lernunterlagen/jura/' },
+    { label: breadcrumbLabel, href: schemaUrl },
+    { label: 'Klausurfall', href: canonical.replace('https://octastudy.com', '') },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap klausurfall-page">
+    <p class="eyebrow">{fall.rechtsgebiet} · {fall.teilgebiet} · Klausurfall</p>
+    <h1>{fall.h1}</h1>
+    <p class="stand">Zuletzt geprüft: August 2026</p>
+    <p class="lead intro">
+      Vollständiger, frei erfundener Übungsfall zu {fall.bezug} mit
+      ausformulierter Lösung im Gutachtenstil. Die Definitionen der einzelnen
+      Prüfungspunkte findest du im{' '}
+      <a href={schemaUrl}>Prüfungsschema {breadcrumbLabel}</a>.
+    </p>
+
+    <div class="note note--info">
+      <p>
+        Sachverhalt und Personen sind frei erfunden und dienen ausschließlich
+        der Übung — kein realer Fall, keine echte Gerichtsentscheidung.
+      </p>
+    </div>
+
+    <h2 class="rule rule--tight">Sachverhalt</h2>
+    <p class="sachverhalt">{fall.sachverhalt}</p>
+    <p class="frage"><strong>Frage:</strong> {fall.frage}</p>
+
+    <h2 class="rule">Lösung im Gutachtenstil</h2>
+    <div class="loesung">
+      {
+        fall.loesung.map((abschnitt) => (
+          <div class="loesung__abschnitt">
+            <h3><span class="loesung__num">{abschnitt.roman}</span> {abschnitt.title}</h3>
+            <p>{abschnitt.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Ergebnis</h2>
+    <div class="ergebnis-box">
+      <p>{fall.ergebnis}</p>
+    </div>
+
+    <OctaCtaBox
+      id="klausurfall-slides"
+      title="Direkt in Octa weiterlernen"
+      storeLink={storeLink}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Zum Prüfungsschema"
+      secondaryHref={schemaUrl}
+      slides={SLIDES}
+    >
+      {OCTA.pitch} Lade dir das Schema oder die Karteikarten dazu herunter und
+      frag dich mündlich ab. Aktuell nur für iPhone und iPad.
+    </OctaCtaBox>
+
+    <div class="note">
+      <p>
+        Dieser Klausurfall dient ausschließlich der Prüfungsvorbereitung. Er
+        stellt keine Rechtsberatung dar und ersetzt keine anwaltliche
+        Beratung im Einzelfall.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .stand {
+    color: var(--text-subtle);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.9rem;
+  }
+
+  .intro {
+    max-width: 46rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro a {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .note--info {
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+  }
+
+  .note--info p {
+    color: var(--text-muted);
+  }
+
+  .rule--tight {
+    margin-top: 0.15rem;
+  }
+
+  .sachverhalt {
+    max-width: 52rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .frage {
+    max-width: 52rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1.2rem;
+    margin: 0.9rem 0 2rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .frage strong {
+    color: var(--accent);
+  }
+
+  .loesung {
+    max-width: 54rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .loesung__abschnitt {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .loesung__abschnitt:first-child {
+    padding-top: 0;
+  }
+
+  .loesung__abschnitt:last-child {
+    border-bottom: none;
+  }
+
+  .loesung__abschnitt h3 {
+    font-size: 1.02rem;
+    margin: 0 0 0.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .loesung__num {
+    color: var(--accent);
+    flex: none;
+  }
+
+  .loesung__abschnitt p {
+    color: var(--text-muted);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .ergebnis-box {
+    max-width: 52rem;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 1rem 1.3rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .ergebnis-box p {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+</style>

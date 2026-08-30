@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../../../components/OctaCtaBox.astro';
 import { OCTA, APPSTORE_CPP } from '../../../../site';
 import schemata from '../../../../data/jura-schemata.json';
+import klausurfaelle from '../../../../data/jura-klausurfaelle.json';
 
 export function getStaticPaths() {
   return schemata.map((entry) => ({
@@ -14,6 +15,7 @@ export function getStaticPaths() {
 const { entry } = Astro.props;
 const canonical = `https://octastudy.com/lernunterlagen/jura/${entry.slug}/`;
 const storeLink = APPSTORE_CPP.jura || OCTA.appStoreUrl;
+const klausurfall = klausurfaelle.find((f) => f.slug === entry.slug);
 
 const SLIDES = [
   {
@@ -126,10 +128,14 @@ const jsonLd = JSON.stringify({
             </summary>
             <div class="schema__body">
               {section.text && <p>{section.text}</p>}
+              {section.beispiel && !section.points && (
+                <p class="schema__beispiel">{section.beispiel}</p>
+              )}
               {section.points && section.points.map((pt) => (
                 <details>
                   <summary>{pt.label}</summary>
                   <p>{pt.text}</p>
+                  {pt.beispiel && <p class="schema__beispiel">{pt.beispiel}</p>}
                 </details>
               ))}
             </div>
@@ -137,6 +143,17 @@ const jsonLd = JSON.stringify({
         ))
       }
     </div>
+
+    {
+      klausurfall && (
+        <a class="klausurfall-cta" href={`/lernunterlagen/jura/${entry.slug}/klausurfall/`}>
+          <span class="klausurfall-cta__label">Klausurfall dazu ansehen</span>
+          <span class="klausurfall-cta__sub">
+            Vollständiger Übungsfall mit ausformulierter Lösung im Gutachtenstil →
+          </span>
+        </a>
+      )
+    }
 
     <h2 class="rule">Typische Streitstände</h2>
     <div class="grid">
@@ -377,6 +394,50 @@ const jsonLd = JSON.stringify({
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
+  }
+
+  .schema__beispiel {
+    margin: 0.55rem 0 0 1.1rem;
+    padding: 0.55rem 0.85rem;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius, 8px) var(--radius, 8px) 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .schema__body > .schema__beispiel {
+    margin-left: 0;
+  }
+
+  .klausurfall-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 54rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 2.2rem;
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .klausurfall-cta:hover {
+    border-color: var(--accent);
+  }
+
+  .klausurfall-cta__label {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .klausurfall-cta__sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
   }
 
   .related-grid {
