@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../../../../components/OctaCtaBox.astro';
+import StickyAppCta from '../../../../../components/StickyAppCta.astro';
 import { OCTA, APPSTORE_CPP } from '../../../../../site';
 import schemata from '../../../../../data/jura-schemata.json';
 import klausurfaelle from '../../../../../data/jura-klausurfaelle.json';
@@ -135,6 +136,8 @@ const jsonLd = JSON.stringify({
       </p>
     </div>
   </div>
+
+  <StickyAppCta storeLink={storeLink} label="App Store ansehen" pitch="Direkt in Octa weiterlernen" />
 </BaseLayout>
 
 <style>

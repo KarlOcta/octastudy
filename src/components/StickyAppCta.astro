@@ -1,0 +1,173 @@
+---
+/**
+ * Persistente Install-CTA am unteren Bildschirmrand. Erscheint erst nach ein
+ * paar hundert Pixeln Scroll (nicht sofort, damit sie den Erstkontakt mit dem
+ * Content nicht stört), versteckt sich wieder kurz vor dem Seitenende (wo
+ * ohnehin die letzte OctaCtaBox sitzt) und lässt sich per X dauerhaft
+ * schließen (Session-Storage, kommt bei der naechsten Seite wieder).
+ * Bewusst schlank gehalten: ein Satz + ein Button, kein zweites CTA-Design.
+ */
+export interface Props {
+  storeLink: string;
+  label?: string;
+  pitch?: string;
+}
+
+const {
+  storeLink,
+  label = 'App Store ansehen',
+  pitch = 'Direkt in Octa weiterlernen',
+} = Astro.props;
+---
+
+<div class="sticky-cta" id="sticky-app-cta" data-sticky-cta>
+  <img
+    class="sticky-cta__icon"
+    src="/img/octa-mascot-transparent.webp"
+    alt=""
+    aria-hidden="true"
+    width="34"
+    height="26"
+  />
+  <span class="sticky-cta__text">{pitch}</span>
+  <a class="sticky-cta__btn" href={storeLink} rel="noopener">{label}</a>
+  <button
+    class="sticky-cta__close"
+    type="button"
+    aria-label="Leiste schließen"
+    data-sticky-cta-close
+  >
+    ✕
+  </button>
+</div>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById('sticky-app-cta');
+    if (!bar) return;
+    var KEY = 'octa-sticky-cta-dismissed';
+    if (sessionStorage.getItem(KEY) === '1') {
+      bar.remove();
+      return;
+    }
+
+    var closeBtn = bar.querySelector('[data-sticky-cta-close]');
+    closeBtn.addEventListener('click', function () {
+      bar.classList.remove('is-visible');
+      try {
+        sessionStorage.setItem(KEY, '1');
+      } catch (e) {}
+    });
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var scrollY = window.scrollY || window.pageYOffset;
+      var docH = document.documentElement.scrollHeight;
+      var winH = window.innerHeight;
+      var distFromBottom = docH - (scrollY + winH);
+      var pastThreshold = scrollY > 500;
+      var nearBottom = distFromBottom < 600;
+      bar.classList.toggle('is-visible', pastThreshold && !nearBottom);
+    }
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    update();
+  })();
+</script>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    left: 50%;
+    bottom: 0.9rem;
+    transform: translate(-50%, 1.4rem);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    max-width: min(94vw, 30rem);
+    padding: 0.6rem 0.7rem 0.6rem 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
+  }
+
+  .sticky-cta.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+
+  .sticky-cta__icon {
+    flex: none;
+    width: 28px;
+    height: auto;
+  }
+
+  .sticky-cta__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sticky-cta__btn {
+    flex: none;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .sticky-cta__btn:hover {
+    filter: brightness(1.08);
+  }
+
+  .sticky-cta__close {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-subtle);
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .sticky-cta__close:hover {
+    background: var(--bg-soft);
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .sticky-cta__text {
+      display: none;
+    }
+  }
+</style>

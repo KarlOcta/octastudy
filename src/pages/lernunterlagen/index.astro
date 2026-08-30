@@ -6,7 +6,7 @@ const faecher = [
   {
     title: 'Rechtswissenschaft',
     href: '/lernunterlagen/jura/',
-    text: 'Prüfungsschemata zu den klassischen Klausurparagrafen — Zivilrecht, Strafrecht und Öffentliches Recht.',
+    text: 'Prüfungsschemata und ausformulierte Klausurfälle zu den klassischen Klausurparagrafen — Zivilrecht, Strafrecht und Öffentliches Recht.',
     status: 'verfügbar',
   },
   { title: 'BWL & Wirtschaft', text: 'Kennzahlen, Buchungssätze, Schemata für die typischen Klausuraufgaben.', status: 'in Vorbereitung' },
@@ -116,12 +116,12 @@ const faecher = [
       {
         faecher.map((fach) =>
           fach.href ? (
-            <a class="card" href={fach.href}>
+            <div class="card card--link">
               <span class="card__tag">Verfügbar</span>
-              <h3>{fach.title}</h3>
+              <h3><a class="card__link" href={fach.href}>{fach.title}</a></h3>
               <p>{fach.text}</p>
               <p class="card__more">Zu den Unterlagen →</p>
-            </a>
+            </div>
           ) : (
             <div class="card card--soon">
               <span class="card__tag card__tag--soon">In Vorbereitung</span>

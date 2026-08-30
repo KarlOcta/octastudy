@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../components/OctaCtaBox.astro';
+import MockupSlideshow from '../../../components/MockupSlideshow.astro';
+import { OCTA } from '../../../site';
+
+const HERO_SLIDES = [
+  {
+    src: '/img/app/en/andere-test.webp',
+    alt: 'Octa flashcard with a "Test yourself" button — the student speaks the answer out loud',
+    caption: '"Test yourself" on the flashcard — you speak your answer out loud',
+    width: 720,
+    height: 1527,
+  },
+  {
+    src: '/img/app/en/andere-plan.webp',
+    alt: 'Octa study plan with a learning path and progress toward the exam date',
+    caption: 'A study plan built from your material, timed before the exam',
+    width: 720,
+    height: 1527,
+  },
+  {
+    src: '/img/app/en/andere-karte.webp',
+    alt: 'Octa flashcard generated from uploaded course material',
+    caption: 'Flashcards built from your own material, not a generic deck',
+    width: 720,
+    height: 1527,
+  },
+  {
+    src: '/img/app/en/andere-tribes.webp',
+    alt: 'Octa Tribes screen showing a weekly leaderboard of study groups',
+    caption: 'Tribes — study groups where your progress is visible',
+    width: 720,
+    height: 1527,
+  },
+];
+
+const FEATURES = [
+  {
+    title: 'Your material becomes flashcards',
+    text: 'Upload lecture slides, a scanned handout, or just type in the topic. Octa reads it and builds flashcards from it — no typing out questions by hand.',
+  },
+  {
+    title: '"Test yourself" — out loud, not silently',
+    text: "Every card has a Test Yourself button. You say your answer out loud instead of just recognizing it on the screen, and Octa gives you real spoken feedback on what you got right and what you missed.",
+  },
+  {
+    title: 'A study plan timed to when you forget',
+    text: "Enter your exam date. Octa breaks the material into short daily sessions and brings back what you already knew exactly when you're about to start forgetting it — instead of one long cram session.",
+  },
+  {
+    title: 'Tribes — visible progress, not solo intentions',
+    text: 'Join a Tribe of students working toward the same kind of exam. Your study sessions show up there automatically, so skipping a day is something the group can actually see.',
+  },
+];
+
+const FAQ = [
+  {
+    q: 'What devices does Octa run on?',
+    a: 'Octa is currently available for iPhone and iPad only. An Android version is in the works — you can join the waitlist from the Study Type Quiz page.',
+  },
+  {
+    q: 'Where do the flashcards come from?',
+    a: "From your own material. Upload a PDF, slides, or a photo of your notes, or just type in a topic — Octa turns it into flashcards instead of handing you a generic deck that doesn't match your course.",
+  },
+  {
+    q: 'Does it work for my subject?',
+    a: "Octa is built to work with whatever you upload, so it isn't limited to one field. It's already used across subjects including law, business, medicine, computer science, and engineering.",
+  },
+  {
+    q: 'How much does Octa cost?',
+    a: 'Pricing is shown directly on the App Store listing before you download.',
+  },
+  {
+    q: 'Is this different from just using Anki or Quizlet?',
+    a: "Anki and Quizlet are built around cards you (or someone else) already wrote by hand. Octa builds the cards from your own material, adds spoken self-testing instead of just flipping a card, and times the reviews for you instead of leaving spacing up to a manual schedule.",
+  },
+];
+
+const storeLink = OCTA.appStoreUrlEn;
+---
+
+<BaseLayout
+  title="Octa — The AI Study App for Flashcards & Spoken Self-Testing"
+  description="Octa turns your own course material into flashcards, quizzes you out loud, and times the reviews before you forget. Free to try on iPhone and iPad."
+  breadcrumbs={[{ label: 'The App', href: '/en/app/' }]}
+  lang="en"
+  wide
+>
+  <section class="hero">
+    <div class="hero__inner wrap">
+      <div class="hero__copy">
+        <p class="eyebrow">For students who need to actually retain it</p>
+        <h1>Material you <span class="hl">recall</span>, not just material you read</h1>
+        <p class="lead">
+          {OCTA.pitchEn} A study plan spaces the reviews out so it sticks —
+          and a Tribe of other students makes sure you actually show up for
+          it.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href={storeLink} rel="noopener">Get Octa on the App Store</a>
+          <a class="btn btn--ghost" href="/en/tools/lerntyp-test/">Take the 1-minute quiz first</a>
+        </div>
+        <p class="hero__hint">iPhone and iPad · an Android version is in the works</p>
+      </div>
+      <div class="hero__mockup">
+        <MockupSlideshow id="hero-slides" slides={HERO_SLIDES} intervalMs={4200} />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">What Octa actually does</h2>
+    <p class="section-intro">
+      Four things, working together — not four separate apps bolted onto
+      each other.
+    </p>
+    <div class="grid">
+      {
+        FEATURES.map((f) => (
+          <div class="card">
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="octa-cta">
+      <h2>Why we built it this way</h2>
+      <p>
+        Rereading and highlighting feel like progress, but a large review of
+        study techniques found them among the least effective methods
+        students use — while self-testing and spaced review, spread across
+        several days, are consistently rated among the most effective.
+        <cite>Dunlosky et al., Psychological Science in the Public Interest,
+        2013</cite>. Octa is built around exactly those two techniques,
+        instead of asking you to somehow do them by hand on top of everything
+        else.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={storeLink} rel="noopener">Get Octa on the App Store</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Frequently asked questions</h2>
+    <div class="faq">
+      {
+        FAQ.map((item) => (
+          <details class="faq__item">
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <OctaCtaBox
+      id="closing-slides"
+      title="Upload your first set of material"
+      storeLink={storeLink}
+      primaryLabel="Get Octa on the App Store"
+      secondaryLabel="Take the Study Type Quiz"
+      secondaryHref="/en/tools/lerntyp-test/"
+      slides={HERO_SLIDES.slice(0, 3)}
+      intervalMs={4200}
+    >
+      Ten minutes, one topic — enough to see whether spoken self-testing
+      feels different from just rereading your notes.
+    </OctaCtaBox>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    padding-block: 0.5rem 2.5rem;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2.5rem;
+    align-items: center;
+    max-width: min(var(--w-wide), 100%);
+  }
+
+  .hero__copy h1 {
+    margin-bottom: 1.1rem;
+  }
+
+  .hero__mockup {
+    max-width: 260px;
+    justify-self: center;
+  }
+
+  .hero__hint {
+    margin: 0.9rem 0 0;
+    font-size: 0.92rem;
+    color: var(--text-subtle);
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    max-width: 40rem;
+    margin-top: -0.35rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .octa-cta cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .faq {
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .faq__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1.2rem;
+    background: var(--bg-card);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    float: right;
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .faq__item[open] summary::after {
+    content: '–';
+  }
+
+  .faq__item p {
+    margin: 0.7rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  section + section {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__mockup {
+      order: -1;
+      max-width: 200px;
+    }
+  }
+</style>

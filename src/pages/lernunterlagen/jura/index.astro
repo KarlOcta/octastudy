@@ -58,6 +58,13 @@ const total = schemata.length;
       werden. Dazu jeweils ein PDF zum Ausdrucken und ein Karteikarten-Deck.
     </p>
 
+    <a class="klausurfaelle-banner" href="/lernunterlagen/jura/klausurfaelle/">
+      <span class="klausurfaelle-banner__label">Lieber gleich einen Fall lösen?</span>
+      <span class="klausurfaelle-banner__sub">
+        Alle {total} Klausurfälle mit ausformulierter Lösung im Gutachtenstil →
+      </span>
+    </a>
+
     {
       groups.map((g) => (
         <section class="silo">
@@ -125,6 +132,35 @@ const total = schemata.length;
   .intro {
     max-width: 44rem;
     margin-bottom: 2.2rem;
+  }
+
+  .klausurfaelle-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 54rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 2.4rem;
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .klausurfaelle-banner:hover {
+    border-color: var(--accent);
+  }
+
+  .klausurfaelle-banner__label {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .klausurfaelle-banner__sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
   }
 
   .silo {

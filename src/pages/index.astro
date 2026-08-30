@@ -8,7 +8,7 @@ const faecher = [
   {
     title: 'Rechtswissenschaft',
     href: '/lernunterlagen/jura/',
-    text: 'Prüfungsschemata zu den klassischen Klausurparagrafen — vollständig aufgebaut, mit Definitionen, Streitständen, PDF und Karteikarten-Deck.',
+    text: 'Prüfungsschemata und ausformulierte Klausurfälle zu den klassischen Klausurparagrafen — mit Definitionen, Streitständen, PDF und Karteikarten-Deck.',
     status: 'live',
   },
 ];
@@ -53,12 +53,12 @@ const geplant = [
     <div class="grid">
       {
         faecher.map((fach) => (
-          <a class="card" href={fach.href}>
+          <div class="card card--link">
             <span class="card__tag">Verfügbar</span>
-            <h3>{fach.title}</h3>
+            <h3><a class="card__link" href={fach.href}>{fach.title}</a></h3>
             <p>{fach.text}</p>
             <p class="card__more">Zu den Lernunterlagen →</p>
-          </a>
+          </div>
         ))
       }
     </div>
@@ -74,15 +74,15 @@ const geplant = [
       Fachunabhängig und in unter einer Minute erledigt — ohne Anmeldung.
     </p>
     <div class="tool-teaser">
-      <a class="card tool-teaser__card" href="/tools/lerntyp-test/">
-        <h3>Lerntyp-Test</h3>
+      <div class="card card--link tool-teaser__card">
+        <h3><a class="card__link" href="/tools/lerntyp-test/">Lerntyp-Test</a></h3>
         <p>
           Acht Fragen, sechs Profile — und eine konkrete Empfehlung anhand
           deines Testergebnisses, wie du dein Material aufbereiten solltest,
           um leichter gute Noten zu schreiben.
         </p>
         <p class="card__more">Test starten →</p>
-      </a>
+      </div>
       <CharakterTrio class="tool-teaser__bild" />
     </div>
   </section>

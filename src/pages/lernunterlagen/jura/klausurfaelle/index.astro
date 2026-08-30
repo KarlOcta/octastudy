@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { OCTA } from '../../../../site';
+import klausurfaelle from '../../../../data/jura-klausurfaelle.json';
+
+const RECHTSGEBIETE = [
+  {
+    key: 'Zivilrecht (BGB)',
+    text: 'BGB Allgemeiner Teil, Deliktsrecht, Bereicherungsrecht, Leistungsstörungen, Sachenrecht und Schuldrecht Besonderer Teil.',
+  },
+  {
+    key: 'Strafrecht (StGB)',
+    text: 'Allgemeiner Teil (Versuch, Täterschaft, Rechtfertigungsgründe) und Besonderer Teil — Vermögens-, Körperverletzungs-, Tötungs- und Straßenverkehrsdelikte.',
+  },
+  {
+    key: 'Öffentliches Recht (GG)',
+    text: 'Grundrechte, Staatsorganisationsrecht und Verfassungsprozessrecht sowie die zentralen Klagearten des Verwaltungsprozessrechts.',
+  },
+];
+
+const groups = RECHTSGEBIETE.map((rg) => {
+  const entries = klausurfaelle.filter((e) => e.rechtsgebiet === rg.key);
+  const byTeilgebiet = [];
+  for (const e of entries) {
+    let bucket = byTeilgebiet.find((b) => b.teilgebiet === e.teilgebiet);
+    if (!bucket) {
+      bucket = { teilgebiet: e.teilgebiet, entries: [] };
+      byTeilgebiet.push(bucket);
+    }
+    bucket.entries.push(e);
+  }
+  return { ...rg, count: entries.length, byTeilgebiet };
+});
+
+const total = klausurfaelle.length;
+---
+
+<BaseLayout
+  title="Klausurfälle Jura"
+  description={`${total} vollständige Klausurfälle mit ausformulierter Lösung im Gutachtenstil — zu den klassischen Klausurparagrafen aus Zivilrecht, Strafrecht und Öffentlichem Recht.`}
+  breadcrumbs={[
+    { label: 'Lernunterlagen', href: '/lernunterlagen/' },
+    { label: 'Rechtswissenschaft', href: '/lernunterlagen/jura/' },
+    { label: 'Klausurfälle', href: '/lernunterlagen/jura/klausurfaelle/' },
+  ]}
+  wide
+>
+  <div class="wrap">
+    <p class="eyebrow">Lernunterlagen · Rechtswissenschaft</p>
+    <h1>Klausurfälle</h1>
+    <p class="lead intro">
+      {total} frei erfundene Übungsfälle, jeweils mit vollständig
+      ausformulierter Lösung im Gutachtenstil — Sachverhalt, Obersatz,
+      Definition, Subsumtion und Ergebnis zu jedem Prüfungspunkt. Jeder
+      Klausurfall gehört zu einem{' '}
+      <a href="/lernunterlagen/jura/">Prüfungsschema</a>, dessen Gliederung er
+      1:1 durchdekliniert.
+    </p>
+
+    {
+      groups.map((g) => (
+        <section class="silo">
+          <div class="silo__head">
+            <h2>{g.key}</h2>
+            <span class="silo__count">{g.count} Klausurfälle</span>
+          </div>
+          <p class="silo__text">{g.text}</p>
+          {g.byTeilgebiet.map((b) => (
+            <div class="teilgebiet">
+              <h3>{b.teilgebiet}</h3>
+              <ul class="chips" aria-label={`Klausurfälle: ${b.teilgebiet}`}>
+                {b.entries.map((e) => (
+                  <li>
+                    <a href={`/lernunterlagen/jura/${e.slug}/klausurfall/`}>{e.bezug} →</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ))
+    }
+
+    <h2 class="rule">Wie ein Klausurfall aufgebaut ist</h2>
+    <ol>
+      <li>
+        <strong>Sachverhalt und Frage</strong> — ein konkreter, frei
+        erfundener Fall mit den üblichen Klausur-Kürzeln, so konstruiert, dass
+        jeder Punkt des zugehörigen Schemas tatsächlich zu prüfen ist.
+      </li>
+      <li>
+        <strong>Lösung im Gutachtenstil</strong> — zu jedem Prüfungspunkt
+        Obersatz, Definition und Subsumtion, in derselben Gliederung wie im
+        Prüfungsschema.
+      </li>
+      <li>
+        <strong>Ergebnis</strong> — die Antwort auf die Ausgangsfrage,
+        einschließlich Rechtsfolge.
+      </li>
+    </ol>
+
+    <div class="note">
+      <p>
+        Sachverhalt und Personen sind frei erfunden und dienen ausschließlich
+        der Prüfungsvorbereitung. Kein Klausurfall stellt eine
+        Rechtsberatung dar oder ersetzt anwaltliche Beratung im Einzelfall.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 46rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .intro a {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .silo {
+    margin-bottom: 2.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .silo:last-of-type {
+    border-bottom: none;
+  }
+
+  .silo__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .silo__head h2 {
+    margin: 0;
+  }
+
+  .silo__count {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 100px;
+    padding: 0.15rem 0.65rem;
+  }
+
+  .silo__text {
+    max-width: 50rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 1.3rem;
+  }
+
+  .teilgebiet {
+    margin-bottom: 1.1rem;
+  }
+
+  .teilgebiet:last-child {
+    margin-bottom: 0;
+  }
+
+  .teilgebiet h3 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-subtle);
+    margin: 0 0 0.5rem;
+  }
+
+  .chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .chips li {
+    margin-top: 0;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+  }
+
+  .chips li a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+    background: var(--accent-soft);
+    border-radius: 100px;
+    padding: 0.15rem 0.6rem;
+    font-weight: 700;
+  }
+
+  .chips li a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+</style>

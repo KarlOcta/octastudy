@@ -21,9 +21,9 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
     <CharakterTrio class="tools-trio" eager />
 
     <div class="grid">
-      <a class="card" id="lerntyp-test" href="/tools/lerntyp-test/">
+      <div class="card card--link" id="lerntyp-test">
         <span class="card__tag">Verfügbar</span>
-        <h3>Lerntyp-Test</h3>
+        <h3><a class="card__link" href="/tools/lerntyp-test/">Lerntyp-Test</a></h3>
         <p>
           Acht Fragen, sechs Profile. Am Ende steht nicht nur ein Etikett,
           sondern eine konkrete Empfehlung, wie du dein Material aufbereiten
@@ -31,18 +31,18 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
           sind.
         </p>
         <p class="card__more">Test starten →</p>
-      </a>
+      </div>
 
-      <a class="card" href="/lerntypen/">
+      <div class="card card--link">
         <span class="card__tag">Zum Nachlesen</span>
-        <h3>Welche Lerntypen gibt es?</h3>
+        <h3><a class="card__link" href="/lerntypen/">Welche Lerntypen gibt es?</a></h3>
         <p>
           Visuell, auditiv, haptisch, intellektuell — das bekannte Modell im
           Überblick, warum es der wissenschaftlichen Überprüfung nicht standhält
           und welche zwei Lerntechniken stattdessen belegt wirken.
         </p>
         <p class="card__more">Weiterlesen →</p>
-      </a>
+      </div>
     </div>
 
     <h2 class="rule">Warum wir Tools statt nur Artikel bauen</h2>

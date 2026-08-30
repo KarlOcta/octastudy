@@ -106,7 +106,7 @@ export const FOOTER_NAV: NavItem[] = [
  * deutschsprachige Unterseiten, die ein englischsprachiger Besucher nicht
  * lesen kann. Wird erweitert, sobald mehr /en/-Seiten existieren.
  */
-export const NAV_EN: NavItem[] = [];
+export const NAV_EN: NavItem[] = [{ label: 'The App', href: '/en/app/' }];
 
 export const FOOTER_NAV_EN: NavItem[] = [
   { label: 'Imprint', href: '/impressum/' },
