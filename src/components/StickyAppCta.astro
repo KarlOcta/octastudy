@@ -62,6 +62,13 @@ const {
     var ticking = false;
     function update() {
       ticking = false;
+      // Der Cookie-Hinweis (falls noch nicht entschieden) hat Vorrang und
+      // belegt dieselbe Bildschirmzone — solange er sichtbar ist, bleibt
+      // diese Leiste unten weg, statt sich mit ihm zu überlappen.
+      if (document.getElementById('cookie-consent')) {
+        bar.classList.remove('is-visible');
+        return;
+      }
       var scrollY = window.scrollY || window.pageYOffset;
       var docH = document.documentElement.scrollHeight;
       var winH = window.innerHeight;

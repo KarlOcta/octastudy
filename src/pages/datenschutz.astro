@@ -27,21 +27,25 @@ import { OWNER, SITE } from '../site';
 
     <h2>2. Grundsätzliches zu dieser Website</h2>
     <p>
-      {SITE.url} ist eine rein statische Website. Es gibt keine Benutzerkonten,
-      keine Kommentarfunktion und keine Anmeldung. Wir setzen <strong
+      {SITE.url} ist eine überwiegend statische Website. Es gibt keine
+      Benutzerkonten, keine Kommentarfunktion und keine Anmeldung. Bis auf ein
+      einziges, rein optionales Analyse-Tool (Ziffer 8) setzen wir <strong
         >keine Cookies</strong
       > und <strong>keine Werkzeuge zur Wiedererkennung von Besuchern</strong> ein
-      — weder für Werbung noch für seitenübergreifende Analyse. Es werden keine
-      Schriftarten oder Skripte von externen Servern nachgeladen; alle Inhalte
-      werden von unserem Hoster ausgeliefert.
+      — weder für Werbung noch für seitenübergreifende Analyse. Auch dieses eine
+      Tool wird nur geladen, wenn du dem im Cookie-Hinweis ausdrücklich
+      zustimmst; ohne deine Zustimmung werden keine Skripte von externen
+      Servern nachgeladen und alle Inhalte kommen ausschließlich von unserem
+      Hoster.
     </p>
     <p>
       Die interaktiven Werkzeuge dieser Seite (etwa der Notenrechner oder der
-      Lerntyp-Test) laufen vollständig in deinem Browser. Zwei Vorgänge
-      übertragen etwas an einen Server, und beide sind unten einzeln
+      Lerntyp-Test) laufen vollständig in deinem Browser. Drei Vorgänge
+      übertragen etwas an einen Server, und alle drei sind unten einzeln
       beschrieben: die freiwillige Anmeldung zur Warteliste für die
-      Android-Version (Ziffer 6) und eine anonyme Auswertung der
-      Testdurchläufe (Ziffer 7).
+      Android-Version (Ziffer 6), eine anonyme Auswertung der Testdurchläufe
+      (Ziffer 7) und — ausschließlich mit deiner Einwilligung — Microsoft
+      Clarity zur Analyse der Websitenutzung (Ziffer 8).
     </p>
 
     <h2>3. Hosting und Server-Logfiles</h2>
@@ -184,7 +188,77 @@ import { OWNER, SITE } from '../site';
       getrennt davon und ohne jede Verbindung zu einer E-Mail-Adresse.
     </p>
 
-    <h2>8. Externe Links</h2>
+    <h2>8. Microsoft Clarity (nur mit deiner Einwilligung)</h2>
+    <p>
+      Mit deiner Einwilligung nutzen wir Microsoft Clarity, einen Dienst der
+      Microsoft Ireland Operations Limited, One Microsoft Place, South County
+      Business Park, Leopardstown, Dublin 18, Irland (Verarbeitung teilweise
+      auch durch die Microsoft Corporation, One Microsoft Way, Redmond, WA
+      98052, USA). Clarity zeichnet auf, wie Besucher:innen diese Website
+      nutzen — unter anderem Mausbewegungen, Klicks, Scrollverhalten sowie
+      daraus erstellte anonymisierte Aufzeichnungen und Heatmaps —, damit wir
+      erkennen können, welche Inhalte funktionieren und wo es hakt. Eingaben
+      in Formularfeldern maskiert Clarity standardmäßig, bevor sie übertragen
+      werden.
+    </p>
+    <p>
+      Clarity wird ausschließlich geladen, wenn du im Cookie-Hinweis am
+      unteren Bildschirmrand aktiv zustimmst. Dabei werden unter anderem
+      folgende Cookies gesetzt:
+    </p>
+    <ul>
+      <li>
+        <code>_clck</code> — verknüpft deine Besuche über mehrere Sitzungen
+        hinweg (Speicherdauer ca. 1 Jahr)
+      </li>
+      <li>
+        <code>_clsk</code> — verknüpft mehrere Seitenaufrufe innerhalb einer
+        Sitzung (Speicherdauer ca. 1 Tag)
+      </li>
+      <li>
+        <code>CLID</code>, <code>MUID</code>, <code>ANONCHK</code>, <code
+          >MR</code
+        >, <code>SM</code> — weitere technische Kennungen zur Zuordnung der
+        Aufzeichnung; <code>MUID</code> wird nach Angaben von Microsoft auch
+        geräteübergreifend für andere Microsoft-Dienste verwendet, unter
+        anderem mit Werbebezug
+      </li>
+    </ul>
+    <p>
+      Rechtsgrundlage ist ausschließlich deine Einwilligung (Art. 6 Abs. 1
+      lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG). Ohne deine Zustimmung
+      wird weder das Skript geladen noch werden die genannten Cookies
+      gesetzt. Die Daten werden auf Servern von Microsoft verarbeitet,
+      teilweise auch in den USA; für eine solche Übermittlung in ein
+      Drittland stützt sich Microsoft nach eigenen Angaben auf geeignete
+      Garantien, unter anderem die Standardvertragsklauseln der Europäischen
+      Kommission. Näheres findest du in der Datenschutzerklärung von
+      Microsoft und im Clarity-FAQ:
+      <a
+        href="https://privacy.microsoft.com/de-de/privacystatement"
+        rel="noopener nofollow">privacy.microsoft.com/de-de/privacystatement</a
+      >{' '}und{' '}
+      <a href="https://learn.microsoft.com/en-us/clarity/faq" rel="noopener nofollow"
+        >learn.microsoft.com/en-us/clarity/faq</a
+      >.
+    </p>
+    <p>
+      Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft
+      widerrufen:
+    </p>
+    <p>
+      <button type="button" id="clarity-consent-reset" class="btn btn--ghost">
+        Clarity-Einwilligung zurücksetzen
+      </button>
+    </p>
+    <p class="text-muted">
+      Das setzt deine bisherige Entscheidung zurück und zeigt den
+      Cookie-Hinweis beim nächsten Laden dieser Seite erneut an. Bereits
+      gesetzte Clarity-Cookies kannst du zusätzlich jederzeit über die
+      Cookie-Einstellungen deines Browsers löschen.
+    </p>
+
+    <h2>9. Externe Links</h2>
     <p>
       Diese Website verlinkt an einzelnen Stellen auf externe Angebote, etwa auf
       den Apple App Store. Beim Anklicken eines solchen Links verlässt du diese
@@ -192,7 +266,7 @@ import { OWNER, SITE } from '../site';
       Anbieters. Auf die dortige Datenverarbeitung haben wir keinen Einfluss.
     </p>
 
-    <h2>9. Deine Rechte</h2>
+    <h2>10. Deine Rechte</h2>
     <p>Dir stehen als betroffener Person die folgenden Rechte zu:</p>
     <ul>
       <li>
@@ -217,7 +291,7 @@ import { OWNER, SITE } from '../site';
       <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>.
     </p>
 
-    <h2>10. Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <h2>11. Beschwerderecht bei der Aufsichtsbehörde</h2>
     <p>
       Unbeschadet anderer Rechtsbehelfe hast du das Recht, dich bei einer
       Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem
@@ -225,7 +299,7 @@ import { OWNER, SITE } from '../site';
       des mutmaßlichen Verstoßes (Art. 77 DSGVO).
     </p>
 
-    <h2>11. Änderungen dieser Datenschutzerklärung</h2>
+    <h2>12. Änderungen dieser Datenschutzerklärung</h2>
     <p>
       Wir passen diese Datenschutzerklärung an, sobald sich die
       Datenverarbeitung auf dieser Website ändert — etwa durch neue Funktionen
@@ -233,3 +307,16 @@ import { OWNER, SITE } from '../site';
     </p>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('clarity-consent-reset');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      try {
+        localStorage.removeItem('octa-consent-analytics');
+      } catch (e) {}
+      location.reload();
+    });
+  })();
+</script>

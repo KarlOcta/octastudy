@@ -1,0 +1,186 @@
+---
+/**
+ * Consent-Banner für Microsoft Clarity (Session-Recording/Heatmaps).
+ * Clarity ist das einzige nicht technisch notwendige Tool auf dieser Seite
+ * und wird erst nach ausdrücklicher Zustimmung geladen (§ 25 Abs. 1 TDDDG,
+ * Art. 6 Abs. 1 lit. a DSGVO). Die Entscheidung wird in localStorage unter
+ * dem Key `octa-consent-analytics` gespeichert ('granted' | 'denied') und
+ * gilt geräteweit, bis sie über die Datenschutzseite zurückgesetzt wird.
+ * Das eigentliche Laden übernimmt `window.octaLoadClarity`, das im
+ * BaseLayout-<head> definiert wird — so gibt es nur eine Stelle mit dem
+ * Clarity-Snippet, egal ob die Zustimmung schon beim Seitenaufruf vorlag
+ * oder gerade erst per Klick hier erteilt wird.
+ */
+export interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+
+const t =
+  lang === 'en'
+    ? {
+        text:
+          'We’d like to use Microsoft Clarity to see how visitors use this site (e.g. anonymised clicks and mouse movement), so we can improve it. This is optional.',
+        link: '/datenschutz/',
+        linkLabel: 'Privacy policy',
+        decline: 'Decline',
+        accept: 'Accept',
+      }
+    : {
+        text:
+          'Wir möchten Microsoft Clarity nutzen, um zu sehen, wie Besucher:innen diese Seite verwenden (z. B. anonymisierte Klicks und Mausbewegungen), um sie zu verbessern. Das ist freiwillig.',
+        link: '/datenschutz/',
+        linkLabel: 'Datenschutzerklärung',
+        decline: 'Ablehnen',
+        accept: 'Akzeptieren',
+      };
+---
+
+<div class="cookie-consent" id="cookie-consent" data-cookie-consent>
+  <p class="cookie-consent__text">
+    {t.text}
+    {' '}
+    <a href={t.link}>{t.linkLabel}</a>
+  </p>
+  <div class="cookie-consent__actions">
+    <button
+      class="cookie-consent__btn cookie-consent__btn--ghost"
+      type="button"
+      data-consent-decline
+    >
+      {t.decline}
+    </button>
+    <button
+      class="cookie-consent__btn cookie-consent__btn--accent"
+      type="button"
+      data-consent-accept
+    >
+      {t.accept}
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'octa-consent-analytics';
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+
+    var existing = null;
+    try {
+      existing = localStorage.getItem(KEY);
+    } catch (e) {}
+
+    if (existing === 'granted' || existing === 'denied') {
+      banner.remove();
+      return;
+    }
+
+    function decide(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+      if (value === 'granted' && typeof window.octaLoadClarity === 'function') {
+        window.octaLoadClarity();
+      }
+      banner.classList.remove('is-visible');
+      window.setTimeout(function () {
+        banner.remove();
+        // Andere fixe Leisten (z. B. die Sticky-App-CTA) weichen dem
+        // Cookie-Hinweis aus, solange er im DOM ist — nach dem Entfernen
+        // einmal einen Scroll-Event simulieren, damit sie sich sofort neu
+        // einblenden können, statt erst auf den nächsten echten Scroll zu
+        // warten.
+        window.dispatchEvent(new Event('scroll'));
+      }, 250);
+    }
+
+    var declineBtn = banner.querySelector('[data-consent-decline]');
+    var acceptBtn = banner.querySelector('[data-consent-accept]');
+    declineBtn.addEventListener('click', function () {
+      decide('denied');
+    });
+    acceptBtn.addEventListener('click', function () {
+      decide('granted');
+    });
+
+    window.requestAnimationFrame(function () {
+      banner.classList.add('is-visible');
+    });
+  })();
+</script>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem 1.5rem;
+    padding: 1rem 1.25rem;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-strong);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.14);
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .cookie-consent.is-visible {
+    transform: translateY(0);
+  }
+
+  .cookie-consent__text {
+    margin: 0;
+    max-width: 46rem;
+    flex: 1 1 20rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .cookie-consent__text a {
+    color: var(--accent);
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    flex: none;
+    gap: 0.6rem;
+  }
+
+  .cookie-consent__btn {
+    border-radius: var(--radius-pill);
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .cookie-consent__btn--ghost {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+  }
+
+  .cookie-consent__btn--ghost:hover {
+    background: var(--bg-soft);
+  }
+
+  .cookie-consent__btn--accent {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: #fff;
+  }
+
+  .cookie-consent__btn--accent:hover {
+    filter: brightness(1.08);
+  }
+</style>
