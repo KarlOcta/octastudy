@@ -21,16 +21,16 @@ const t =
   lang === 'en'
     ? {
         text:
-          'We’d like to use Microsoft Clarity to see how visitors use this site (e.g. anonymised clicks and mouse movement), so we can improve it. This is optional.',
-        link: '/datenschutz/',
-        linkLabel: 'Privacy policy',
+          'We’d like to use an analytics tool to see how visitors use this site (e.g. anonymised clicks and mouse movement), so we can improve it. This is optional — which tool and what exactly it records is explained in our',
+        link: '/datenschutz/#ms-clarity',
+        linkLabel: 'privacy policy',
         decline: 'Decline',
         accept: 'Accept',
       }
     : {
         text:
-          'Wir möchten Microsoft Clarity nutzen, um zu sehen, wie Besucher:innen diese Seite verwenden (z. B. anonymisierte Klicks und Mausbewegungen), um sie zu verbessern. Das ist freiwillig.',
-        link: '/datenschutz/',
+          'Wir möchten ein Analyse-Tool nutzen, um zu sehen, wie Besucher:innen diese Seite verwenden (z. B. anonymisierte Klicks und Mausbewegungen), um sie zu verbessern. Das ist freiwillig — welches Tool das genau ist und was es erfasst, steht in unserer',
+        link: '/datenschutz/#ms-clarity',
         linkLabel: 'Datenschutzerklärung',
         decline: 'Ablehnen',
         accept: 'Akzeptieren',
@@ -41,7 +41,7 @@ const t =
   <p class="cookie-consent__text">
     {t.text}
     {' '}
-    <a href={t.link}>{t.linkLabel}</a>
+    <a href={t.link}>{t.linkLabel}</a>{'.'}
   </p>
   <div class="cookie-consent__actions">
     <button

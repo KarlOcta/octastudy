@@ -2,7 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../../../components/OctaCtaBox.astro';
 import StickyAppCta from '../../../../components/StickyAppCta.astro';
-import { OCTA, APPSTORE_CPP } from '../../../../site';
+import { OCTA, appStoreCppUrl } from '../../../../site';
 import schemata from '../../../../data/jura-schemata.json';
 import klausurfaelle from '../../../../data/jura-klausurfaelle.json';
 
@@ -15,7 +15,7 @@ export function getStaticPaths() {
 
 const { entry } = Astro.props;
 const canonical = `https://octastudy.com/lernunterlagen/jura/${entry.slug}/`;
-const storeLink = APPSTORE_CPP.jura || OCTA.appStoreUrl;
+const storeLink = appStoreCppUrl('jura', 'de');
 const klausurfall = klausurfaelle.find((f) => f.slug === entry.slug);
 
 const SLIDES = [
@@ -219,7 +219,7 @@ const jsonLd = JSON.stringify({
     </div>
   </div>
 
-  <StickyAppCta storeLink={storeLink} label="App Store ansehen" pitch="Direkt in Octa weiterlernen" />
+  <StickyAppCta storeLink={storeLink} label="App Store ansehen" pitch="Direkt in Octa weiterlernen" lang="de" />
 </BaseLayout>
 
 <style>

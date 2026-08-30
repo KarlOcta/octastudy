@@ -58,6 +58,53 @@ export const OCTA = {
 } as const;
 
 /**
+ * Echte App-Store-Gesamtbewertung, fuer Bewertungs-Elemente ausserhalb des
+ * Lerntyp-Tests (z. B. die rotierenden Slides der StickyAppCta). Inhaltlich
+ * identisch mit der Konstante STORE im Lerntyp-Test
+ * (src/pages/tools/lerntyp-test.astro bzw. .../en/tools/lerntyp-test.astro)
+ * — bei einer Aktualisierung bitte an beiden Stellen nachziehen.
+ */
+export const APP_RATING = {
+  de: { schnitt: '5,0', anzahl: 9, stand: 'Juli 2026' },
+  en: { schnitt: '5.0', anzahl: 9, stand: 'July 2026' },
+} as const;
+
+/**
+ * Echte App-Store-Rezensionen (Text + Verfasser), dieselben wie R im
+ * Lerntyp-Test — siehe Kommentar bei APP_RATING.
+ */
+export const APP_REVIEWS = {
+  de: [
+    {
+      t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      w: 'Timmi.bremmen · App Store',
+    },
+    {
+      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
+      w: 'So fifi · App Store',
+    },
+    {
+      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      w: 'DexterBerlin36 · App Store',
+    },
+  ],
+  en: [
+    {
+      t: 'Two days before the final, study plan in two minutes — ended up with an A.',
+      w: 'Timmi.bremmen · App Store',
+    },
+    {
+      t: '"Simple, effective, and motivating" — it mostly just helps me stay organized.',
+      w: 'So fifi · App Store',
+    },
+    {
+      t: 'Finally "one app that replaces many": flashcards, translator, and voice notes all together.',
+      w: 'DexterBerlin36 · App Store',
+    },
+  ],
+} as const;
+
+/**
  * Eigene Custom Product Page je Studienfach im App Store. Wird auf
  * Schema-/Lernunterlagen-Seiten fuer den fachbezogenen "Octa im App Store
  * ansehen"-Link und in den zugehoerigen PDF-Downloads (QR-Code + Button)
@@ -82,6 +129,23 @@ export const APPSTORE_CPP: Record<string, string> = {
   sportwissenschaften: 'https://apps.apple.com/us/app/octa-ai-tutor-study-plan/id6751514384?ppid=fba84a84-1863-4fd5-ac19-ab5433b32c1d',
   andere: 'https://apps.apple.com/us/app/octa-ai-tutor-study-plan/id6751514384?ppid=79f9c591-a1f8-4bb6-94f2-eef83077bd8f',
 };
+
+/**
+ * Liefert den fachbezogenen App-Store-Link (Custom Product Page) in der
+ * passenden Storefront-Sprache. APPSTORE_CPP ist mit der US-Storefront
+ * (/us/app/) hinterlegt; fuer deutschsprachige Seiten wird daraus die
+ * deutsche Storefront (/de/app/) abgeleitet — die ppid (und damit die in
+ * App Store Connect hinterlegte Custom Product Page) bleibt dieselbe, nur
+ * Sprache/Waehrung der Store-Seite aendern sich, genau wie es OCTA.appStoreUrl
+ * (/de/) gegenueber OCTA.appStoreUrlEn (/us/) fuer den generischen Store-Link
+ * bereits vormacht. Ohne eigene CPP fuer das Fach greift der generische
+ * Store-Link in der jeweiligen Sprache.
+ */
+export function appStoreCppUrl(subject: string, lang: 'de' | 'en' = 'de'): string {
+  const cpp = APPSTORE_CPP[subject];
+  if (!cpp) return lang === 'en' ? OCTA.appStoreUrlEn : OCTA.appStoreUrl;
+  return lang === 'en' ? cpp : cpp.replace('/us/app/', '/de/app/');
+}
 
 export type NavItem = {
   label: string;

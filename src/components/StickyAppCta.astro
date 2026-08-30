@@ -5,19 +5,41 @@
  * Content nicht stört), versteckt sich wieder kurz vor dem Seitenende (wo
  * ohnehin die letzte OctaCtaBox sitzt) und lässt sich per X dauerhaft
  * schließen (Session-Storage, kommt bei der naechsten Seite wieder).
- * Bewusst schlank gehalten: ein Satz + ein Button, kein zweites CTA-Design.
+ * Bewusst schlank gehalten: ein Satz + ein Button, kein zweites CTA-Design —
+ * die Textzeile rotiert dafür durch Pitch, Gesamtbewertung und echte
+ * App-Store-Rezensionen (APP_RATING/APP_REVIEWS, dieselben Daten wie im
+ * Lerntyp-Test), damit auf demselben Platz mehr Vertrauenssignale Platz
+ * finden statt eines zweiten CTA-Elements.
  */
+import { APP_RATING, APP_REVIEWS } from '../site';
+
 export interface Props {
   storeLink: string;
   label?: string;
   pitch?: string;
+  lang?: 'de' | 'en';
 }
 
 const {
   storeLink,
   label = 'App Store ansehen',
   pitch = 'Direkt in Octa weiterlernen',
+  lang = 'de',
 } = Astro.props;
+
+const rating = APP_RATING[lang];
+const reviews = APP_REVIEWS[lang];
+const ratingLine =
+  lang === 'en'
+    ? `★★★★★ ${rating.schnitt} · ${rating.anzahl} ratings on the App Store`
+    : `★★★★★ ${rating.schnitt} · ${rating.anzahl} Bewertungen im App Store`;
+// Kein zusätzliches Anführungszeichen-Paar drumherum: Ein Teil der
+// Original-Rezensionen enthält bereits eigene Anführungszeichen im Text
+// (z. B. „one app that replaces many“) — eine zweite Ebene außenrum ergäbe
+// verschachtelte „„…““. Gleiche Darstellung wie im Lerntyp-Test, wo die
+// Rezensionen ebenfalls ohne zusätzliche Anführungszeichen gezeigt werden.
+const reviewLines = reviews.map((r) => `${r.t} — ${r.w}`);
+const rotatorSlides = [pitch, ratingLine, ...reviewLines];
 ---
 
 <div class="sticky-cta" id="sticky-app-cta" data-sticky-cta>
@@ -29,8 +51,14 @@ const {
     width="34"
     height="26"
   />
-  <span class="sticky-cta__text">{pitch}</span>
-  <a class="sticky-cta__btn" href={storeLink} rel="noopener">{label}</a>
+  <span class="sticky-cta__text" data-sticky-rotator>
+    {
+      rotatorSlides.map((text, i) => (
+        <span data-active={i === 0 ? 'true' : 'false'}>{text}</span>
+      ))
+    }
+  </span>
+  <a class="sticky-cta__btn" href={storeLink} target="_blank" rel="noopener">{label}</a>
   <button
     class="sticky-cta__close"
     type="button"
@@ -58,6 +86,21 @@ const {
         sessionStorage.setItem(KEY, '1');
       } catch (e) {}
     });
+
+    // Textzeile rotiert durch Pitch/Bewertung/Rezensionen (siehe Component-
+    // Frontmatter). Reiner Sichtbarkeits-Toggle, kein Crossfade — dieselbe
+    // simple Technik wie bei den Bildunterschriften in MockupSlideshow.astro.
+    var rotatorSlides = Array.from(
+      bar.querySelectorAll('[data-sticky-rotator] > span')
+    );
+    if (rotatorSlides.length > 1) {
+      var rotatorActive = 0;
+      setInterval(function () {
+        rotatorSlides[rotatorActive].dataset.active = 'false';
+        rotatorActive = (rotatorActive + 1) % rotatorSlides.length;
+        rotatorSlides[rotatorActive].dataset.active = 'true';
+      }, 4500);
+    }
 
     var ticking = false;
     function update() {
@@ -131,9 +174,17 @@ const {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text);
+  }
+
+  .sticky-cta__text span {
+    display: none;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .sticky-cta__text span[data-active='true'] {
+    display: block;
   }
 
   .sticky-cta__btn {
