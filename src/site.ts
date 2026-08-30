@@ -70,36 +70,44 @@ export const APP_RATING = {
 } as const;
 
 /**
- * Echte App-Store-Rezensionen (Text + Verfasser), dieselben wie R im
- * Lerntyp-Test — siehe Kommentar bei APP_RATING.
+ * Echte App-Store-Rezensionen, fuer die rotierenden Slides der StickyAppCta.
+ * Inhaltlich dieselben drei Rezensionen wie R im Lerntyp-Test (siehe
+ * Kommentar bei APP_RATING) — dort behalten "fifi" und "dexter" bewusst
+ * ihr englisches Zitat ("Simple, effective, and motivating" / "one app
+ * that replaces many"), weil das dort redaktionell eingebettet ist. Im
+ * engen Rotator der StickyAppCta stehen sie dagegen isoliert und einzeln
+ * fuer sich, ohne den umgebenden Satz — deshalb hier vollstaendig auf
+ * Deutsch uebersetzt, damit auf der deutschen Seite nicht ploetzlich ein
+ * rein englischer Ausschnitt auftaucht. Verfassername ohne "· App Store"-
+ * Zusatz, da der Platz im Rotator knapp ist.
  */
 export const APP_REVIEWS = {
   de: [
     {
       t: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
-      w: 'Timmi.bremmen · App Store',
+      w: 'Timmi.bremmen',
     },
     {
-      t: '„Simple, effective, and motivating“ — vor allem hilft es mir, organisiert zu bleiben.',
-      w: 'So fifi · App Store',
+      t: 'Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben.',
+      w: 'So fifi',
     },
     {
-      t: 'Endlich „one app that replaces many“: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
-      w: 'DexterBerlin36 · App Store',
+      t: 'Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      w: 'DexterBerlin36',
     },
   ],
   en: [
     {
       t: 'Two days before the final, study plan in two minutes — ended up with an A.',
-      w: 'Timmi.bremmen · App Store',
+      w: 'Timmi.bremmen',
     },
     {
       t: '"Simple, effective, and motivating" — it mostly just helps me stay organized.',
-      w: 'So fifi · App Store',
+      w: 'So fifi',
     },
     {
       t: 'Finally "one app that replaces many": flashcards, translator, and voice notes all together.',
-      w: 'DexterBerlin36 · App Store',
+      w: 'DexterBerlin36',
     },
   ],
 } as const;

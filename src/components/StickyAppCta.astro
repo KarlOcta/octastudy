@@ -144,7 +144,7 @@ const rotatorSlides = [pitch, ratingLine, ...reviewLines];
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    max-width: min(94vw, 30rem);
+    max-width: min(94vw, 36rem);
     padding: 0.6rem 0.7rem 0.6rem 0.9rem;
     background: var(--bg-card);
     border: 1px solid var(--border-strong);
@@ -178,13 +178,19 @@ const rotatorSlides = [pitch, ratingLine, ...reviewLines];
 
   .sticky-cta__text span {
     display: none;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  /* Zwei Zeilen statt einer einzelnen, hart abgeschnittenen — bei den
+     Rezensionen blieb bei einer Zeile oft nur das erste Bruchstück
+     lesbar (im schlimmsten Fall nur das eingangs zitierte Wort). Nur bei
+     wirklich langen Slides greift danach noch eine Ellipse. */
   .sticky-cta__text span[data-active='true'] {
-    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.32;
   }
 
   .sticky-cta__btn {
