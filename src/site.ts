@@ -181,6 +181,7 @@ export const FOOTER_NAV: NavItem[] = [
 export const NAV_EN: NavItem[] = [{ label: 'The App', href: '/en/app/' }];
 
 export const FOOTER_NAV_EN: NavItem[] = [
+  { label: 'The App', href: '/en/app/' },
   { label: 'Imprint', href: '/impressum/' },
   { label: 'Privacy Policy', href: '/datenschutz/' },
 ];
