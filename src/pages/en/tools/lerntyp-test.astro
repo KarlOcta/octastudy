@@ -2014,7 +2014,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     markierer: 'Flashcard built from your own material — recall instead of rereading',
     ueberfordert: "The study plan shows what's up today — one task",
     einzel: "Tribes — your progress is visible to the group",
-    sprinter: 'Weekly history and streak keep the rhythm going',
+    sprinter: 'The study plan spreads material across days, timed before you forget it',
   };
 
   /* ------------------------------------------------------------- Logik -- */
@@ -2125,18 +2125,29 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     reduceMotion ? go() : setTimeout(go, 200);
   }
 
-  /* Welcher App-Bildschirm passt zu welchem Profil. Zwei Profile zeigen einen
-     fachunabhaengigen Screen, weil ihr Feature nicht vom Studiengang abhaengt. */
+  /* Welcher App-Bildschirm passt zu welchem Profil. Sprinter zeigt denselben
+     plan-Screen wie sammler/ueberfordert, weil sein Feature (Lernplan mit
+     Wiederholungslogik) ebenfalls der Studienplan ist — kein eigener
+     Dashboard/Streak-Screen mehr noetig. */
   const SCREEN = {
     koenner: 'test',
     sammler: 'plan',
     markierer: 'karte',
     ueberfordert: 'plan',
     einzel: 'tribes',
-    sprinter: null, // Wochenverlauf und Serie zeigen keinen Fachstoff
+    sprinter: 'plan',
   };
-  const mockSrc = (key) =>
-    SCREEN[key] ? `/img/app/${fach}-${SCREEN[key]}.webp` : '/img/app/home.webp';
+  /* Fuer plan/karte/test existieren echte englische App-Store-Screenshots
+     (zugeschnitten). tribes ist als eigenes Mockup nachgebaut (App Store hat
+     dafuer keine Vorlage). Nur der fachunabhaengige home-Fallback hat noch
+     keine englische Version. */
+  const EN_SCREENS = new Set(['plan', 'karte', 'test', 'tribes']);
+  const mockSrc = (key) => {
+    const screen = SCREEN[key];
+    if (screen && EN_SCREENS.has(screen)) return `/img/app/en/${fach}-${screen}.webp`;
+    if (screen) return `/img/app/${fach}-${screen}.webp`;
+    return '/img/app/home.webp';
+  };
 
   function render() {
     const item = QUESTIONS[step];

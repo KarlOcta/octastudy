@@ -2012,7 +2012,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     markierer: 'Karteikarte aus deinem eigenen Material — abrufen statt wiederlesen',
     ueberfordert: 'Der Lernplan zeigt, was heute dran ist — eine Aufgabe',
     einzel: 'Tribes — dein Fortschritt ist für die Gruppe sichtbar',
-    sprinter: 'Wochenverlauf und Serie halten den Rhythmus',
+    sprinter: 'Der Lernplan verteilt den Stoff über mehrere Tage, rechtzeitig vor dem Vergessen',
   };
 
   /* ------------------------------------------------------------- Logik -- */
@@ -2123,15 +2123,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     reduceMotion ? go() : setTimeout(go, 200);
   }
 
-  /* Welcher App-Bildschirm passt zu welchem Profil. Zwei Profile zeigen einen
-     fachunabhaengigen Screen, weil ihr Feature nicht vom Studiengang abhaengt. */
+  /* Welcher App-Bildschirm passt zu welchem Profil. Sprinter zeigt denselben
+     plan-Screen wie sammler/ueberfordert, weil sein Feature (Lernplan mit
+     Wiederholungslogik) ebenfalls der Studienplan ist. */
   const SCREEN = {
     koenner: 'test',
     sammler: 'plan',
     markierer: 'karte',
     ueberfordert: 'plan',
     einzel: 'tribes',
-    sprinter: null, // Wochenverlauf und Serie zeigen keinen Fachstoff
+    sprinter: 'plan',
   };
   const mockSrc = (key) =>
     SCREEN[key] ? `/img/app/${fach}-${SCREEN[key]}.webp` : '/img/app/home.webp';
