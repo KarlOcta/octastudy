@@ -1,20 +1,29 @@
 /**
  * octastudy — Android-Warteliste
  *
- * Zwei Aufgaben:
- *   POST  /          nimmt eine Anmeldung entgegen und schreibt sie nach D1
- *   GET   /liste     geschützte Übersicht als HTML-Tabelle
- *   GET   /liste.csv geschützter CSV-Download
- *   POST  /lauf      anonyme Statistik eines Testdurchlaufs
- *   GET   /statistik geschützte Auswertung der Testdurchläufe
+ * Aufgaben:
+ *   POST  /           nimmt eine Anmeldung entgegen und schreibt sie nach D1
+ *   GET   /liste      geschützte Übersicht als HTML-Tabelle
+ *   GET   /liste.csv  geschützter CSV-Download
+ *   POST  /lauf       anonyme Statistik eines Testdurchlaufs
+ *   GET   /statistik  geschützte Auswertung der Testdurchläufe
+ *   POST  /meta-event meldet das Event "QuizCompleteAppClick" zusätzlich
+ *                     serverseitig an Meta (Conversions API), nur mit
+ *                     Einwilligung bzw. US-Ausnahme ausgelöst — siehe
+ *                     BaseLayout.astro und datenschutz.astro Ziffer 8
  *
- * Kein Mailversand, keine Cookies, kein Tracking.
+ * Kein Mailversand, keine eigenen Cookies, kein Tracking außer dem
+ * ausdrücklich in der Datenschutzerklärung offengelegten Meta-Event oben.
  *
  * Erforderlich:
- *   D1-Binding  DB              → Datenbank octastudy
- *   Secret      ADMIN_PASSWORT  → frei wählbares Passwort für /liste
+ *   D1-Binding  DB               → Datenbank octastudy
+ *   Secret      ADMIN_PASSWORT   → frei wählbares Passwort für /liste
+ *   Secret      META_CAPI_TOKEN  → Zugriffstoken aus Events Manager
+ *                                  (Conversions API), nötig für /meta-event
  *
- * Ohne gesetztes ADMIN_PASSWORT ist die Übersicht komplett gesperrt.
+ * Ohne gesetztes ADMIN_PASSWORT ist die Übersicht komplett gesperrt. Ohne
+ * gesetztes META_CAPI_TOKEN antwortet /meta-event nur mit einem Fehlercode,
+ * ohne dass am Frontend etwas kaputtgeht.
  */
 
 const ERLAUBTE_HERKUNFT = [
@@ -23,6 +32,13 @@ const ERLAUBTE_HERKUNFT = [
   'http://localhost:4321',
   'http://localhost:4343',
 ];
+
+/* Meta-Pixel-ID des eigens fuer octastudy.com angelegten Datasets
+   ("Octa – octastudy.com" in Events Manager). Nicht geheim — dieselbe ID
+   steht ohnehin oeffentlich im Seitenquelltext (siehe site.ts). Das
+   eigentliche Geheimnis ist allein das Zugriffstoken, siehe META_CAPI_TOKEN
+   unten (Cloudflare-Secret, nicht im Code). */
+const META_PIXEL_ID = '830306140110313';
 
 /* ------------------------------------------------------------ Hilfsmittel */
 
@@ -440,6 +456,83 @@ async function lauf(request, env) {
   return antwort({ ok: true }, 200, head);
 }
 
+/* --------------------------------------------------- Meta Conversions API */
+
+/* Meldet das eine, fest vorgegebene Ereignis "QuizCompleteAppClick"
+   zusaetzlich serverseitig an Meta — redundant zum clientseitigen Pixel-
+   Aufruf in BaseLayout.astro, mit derselben event_id, damit Meta beide
+   Meldungen als ein Ereignis erkennt (Deduplizierung) statt es doppelt zu
+   zaehlen. Kein beliebiger Eventname von aussen annehmbar, keine
+   personenbezogenen Daten ausser IP-Adresse und Browser-Kennung, die fuer
+   die Zuordnung bei Meta noetig sind. Siehe datenschutz.astro Ziffer 8. */
+async function metaEvent(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  const head = kopf(origin);
+  if (!ERLAUBTE_HERKUNFT.includes(origin)) {
+    return antwort({ ok: false, fehler: 'herkunft' }, 403, head);
+  }
+
+  if (!env.META_CAPI_TOKEN) {
+    // Kein Secret hinterlegt -> Anfrage ruhig verwerfen. Kein 500, damit im
+    // Browser keine Fehlermeldung auftaucht, waehrend das Token noch fehlt.
+    return antwort({ ok: false, fehler: 'kein-secret' }, 503, head);
+  }
+
+  let d;
+  try {
+    d = JSON.parse(await request.text());
+  } catch {
+    return antwort({ ok: false, fehler: 'format' }, 400, head);
+  }
+
+  const eventId = String(d.event_id || '').slice(0, 100);
+  if (!eventId) return antwort({ ok: false, fehler: 'event_id' }, 400, head);
+
+  const jetzt = Math.floor(Date.now() / 1000);
+  const eingabeZeit = parseInt(d.event_time, 10);
+  const eventTime =
+    isNaN(eingabeZeit) || Math.abs(jetzt - eingabeZeit) > 3600 ? jetzt : eingabeZeit;
+
+  const quelle = String(d.event_source_url || '').slice(0, 500);
+  const fbp = String(d.fbp || '').slice(0, 200);
+  const fbc = String(d.fbc || '').slice(0, 200);
+
+  const userData = {
+    client_ip_address: request.headers.get('CF-Connecting-IP') || undefined,
+    client_user_agent: request.headers.get('User-Agent') || undefined,
+  };
+  if (fbp) userData.fbp = fbp;
+  if (fbc) userData.fbc = fbc;
+
+  const payload = {
+    data: [
+      {
+        event_name: 'QuizCompleteAppClick',
+        event_time: eventTime,
+        event_id: eventId,
+        action_source: 'website',
+        event_source_url: quelle,
+        user_data: userData,
+      },
+    ],
+  };
+
+  try {
+    await fetch(
+      `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${env.META_CAPI_TOKEN}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }
+    );
+  } catch (e) {
+    // Ein Problem bei Meta darf dem Besuch nichts anmerken lassen.
+  }
+
+  return antwort({ ok: true }, 200, head);
+}
+
 /* ------------------------------------------------------------ Statistik */
 
 function statistikSeite(z) {
@@ -600,6 +693,11 @@ export default {
     /* --- Anonyme Statistik eines Testdurchlaufs ------------------------- */
     if (request.method === 'POST' && pfad === '/lauf') {
       return lauf(request, env);
+    }
+
+    /* --- Meta Conversions API (QuizCompleteAppClick) -------------------- */
+    if (request.method === 'POST' && pfad === '/meta-event') {
+      return metaEvent(request, env);
     }
 
     /* --- Übersicht, Statistik, CSV ------------------------------------- */

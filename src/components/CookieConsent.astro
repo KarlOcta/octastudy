@@ -21,16 +21,16 @@ const t =
   lang === 'en'
     ? {
         text:
-          'We’d like to use an analytics tool to see how visitors use this site (e.g. anonymised clicks and mouse movement), so we can improve it. This is optional — which tool and what exactly it records is explained in our',
-        link: '/datenschutz/#ms-clarity',
+          'We’d like to use a couple of optional tools — to see how visitors use this site (e.g. anonymised clicks and mouse movement) and to measure how our ads perform. This is optional — which tools these are and what exactly they record is explained in our',
+        link: '/datenschutz/#tracking-tools',
         linkLabel: 'privacy policy',
         decline: 'Decline',
         accept: 'Accept',
       }
     : {
         text:
-          'Wir möchten ein Analyse-Tool nutzen, um zu sehen, wie Besucher:innen diese Seite verwenden (z. B. anonymisierte Klicks und Mausbewegungen), um sie zu verbessern. Das ist freiwillig — welches Tool das genau ist und was es erfasst, steht in unserer',
-        link: '/datenschutz/#ms-clarity',
+          'Wir möchten ein paar optionale Tools nutzen — um zu sehen, wie Besucher:innen diese Seite verwenden (z. B. anonymisierte Klicks und Mausbewegungen), und um zu messen, wie unsere Werbeanzeigen wirken. Das ist freiwillig — welche Tools das genau sind und was sie erfassen, steht in unserer',
+        link: '/datenschutz/#tracking-tools',
         linkLabel: 'Datenschutzerklärung',
         decline: 'Ablehnen',
         accept: 'Akzeptieren',
@@ -71,8 +71,12 @@ const t =
       try {
         localStorage.setItem(KEY, value);
       } catch (e) {}
-      if (value === 'granted' && typeof window.octaLoadClarity === 'function') {
-        window.octaLoadClarity();
+      if (value === 'granted') {
+        if (typeof window.octaLoadMarketingTools === 'function') {
+          window.octaLoadMarketingTools();
+        } else if (typeof window.octaLoadClarity === 'function') {
+          window.octaLoadClarity();
+        }
       }
       banner.classList.remove('is-visible');
       window.setTimeout(function () {

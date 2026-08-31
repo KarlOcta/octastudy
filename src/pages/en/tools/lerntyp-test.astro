@@ -2221,6 +2221,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
     lerntyp = best;
     melden(true);
+    // Merker fuers kombinierte Meta-Ads-Conversion-Event: Ein anschliessender
+    // Klick auf einen App-Store-Link (auf dieser oder jeder anderen Seite,
+    // siehe BaseLayout.astro) zaehlt damit als "Quiz abgeschlossen + Klick".
+    try {
+      sessionStorage.setItem('octa-quiz-finished', '1');
+    } catch (e) {}
 
     show('s-result');
     el('s-result').innerHTML = resultHTML(PROFILES[best], s, best);

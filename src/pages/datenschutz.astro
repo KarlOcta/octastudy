@@ -28,26 +28,27 @@ import { OWNER, SITE } from '../site';
     <h2>2. Grundsätzliches zu dieser Website</h2>
     <p>
       {SITE.url} ist eine überwiegend statische Website. Es gibt keine
-      Benutzerkonten, keine Kommentarfunktion und keine Anmeldung. Bis auf ein
-      einziges, rein optionales Analyse-Tool (Ziffer 8) setzen wir <strong
-        >keine Cookies</strong
-      > und <strong>keine Werkzeuge zur Wiedererkennung von Besuchern</strong> ein
-      — weder für Werbung noch für seitenübergreifende Analyse. Dieses eine
-      Tool wird nur geladen, wenn du dem im Cookie-Hinweis ausdrücklich
-      zustimmst, beziehungsweise ohne Cookie-Hinweis für Besucher:innen
-      außerhalb des Geltungsbereichs von DSGVO und TDDDG, für die keine
-      Einwilligung erforderlich ist (dazu Ziffer 8); für alle anderen werden
-      ohne deine Zustimmung keine Skripte von externen Servern nachgeladen
-      und alle Inhalte kommen ausschließlich von unserem Hoster.
+      Benutzerkonten, keine Kommentarfunktion und keine Anmeldung. Bis auf
+      zwei rein optionale Tools zur Analyse und Werbemessung (Ziffer 8)
+      setzen wir <strong>keine Cookies</strong> und <strong
+        >keine Werkzeuge zur Wiedererkennung von Besuchern</strong
+      > ein. Diese beiden Tools werden nur geladen, wenn du dem im
+      Cookie-Hinweis ausdrücklich zustimmst, beziehungsweise ohne
+      Cookie-Hinweis für Besucher:innen außerhalb des Geltungsbereichs von
+      DSGVO und TDDDG, für die keine Einwilligung erforderlich ist (dazu
+      Ziffer 8); für alle anderen werden ohne deine Zustimmung keine
+      Skripte von externen Servern nachgeladen und alle Inhalte kommen
+      ausschließlich von unserem Hoster.
     </p>
     <p>
       Die interaktiven Werkzeuge dieser Seite (etwa der Notenrechner oder der
-      Lerntyp-Test) laufen vollständig in deinem Browser. Drei Vorgänge
-      übertragen etwas an einen Server, und alle drei sind unten einzeln
+      Lerntyp-Test) laufen vollständig in deinem Browser. Vier Vorgänge
+      übertragen etwas an einen Server, und alle vier sind unten einzeln
       beschrieben: die freiwillige Anmeldung zur Warteliste für die
       Android-Version (Ziffer 6), eine anonyme Auswertung der Testdurchläufe
-      (Ziffer 7) und — ausschließlich mit deiner Einwilligung — Microsoft
-      Clarity zur Analyse der Websitenutzung (Ziffer 8).
+      (Ziffer 7) sowie — ausschließlich mit deiner Einwilligung — Microsoft
+      Clarity zur Analyse der Websitenutzung und Meta-Pixel/Conversions API
+      zur Messung unserer Werbeanzeigen (beide Ziffer 8).
     </p>
 
     <h2>3. Hosting und Server-Logfiles</h2>
@@ -190,18 +191,14 @@ import { OWNER, SITE } from '../site';
       getrennt davon und ohne jede Verbindung zu einer E-Mail-Adresse.
     </p>
 
-    <h2 id="ms-clarity">8. Microsoft Clarity (nur mit deiner Einwilligung)</h2>
+    <h2 id="tracking-tools">8. Analyse und Werbemessung (nur mit deiner Einwilligung)</h2>
     <p>
-      Mit deiner Einwilligung nutzen wir Microsoft Clarity, einen Dienst der
-      Microsoft Ireland Operations Limited, One Microsoft Place, South County
-      Business Park, Leopardstown, Dublin 18, Irland (Verarbeitung teilweise
-      auch durch die Microsoft Corporation, One Microsoft Way, Redmond, WA
-      98052, USA). Clarity zeichnet auf, wie Besucher:innen diese Website
-      nutzen — unter anderem Mausbewegungen, Klicks, Scrollverhalten sowie
-      daraus erstellte anonymisierte Aufzeichnungen und Heatmaps —, damit wir
-      erkennen können, welche Inhalte funktionieren und wo es hakt. Eingaben
-      in Formularfeldern maskiert Clarity standardmäßig, bevor sie übertragen
-      werden.
+      Mit deiner Einwilligung nutzen wir zwei optionale Tools: Microsoft
+      Clarity, um zu sehen, wie Besucher:innen diese Website nutzen (Ziffer
+      8.1), und Meta-Pixel/Conversions API, um zu messen, wie unsere
+      Werbeanzeigen wirken (Ziffer 8.2). Beide hängen an derselben
+      Entscheidung im Cookie-Hinweis: Stimmst du zu, laden beide; lehnst du
+      ab, lädt keines von beiden.
     </p>
     <p>
       Die Einwilligungspflicht nach § 25 Abs. 1 TDDDG gilt nur für Zugriffe
@@ -220,15 +217,29 @@ import { OWNER, SITE } from '../site';
       anwendbare Recht abgestimmten Ausspielung des Cookie-Hinweises).
       Ergibt die Anfrage ein Herkunftsland außerhalb Deutschlands bzw. des
       Geltungsbereichs von DSGVO und TDDDG — etwa die USA —, entfällt die
-      Einwilligungspflicht für Clarity und das Tool lädt direkt, ohne dass
+      Einwilligungspflicht für beide Tools, und sie laden direkt, ohne dass
       der Cookie-Hinweis erscheint. Schlägt die Anfrage fehl, dauert zu
       lange oder liefert kein eindeutiges Ergebnis, wird sicherheitshalber
       trotzdem um Einwilligung gebeten, so wie unten beschrieben.
     </p>
     <p>
-      Für alle übrigen Besucher:innen wird Clarity ausschließlich geladen,
-      wenn du im Cookie-Hinweis am unteren Bildschirmrand aktiv zustimmst.
-      Dabei werden unter anderem folgende Cookies gesetzt:
+      Für alle übrigen Besucher:innen werden beide Tools ausschließlich
+      geladen, wenn du im Cookie-Hinweis am unteren Bildschirmrand aktiv
+      zustimmst.
+    </p>
+
+    <h3 id="ms-clarity">8.1 Microsoft Clarity</h3>
+    <p>
+      Wir nutzen Microsoft Clarity, einen Dienst der Microsoft Ireland
+      Operations Limited, One Microsoft Place, South County Business Park,
+      Leopardstown, Dublin 18, Irland (Verarbeitung teilweise auch durch die
+      Microsoft Corporation, One Microsoft Way, Redmond, WA 98052, USA).
+      Clarity zeichnet auf, wie Besucher:innen diese Website nutzen — unter
+      anderem Mausbewegungen, Klicks, Scrollverhalten sowie daraus erstellte
+      anonymisierte Aufzeichnungen und Heatmaps —, damit wir erkennen
+      können, welche Inhalte funktionieren und wo es hakt. Eingaben in
+      Formularfeldern maskiert Clarity standardmäßig, bevor sie übertragen
+      werden. Dabei werden unter anderem folgende Cookies gesetzt:
     </p>
     <ul>
       <li>
@@ -266,20 +277,79 @@ import { OWNER, SITE } from '../site';
         >learn.microsoft.com/en-us/clarity/faq</a
       >.
     </p>
+
+    <h3 id="meta-pixel">8.2 Meta-Pixel und Conversions API</h3>
     <p>
-      Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft
-      widerrufen:
+      Wir nutzen das Meta-Pixel und die Conversions API, zwei Dienste der
+      Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand Canal
+      Harbour, Dublin 2, Irland (Verarbeitung teilweise auch durch die Meta
+      Platforms, Inc., 1 Meta Way, Menlo Park, CA 94025, USA), um zu messen,
+      ob und wie unsere Werbeanzeigen auf Facebook und Instagram wirken.
+      Anders als Clarity zeichnet keines der beiden Tools auf, wie du dich
+      auf der Seite bewegst — sie melden ausschließlich ein einziges,
+      genau festgelegtes Ereignis: dass du innerhalb desselben Besuchs
+      zuerst den Lerntyp-Test abgeschlossen und danach auf einen Link zum
+      Apple App Store geklickt hast (intern „QuizCompleteAppClick"
+      genannt). Welches Testergebnis du bekommen hast oder welche Antworten
+      du gegeben hast, wird dabei nicht mitgesendet.
     </p>
     <p>
-      <button type="button" id="clarity-consent-reset" class="btn btn--ghost">
-        Clarity-Einwilligung zurücksetzen
+      Technisch läuft das doppelt: einmal direkt aus deinem Browser (Pixel)
+      und redundant dazu einmal von unserem Server aus (Conversions API,
+      über denselben Cloudflare Worker, der auch die Warteliste und die
+      Testauswertung betreibt, siehe Ziffer 6 und 7) — das macht die Messung
+      zuverlässiger, etwa wenn ein In-App-Browser wie der von Instagram das
+      Pixel im Browser blockiert oder verzögert. Beide Meldungen tragen
+      dieselbe technische Kennnummer, damit Meta sie als ein Ereignis
+      erkennt und nicht doppelt zählt. Übermittelt werden dabei: die
+      aufgerufene Seiten-URL, dein Browser-Typ (User-Agent), deine
+      IP-Adresse sowie — falls vorhanden — die vom Meta-Pixel selbst
+      gesetzten Cookies <code>_fbp</code> und <code>_fbc</code>. Name,
+      E-Mail-Adresse, Telefonnummer oder andere Angaben, mit denen du
+      unmittelbar identifizierbar wärst, erheben oder übermitteln wir dabei
+      nicht.
+    </p>
+    <ul>
+      <li>
+        <code>_fbp</code> — vom Meta-Pixel gesetzte Browser-Kennung zur
+        Zuordnung von Werbeanzeigen (Speicherdauer ca. 90 Tage)
+      </li>
+      <li>
+        <code>_fbc</code> — wird nur gesetzt, wenn du über einen Klick auf
+        eine unserer Anzeigen hierhergekommen bist, und hält diese
+        Zuordnung fest (Speicherdauer ca. 90 Tage)
+      </li>
+    </ul>
+    <p>
+      Rechtsgrundlage ist ausschließlich deine Einwilligung (Art. 6 Abs. 1
+      lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG). Ohne deine
+      Zustimmung wird weder das Pixel geladen noch werden die genannten
+      Cookies gesetzt noch findet eine Meldung über die Conversions API
+      statt. Die Daten werden auf Servern von Meta verarbeitet, teilweise
+      auch in den USA; für eine solche Übermittlung in ein Drittland stützt
+      sich Meta nach eigenen Angaben auf geeignete Garantien, unter anderem
+      die Standardvertragsklauseln der Europäischen Kommission. Näheres
+      findest du in der Datenschutzerklärung von Meta:
+      <a
+        href="https://www.facebook.com/privacy/policy/"
+        rel="noopener nofollow">facebook.com/privacy/policy</a
+      >.
+    </p>
+
+    <p>
+      Du kannst deine Einwilligung für beide Tools jederzeit mit Wirkung für
+      die Zukunft widerrufen:
+    </p>
+    <p>
+      <button type="button" id="tracking-consent-reset" class="btn btn--ghost">
+        Einwilligung zurücksetzen
       </button>
     </p>
     <p class="text-muted">
       Das setzt deine bisherige Entscheidung zurück und zeigt den
       Cookie-Hinweis beim nächsten Laden dieser Seite erneut an. Bereits
-      gesetzte Clarity-Cookies kannst du zusätzlich jederzeit über die
-      Cookie-Einstellungen deines Browsers löschen.
+      gesetzte Cookies von Clarity oder Meta kannst du zusätzlich jederzeit
+      über die Cookie-Einstellungen deines Browsers löschen.
     </p>
 
     <h2>9. Externe Links</h2>
@@ -334,7 +404,7 @@ import { OWNER, SITE } from '../site';
 
 <script is:inline>
   (function () {
-    var btn = document.getElementById('clarity-consent-reset');
+    var btn = document.getElementById('tracking-consent-reset');
     if (!btn) return;
     btn.addEventListener('click', function () {
       try {

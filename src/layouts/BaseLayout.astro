@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { SITE } from '../site';
+import { SITE, META_PIXEL_ID } from '../site';
 import '../styles/global.css';
 
 export type Crumb = { label: string; href: string };
@@ -117,7 +117,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 
     <script type="application/ld+json" is:inline set:html={jsonLd} />
 
-    <script type="text/javascript" is:inline>
+    <script define:vars={{ metaPixelId: META_PIXEL_ID }}>
       /**
        * Microsoft Clarity wird nie bedingungslos geladen — nur ueber diese
        * Funktion. Sie ist absichtlich idempotent (laedt das Script hoechstens
@@ -133,6 +133,31 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "yaenpnemfj");
+      };
+
+      /**
+       * Meta Pixel (Werbemessung), genauso idempotent und ueber dieselbe
+       * Einwilligung gesteuert wie Clarity — siehe octaLoadMarketingTools
+       * unten, die beide zusammen laedt. Eigenes Dataset nur fuer
+       * octastudy.com (Pixel-ID aus site.ts), getrennt von den Datasets der
+       * App und der alten Landingpage. Siehe datenschutz.astro Ziffer 8.
+       */
+      window.octaLoadMetaPixel = function () {
+        if (window.octaMetaPixelLoaded) return;
+        window.octaMetaPixelLoaded = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', metaPixelId);
+        fbq('track', 'PageView');
+      };
+
+      /** Beide optionalen Tools zusammen — eine Einwilligung, ein Aufruf. */
+      window.octaLoadMarketingTools = function () {
+        window.octaLoadClarity();
+        window.octaLoadMetaPixel();
       };
 
       /**
@@ -168,7 +193,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
           decided = localStorage.getItem(KEY);
         } catch (e) {}
         if (decided === 'granted') {
-          window.octaLoadClarity();
+          window.octaLoadMarketingTools();
           settle({ showBanner: false });
           return;
         }
@@ -179,7 +204,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 
         function withCountry(country) {
           if (country === 'US') {
-            window.octaLoadClarity();
+            window.octaLoadMarketingTools();
             settle({ showBanner: false });
           } else {
             settle({ showBanner: true });
@@ -217,6 +242,62 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
           .catch(function () {
             settle({ showBanner: true });
           });
+      });
+
+      /**
+       * Kombiniertes Conversion-Signal fuer Meta Ads: "Quiz abgeschlossen,
+       * danach auf einen App-Store-Link geklickt". Der erste Teil wird beim
+       * Quiz-Abschluss nur als Merker in sessionStorage hinterlegt (siehe
+       * lerntyp-test.astro / en/tools/lerntyp-test.astro, Schluessel
+       * 'octa-quiz-finished') — ausgeloest wird das eigentliche Event
+       * "QuizCompleteAppClick" erst hier, sobald danach irgendwo auf der
+       * Seite (nicht nur auf der Quiz-Seite selbst) ein App-Store-Link
+       * angeklickt wird. Nur aktiv, wenn das Meta Pixel ueberhaupt geladen
+       * ist (also Einwilligung vorliegt oder die US-Ausnahme oben greift) —
+       * sonst passiert schlicht nichts. Feuert gleichzeitig clientseitig
+       * (Pixel) und serverseitig (Conversions API ueber den Cloudflare
+       * Worker) mit derselben Event-ID, damit Meta beide als ein Ereignis
+       * erkennt statt es doppelt zu zaehlen.
+       */
+      function octaCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : '';
+      }
+
+      document.addEventListener('click', function (ev) {
+        if (!window.octaMetaPixelLoaded || typeof fbq !== 'function') return;
+        var finished = false;
+        try {
+          finished = sessionStorage.getItem('octa-quiz-finished') === '1';
+        } catch (e) {}
+        if (!finished) return;
+
+        var link = ev.target && ev.target.closest && ev.target.closest('a[href*="apps.apple.com"]');
+        if (!link) return;
+
+        var eventId =
+          window.crypto && window.crypto.randomUUID
+            ? window.crypto.randomUUID()
+            : 'e-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+        var eventTime = Math.floor(Date.now() / 1000);
+        var sourceUrl = location.href;
+
+        fbq('trackCustom', 'QuizCompleteAppClick', {}, { eventID: eventId });
+
+        try {
+          fetch('https://octastudy-warteliste.karl-7b5.workers.dev/meta-event', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              event_id: eventId,
+              event_time: eventTime,
+              event_source_url: sourceUrl,
+              fbp: octaCookie('_fbp'),
+              fbc: octaCookie('_fbc'),
+            }),
+            keepalive: true,
+          }).catch(function () {});
+        } catch (e) {}
       });
     </script>
   </head>

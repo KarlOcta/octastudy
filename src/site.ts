@@ -41,6 +41,18 @@ export const REVIEWER = {
   role: '[PLATZHALTER: Qualifikation, z. B. Rechtsanwalt]',
 } as const;
 
+/**
+ * Meta-Pixel-ID (Dataset "Octa – octastudy.com" in Events Manager), eigens
+ * für diese Domain angelegt — bewusst getrennt von den bestehenden
+ * Datasets für die App (Mobile Measurement Partner) und die alte
+ * Landingpage, damit sich nichts vermischt. Nicht geheim: Diese ID steht
+ * ohnehin öffentlich im Seitenquelltext, sobald das Pixel lädt. Siehe
+ * BaseLayout.astro (octaLoadMetaPixel) und infra/waitlist-worker.js
+ * (Conversions API) für die Verwendung, datenschutz.astro Ziffer 8 für
+ * die Erklärung gegenüber Besucher:innen.
+ */
+export const META_PIXEL_ID = '830306140110313';
+
 export const OCTA = {
   name: 'Octa',
   appStoreUrl:
