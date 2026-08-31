@@ -20,6 +20,11 @@
  *   Secret      ADMIN_PASSWORT   → frei wählbares Passwort für /liste
  *   Secret      META_CAPI_TOKEN  → Zugriffstoken aus Events Manager
  *                                  (Conversions API), nötig für /meta-event
+ *   Variable    META_TEST_EVENT_CODE (optional) → nur zum Testen über
+ *                                  Events Manager -> "Test events" setzen,
+ *                                  danach WIEDER LÖSCHEN — sonst zählen
+ *                                  echte Conversions nicht mehr für die
+ *                                  Anzeigensteuerung (siehe metaEvent unten)
  *
  * Ohne gesetztes ADMIN_PASSWORT ist die Übersicht komplett gesperrt. Ohne
  * gesetztes META_CAPI_TOKEN antwortet /meta-event nur mit einem Fehlercode,
@@ -516,6 +521,16 @@ async function metaEvent(request, env) {
       },
     ],
   };
+
+  // Nur zum Testen ueber Events Manager -> "Test events": Wenn die Variable
+  // META_TEST_EVENT_CODE gesetzt ist, taucht das Event dort sofort live auf
+  // (statt erst Stunden spaeter im normalen Dashboard). Von Meta selbst als
+  // Testdaten markiert und NICHT fuer Anzeigenoptimierung verwendet -> die
+  // Variable nach dem Testen unbedingt wieder loeschen, sonst zaehlen echte
+  // Conversions kuenftig nicht mehr fuer die Anzeigensteuerung.
+  if (env.META_TEST_EVENT_CODE) {
+    payload.test_event_code = env.META_TEST_EVENT_CODE;
+  }
 
   try {
     await fetch(
