@@ -107,8 +107,12 @@ const rotatorSlides = [pitch, ratingLine, ...reviewLines];
       ticking = false;
       // Der Cookie-Hinweis (falls noch nicht entschieden) hat Vorrang und
       // belegt dieselbe Bildschirmzone — solange er sichtbar ist, bleibt
-      // diese Leiste unten weg, statt sich mit ihm zu überlappen.
-      if (document.getElementById('cookie-consent')) {
+      // diese Leiste unten weg, statt sich mit ihm zu überlappen. Bewusst
+      // ".is-visible" statt nur auf Existenz zu prüfen: Der Banner steht
+      // kurz im DOM, bevor octaConsentReady (Geo-Check) entscheidet, ob er
+      // überhaupt gebraucht wird — erst wenn er sich selbst sichtbar
+      // macht, muss diese Leiste ihm wirklich ausweichen.
+      if (document.querySelector('#cookie-consent.is-visible')) {
         bar.classList.remove('is-visible');
         return;
       }

@@ -119,25 +119,105 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 
     <script type="text/javascript" is:inline>
       /**
-       * Microsoft Clarity wird NICHT mehr bedingungslos geladen — nur noch
-       * über diese Funktion, und nur wenn Zustimmung vorliegt. Zwei
-       * Aufrufer: (1) direkt unten, falls im localStorage schon eine
-       * frühere Einwilligung ("granted") steht, (2) CookieConsent.astro,
-       * wenn gerade erst per Klick zugestimmt wird. Siehe datenschutz.astro
-       * Ziffer 8 für die zugehörige Erklärung.
+       * Microsoft Clarity wird nie bedingungslos geladen — nur ueber diese
+       * Funktion. Sie ist absichtlich idempotent (laedt das Script hoechstens
+       * einmal), weil sie inzwischen aus mehreren Pfaden heraus aufgerufen
+       * werden kann (siehe octaConsentReady unten und CookieConsent.astro).
+       * Siehe datenschutz.astro Ziffer 8 fuer die zugehoerige Erklaerung.
        */
       window.octaLoadClarity = function () {
+        if (window.octaClarityLoaded) return;
+        window.octaClarityLoaded = true;
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "yaenpnemfj");
       };
-      try {
-        if (localStorage.getItem('octa-consent-analytics') === 'granted') {
-          window.octaLoadClarity();
+
+      /**
+       * Klaert VOR dem ersten Render von CookieConsent.astro, ob fuer diese/n
+       * Besucher:in ueberhaupt eine Einwilligung noetig ist:
+       *  1. Liegt schon eine explizite Entscheidung im localStorage vor
+       *     ('granted'/'denied') -> die gilt weiter, Land spielt keine Rolle.
+       *  2. Sonst: Land ueber eine anonyme, oeffentliche Diagnose-Anfrage an
+       *     Cloudflare bestimmen (die Seite ist rein statisch ueber GitHub
+       *     Pages ausgeliefert, es gibt also keinen eigenen Server, der
+       *     Geo-Header wie CF-IPCountry auswerten koennte). USA-Besucher:innen
+       *     brauchen keine Einwilligung nach TDDDG/DSGVO -> Clarity laedt fuer
+       *     sie direkt, der Cookie-Hinweis erscheint gar nicht erst.
+       *  3. Schlaegt die Anfrage fehl, dauert zu lange oder ist das Ergebnis
+       *     nicht eindeutig 'US' -> sicherheitshalber wird trotzdem um
+       *     Einwilligung gebeten (fail-safe Richtung mehr Datenschutz, nie
+       *     umgekehrt). Siehe datenschutz.astro Ziffer 8 fuer die Erklaerung
+       *     dieser Anfrage selbst.
+       * Ergebnis wird pro Browser-Sitzung zwischengespeichert (sessionStorage),
+       * damit nicht jede Unterseite erneut anfragt.
+       */
+      window.octaConsentReady = new Promise(function (resolve) {
+        var KEY = 'octa-consent-analytics';
+        var settled = false;
+        function settle(result) {
+          if (settled) return;
+          settled = true;
+          resolve(result);
         }
-      } catch (e) {}
+
+        var decided = null;
+        try {
+          decided = localStorage.getItem(KEY);
+        } catch (e) {}
+        if (decided === 'granted') {
+          window.octaLoadClarity();
+          settle({ showBanner: false });
+          return;
+        }
+        if (decided === 'denied') {
+          settle({ showBanner: false });
+          return;
+        }
+
+        function withCountry(country) {
+          if (country === 'US') {
+            window.octaLoadClarity();
+            settle({ showBanner: false });
+          } else {
+            settle({ showBanner: true });
+          }
+        }
+
+        var cached = null;
+        try {
+          cached = sessionStorage.getItem('octa-geo-country');
+        } catch (e) {}
+        if (cached) {
+          withCountry(cached);
+          return;
+        }
+
+        // Antwortet die Geo-Anfrage nicht innerhalb von 2,5s (langsames Netz,
+        // blockierter Request, ...), sicherheitshalber Banner zeigen statt
+        // Besucher:innen ohne Reaktion haengen zu lassen.
+        setTimeout(function () {
+          settle({ showBanner: true });
+        }, 2500);
+
+        fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: 'no-store' })
+          .then(function (r) {
+            return r.text();
+          })
+          .then(function (text) {
+            var m = /(?:^|\n)loc=([A-Z]{2})/.exec(text);
+            var country = m ? m[1] : '';
+            try {
+              sessionStorage.setItem('octa-geo-country', country);
+            } catch (e) {}
+            withCountry(country);
+          })
+          .catch(function () {
+            settle({ showBanner: true });
+          });
+      });
     </script>
   </head>
 

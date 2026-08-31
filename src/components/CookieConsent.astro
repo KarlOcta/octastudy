@@ -67,16 +67,6 @@ const t =
     var banner = document.getElementById('cookie-consent');
     if (!banner) return;
 
-    var existing = null;
-    try {
-      existing = localStorage.getItem(KEY);
-    } catch (e) {}
-
-    if (existing === 'granted' || existing === 'denied') {
-      banner.remove();
-      return;
-    }
-
     function decide(value) {
       try {
         localStorage.setItem(KEY, value);
@@ -96,18 +86,39 @@ const t =
       }, 250);
     }
 
-    var declineBtn = banner.querySelector('[data-consent-decline]');
-    var acceptBtn = banner.querySelector('[data-consent-accept]');
-    declineBtn.addEventListener('click', function () {
-      decide('denied');
-    });
-    acceptBtn.addEventListener('click', function () {
-      decide('granted');
-    });
+    function wireUp() {
+      var declineBtn = banner.querySelector('[data-consent-decline]');
+      var acceptBtn = banner.querySelector('[data-consent-accept]');
+      declineBtn.addEventListener('click', function () {
+        decide('denied');
+      });
+      acceptBtn.addEventListener('click', function () {
+        decide('granted');
+      });
 
-    window.requestAnimationFrame(function () {
-      banner.classList.add('is-visible');
-    });
+      window.requestAnimationFrame(function () {
+        banner.classList.add('is-visible');
+      });
+    }
+
+    // Ob der Banner ueberhaupt noetig ist (schon entschieden, oder laut
+    // Geo-Check gar nicht zustimmungspflichtig, z. B. USA) klaert
+    // window.octaConsentReady im BaseLayout-<head> — hier nur noch auf das
+    // Ergebnis warten, statt selbst nochmal localStorage zu lesen.
+    if (window.octaConsentReady && typeof window.octaConsentReady.then === 'function') {
+      window.octaConsentReady.then(function (state) {
+        if (state && state.showBanner) {
+          wireUp();
+        } else {
+          banner.remove();
+        }
+      });
+    } else {
+      // Fallback, falls das Promise aus irgendeinem Grund fehlt (z. B.
+      // Skript-Reihenfolge geaendert): sicherheitshalber Banner zeigen,
+      // statt Besucher:innen ohne Entscheidung Clarity laden zu lassen.
+      wireUp();
+    }
   })();
 </script>
 

@@ -32,11 +32,13 @@ import { OWNER, SITE } from '../site';
       einziges, rein optionales Analyse-Tool (Ziffer 8) setzen wir <strong
         >keine Cookies</strong
       > und <strong>keine Werkzeuge zur Wiedererkennung von Besuchern</strong> ein
-      — weder für Werbung noch für seitenübergreifende Analyse. Auch dieses eine
+      — weder für Werbung noch für seitenübergreifende Analyse. Dieses eine
       Tool wird nur geladen, wenn du dem im Cookie-Hinweis ausdrücklich
-      zustimmst; ohne deine Zustimmung werden keine Skripte von externen
-      Servern nachgeladen und alle Inhalte kommen ausschließlich von unserem
-      Hoster.
+      zustimmst, beziehungsweise ohne Cookie-Hinweis für Besucher:innen
+      außerhalb des Geltungsbereichs von DSGVO und TDDDG, für die keine
+      Einwilligung erforderlich ist (dazu Ziffer 8); für alle anderen werden
+      ohne deine Zustimmung keine Skripte von externen Servern nachgeladen
+      und alle Inhalte kommen ausschließlich von unserem Hoster.
     </p>
     <p>
       Die interaktiven Werkzeuge dieser Seite (etwa der Notenrechner oder der
@@ -202,9 +204,31 @@ import { OWNER, SITE } from '../site';
       werden.
     </p>
     <p>
-      Clarity wird ausschließlich geladen, wenn du im Cookie-Hinweis am
-      unteren Bildschirmrand aktiv zustimmst. Dabei werden unter anderem
-      folgende Cookies gesetzt:
+      Die Einwilligungspflicht nach § 25 Abs. 1 TDDDG gilt nur für Zugriffe
+      aus Deutschland beziehungsweise dem Geltungsbereich von DSGVO und
+      TDDDG. Um zu erkennen, ob sie im Einzelfall greift, sendet dein
+      Browser bei jedem Seitenaufruf automatisch eine anonyme Anfrage an
+      eine öffentliche Diagnoseschnittstelle von Cloudflare
+      (<code>cdn-cgi/trace</code>), aus deren Antwort sich ausschließlich
+      dein ungefähres Herkunftsland ergibt. Diese Anfrage setzt selbst keine
+      Cookies und übermittelt keine personenbezogenen Daten außer der für
+      jede Internetverbindung technisch notwendigen IP-Adresse; das Ergebnis
+      wird nur für die laufende Browser-Sitzung zwischengespeichert
+      (<code>sessionStorage</code>) und nicht an uns übertragen oder von uns
+      gespeichert. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO
+      (berechtigtes Interesse an einer rechtssicheren, auf das jeweils
+      anwendbare Recht abgestimmten Ausspielung des Cookie-Hinweises).
+      Ergibt die Anfrage ein Herkunftsland außerhalb Deutschlands bzw. des
+      Geltungsbereichs von DSGVO und TDDDG — etwa die USA —, entfällt die
+      Einwilligungspflicht für Clarity und das Tool lädt direkt, ohne dass
+      der Cookie-Hinweis erscheint. Schlägt die Anfrage fehl, dauert zu
+      lange oder liefert kein eindeutiges Ergebnis, wird sicherheitshalber
+      trotzdem um Einwilligung gebeten, so wie unten beschrieben.
+    </p>
+    <p>
+      Für alle übrigen Besucher:innen wird Clarity ausschließlich geladen,
+      wenn du im Cookie-Hinweis am unteren Bildschirmrand aktiv zustimmst.
+      Dabei werden unter anderem folgende Cookies gesetzt:
     </p>
     <ul>
       <li>
