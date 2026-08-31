@@ -124,7 +124,7 @@
       "929-bgb"
     ],
     "datePublished": "2026-08-19",
-    "dateModified": "2026-08-19",
+    "dateModified": "2026-08-31",
     "intro": "Der Vindikationsanspruch aus § 985 BGB ist der zentrale dingliche Herausgabeanspruch des Eigentumsrechts und Ausgangspunkt für das gesamte Eigentümer-Besitzer-Verhältnis (EBV) der §§ 987 ff. BGB. Klausurrelevant ist vor allem die Feststellung des Rechts zum Besitz nach § 986 BGB, da hier die gesamte schuldrechtliche Wertung des Falls (Kauf, Miete, Sicherungsübereignung) einfließt.",
     "schema": [
       {
@@ -184,6 +184,10 @@
       {
         "q": "Wie ist das Prüfungsschema zu § 985 BGB aufgebaut?",
         "a": "Die Prüfung gliedert sich in vier Stufen: Eigentümerstellung des Anspruchstellers, Besitzerstellung des Anspruchsgegners, Fehlen eines Rechts zum Besitz nach § 986 BGB und Nichterlöschen des Anspruchs."
+      },
+      {
+        "q": "Was ist eine Vindikationslage?",
+        "a": "Eine Vindikationslage liegt vor, wenn die ersten drei Voraussetzungen des § 985 BGB erfüllt sind: Der Anspruchsteller ist Eigentümer, der Anspruchsgegner ist Besitzer, und Letzterer hat kein Recht zum Besitz nach § 986 BGB. Erst wenn diese Lage besteht, greifen die weiteren Ansprüche des Eigentümer-Besitzer-Verhältnisses (§§ 987 ff. BGB), etwa auf Nutzungsherausgabe oder Schadensersatz."
       },
       {
         "q": "Was ist der Unterschied zwischen unmittelbarem und mittelbarem Besitz bei § 985 BGB?",
@@ -432,7 +436,7 @@
       "812-bgb"
     ],
     "datePublished": "2026-08-19",
-    "dateModified": "2026-08-19",
+    "dateModified": "2026-08-31",
     "intro": "Die Übereignung nach § 929 S. 1 BGB ist die zentrale Norm des Mobiliarsachenrechts und in nahezu jeder sachenrechtlichen Klausur relevant. Examensrelevant wird die Norm vor allem im Zusammenspiel mit dem gutgläubigen Erwerb (§ 932 BGB), wenn der Veräußerer nicht Eigentümer ist.",
     "schema": [
       {
@@ -514,6 +518,14 @@
       {
         "q": "Wie ist das Schema zu § 929 BGB aufgebaut?",
         "a": "Einigung, Übergabe (oder Surrogat nach §§ 930, 931 BGB), Einigsein bei Übergabe und Berechtigung des Veräußerers. Fehlt die Berechtigung, folgt als Auffangprüfung der gutgläubige Erwerb nach § 932 BGB."
+      },
+      {
+        "q": "Was ist ein Besitzkonstitut nach § 930 BGB?",
+        "a": "Ein Besitzkonstitut ist ein Übergabesurrogat: Statt die Sache tatsächlich zu übergeben, vereinbaren Veräußerer und Erwerber ein konkretes Besitzmittlungsverhältnis (§ 868 BGB, z. B. Leihe oder Verwahrung), sodass der Veräußerer unmittelbarer Besitzer bleibt, der Erwerber aber mittelbarer Besitzer wird. Beispiel: Der Verkäufer eines Gemäldes darf es sich nach dem Verkauf noch als Leihnehmer an die Wand hängen."
+      },
+      {
+        "q": "Wie funktioniert die Abtretung des Herausgabeanspruchs nach § 931 BGB?",
+        "a": "Befindet sich die Sache im Besitz eines Dritten, kann die Übergabe durch Abtretung des Herausgabeanspruchs des Veräußerers gegen diesen Dritten ersetzt werden (§ 931 i. V. m. § 398 BGB). Der Erwerber tritt dadurch in die Position ein, den Dritten selbst auf Herausgabe der Sache in Anspruch nehmen zu können."
       },
       {
         "q": "Was ist der Unterschied zwischen § 929 S. 1 und § 929 S. 2 BGB?",
