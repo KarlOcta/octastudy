@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../site';
+import lerntypen from '../../../data/lerntypen.json';
+
+export function getStaticPaths() {
+  return lerntypen.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const canonical = `${SITE.url}/lerntypen/${entry.slug}/`;
+const andere = lerntypen.filter((t) => t.slug !== entry.slug);
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonical}#article`,
+      headline: entry.h1,
+      description: entry.metaDescription,
+      about: entry.name,
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: canonical,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: entry.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={entry.metaTitle}
+  description={entry.metaDescription}
+  breadcrumbs={[
+    { label: 'Lerntypen', href: '/lerntypen/' },
+    { label: entry.name, href: `/lerntypen/${entry.slug}/` },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Lerntypen · {entry.auch}</p>
+    <h1>{entry.h1}</h1>
+
+    <div class="hero">
+      <img
+        class="hero__bild"
+        src={`/img/vester/${entry.bild}@1x.webp`}
+        srcset={`/img/vester/${entry.bild}@1x.webp 450w, /img/vester/${entry.bild}.webp 900w`}
+        sizes="(max-width: 700px) 60vw, 280px"
+        width="450"
+        height="600"
+        alt={entry.alt}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="hero__text">
+        <p class="lead">{entry.behauptung}</p>
+        <p class="hero__note">
+          Kurz vorweg: Ein eigener „Lerntyp“ im Sinne eines Sinneskanals, der
+          dich besser lernen lässt, ist wissenschaftlich nicht belegt — dazu
+          gleich mehr. Was an der Beschreibung trotzdem echt ist, steht weiter
+          unten.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="rule rule--tight">Typische Anzeichen</h2>
+    <p class="intro">
+      Diese Punkte werden {entry.name.replace('Der ', 'dem ')}n üblicherweise zugeschrieben. Erkennst
+      du dich in mehreren wieder, heißt das vor allem: Du hast eine Vorliebe —
+      nicht, dass du dadurch anders lernen solltest als alle anderen.
+    </p>
+    <ul class="anzeichen">
+      {entry.anzeichen.map((a) => <li>{a}</li>)}
+    </ul>
+
+    <h2 class="rule rule--tight">Die übliche Empfehlung</h2>
+    <p class="intro">{entry.uebliche_tipps}</p>
+
+    <div class="koernchen">
+      <span class="koernchen__tag">Das Körnchen Wahrheit</span>
+      <h3>{entry.koernchen_wahrheit.titel}</h3>
+      <p>{entry.koernchen_wahrheit.text}</p>
+    </div>
+
+    <h2 class="rule rule--tight">Was wirklich hilft</h2>
+    <p class="intro">{entry.was_hilft}</p>
+    <p class="intro">
+      Die beiden Techniken dahinter — sich selbst abfragen und den Stoff über
+      mehrere Tage verteilen — erklären wir ausführlich und mit Quellen auf{' '}
+      <a href="/lernmethoden/aktives-erinnern/">unserer Seite zu aktivem Erinnern</a>
+      {' '}und{' '}
+      <a href="/lernmethoden/spaced-repetition/">zu Spaced Repetition</a>.
+    </p>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Statt eines Etiketts:</strong> Unser Test fragt nicht nach
+        Sinneskanälen, sondern nach deinem tatsächlichen Lernverhalten — und
+        zeigt dir die eine Stelle, an der bei dir am meisten Zeit liegen
+        bleibt.
+      </p>
+      <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten — 8 Fragen, kostenlos →</a>
+    </div>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {entry.faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <h2 class="rule rule--tight">Die anderen Lerntypen</h2>
+    <div class="andere-grid">
+      {andere.map((t) => (
+        <a class="andere-card" href={`/lerntypen/${t.slug}/`}>
+          <img
+            src={`/img/vester/${t.bild}@1x.webp`}
+            alt=""
+            width="120"
+            height="160"
+            loading="lazy"
+          />
+          <span>{t.name}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="quellen-hint">
+      Quellen und die vollständige Einordnung der Lerntypentheorie:{' '}
+      <a href="/lerntypen/">Lerntypen — was die Forschung wirklich sagt</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 1.8rem;
+    align-items: center;
+    margin: 1.6rem 0 2rem;
+    max-width: 62rem;
+  }
+
+  .hero__bild {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero__text .lead {
+    font-size: 1.15rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .hero__note {
+    color: var(--text-muted);
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .hero__bild {
+      max-width: 55vw;
+    }
+  }
+
+  .anzeichen {
+    max-width: 62rem;
+    margin: 0 0 1.6rem;
+    padding-left: 1.3rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .anzeichen li {
+    margin-bottom: 0.4rem;
+  }
+
+  .koernchen {
+    background: var(--accent-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.6rem;
+    max-width: 62rem;
+    margin: 0.5rem 0 2rem;
+  }
+
+  .koernchen__tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .koernchen h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  .koernchen p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 1rem 0 2.4rem;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2.4rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .andere-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem;
+    max-width: 50rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .andere-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .andere-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .andere-card img {
+    width: 80px;
+    height: auto;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+  }
+</style>

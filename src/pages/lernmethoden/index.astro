@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+const METHODEN = [
+  {
+    name: 'Wiederlesen',
+    tag: 'Niedrige Wirksamkeit',
+    schwach: true,
+    text: 'Der Text wird vertraut, das fühlt sich beim Lernen wie Können an. In der Prüfung, wo nichts mehr danebensteht, ist der Unterschied zu echtem Abrufen deutlich.',
+  },
+  {
+    name: 'Markieren & Unterstreichen',
+    tag: 'Niedrige Wirksamkeit',
+    schwach: true,
+    text: 'Die meistgenutzte Technik überhaupt — und eine der am wenigsten wirksamen. Sie verändert, wie der Text aussieht, nicht, was im Kopf bleibt.',
+  },
+  {
+    name: 'Zusammenfassen',
+    tag: 'Niedrige Wirksamkeit',
+    schwach: true,
+    text: 'Hilft beim Verstehen der Struktur, aber kaum beim späteren Abrufen — vor allem, wenn die Zusammenfassung danach nur noch daliegt statt genutzt zu werden.',
+  },
+  {
+    name: 'Karteikarten',
+    tag: 'Kommt auf die Nutzung an',
+    text: 'Karteikarten sind kein Trick für sich — sie sind ein Werkzeug für Active Recall. Wer die Antwort vor dem Umdrehen wirklich aus dem Kopf holt, lernt effektiv. Wer nur durchklickt und erkennt „ach ja, stimmt“, lernt kaum mehr als beim Wiederlesen.',
+  },
+  {
+    name: 'Active Recall (Selbstabfragen)',
+    tag: 'Hohe Wirksamkeit',
+    href: '/lernmethoden/aktives-erinnern/',
+    text: 'Den Stoff aus dem Kopf holen, ohne hinzusehen — das Abrufen selbst ist der Lernvorgang, nicht nur seine Kontrolle.',
+  },
+  {
+    name: 'Spaced Repetition (verteiltes Wiederholen)',
+    tag: 'Hohe Wirksamkeit',
+    href: '/lernmethoden/spaced-repetition/',
+    text: 'Derselbe Aufwand, auf mehrere Tage verteilt statt an einem Stück gelernt, bleibt erheblich länger verfügbar.',
+  },
+];
+
+const FAQ = [
+  {
+    q: 'Was ist die wirksamste Lernmethode?',
+    a: 'Nach der bislang umfassendsten Übersichtsarbeit (Dunlosky et al., 2013) erreichen nur zwei von zehn verbreiteten Techniken die höchste Wirksamkeitsstufe: Active Recall (Selbstabfragen bzw. Practice Testing) und Spaced Repetition (verteiltes Wiederholen bzw. Distributed Practice). Kombiniert wirken sie am stärksten.',
+  },
+  {
+    q: 'Ist Karteikarten lernen wirksam?',
+    a: 'Karteikarten sind an sich weder wirksam noch unwirksam — entscheidend ist, wie sie benutzt werden. Wer die Antwort vor dem Umdrehen aktiv aus dem Kopf abruft, nutzt Active Recall. Wer nur durchklickt und die Antwort wiedererkennt, lernt kaum mehr als beim bloßen Wiederlesen.',
+  },
+  {
+    q: 'Was ist der Unterschied zwischen Active Recall und Spaced Repetition?',
+    a: 'Active Recall beschreibt, wie du eine einzelne Lerneinheit angehst: durch aktives Abrufen statt passives Wiederlesen. Spaced Repetition beschreibt, wann du wiederholst: verteilt über mehrere Tage statt an einem Stück. Beide lassen sich unabhängig voneinander einsetzen, wirken aber am stärksten kombiniert.',
+  },
+  {
+    q: 'Warum sind Markieren und Wiederlesen trotzdem so beliebt?',
+    a: 'Weil sie sich leicht anfühlen und ein Gefühl von Fortschritt erzeugen — der Text wird vertraut, und Vertrautheit fühlt sich beim Lernen wie Können an. Active Recall fühlt sich dagegen anstrengender an, gerade weil es tatsächlich etwas verlangt. Genau dieser Unterschied im Aufwandsgefühl täuscht über den Lernerfolg hinweg.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/lernmethoden/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+
+<BaseLayout
+  title="Lernmethoden im Vergleich: Was die Forschung wirklich stützt"
+  description="Karteikarten, Mindmaps, Markieren, Active Recall und Spaced Repetition im Vergleich — welche Lernmethoden laut Forschung wirklich wirken und welche vor allem Zeit kosten."
+  breadcrumbs={[{ label: 'Lernmethoden', href: '/lernmethoden/' }]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Lernmethoden</p>
+    <h1>Lernmethoden im Vergleich: Was wirklich hilft — und was vor allem Zeit kostet</h1>
+    <p class="lead intro">
+      2013 hat eine Gruppe um John Dunlosky zehn verbreitete Lerntechniken
+      systematisch nach ihrer Wirksamkeit bewertet. Das Ergebnis war
+      unbequem: Die beiden beliebtesten Techniken — Markieren und Wiederlesen
+      — landeten in der niedrigsten Kategorie. Nur zwei Techniken erreichten
+      die höchste Stufe. Hier stehen sie nebeneinander.
+    </p>
+
+    <div class="methoden-grid">
+      {
+        METHODEN.map((m) => (
+          <div class={`m-card ${m.schwach ? 'm-card--schwach' : ''}`}>
+            <span class="m-card__tag">{m.tag}</span>
+            <h3>{m.href ? <a href={m.href}>{m.name}</a> : m.name}</h3>
+            <p>{m.text}</p>
+            {m.href && (
+              <a class="m-card__link" href={m.href}>
+                Ausführlich mit Quellen →
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule">Warum Kombination am meisten bringt</h2>
+    <p class="intro">
+      Active Recall und Spaced Repetition beantworten zwei unterschiedliche
+      Fragen: <strong>Wie</strong> lernst du eine einzelne Einheit — durch
+      aktives Abrufen statt passives Wiederlesen? Und <strong>wann</strong>{' '}
+      wiederholst du sie — verteilt über mehrere Tage statt an einem Stück?
+      Beide lassen sich einzeln nutzen, wirken aber am stärksten zusammen:
+      Karteikarten, die aktiv abgefragt und dabei über die Zeit verteilt
+      wiederholt werden, statt an einem Nachmittag durchgeklickt zu werden.
+      Das Prinzip ist dabei unabhängig vom Fach — ob bei{' '}
+      <a href="/lernunterlagen/jura/">juristischen Prüfungsschemata</a>,
+      Vokabeln oder Formeln.
+    </p>
+    <p class="intro">
+      Die moderat wirksamen Techniken — elaboratives Nachfragen,
+      Selbsterklärung und verschachteltes Üben (Interleaving) — schneiden
+      besser ab als Markieren, aber schwächer als die beiden Spitzenreiter.
+      Sie eignen sich gut als Ergänzung, nicht als Ersatz.
+    </p>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Willst du wissen, wo bei dir konkret Zeit verloren geht?</strong>{' '}
+        Unser Lerntyp-Test fragt nicht nach Sinneskanälen, sondern nach
+        deinem tatsächlichen Lernverhalten.
+      </p>
+      <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten — 8 Fragen, kostenlos →</a>
+    </div>
+
+    <h2 class="rule">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &amp;
+        Willingham, D. T. (2013): <em
+          >Improving Students' Learning With Effective Learning Techniques.</em
+        > Psychological Science in the Public Interest, 14 (1), S. 4–58.
+        <a
+          href="https://journals.sagepub.com/doi/abs/10.1177/1529100612453266"
+          rel="noopener nofollow">Zum Aufsatz</a
+        >
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Vertiefend mit weiteren Quellen: <a href="/lernmethoden/aktives-erinnern/">Aktives Erinnern</a>
+      {' '}und{' '}
+      <a href="/lernmethoden/spaced-repetition/">Spaced Repetition</a>. Zur
+      Einordnung der Lerntypen-Theorie: <a href="/lerntypen/">Lerntypen — was die Forschung wirklich sagt</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .methoden-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    margin: 1.8rem 0 2.4rem;
+  }
+
+  .m-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .m-card--schwach {
+    border-style: dashed;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .m-card__tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .m-card--schwach .m-card__tag {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-subtle);
+  }
+
+  .m-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.08rem;
+  }
+
+  .m-card h3 a {
+    color: inherit;
+  }
+
+  .m-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .m-card__link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 1rem 0 2.4rem;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../../components/OctaCtaBox.astro';
 import MockupSlideshow from '../../../components/MockupSlideshow.astro';
-import { OCTA } from '../../../site';
+import { OCTA, SITE } from '../../../site';
 
 const HERO_SLIDES = [
   {
@@ -90,6 +90,17 @@ const FAQ = [
 ];
 
 const storeLink = OCTA.appStoreUrlEn;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/en/app/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
 ---
 
 <BaseLayout
@@ -99,6 +110,7 @@ const storeLink = OCTA.appStoreUrlEn;
   lang="en"
   wide
 >
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
   <section class="hero">
     <div class="hero__inner wrap">
       <div class="hero__copy">

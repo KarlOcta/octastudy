@@ -1,0 +1,363 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+const FAQ = [
+  {
+    q: 'Wie wird der Notendurchschnitt berechnet?',
+    a: 'Ohne Gewichtung ist der Notendurchschnitt das einfache arithmetische Mittel: alle Noten addieren und durch die Anzahl der Noten teilen. An der Uni zählt meist jede Note mit ihren Leistungspunkten (ECTS/Credits) unterschiedlich stark — dann wird jede Note zuerst mit ihrer Gewichtung multipliziert, die Summe gebildet und durch die Summe aller Gewichtungen geteilt.',
+  },
+  {
+    q: 'Was ist ein ECTS-gewichteter Notendurchschnitt?',
+    a: 'Beim ECTS-gewichteten Durchschnitt zählt eine Klausur mit 10 Leistungspunkten stärker als eine mit 3 — genauso, wie es in den meisten Prüfungsordnungen an deutschen Hochschulen vorgesehen ist. Trag dazu bei jeder Note die zugehörigen ECTS-Punkte als Gewichtung ein, statt das Feld auf 1 zu lassen.',
+  },
+  {
+    q: 'Stimmt das Ergebnis mit dem offiziellen Zeugnis überein?',
+    a: 'Der Rechner liefert das mathematisch korrekte gewichtete Mittel. Manche Prüfungsämter runden am Ende anders (zum Beispiel kaufmännisch bei 0,05 oder schneiden nach der ersten Nachkommastelle ab) oder schließen bestimmte Module aus dem Durchschnitt aus. Für das verbindliche Ergebnis zählt immer deine Prüfungsordnung bzw. das Zeugnis selbst.',
+  },
+  {
+    q: 'Kann ich auch Schulnoten berechnen?',
+    a: 'Ja — lass die Gewichtung einfach bei 1 für jede Note, dann rechnet der Rechner den einfachen Durchschnitt aus. Für gewichtete Halbjahresnoten (z. B. doppelte Gewichtung von Klausuren) trägst du den jeweiligen Faktor als Gewichtung ein.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE.url}/tools/notendurchschnitt-rechner/#app`,
+      name: 'Notendurchschnitt-Rechner',
+      applicationCategory: 'EducationApplication',
+      operatingSystem: 'Any (Web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      url: `${SITE.url}/tools/notendurchschnitt-rechner/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/tools/notendurchschnitt-rechner/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Notendurchschnitt-Rechner: kostenlos, mit ECTS-Gewichtung"
+  description="Notendurchschnitt online berechnen — einfach oder gewichtet nach ECTS/Leistungspunkten. Kostenlos, ohne Anmeldung, direkt im Browser."
+  breadcrumbs={[
+    { label: 'Tools', href: '/tools/' },
+    { label: 'Notendurchschnitt-Rechner', href: '/tools/notendurchschnitt-rechner/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Kostenloses Tool</p>
+    <h1>Notendurchschnitt-Rechner</h1>
+    <p class="lead intro">
+      Noten eintragen, fertig — der Durchschnitt wird direkt beim Tippen
+      berechnet. Optional mit Gewichtung nach ECTS-Punkten, falls deine
+      Prüfungsordnung Module unterschiedlich stark zählt. Läuft komplett in
+      deinem Browser, ohne Anmeldung und ohne dass irgendetwas gespeichert
+      wird.
+    </p>
+
+    <div class="rechner" id="rechner">
+      <div class="rechner__head">
+        <span>Note</span>
+        <span>Gewichtung <span class="rechner__hint">(z. B. ECTS, optional)</span></span>
+        <span aria-hidden="true"></span>
+      </div>
+      <div class="rechner__rows" id="rows"></div>
+      <button class="btn btn--ghost rechner__add" type="button" id="add-row">
+        + Note hinzufügen
+      </button>
+
+      <div class="rechner__result">
+        <span class="rechner__result-label">Durchschnitt</span>
+        <span class="rechner__result-value" id="result">–</span>
+      </div>
+      <p class="rechner__caveat" id="caveat" hidden>
+        Trag mindestens eine Note zwischen 1,0 und 6,0 ein.
+      </p>
+    </div>
+
+    <p class="rechnung-hint">
+      Rundung: Manche Prüfungsämter runden das Endergebnis kaufmännisch,
+      andere schneiden nach der ersten Nachkommastelle ab. Für das
+      verbindliche Ergebnis zählt deine Prüfungsordnung bzw. dein Zeugnis —
+      dieser Rechner zeigt dir das mathematisch exakte Mittel.
+    </p>
+
+    <h2 class="rule">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Willst du den Durchschnitt aktiv verbessern statt nur zu
+        berechnen?</strong> Unser Lerntyp-Test zeigt dir in acht Fragen, an
+        welcher Stelle deines Lernens am meisten Zeit verloren geht.
+      </p>
+      <a class="btn" href="/tools/lerntyp-test/">Zum Lerntyp-Test — 8 Fragen, kostenlos →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function initRechner(root: HTMLElement) {
+    const rowsEl = root.querySelector<HTMLDivElement>('#rows')!;
+    const resultEl = root.querySelector<HTMLElement>('#result')!;
+    const caveatEl = root.querySelector<HTMLElement>('#caveat')!;
+    const addBtn = root.querySelector<HTMLButtonElement>('#add-row')!;
+
+    function addRow(note = '', gewicht = '1') {
+      const row = document.createElement('div');
+      row.className = 'rechner__row';
+      row.innerHTML = `
+        <input type="number" class="rechner__note" inputmode="decimal" step="0.1" min="1" max="6" placeholder="z. B. 1,7" value="${note}" />
+        <input type="number" class="rechner__gewicht" inputmode="decimal" step="0.5" min="0" value="${gewicht}" />
+        <button type="button" class="rechner__remove" aria-label="Note entfernen">×</button>
+      `;
+      rowsEl.appendChild(row);
+
+      const noteInput = row.querySelector<HTMLInputElement>('.rechner__note')!;
+      const gewichtInput = row.querySelector<HTMLInputElement>('.rechner__gewicht')!;
+      const removeBtn = row.querySelector<HTMLButtonElement>('.rechner__remove')!;
+
+      noteInput.addEventListener('input', recalc);
+      gewichtInput.addEventListener('input', recalc);
+      removeBtn.addEventListener('click', () => {
+        row.remove();
+        recalc();
+      });
+    }
+
+    function recalc() {
+      const rows = Array.from(rowsEl.querySelectorAll<HTMLDivElement>('.rechner__row'));
+      let sumProduct = 0;
+      let sumGewicht = 0;
+      let anyValid = false;
+
+      for (const row of rows) {
+        const noteRaw = row.querySelector<HTMLInputElement>('.rechner__note')!.value.replace(',', '.');
+        const gewichtRaw = row
+          .querySelector<HTMLInputElement>('.rechner__gewicht')!
+          .value.replace(',', '.');
+        const note = parseFloat(noteRaw);
+        const gewicht = parseFloat(gewichtRaw);
+
+        if (!Number.isNaN(note) && note >= 1 && note <= 6) {
+          const g = !Number.isNaN(gewicht) && gewicht > 0 ? gewicht : 1;
+          sumProduct += note * g;
+          sumGewicht += g;
+          anyValid = true;
+        }
+      }
+
+      if (anyValid && sumGewicht > 0) {
+        resultEl.textContent = (sumProduct / sumGewicht).toFixed(2).replace('.', ',');
+        caveatEl.hidden = true;
+      } else {
+        resultEl.textContent = '–';
+        caveatEl.hidden = rows.length === 0;
+      }
+    }
+
+    addBtn.addEventListener('click', () => {
+      addRow();
+    });
+
+    // Drei leere Zeilen zum Start
+    addRow();
+    addRow();
+    addRow();
+    recalc();
+  }
+
+  document.querySelectorAll<HTMLElement>('#rechner').forEach(initRechner);
+</script>
+
+<style>
+  .intro {
+    max-width: 62ch;
+  }
+
+  .rechner {
+    max-width: 40rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    margin: 1.8rem 0 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .rechner__head {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2rem;
+    gap: 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-subtle);
+    margin-bottom: 0.6rem;
+    padding: 0 0.1rem;
+  }
+
+  .rechner__hint {
+    font-weight: 500;
+    color: var(--text-subtle);
+  }
+
+  .rechner__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .rechner__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2rem;
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  .rechner__row input {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .rechner__row input:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+  }
+
+  .rechner__remove {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    color: var(--text-subtle);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .rechner__remove:hover {
+    border-color: var(--brand-pink);
+    color: var(--brand-pink);
+  }
+
+  .rechner__add {
+    margin-top: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  .rechner__result {
+    margin-top: 1.5rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .rechner__result-label {
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .rechner__result-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .rechner__caveat {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .rechnung-hint {
+    max-width: 40rem;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    margin-bottom: 2.2rem;
+  }
+
+  .faq {
+    max-width: 62ch;
+    margin-bottom: 2.2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    max-width: 62ch;
+    margin-bottom: 1rem;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+</style>

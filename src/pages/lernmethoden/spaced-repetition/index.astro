@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { OCTA, SITE } from '../../../site';
+
+const FAQ = [
+  {
+    q: 'Was ist Spaced Repetition genau?',
+    a: 'Spaced Repetition (verteiltes Wiederholen, Distributed Practice) bedeutet, denselben Stoff nicht an einem Stück zu lernen, sondern die Wiederholungen über mehrere Tage oder Wochen zu verteilen — mit wachsendem Abstand, je sicherer eine Antwort sitzt.',
+  },
+  {
+    q: 'Warum ist verteiltes Lernen besser als Blocklernen?',
+    a: 'Wenn eine Wiederholung kommt, kurz bevor du etwas vergessen hättest, muss dein Gehirn stärker daran arbeiten, es wiederzufinden — und genau diese Anstrengung festigt die Erinnerung. Beim Blocklernen an einem Nachmittag ist der Stoff beim zweiten Durchgang noch zu präsent, als dass echtes Abrufen nötig wäre.',
+  },
+  {
+    q: 'Wie groß sollten die Abstände zwischen Wiederholungen sein?',
+    a: 'Als grobe Faustregel wächst der Abstand mit jeder erfolgreichen Wiederholung: zum Beispiel nach einem Tag, dann nach drei, dann nach einer Woche, dann nach zwei bis drei Wochen. Wichtiger als exakte Zahlen ist das Prinzip: Je öfter eine Antwort sicher saß, desto länger darf die nächste Wiederholung warten.',
+  },
+  {
+    q: 'Muss ich mir die Abstände selbst merken?',
+    a: 'Von Hand geht es mit einem Leitner-System (mehrere Fächer, in denen Karten je nach Erfolg weiter- oder zurückwandern). Digitale Systeme — auch der Lernplan in Octa — übernehmen diese Terminierung automatisch, sodass du dich nur noch um das Abfragen kümmern musst.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE.url}/lernmethoden/spaced-repetition/#article`,
+      headline: 'Spaced Repetition: Warum verteiltes Wiederholen besser hängen bleibt',
+      description:
+        'Was Spaced Repetition ist, warum verteiltes Wiederholen laut Forschung deutlich wirksamer ist als Blocklernen, und wie du es mit oder ohne App umsetzt.',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: `${SITE.url}/lernmethoden/spaced-repetition/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/lernmethoden/spaced-repetition/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Spaced Repetition: Warum verteiltes Wiederholen besser hängen bleibt"
+  description="Was Spaced Repetition ist, warum es zu den am besten belegten Lernmethoden zählt und wie du es mit oder ohne App umsetzt — mit Quellen."
+  breadcrumbs={[
+    { label: 'Lernmethoden', href: '/lernmethoden/' },
+    { label: 'Spaced Repetition', href: '/lernmethoden/spaced-repetition/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Lernmethoden · Spaced Repetition</p>
+    <h1>Spaced Repetition: Warum verteiltes Wiederholen besser hängen bleibt</h1>
+    <p class="lead intro">
+      Spaced Repetition — verteiltes Wiederholen, in der Forschung auch
+      Distributed Practice genannt — verteilt denselben Lernaufwand über
+      mehrere Tage statt ihn an einem Stück abzuarbeiten. In der
+      Übersichtsarbeit von Dunlosky und Kollegen (2013) ist es neben Active
+      Recall die einzige Technik mit der höchsten Wirksamkeitsstufe.
+    </p>
+
+    <h2 class="rule rule--tight">Das Prinzip: derselbe Aufwand, anders verteilt</h2>
+    <p class="intro">
+      Der Vergleich ist nicht „mehr lernen" gegen „weniger lernen" — beide
+      Gruppen in den zugrunde liegenden Studien verbringen dieselbe
+      Gesamtzeit mit dem Stoff. Der einzige Unterschied ist die Verteilung:
+      fünf Stunden an einem Nachmittag oder dieselben fünf Stunden über zwei
+      Wochen verteilt. Wer verteilt, schneidet im späteren Test regelmäßig
+      besser ab.
+    </p>
+
+    <h2 class="rule rule--tight">Warum das funktioniert</h2>
+    <p class="intro">
+      Schon Hermann Ebbinghaus beschrieb 1885 mit seiner Vergessenskurve,
+      wie schnell frisch Gelerntes ohne Wiederholung wieder verblasst. Eine
+      Wiederholung, die kommt, kurz bevor du etwas vergessen hättest, zwingt
+      dein Gehirn zu echtem Abrufen — die Erinnerung ist nicht mehr ganz
+      präsent, muss also aktiv rekonstruiert werden. Genau diese
+      Anstrengung festigt sie stärker, als es eine zu frühe Wiederholung
+      könnte, bei der der Stoff noch zu präsent ist. Eine große
+      Metaanalyse von Cepeda und Kollegen (2006) über zahlreiche Studien
+      hinweg bestätigt: Verteilte Wiederholung schlägt gemeinsames
+      Blocklernen über praktisch alle untersuchten Aufgabentypen hinweg.
+    </p>
+
+    <h2 class="rule rule--tight">Wie du es konkret umsetzt</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Von Hand</span>
+        <h3>Das Leitner-System</h3>
+        <p>
+          Sebastian Leitner entwickelte ein Karteikasten-System mit
+          mehreren Fächern: Jede richtig beantwortete Karte wandert ein
+          Fach weiter (und wird seltener abgefragt), jede falsch
+          beantwortete zurück ins erste Fach. So entstehen automatisch
+          wachsende Abstände.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Als Faustregel</span>
+        <h3>Wachsende Intervalle</h3>
+        <p>
+          Grob orientieren kannst du dich an: nach einem Tag, dann nach
+          drei, dann nach einer Woche, dann nach zwei bis drei Wochen —
+          vorausgesetzt, die Antwort saß jeweils sicher. Saß sie nicht,
+          beginnt der Abstand wieder von vorn.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Automatisiert</span>
+        <h3>Digitale Systeme</h3>
+        <p>
+          Spaced-Repetition-Software berechnet die Abstände pro Karte
+          individuell, abhängig davon, wie sicher du sie zuletzt
+          beherrscht hast — statt dass du selbst Buch führen musst, welche
+          Karte wann dran ist.
+        </p>
+      </div>
+    </div>
+
+    <p class="intro">
+      Der Lernplan in {OCTA.name} setzt genau dieses Prinzip automatisch um:
+      Er terminiert die Wiederholung jeder Karteikarte einzeln, orientiert
+      an deiner Wunschnote und daran, wie sicher du sie zuletzt beherrscht
+      hast — statt eines pauschalen Zeitplans für den ganzen Stoff.
+    </p>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Am wirksamsten wird Spaced Repetition in Kombination:</strong>{' '}
+        mit aktivem Abrufen statt bloßem Wiedererkennen bei jeder
+        Wiederholung.
+      </p>
+      <a class="btn" href="/lernmethoden/aktives-erinnern/">Weiter zu Aktives Erinnern →</a>
+    </div>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T. &amp; Rohrer, D.
+        (2006): <em
+          >Distributed Practice in Verbal Recall Tasks: A Review and
+          Quantitative Synthesis.</em
+        > Psychological Bulletin, 132 (3), S. 354–380.
+      </li>
+      <li>
+        Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &amp;
+        Willingham, D. T. (2013): <em
+          >Improving Students' Learning With Effective Learning Techniques.</em
+        > Psychological Science in the Public Interest, 14 (1), S. 4–58.
+        <a
+          href="https://journals.sagepub.com/doi/abs/10.1177/1529100612453266"
+          rel="noopener nofollow">Zum Aufsatz</a
+        >
+      </li>
+      <li>
+        Ebbinghaus, H. (1885): <em>Über das Gedächtnis: Untersuchungen zur
+        experimentellen Psychologie.</em> Duncker &amp; Humblot, Leipzig.
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Übersicht aller Lernmethoden im Vergleich: <a href="/lernmethoden/">Lernmethoden</a>.
+      Zur Einordnung der Lerntypen-Theorie: <a href="/lerntypen/">Lerntypen</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 1.2rem 0 2.4rem;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

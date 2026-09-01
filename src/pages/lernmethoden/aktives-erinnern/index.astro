@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { OCTA, SITE } from '../../../site';
+
+const FAQ = [
+  {
+    q: 'Was ist Active Recall genau?',
+    a: 'Active Recall (aktives Erinnern, auch Practice Testing oder Retrieval Practice) bedeutet, Wissen aus dem Kopf abzurufen, ohne auf die Vorlage zu schauen — statt einen Text erneut zu lesen oder zu erkennen. Das Abrufen selbst ist dabei der Lernvorgang, nicht nur eine Kontrolle des bereits Gelernten.',
+  },
+  {
+    q: 'Warum ist Abrufen wirksamer als Wiederlesen?',
+    a: 'Beim Wiederlesen entsteht Vertrautheit mit dem Text — die fühlt sich wie Können an, ist es aber nicht. Beim Abrufen muss das Gehirn den Gedächtnispfad zur Information aktiv nachvollziehen, was ihn nachweislich stärkt. Dieser sogenannte Testeffekt ist einer der am besten reproduzierten Befunde der Gedächtnisforschung.',
+  },
+  {
+    q: 'Muss ich mich dafür testen lassen oder reicht es allein?',
+    a: 'Allein reicht es. Ein leeres Blatt, auf das du aus dem Kopf aufschreibst, was du zu einem Thema weißt, ist bereits Active Recall — genau wie eine Karteikarte, deren Antwort du aktiv abrufst, bevor du sie umdrehst.',
+  },
+  {
+    q: 'Wie kombiniere ich Active Recall mit Spaced Repetition?',
+    a: 'Indem du dieselbe Abfrage nicht nur einmal, sondern über mehrere Tage verteilt wiederholst — mit wachsendem Abstand, sobald du eine Antwort sicher beherrschst. Mehr dazu auf unserer Seite zu Spaced Repetition.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE.url}/lernmethoden/aktives-erinnern/#article`,
+      headline: 'Aktives Erinnern (Active Recall): Warum Abrufen wirksamer ist als Wiederlesen',
+      description:
+        'Was Active Recall (aktives Erinnern) ist, warum es laut Forschung zu den wirksamsten Lernmethoden zählt, und wie du es konkret ohne Hilfsmittel umsetzt.',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: `${SITE.url}/lernmethoden/aktives-erinnern/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/lernmethoden/aktives-erinnern/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Aktives Erinnern (Active Recall): Warum Abrufen wirksamer ist als Wiederlesen"
+  description="Was Active Recall ist, warum es zu den am besten belegten Lernmethoden zählt und wie du es ganz ohne Hilfsmittel umsetzt — mit Quellen."
+  breadcrumbs={[
+    { label: 'Lernmethoden', href: '/lernmethoden/' },
+    { label: 'Aktives Erinnern', href: '/lernmethoden/aktives-erinnern/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Lernmethoden · Active Recall</p>
+    <h1>Aktives Erinnern: Warum Abrufen wirksamer ist als Wiederlesen</h1>
+    <p class="lead intro">
+      Active Recall — auch Retrieval Practice, Practice Testing oder
+      schlicht Selbstabfragen genannt — bedeutet, Wissen aktiv aus dem Kopf
+      zu holen, statt es erneut zu lesen. In der bislang umfassendsten
+      Übersichtsarbeit zu Lerntechniken (Dunlosky et al., 2013) ist es eine
+      von nur zwei Methoden, die die höchste Wirksamkeitsstufe erreichen.
+    </p>
+
+    <h2 class="rule rule--tight">Was Active Recall konkret ist</h2>
+    <p class="intro">
+      Der Unterschied zu gewöhnlichem Lernen liegt in einem einzigen Schritt:
+      Bevor du nachschaust, versuchst du dich zu erinnern. Eine Karteikarte
+      lesen und die Antwort erkennen ist kein Active Recall — die Antwort aus
+      dem Kopf zu formulieren, <em>bevor</em> du die Rückseite umdrehst, ist
+      es. Ein Kapitel nochmal lesen ist kein Active Recall — ein leeres
+      Blatt zu nehmen und aufzuschreiben, was du zu dem Kapitel weißt, ist
+      es.
+    </p>
+
+    <h2 class="rule rule--tight">Warum das Abrufen selbst der Lernvorgang ist</h2>
+    <p class="intro">
+      Beim Wiederlesen wird der Text vertraut — diese Vertrautheit fühlt sich
+      wie Verstehen an, ist aber vor allem Wiedererkennen. In der Prüfung,
+      wo nichts mehr danebensteht, zeigt sich der Unterschied deutlich. Beim
+      aktiven Abrufen muss dein Gehirn den Zugriffspfad zur Information
+      selbst nachvollziehen. Genau diese Anstrengung — die sich schwerer
+      anfühlt als Lesen — ist es, die den Gedächtnispfad stärkt. In der
+      Gedächtnisforschung heißt dieser Effekt <strong>Testeffekt</strong>{' '}
+      (Roediger &amp; Karpicke, 2006): Sich selbst zu testen verbessert die
+      spätere Erinnerung stärker als dieselbe Zeit mit erneutem Lesen zu
+      verbringen — auch wenn sich das Testen im Moment weniger erfolgreich
+      anfühlt, weil man dabei auch scheitern kann.
+    </p>
+
+    <div class="note">
+      <p>
+        <strong>Die Gegenintuition dabei:</strong> Sich beim Abrufen an
+        etwas nicht zu erinnern, fühlt sich nach Misserfolg an. Genau dieser
+        Moment — der Versuch, etwas Vergessenes wiederzufinden — ist es
+        aber, der den Lerneffekt erzeugt. Wiederlesen erzeugt dieses
+        Gefühl nie, weil es nie verlangt, sich zu erinnern.
+      </p>
+    </div>
+
+    <h2 class="rule rule--tight">Wie du es konkret umsetzt</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card__tag">Ohne Hilfsmittel</span>
+        <h3>Die leere Seite</h3>
+        <p>
+          Buch zu, Skript zu. Ein leeres Blatt nehmen und aufschreiben, was
+          du zu einem Thema weißt — Begriffe, Zusammenhänge, Beispiele.
+          Danach mit der Vorlage abgleichen und gezielt nachlernen, was
+          fehlte.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Mit Karteikarten</span>
+        <h3>Antwort zuerst denken</h3>
+        <p>
+          Die Frage lesen, die Antwort laut oder schriftlich aus dem Kopf
+          formulieren — erst danach umdrehen. Wer direkt umdreht, lernt kaum
+          mehr als beim Wiederlesen.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">Beim Erklären</span>
+        <h3>Die Feynman-Technik</h3>
+        <p>
+          Ein Thema so erklären, als würdest du es jemandem beibringen, der
+          es noch nie gehört hat — ohne Fachjargon als Versteck. Jede
+          Stelle, an der du ins Stocken gerätst, zeigt genau, was noch
+          nicht sitzt.
+        </p>
+      </div>
+    </div>
+
+    <p class="intro">
+      {OCTA.name} baut genau diesen Mechanismus in die Karteikarten ein: Der
+      „Test yourself"-Button verlangt eine gesprochene Antwort, bevor die
+      Lösung erscheint — Abrufen statt Erkennen, automatisch bei jeder
+      Karte.
+    </p>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Am wirksamsten wird Active Recall in Kombination:</strong>{' '}
+        über mehrere Tage verteilt statt an einem Nachmittag durchgepaukt.
+      </p>
+      <a class="btn" href="/lernmethoden/spaced-repetition/">Weiter zu Spaced Repetition →</a>
+    </div>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Roediger, H. L. &amp; Karpicke, J. D. (2006): <em
+          >The Power of Testing Memory: Basic Research and Implications for
+          Educational Practice.</em
+        > Perspectives on Psychological Science, 1 (3), S. 181–210.
+      </li>
+      <li>
+        Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &amp;
+        Willingham, D. T. (2013): <em
+          >Improving Students' Learning With Effective Learning Techniques.</em
+        > Psychological Science in the Public Interest, 14 (1), S. 4–58.
+        <a
+          href="https://journals.sagepub.com/doi/abs/10.1177/1529100612453266"
+          rel="noopener nofollow">Zum Aufsatz</a
+        >
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Übersicht aller Lernmethoden im Vergleich: <a href="/lernmethoden/">Lernmethoden</a>.
+      Zur Einordnung der Lerntypen-Theorie: <a href="/lerntypen/">Lerntypen</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .note {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.3rem 1.5rem;
+    max-width: 70ch;
+    margin: 1.2rem 0 1.8rem;
+  }
+
+  .note p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 1.2rem 0 2.4rem;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

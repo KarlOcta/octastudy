@@ -1,5 +1,36 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+const FAQ = [
+  {
+    q: 'Wie lange dauert der Lerntyp-Test?',
+    a: 'Acht Fragen, unter einer Minute. Am Ende bekommst du kein bloßes Etikett, sondern eine konkrete Einschätzung, an welcher Stelle deines Lernens am meisten Zeit verloren geht.',
+  },
+  {
+    q: 'Ist der Lerntyp-Test wissenschaftlich?',
+    a: 'Dieser Test fragt bewusst nicht nach Sinneskanälen (visuell, auditiv, haptisch, intellektuell) — die zugrunde liegende Theorie gilt als wissenschaftlich nicht belegt. Stattdessen fragt er dein tatsächliches Lernverhalten ab: wann du anfängst, ob du abrufst oder wiederliest, ob dir jemand auffällt, wenn du nicht dranbleibst. Warum, erklären wir ausführlich auf unserer Seite zu den Lerntypen.',
+  },
+  {
+    q: 'Was mache ich mit dem Ergebnis?',
+    a: 'Jedes der sechs Profile kommt mit einer konkreten Empfehlung, keiner allgemeinen Lerntipp-Liste — also mit dem, was bei genau diesem Muster am ehesten weiterhilft.',
+  },
+  {
+    q: 'Muss ich mich registrieren?',
+    a: 'Nein. Der Test läuft direkt im Browser, ohne Login und ohne dass etwas gespeichert wird.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/tools/lerntyp-test/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
 ---
 
 <BaseLayout
@@ -12,6 +43,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   altHref="/en/tools/lerntyp-test/"
   wide
 >
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
   <div class="wrap lt-page">
     <div class="lt-shell">
       <!-- ---------------------------------------------------- Intro -- -->
@@ -335,6 +367,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
 
     </div>
+
+    <section class="lt-faq-section">
+      <h2 class="rule">Häufige Fragen</h2>
+      <div class="faq">
+        {
+          FAQ.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+      <p class="lt-faq-hint">
+        Warum die vier klassischen Lerntypen wissenschaftlich umstritten
+        sind und was stattdessen belegt ist:{' '}
+        <a href="/lerntypen/">Lerntypen — was die Forschung wirklich sagt</a>.
+      </p>
+    </section>
 
   </div>
 </BaseLayout>
@@ -1520,6 +1571,56 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .lt-mood {
       display: none;
     }
+  }
+
+  .lt-faq-section {
+    max-width: 70ch;
+    margin: 3rem auto 1rem;
+  }
+
+  .lt-faq-section .faq {
+    margin-top: 1rem;
+  }
+
+  .lt-faq-section .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .lt-faq-section .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .lt-faq-section .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .lt-faq-section .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .lt-faq-section .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .lt-faq-section .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .lt-faq-hint {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
   }
 </style>
 

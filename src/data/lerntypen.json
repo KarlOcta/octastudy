@@ -1,0 +1,151 @@
+[
+  {
+    "slug": "visueller-lerntyp",
+    "bild": "visuell",
+    "alt": "Illustration: Studentin kniet auf dem Boden und zeichnet eine farbige Mindmap mit Kästchen und Pfeilen",
+    "name": "Der visuelle Lerntyp",
+    "auch": "auch: optischer Lerntyp",
+    "h1": "Visueller Lerntyp: Anzeichen, übliche Tipps — und was davon wirklich hilft",
+    "metaTitle": "Visueller Lerntyp: Anzeichen, Tipps und was wirklich hilft",
+    "metaDescription": "Was den visuellen Lerntyp angeblich ausmacht, welche Anzeichen genannt werden und warum die üblichen Tipps nur zum Teil etwas bringen. Mit dem, was tatsächlich belegt ist.",
+    "behauptung": "Lernt angeblich am besten über das Auge — durch Lesen, Grafiken, Mindmaps und Farben.",
+    "anzeichen": [
+      "Du kannst dir Orte, Gesichter und Layouts gut merken, Namen dagegen schlechter.",
+      "Beim Lernen greifst du automatisch zu Textmarker, Mindmap oder Skizze.",
+      "Du erinnerst dich oft an die Stelle auf der Skript-Seite, an der etwas stand — aber nicht mehr genau an den Inhalt.",
+      "Vorträge ohne Folien oder Tafelbild fallen dir schwerer zu verfolgen als solche mit."
+    ],
+    "uebliche_tipps": "Text farbig markieren, Mindmaps und Diagramme zeichnen, Karteikarten mit Bildern versehen, Skripte visuell umstrukturieren.",
+    "koernchen_wahrheit": {
+      "titel": "Der Picture-Superiority-Effekt",
+      "text": "Dass Bilder besser hängen bleiben als reine Wörter, ist tatsächlich gut belegt — Endel Tulving und Kollegen sowie später Allan Paivio mit seiner Dual-Coding-Theorie (1971) zeigten das schon vor Jahrzehnten. Nur betrifft dieser Effekt nicht nur Menschen mit einer visuellen „Vorliebe“, sondern so gut wie jeden. Er ist eine Eigenschaft des menschlichen Gedächtnisses, kein Persönlichkeitsmerkmal."
+    },
+    "was_hilft": "Bilder und Diagramme zu nutzen ist deshalb keine schlechte Idee — nur eben nicht, weil du ein bestimmter „Typ“ bist. Der größere Hebel liegt woanders: Eine selbst gezeichnete Mindmap merkst du dir vor allem deshalb besser als eine fertige, weil du sie selbst erzeugt hast — das ist Abrufen, nicht Betrachten. Genau darauf zielen die beiden am besten belegten Techniken: sich selbst abfragen und den Stoff über mehrere Tage verteilen.",
+    "faq": [
+      {
+        "q": "Bin ich ein visueller Lerntyp?",
+        "a": "Wenn du dir Orte, Layouts und Bilder leichter merkst als reinen Text, hast du eine visuelle Vorliebe — die haben viele Menschen. Ob du dadurch tatsächlich besser lernst, wenn du Stoff visuell aufbereitest, ist eine andere Frage: Dafür fehlt bislang die wissenschaftliche Evidenz."
+      },
+      {
+        "q": "Was hilft visuellen Lerntypen beim Lernen?",
+        "a": "Die üblichen Tipps — Mindmaps, Farben, Skizzen — schaden nicht, wirken aber nicht, weil du visuell bist, sondern weil das Zeichnen selbst eine Form von aktivem Abrufen ist. Wirksamer ist es, sich anschließend ohne Vorlage selbst abzufragen und die Wiederholung über mehrere Tage zu verteilen."
+      },
+      {
+        "q": "Ist der visuelle Lerntyp wissenschaftlich belegt?",
+        "a": "Nein. Die zugrunde liegende Meshing-Hypothese — dass Menschen mit visueller Vorliebe besser lernen, wenn der Stoff visuell dargeboten wird — konnte in der von Pashler und Kollegen (2008) untersuchten Literatur nicht belegt werden. Mehr dazu auf unserer Übersichtsseite zu den Lerntypen."
+      }
+    ]
+  },
+  {
+    "slug": "auditiver-lerntyp",
+    "bild": "auditiv",
+    "alt": "Illustration: Student mit Kopfhörern um den Hals sitzt im Schneidersitz und spricht den Stoff laut nach",
+    "name": "Der auditive Lerntyp",
+    "auch": "auch: akustischer Lerntyp",
+    "h1": "Auditiver Lerntyp: Anzeichen, übliche Tipps — und was davon wirklich hilft",
+    "metaTitle": "Auditiver Lerntyp: Anzeichen, Tipps und was wirklich hilft",
+    "metaDescription": "Was den auditiven Lerntyp angeblich ausmacht, welche Anzeichen genannt werden und warum lautes Vorlesen allein wenig bringt. Mit dem, was tatsächlich belegt ist.",
+    "behauptung": "Lernt angeblich am besten über das Ohr — durch Zuhören, lautes Vorlesen, Gespräche und Podcasts.",
+    "anzeichen": [
+      "Du verstehst einen Sachverhalt oft schneller, wenn ihn dir jemand erklärt, statt ihn selbst zu lesen.",
+      "Beim Lernen redest du unwillkürlich mit dir selbst oder liest leise mit.",
+      "Diskussionen und Lerngruppen helfen dir mehr als stilles Lesen.",
+      "Podcasts und Vorlesungsaufzeichnungen merkst du dir überraschend gut."
+    ],
+    "uebliche_tipps": "Stoff laut vorlesen, Aufnahmen anhören, in der Vorlesung mitsprechen, sich von anderen abfragen lassen.",
+    "koernchen_wahrheit": {
+      "titel": "Der Generierungseffekt",
+      "text": "Etwas selbst laut zu sagen oder zu erklären, bleibt tatsächlich besser hängen als es nur zu lesen — das ist als Generierungseffekt bekannt (Slamecka & Graf, 1978): Selbst erzeugte Information wird besser erinnert als bloß aufgenommene. Der Haken: Das gilt fürs Sprechen genauso wie fürs Schreiben oder freie Erinnern — es ist kein Beleg dafür, dass Hören der bessere Kanal für dich wäre."
+
+    },
+    "was_hilft": "Der Rat, sich abfragen zu lassen, ist tatsächlich einer der wirksamsten überhaupt — nur nicht, weil du „auditiv“ bist, sondern weil beim lauten Antworten Abrufen statt Wiedererkennen passiert. Ein Podcast über das Thema zu hören bringt dagegen wenig, wenn du dabei nur passiv zuhörst. Wirksamer: den Stoff aus dem Kopf laut erklären, ohne Vorlage — und das über mehrere Tage verteilt wiederholen.",
+    "faq": [
+      {
+        "q": "Bin ich ein auditiver Lerntyp?",
+        "a": "Wenn dir Erklärungen und Gespräche leichter fallen als stilles Lesen, hast du eine auditive Vorliebe. Dass du dadurch beim Lernen tatsächlich im Vorteil bist, wenn der Stoff akustisch dargeboten wird, ist wissenschaftlich nicht belegt."
+      },
+      {
+        "q": "Bringt lautes Vorlesen wirklich etwas?",
+        "a": "Lautes Vorlesen allein kaum — es bleibt Wiederlesen, nur akustisch. Wirksam wird es erst, wenn du den Stoff ohne Vorlage aus dem Kopf laut erklärst. Das ist echtes Abrufen, keine Wiedergabe."
+      },
+      {
+        "q": "Ist der auditive Lerntyp wissenschaftlich belegt?",
+        "a": "Nein. Wie bei den anderen drei Kanälen fehlt der Nachweis, dass Menschen mit auditiver Vorliebe besser abschneiden, wenn Unterricht oder Lernmaterial akustisch aufbereitet sind. Details dazu auf unserer Übersichtsseite zu den Lerntypen."
+      }
+    ]
+  },
+  {
+    "slug": "haptischer-lerntyp",
+    "bild": "haptisch",
+    "alt": "Illustration: Studentin hockt am Boden und baut ein Molekülmodell zwischen aufgeschlagenen Büchern zusammen",
+    "name": "Der haptische Lerntyp",
+    "auch": "auch: motorischer oder kinästhetischer Lerntyp",
+    "h1": "Haptischer Lerntyp: Anzeichen, übliche Tipps — und was davon wirklich hilft",
+    "metaTitle": "Haptischer Lerntyp: Anzeichen, Tipps und was wirklich hilft",
+    "metaDescription": "Was den haptischen (kinästhetischen) Lerntyp angeblich ausmacht und warum Anfassen allein noch kein Lernerfolg ist. Mit dem, was tatsächlich belegt ist.",
+    "behauptung": "Lernt angeblich am besten durch Anfassen und Tun — Experimente, Modelle, Bewegung beim Lernen.",
+    "anzeichen": [
+      "Du hältst es beim Lernen selten lange still, läufst umher oder bewegst dich nebenbei.",
+      "Praktika und Übungen verstehst du oft schneller als reine Theorie dazu.",
+      "Etwas selbst nachzubauen oder durchzuführen bleibt dir länger im Kopf als es nur zu lesen.",
+      "Reines Zuhören oder Zusehen ohne eigenes Tun langweilt dich schnell."
+    ],
+    "uebliche_tipps": "Versuche selbst durchführen, Modelle bauen, beim Lernen umhergehen, Abläufe nachstellen statt nur nachzulesen.",
+    "koernchen_wahrheit": {
+      "titel": "Der Enactment-Effekt",
+      "text": "Dass selbst durchgeführte Handlungen besser hängen bleiben als bloß beobachtete oder gelesene, ist in der Gedächtnisforschung als Enactment-Effekt (auch: Self-Performed-Task-Effekt) dokumentiert. Auch das ist aber kein Beleg für einen eigenen „Lerntyp“ — es gilt für alle: Selbst etwas zu tun schlägt fast immer bloßes Zusehen, unabhängig von einer Vorliebe."
+    },
+    "was_hilft": "Bewegung und eigenes Tun sind kein schlechter Instinkt — nur ist der Grund nicht dein „Typ“, sondern dass Tun automatisch aktiver ist als Lesen. Der gleiche Mechanismus lässt sich gezielter nutzen: Statt nur ein Modell nachzubauen, versuche danach, den Ablauf ohne Vorlage aus dem Kopf zu erklären oder aufzuschreiben. Das ist echtes Abrufen — und über mehrere Tage verteilt bleibt es deutlich länger hängen als an einem Nachmittag durchgepaukt.",
+    "faq": [
+      {
+        "q": "Bin ich ein haptischer Lerntyp?",
+        "a": "Wenn dir eigenes Tun leichter fällt als reines Zuhören oder Lesen, hast du eine motorische Vorliebe — die ist real. Dass du dadurch grundsätzlich besser lernst, wenn Stoff „zum Anfassen“ aufbereitet ist, ist wissenschaftlich nicht belegt."
+      },
+      {
+        "q": "Muss ich beim Lernen in Bewegung sein?",
+        "a": "Wenn es dir hilft, dich zu konzentrieren, spricht nichts dagegen. Der eigentliche Wirkmechanismus ist aber nicht die Bewegung selbst, sondern dass eigenes Tun automatisch aktiver ist als passives Zusehen — und aktives Abrufen ist, was beim Lernen zählt."
+      },
+      {
+        "q": "Ist der haptische Lerntyp wissenschaftlich belegt?",
+        "a": "Nein, auch hier fehlt der entscheidende Nachweis: dass Lernende mit motorischer Vorliebe besser abschneiden, wenn ihnen der Stoff „zum Anfassen“ dargeboten wird. Mehr dazu auf unserer Übersichtsseite zu den Lerntypen."
+      }
+    ]
+  },
+  {
+    "slug": "intellektueller-lerntyp",
+    "bild": "intellektuell",
+    "alt": "Illustration: Student mit Brille sitzt mit einem Heft voller Herleitungen auf dem Knie und denkt nach",
+    "name": "Der intellektuelle Lerntyp",
+    "auch": "auch: abstrakt-verbaler oder kognitiver Lerntyp",
+    "h1": "Intellektueller Lerntyp: Anzeichen, übliche Tipps — und was davon wirklich hilft",
+    "metaTitle": "Intellektueller Lerntyp: Anzeichen, Tipps und was wirklich hilft",
+    "metaDescription": "Was den intellektuellen Lerntyp nach Vester angeblich ausmacht und warum er aus der Reihe der anderen drei Lerntypen fällt. Mit dem, was tatsächlich belegt ist.",
+    "behauptung": "Lernt angeblich am besten über den Verstand — durch Logik, Herleitungen und Zusammenhänge.",
+    "anzeichen": [
+      "Du willst verstehen, warum etwas gilt, bevor du es dir merkst — Auswendiglernen ohne Begründung fällt dir schwer.",
+      "Du suchst automatisch nach Mustern, Regeln und Zusammenhängen zwischen Themen.",
+      "Einzelfälle merkst du dir leichter, wenn du sie in ein größeres System einordnen kannst.",
+      "Du stellst beim Lernen gerne Warum-Fragen — auch an dich selbst."
+    ],
+    "uebliche_tipps": "Zusammenhänge herleiten, Systeme durchdringen, Regeln statt Einzelfälle lernen, Prinzipien vor Details verstehen.",
+    "koernchen_wahrheit": {
+      "titel": "Elaboratives Nachfragen und Selbsterklärung",
+      "text": "Dieser vierte Typ fällt bei Vester ohnehin aus der Reihe: Die anderen drei sind Sinneskanäle, dieser ist eine Denkweise. Interessanterweise sind die zwei Techniken, die am ehesten zu diesem Typ passen würden — elaboratives Nachfragen („Warum ist das so?“) und Selbsterklärung — bei Dunlosky und Kollegen (2013) tatsächlich mit „mittlerer Wirksamkeit“ bewertet. Das ist mehr, als Markieren oder Wiederlesen erreichen — aber immer noch weniger als Abrufen und verteiltes Wiederholen."
+    },
+    "was_hilft": "Nach dem Warum zu fragen und Zusammenhänge herzuleiten, ist eine solide Gewohnheit — sie funktioniert nur besser in Kombination, nicht als Ersatz für die beiden wirksamsten Techniken. Am meisten bringt es, sich selbst zu fragen „Warum gilt das?“ und die Antwort dann ohne Skript aus dem Kopf zu rekonstruieren — und das über mehrere Tage verteilt zu wiederholen, statt an einem Abend durchzudenken.",
+    "faq": [
+      {
+        "q": "Bin ich ein intellektueller Lerntyp?",
+        "a": "Wenn du Zusammenhänge und Begründungen brauchst, bevor dir etwas hängen bleibt, hast du diese Neigung — sie ist bei vielen Studierenden stark ausgeprägt, gerade in Fächern mit viel Systematik. Ein eigener „Lerntyp“ im Sinne eines Sinneskanals ist das aber nicht, da Logik kein Wahrnehmungskanal ist."
+      },
+      {
+        "q": "Sind elaboratives Nachfragen und Selbsterklärung wirklich wirksam?",
+        "a": "Ja, mit Einschränkung: Dunlosky und Kollegen (2013) bewerten beide Techniken mit „mittlerer“ Wirksamkeit — besser als Markieren oder Wiederlesen, aber schwächer als Selbstabfragen und verteiltes Wiederholen, die als einzige die höchste Stufe erreichen."
+      },
+      {
+        "q": "Ist der intellektuelle Lerntyp wissenschaftlich belegt?",
+        "a": "Als eigenständiger, von den drei Sinneskanälen unabhängiger „Typ“ nein — auch hier fehlt die Evidenz, dass eine bevorzugte Denkweise automatisch zu besseren Lernergebnissen führt, wenn der Unterricht entsprechend aufbereitet ist. Mehr dazu auf unserer Übersichtsseite zu den Lerntypen."
+      }
+    ]
+  }
+]

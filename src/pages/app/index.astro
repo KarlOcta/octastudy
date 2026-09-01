@@ -2,63 +2,84 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../components/OctaCtaBox.astro';
 import MockupSlideshow from '../../components/MockupSlideshow.astro';
-import { OCTA } from '../../site';
+import { OCTA, APP_RATING, APP_REVIEWS, SITE } from '../../site';
 
 const HERO_SLIDES = [
   {
     src: '/img/mockups/app/andere-test.webp',
     alt: 'Octa-Karteikarte mit Button "Test yourself" — die Antwort wird laut gesprochen',
     caption: '"Test yourself" auf der Karteikarte — du sprichst deine Antwort laut ein',
-    width: 792,
-    height: 1599,
+    width: 752,
+    height: 1559,
   },
   {
     src: '/img/mockups/app/andere-plan.webp',
     alt: 'Octa-Lernplan mit Lernpfad und Fortschritt bis zur Prüfung',
     caption: 'Ein Lernplan aus deinen Unterlagen, getaktet bis zur Prüfung',
-    width: 792,
-    height: 1599,
+    width: 752,
+    height: 1559,
   },
   {
     src: '/img/mockups/app/andere-karte.webp',
     alt: 'Octa-Karteikarte, generiert aus hochgeladenen Vorlesungsunterlagen',
     caption: 'Karteikarten aus deinen eigenen Unterlagen, kein generisches Deck',
-    width: 792,
-    height: 1599,
+    width: 752,
+    height: 1559,
   },
   {
     src: '/img/mockups/app/andere-tribes.webp',
     alt: 'Octa-Tribes-Bildschirm mit wöchentlicher Bestenliste von Lerngruppen',
     caption: 'Tribes — Lerngruppen, in denen dein Fortschritt sichtbar ist',
-    width: 792,
-    height: 1599,
+    width: 752,
+    height: 1559,
   },
 ];
+
+const ICONS = {
+  cards: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 4h11a2 2 0 0 1 2 2v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M7 11h6M7 14h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+  mic: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18v3M9 21h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+  target: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.3" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>`,
+  bulb: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3a6.3 6.3 0 0 0-3.7 11.4c.6.43 1 .9 1.1 1.7h5.2c.1-.8.5-1.27 1.1-1.7A6.3 6.3 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`,
+  chat: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12a8 8 0 1 1 3.2 6.4L4 20l1.1-3.4A7.96 7.96 0 0 1 4 12Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 10.1c0-1.1.9-1.9 2-1.9s2 .78 2 1.75c0 1.45-1.8 1.45-1.8 3.05" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12.15" cy="15.9" r="0.9" fill="currentColor"/></svg>`,
+  group: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8.5" r="2.7" stroke="currentColor" stroke-width="1.7"/><circle cx="16.2" cy="9.5" r="2.2" stroke="currentColor" stroke-width="1.7"/><path d="M3.4 19c.4-3 2.4-4.8 5.1-4.8s4.6 1.8 5 4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M14.5 14.6c2.2.25 3.8 1.85 4.1 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+};
 
 const FEATURES = [
   {
     title: 'Aus deinen Unterlagen werden Karteikarten',
     text: 'Lade Vorlesungsfolien, ein eingescanntes Skript hoch oder tipp einfach das Thema ein. Octa liest es und baut daraus Karteikarten — ohne dass du Fragen von Hand eintippen musst.',
+    icon: ICONS.cards,
+    tint: 'purple',
   },
   {
     title: '"Test yourself" — laut gesprochen, nicht nur erkannt',
     text: 'Jede Karteikarte hat einen "Test yourself"-Button. Du sprichst deine Antwort laut ein, statt sie nur auf dem Bildschirm wiederzuerkennen, und bekommst echtes gesprochenes Feedback dazu, was du richtig hattest und was nicht.',
+    icon: ICONS.mic,
+    tint: 'pink',
   },
   {
     title: 'Ein Lernplan auf deine Wunschnote zugeschnitten',
     text: 'Lade deine Unterlagen hoch und gib an, welche Note du anstrebst. Daraus baut Octa einen Lernplan — kurz und fokussiert, wenn es nur zum Bestehen reichen soll, oder intensiver, wenn du höher hinaus willst — und setzt die Wiederholungen genau dann an, wenn du kurz davor bist, den Stoff wieder zu vergessen, statt einer einzigen langen Lernnacht.',
+    icon: ICONS.target,
+    tint: 'mint',
   },
   {
     title: 'Ein KI-Tutor, der die Lösung wirklich erklärt',
     text: 'Karteikarte falsch oder nur halb richtig? Octas KI-Tutor zeigt dir nicht bloß die richtige Antwort, sondern erklärt ausführlich, warum sie richtig ist — so intensiv, wie du es gerade brauchst.',
+    icon: ICONS.bulb,
+    tint: 'yellow',
   },
   {
     title: 'Frag ihn alles zu deinen Unterlagen',
     text: 'Über die Karteikarten hinaus beantwortet Octas KI-Tutor konkrete Fragen zu allem, was du hochgeladen hast, und löst Aufgaben mit dir Schritt für Schritt — wie ein Tutor, der deine Vorlesungsunterlagen tatsächlich gelesen hat.',
+    icon: ICONS.chat,
+    tint: 'purple',
   },
   {
     title: 'Tribes — sichtbarer Fortschritt statt guter Vorsätze',
     text: 'Tritt einer Tribe aus Studierenden bei, die auf dieselbe Art Prüfung hinarbeiten. Deine Lernsessions tauchen dort automatisch auf — ein ausgelassener Tag fällt der Gruppe also tatsächlich auf.',
+    icon: ICONS.group,
+    tint: 'pink',
   },
 ];
 
@@ -90,6 +111,17 @@ const FAQ = [
 ];
 
 const storeLink = OCTA.appStoreUrl;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/app/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
 ---
 
 <BaseLayout
@@ -98,6 +130,7 @@ const storeLink = OCTA.appStoreUrl;
   breadcrumbs={[{ label: 'Die App', href: '/app/' }]}
   wide
 >
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
   <section class="hero">
     <div class="hero__inner wrap">
       <div class="hero__copy">
@@ -130,11 +163,44 @@ const storeLink = OCTA.appStoreUrl;
       {
         FEATURES.map((f) => (
           <div class="card">
+            <div class={`card__icon card__icon--${f.tint}`} set:html={f.icon} />
             <h3>{f.title}</h3>
             <p>{f.text}</p>
           </div>
         ))
       }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="celebrate">
+      <div class="celebrate__art">
+        <img
+          src="/img/app/celebrate-graduates.webp"
+          alt="Zwei Studentinnen lachen ausgelassen zusammen im Arm, eine trägt einen Doktorhut"
+          width="900"
+          height="1200"
+          loading="lazy"
+        />
+      </div>
+      <div class="celebrate__copy">
+        <h2>Das Gefühl, wenn's gesessen hat</h2>
+        <p>
+          Der Moment nach der Klausur, in dem du merkst: Es hat gesessen. Genau
+          darauf ist Octa ausgelegt — nicht auf ein weiteres Tool, sondern
+          darauf, dass du in dem Moment ankommst.
+        </p>
+        <div class="celebrate__stat">
+          <span class="celebrate__rating">{APP_RATING.de.schnitt} ★</span>
+          <span class="celebrate__rating-sub">
+            {APP_RATING.de.anzahl} Bewertungen im App Store · Stand {APP_RATING.de.stand}
+          </span>
+        </div>
+        <blockquote class="celebrate__quote">
+          „{APP_REVIEWS.de[0].t}"
+          <cite>{APP_REVIEWS.de[0].w}, App-Store-Rezension</cite>
+        </blockquote>
+      </div>
     </div>
   </section>
 
@@ -224,6 +290,147 @@ const storeLink = OCTA.appStoreUrl;
     max-width: 40rem;
     margin-top: -0.35rem;
     margin-bottom: 1.4rem;
+  }
+
+  .celebrate {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+  }
+
+  .celebrate__art {
+    align-self: stretch;
+    height: 100%;
+  }
+
+  .celebrate__art img {
+    width: 100%;
+    height: 100%;
+    max-height: 22rem;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius);
+  }
+
+  .celebrate__copy h2 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+  }
+
+  .celebrate__copy > p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .celebrate__stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+  }
+
+  .celebrate__rating {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--brand-yellow);
+  }
+
+  .celebrate__rating-sub {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .celebrate__quote {
+    margin: 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .celebrate__quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  @media (max-width: 760px) {
+    .celebrate {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+
+    .celebrate__art {
+      width: 100%;
+      height: auto;
+    }
+
+    .celebrate__art img {
+      max-height: 18rem;
+    }
+  }
+
+  .card__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+  }
+
+  .card__icon svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .card__icon--purple {
+    background: var(--accent-soft);
+    color: var(--brand-purple);
+  }
+
+  .card__icon--pink {
+    background: #fce8f1;
+    color: var(--brand-pink);
+  }
+
+  .card__icon--mint {
+    background: #e3f8f1;
+    color: var(--brand-mint);
+  }
+
+  .card__icon--yellow {
+    background: #fdf0d8;
+    color: #b9790e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card__icon--pink {
+      background: #402336;
+      color: #ff9dc7;
+    }
+
+    .card__icon--mint {
+      background: #113831;
+      color: #4bdcb0;
+    }
+
+    .card__icon--yellow {
+      background: #3c2e10;
+      color: #f0b94a;
+    }
   }
 
   .octa-cta cite {

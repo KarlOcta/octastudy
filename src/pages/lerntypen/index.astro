@@ -179,6 +179,9 @@ const jsonLd = JSON.stringify({
             <p class="typ__haken">
               <strong>Der Haken:</strong> {t.haken}
             </p>
+            <a class="typ__mehr" href={`/lerntypen/${t.id}/`}>
+              Mehr zum {t.name} — Anzeichen, Tipps und was wirklich hilft →
+            </a>
           </div>
         </section>
       ))
@@ -456,6 +459,13 @@ const jsonLd = JSON.stringify({
     border-radius: var(--radius);
     padding: 0.85rem 1rem;
     margin-top: 0.9rem;
+  }
+
+  .typ__mehr {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-weight: 700;
+    font-size: 0.92rem;
   }
 
   .card--schwach {
