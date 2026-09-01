@@ -19,6 +19,10 @@ const FAQ = [
     q: 'Kann ich auch Schulnoten berechnen?',
     a: 'Ja — lass die Gewichtung einfach bei 1 für jede Note, dann rechnet der Rechner den einfachen Durchschnitt aus. Für gewichtete Halbjahresnoten (z. B. doppelte Gewichtung von Klausuren) trägst du den jeweiligen Faktor als Gewichtung ein.',
   },
+  {
+    q: 'Kann ich auch Punkte aus der Oberstufe (0–15) eintragen?',
+    a: 'Ja — oben im Rechner auf „Punkte (0–15)" umschalten, dann werden Eingabe und Prüfung auf das Punktesystem der Qualifikationsphase umgestellt. Wichtig: Der Rechner zeigt dir den reinen Punkteschnitt, nicht die offizielle Abiturnote. Die läuft über eine Blockberechnung aus Kursen und Prüfungen, die je nach Bundesland unterschiedlich geregelt ist — für das verbindliche Ergebnis zählt deine Schule bzw. die Prüfungsordnung.',
+  },
 ];
 
 const jsonLd = JSON.stringify({
@@ -47,8 +51,8 @@ const jsonLd = JSON.stringify({
 ---
 
 <BaseLayout
-  title="Notendurchschnitt-Rechner: kostenlos, mit ECTS-Gewichtung"
-  description="Notendurchschnitt online berechnen — einfach oder gewichtet nach ECTS/Leistungspunkten. Kostenlos, ohne Anmeldung, direkt im Browser."
+  title="Notendurchschnitt-Rechner: kostenlos, mit ECTS & Punkten"
+  description="Notendurchschnitt oder Punkteschnitt berechnen — Noten (1–6) oder Oberstufen-Punkte (0–15), optional gewichtet. Kostenlos, ohne Anmeldung, im Browser."
   breadcrumbs={[
     { label: 'Tools', href: '/tools/' },
     { label: 'Notendurchschnitt-Rechner', href: '/tools/notendurchschnitt-rechner/' },
@@ -61,26 +65,36 @@ const jsonLd = JSON.stringify({
     <p class="eyebrow">Kostenloses Tool</p>
     <h1>Notendurchschnitt-Rechner</h1>
     <p class="lead intro">
-      Noten eintragen, fertig — der Durchschnitt wird direkt beim Tippen
-      berechnet. Optional mit Gewichtung nach ECTS-Punkten, falls deine
-      Prüfungsordnung Module unterschiedlich stark zählt. Läuft komplett in
-      deinem Browser, ohne Anmeldung und ohne dass irgendetwas gespeichert
-      wird.
+      Noten oder Punkte eintragen, fertig — der Durchschnitt wird direkt
+      beim Tippen berechnet. Oben umschaltbar zwischen der Schulnotenskala
+      (1–6) und dem Punktesystem der Oberstufe (0–15), optional mit
+      Gewichtung, falls Module oder Kurse unterschiedlich stark zählen.
+      Läuft komplett in deinem Browser, ohne Anmeldung und ohne dass
+      irgendetwas gespeichert wird.
     </p>
 
     <div class="rechner" id="rechner">
+      <div class="rechner__mode" role="tablist" aria-label="Notensystem">
+        <button type="button" class="rechner__mode-btn is-active" data-mode="noten" role="tab" aria-selected="true">
+          Noten (1–6)
+        </button>
+        <button type="button" class="rechner__mode-btn" data-mode="punkte" role="tab" aria-selected="false">
+          Punkte (0–15)
+        </button>
+      </div>
+
       <div class="rechner__head">
-        <span>Note</span>
-        <span>Gewichtung <span class="rechner__hint">(z. B. ECTS, optional)</span></span>
+        <span id="col-label">Note</span>
+        <span>Gewichtung <span class="rechner__hint">(optional)</span></span>
         <span aria-hidden="true"></span>
       </div>
       <div class="rechner__rows" id="rows"></div>
       <button class="btn btn--ghost rechner__add" type="button" id="add-row">
-        + Note hinzufügen
+        + Zeile hinzufügen
       </button>
 
       <div class="rechner__result">
-        <span class="rechner__result-label">Durchschnitt</span>
+        <span class="rechner__result-label" id="result-label">Durchschnitt</span>
         <span class="rechner__result-value" id="result">–</span>
       </div>
       <p class="rechner__caveat" id="caveat" hidden>
@@ -119,19 +133,62 @@ const jsonLd = JSON.stringify({
 </BaseLayout>
 
 <script>
+  type ModeKey = 'noten' | 'punkte';
+
+  const MODES: Record<
+    ModeKey,
+    {
+      min: number;
+      max: number;
+      step: string;
+      placeholder: string;
+      colLabel: string;
+      resultLabel: string;
+      caveat: string;
+      removeLabel: string;
+    }
+  > = {
+    noten: {
+      min: 1,
+      max: 6,
+      step: '0.1',
+      placeholder: '1,7',
+      colLabel: 'Note',
+      resultLabel: 'Durchschnitt',
+      caveat: 'Trag mindestens eine Note zwischen 1,0 und 6,0 ein.',
+      removeLabel: 'Note entfernen',
+    },
+    punkte: {
+      min: 0,
+      max: 15,
+      step: '1',
+      placeholder: '11',
+      colLabel: 'Punkte',
+      resultLabel: 'Punkteschnitt',
+      caveat: 'Trag mindestens eine Punktzahl zwischen 0 und 15 ein.',
+      removeLabel: 'Punkte entfernen',
+    },
+  };
+
   function initRechner(root: HTMLElement) {
     const rowsEl = root.querySelector<HTMLDivElement>('#rows')!;
     const resultEl = root.querySelector<HTMLElement>('#result')!;
+    const resultLabelEl = root.querySelector<HTMLElement>('#result-label')!;
+    const colLabelEl = root.querySelector<HTMLElement>('#col-label')!;
     const caveatEl = root.querySelector<HTMLElement>('#caveat')!;
     const addBtn = root.querySelector<HTMLButtonElement>('#add-row')!;
+    const modeBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.rechner__mode-btn'));
 
-    function addRow(note = '', gewicht = '1') {
+    let mode: ModeKey = 'noten';
+
+    function addRow(value = '', gewicht = '1') {
+      const cfg = MODES[mode];
       const row = document.createElement('div');
       row.className = 'rechner__row';
       row.innerHTML = `
-        <input type="number" class="rechner__note" inputmode="decimal" step="0.1" min="1" max="6" placeholder="z. B. 1,7" value="${note}" />
+        <input type="number" class="rechner__note" inputmode="decimal" step="${cfg.step}" min="${cfg.min}" max="${cfg.max}" placeholder="${cfg.placeholder}" value="${value}" />
         <input type="number" class="rechner__gewicht" inputmode="decimal" step="0.5" min="0" value="${gewicht}" />
-        <button type="button" class="rechner__remove" aria-label="Note entfernen">×</button>
+        <button type="button" class="rechner__remove" aria-label="${cfg.removeLabel}">×</button>
       `;
       rowsEl.appendChild(row);
 
@@ -148,6 +205,7 @@ const jsonLd = JSON.stringify({
     }
 
     function recalc() {
+      const cfg = MODES[mode];
       const rows = Array.from(rowsEl.querySelectorAll<HTMLDivElement>('.rechner__row'));
       let sumProduct = 0;
       let sumGewicht = 0;
@@ -161,7 +219,7 @@ const jsonLd = JSON.stringify({
         const note = parseFloat(noteRaw);
         const gewicht = parseFloat(gewichtRaw);
 
-        if (!Number.isNaN(note) && note >= 1 && note <= 6) {
+        if (!Number.isNaN(note) && note >= cfg.min && note <= cfg.max) {
           const g = !Number.isNaN(gewicht) && gewicht > 0 ? gewicht : 1;
           sumProduct += note * g;
           sumGewicht += g;
@@ -176,6 +234,36 @@ const jsonLd = JSON.stringify({
         resultEl.textContent = '–';
         caveatEl.hidden = rows.length === 0;
       }
+    }
+
+    function setMode(next: ModeKey) {
+      if (next === mode) return;
+      mode = next;
+      const cfg = MODES[mode];
+
+      colLabelEl.textContent = cfg.colLabel;
+      resultLabelEl.textContent = cfg.resultLabel;
+      caveatEl.textContent = cfg.caveat;
+
+      for (const btn of modeBtns) {
+        const isActive = btn.dataset.mode === mode;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+      }
+
+      // Zeilen zurücksetzen, damit keine Werte aus dem anderen System hängen bleiben
+      rowsEl.innerHTML = '';
+      addRow();
+      addRow();
+      addRow();
+      recalc();
+    }
+
+    for (const btn of modeBtns) {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.mode as ModeKey;
+        setMode(next);
+      });
     }
 
     addBtn.addEventListener('click', () => {
@@ -204,6 +292,34 @@ const jsonLd = JSON.stringify({
     border-radius: var(--radius-lg);
     padding: 1.6rem;
     margin: 1.8rem 0 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .rechner__mode {
+    display: inline-flex;
+    gap: 0.3rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .rechner__mode-btn {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-subtle);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .rechner__mode-btn.is-active {
+    background: var(--bg-card);
+    color: var(--accent);
     box-shadow: var(--shadow-sm);
   }
 
