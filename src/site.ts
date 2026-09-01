@@ -173,12 +173,14 @@ export type NavItem = {
 };
 
 export const NAV: NavItem[] = [
+  { label: 'Die App', href: '/app/' },
   { label: 'Lernunterlagen', href: '/lernunterlagen/' },
   { label: 'Tools', href: '/tools/' },
   // { label: 'Über uns', href: '/ueber-uns/' },  ← wieder einblenden, sobald Autor + Gegenleser feststehen
 ];
 
 export const FOOTER_NAV: NavItem[] = [
+  { label: 'Die App', href: '/app/' },
   // { label: 'Über uns', href: '/ueber-uns/' },  ← siehe oben
   { label: 'Impressum', href: '/impressum/' },
   { label: 'Datenschutz', href: '/datenschutz/' },

@@ -6,32 +6,32 @@ import { OCTA } from '../../../site';
 
 const HERO_SLIDES = [
   {
-    src: '/img/app/en/andere-test.webp',
+    src: '/img/mockups/app/en/andere-test.webp',
     alt: 'Octa flashcard with a "Test yourself" button — the student speaks the answer out loud',
     caption: '"Test yourself" on the flashcard — you speak your answer out loud',
-    width: 720,
-    height: 1527,
+    width: 792,
+    height: 1599,
   },
   {
-    src: '/img/app/en/andere-plan.webp',
+    src: '/img/mockups/app/en/andere-plan.webp',
     alt: 'Octa study plan with a learning path and progress toward the exam date',
     caption: 'A study plan built from your material, timed before the exam',
-    width: 720,
-    height: 1527,
+    width: 792,
+    height: 1599,
   },
   {
-    src: '/img/app/en/andere-karte.webp',
+    src: '/img/mockups/app/en/andere-karte.webp',
     alt: 'Octa flashcard generated from uploaded course material',
     caption: 'Flashcards built from your own material, not a generic deck',
-    width: 720,
-    height: 1527,
+    width: 792,
+    height: 1599,
   },
   {
-    src: '/img/app/en/andere-tribes.webp',
+    src: '/img/mockups/app/en/andere-tribes.webp',
     alt: 'Octa Tribes screen showing a weekly leaderboard of study groups',
     caption: 'Tribes — study groups where your progress is visible',
-    width: 720,
-    height: 1527,
+    width: 792,
+    height: 1599,
   },
 ];
 
@@ -45,8 +45,16 @@ const FEATURES = [
     text: "Every card has a Test Yourself button. You say your answer out loud instead of just recognizing it on the screen, and Octa gives you real spoken feedback on what you got right and what you missed.",
   },
   {
-    title: 'A study plan timed to when you forget',
-    text: "Enter your exam date. Octa breaks the material into short daily sessions and brings back what you already knew exactly when you're about to start forgetting it — instead of one long cram session.",
+    title: 'A study plan built around your target grade',
+    text: "Upload your material and tell Octa the grade you're aiming for. It turns that into a study plan — a short, focused version if you just need to pass, a more intensive one if you're aiming higher — and times the reviews for exactly when you're about to forget, instead of one long cram session.",
+  },
+  {
+    title: 'An AI tutor that explains the answer',
+    text: "Got a flashcard wrong, or only half right? Octa's AI tutor doesn't just show you the correct answer — it walks through why it's correct, in as much depth as you need.",
+  },
+  {
+    title: 'Ask it anything about your material',
+    text: "Beyond flashcards, Octa's AI tutor answers specific questions about whatever you've uploaded and works through problems with you step by step — like a tutor who has actually read your lecture notes.",
   },
   {
     title: 'Tribes — visible progress, not solo intentions',
@@ -74,6 +82,10 @@ const FAQ = [
   {
     q: 'Is this different from just using Anki or Quizlet?',
     a: "Anki and Quizlet are built around cards you (or someone else) already wrote by hand. Octa builds the cards from your own material, adds spoken self-testing instead of just flipping a card, and times the reviews for you instead of leaving spacing up to a manual schedule.",
+  },
+  {
+    q: 'What does the AI tutor actually do?',
+    a: "Two things. On a flashcard, it explains the correct answer in depth when you got it wrong or only half right, instead of just showing you the answer text. Separately, you can ask it direct questions about your own uploaded material or work through a problem with it — it only knows what you've given it, not a generic answer pulled from anywhere else.",
   },
 ];
 
@@ -112,8 +124,8 @@ const storeLink = OCTA.appStoreUrlEn;
   <section class="wrap">
     <h2 class="rule">What Octa actually does</h2>
     <p class="section-intro">
-      Four things, working together — not four separate apps bolted onto
-      each other.
+      All of this working together — not a handful of separate apps bolted
+      onto each other.
     </p>
     <div class="grid">
       {
@@ -134,11 +146,11 @@ const storeLink = OCTA.appStoreUrlEn;
         Rereading and highlighting feel like progress, but a large review of
         study techniques found them among the least effective methods
         students use — while self-testing and spaced review, spread across
-        several days, are consistently rated among the most effective.
+        several days, are consistently rated among the most effective. Octa
+        is built around exactly those two techniques, instead of asking you
+        to somehow do them by hand on top of everything else.
         <cite>Dunlosky et al., Psychological Science in the Public Interest,
-        2013</cite>. Octa is built around exactly those two techniques,
-        instead of asking you to somehow do them by hand on top of everything
-        else.
+        2013</cite>
       </p>
       <div class="btn-row">
         <a class="btn" href={storeLink} rel="noopener">Get Octa on the App Store</a>

@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../components/OctaCtaBox.astro';
+import MockupSlideshow from '../../components/MockupSlideshow.astro';
+import { OCTA } from '../../site';
+
+const HERO_SLIDES = [
+  {
+    src: '/img/mockups/app/andere-test.webp',
+    alt: 'Octa-Karteikarte mit Button "Test yourself" — die Antwort wird laut gesprochen',
+    caption: '"Test yourself" auf der Karteikarte — du sprichst deine Antwort laut ein',
+    width: 792,
+    height: 1599,
+  },
+  {
+    src: '/img/mockups/app/andere-plan.webp',
+    alt: 'Octa-Lernplan mit Lernpfad und Fortschritt bis zur Prüfung',
+    caption: 'Ein Lernplan aus deinen Unterlagen, getaktet bis zur Prüfung',
+    width: 792,
+    height: 1599,
+  },
+  {
+    src: '/img/mockups/app/andere-karte.webp',
+    alt: 'Octa-Karteikarte, generiert aus hochgeladenen Vorlesungsunterlagen',
+    caption: 'Karteikarten aus deinen eigenen Unterlagen, kein generisches Deck',
+    width: 792,
+    height: 1599,
+  },
+  {
+    src: '/img/mockups/app/andere-tribes.webp',
+    alt: 'Octa-Tribes-Bildschirm mit wöchentlicher Bestenliste von Lerngruppen',
+    caption: 'Tribes — Lerngruppen, in denen dein Fortschritt sichtbar ist',
+    width: 792,
+    height: 1599,
+  },
+];
+
+const FEATURES = [
+  {
+    title: 'Aus deinen Unterlagen werden Karteikarten',
+    text: 'Lade Vorlesungsfolien, ein eingescanntes Skript hoch oder tipp einfach das Thema ein. Octa liest es und baut daraus Karteikarten — ohne dass du Fragen von Hand eintippen musst.',
+  },
+  {
+    title: '"Test yourself" — laut gesprochen, nicht nur erkannt',
+    text: 'Jede Karteikarte hat einen "Test yourself"-Button. Du sprichst deine Antwort laut ein, statt sie nur auf dem Bildschirm wiederzuerkennen, und bekommst echtes gesprochenes Feedback dazu, was du richtig hattest und was nicht.',
+  },
+  {
+    title: 'Ein Lernplan auf deine Wunschnote zugeschnitten',
+    text: 'Lade deine Unterlagen hoch und gib an, welche Note du anstrebst. Daraus baut Octa einen Lernplan — kurz und fokussiert, wenn es nur zum Bestehen reichen soll, oder intensiver, wenn du höher hinaus willst — und setzt die Wiederholungen genau dann an, wenn du kurz davor bist, den Stoff wieder zu vergessen, statt einer einzigen langen Lernnacht.',
+  },
+  {
+    title: 'Ein KI-Tutor, der die Lösung wirklich erklärt',
+    text: 'Karteikarte falsch oder nur halb richtig? Octas KI-Tutor zeigt dir nicht bloß die richtige Antwort, sondern erklärt ausführlich, warum sie richtig ist — so intensiv, wie du es gerade brauchst.',
+  },
+  {
+    title: 'Frag ihn alles zu deinen Unterlagen',
+    text: 'Über die Karteikarten hinaus beantwortet Octas KI-Tutor konkrete Fragen zu allem, was du hochgeladen hast, und löst Aufgaben mit dir Schritt für Schritt — wie ein Tutor, der deine Vorlesungsunterlagen tatsächlich gelesen hat.',
+  },
+  {
+    title: 'Tribes — sichtbarer Fortschritt statt guter Vorsätze',
+    text: 'Tritt einer Tribe aus Studierenden bei, die auf dieselbe Art Prüfung hinarbeiten. Deine Lernsessions tauchen dort automatisch auf — ein ausgelassener Tag fällt der Gruppe also tatsächlich auf.',
+  },
+];
+
+const FAQ = [
+  {
+    q: 'Auf welchen Geräten läuft Octa?',
+    a: 'Octa gibt es aktuell nur für iPhone und iPad. Eine Android-Version ist in Arbeit — du kannst dich über die Seite zum Lerntyp-Test auf die Warteliste setzen.',
+  },
+  {
+    q: 'Woher kommen die Karteikarten?',
+    a: 'Aus deinen eigenen Unterlagen. Lade ein PDF, Folien oder ein Foto deiner Notizen hoch, oder tipp einfach ein Thema ein — Octa baut daraus Karteikarten, statt dir ein generisches Deck vorzusetzen, das nicht zu deinem Kurs passt.',
+  },
+  {
+    q: 'Funktioniert das auch für mein Fach?',
+    a: 'Octa arbeitet mit dem, was du hochlädst, und ist nicht auf ein Fach beschränkt. Im Einsatz sind bereits unter anderem Jura, BWL, Medizin, Informatik und Ingenieurwissenschaften.',
+  },
+  {
+    q: 'Was kostet Octa?',
+    a: 'Der Preis steht direkt im App-Store-Eintrag, bevor du die App herunterlädst.',
+  },
+  {
+    q: 'Was ist der Unterschied zu Anki oder Quizlet?',
+    a: 'Anki und Quizlet basieren auf Karten, die du (oder jemand anders) bereits von Hand geschrieben hat. Octa baut die Karten aus deinen eigenen Unterlagen, ergänzt lautes Selbst-Abfragen statt bloßem Umdrehen der Karte, und setzt die Wiederholungen automatisch für dich an, statt dir die Planung manuell zu überlassen.',
+  },
+  {
+    q: 'Was macht der KI-Tutor genau?',
+    a: 'Zwei Dinge. Bei einer Karteikarte erklärt er die richtige Antwort ausführlich, wenn du sie falsch oder nur halb richtig hattest, statt sie dir nur anzuzeigen. Zusätzlich kannst du ihm direkte Fragen zu deinen eigenen Unterlagen stellen oder mit ihm eine Aufgabe durchgehen — er kennt nur das, was du ihm gegeben hast, keine generische Antwort von irgendwoher.',
+  },
+];
+
+const storeLink = OCTA.appStoreUrl;
+---
+
+<BaseLayout
+  title="Octa — Die KI-Lern-App für Karteikarten & mündliches Selbst-Abfragen"
+  description="Octa macht aus deinen eigenen Unterlagen Karteikarten, fragt dich laut ab und setzt die Wiederholungen an, bevor du etwas vergisst. Kostenlos testen auf iPhone und iPad."
+  breadcrumbs={[{ label: 'Die App', href: '/app/' }]}
+  wide
+>
+  <section class="hero">
+    <div class="hero__inner wrap">
+      <div class="hero__copy">
+        <p class="eyebrow">Für alle, die den Stoff wirklich behalten müssen</p>
+        <h1>Stoff, den du <span class="hl">abrufen</span> kannst — nicht nur einmal gelesen hast</h1>
+        <p class="lead">
+          {OCTA.pitch} Ein Lernplan verteilt die Wiederholungen so, dass sie
+          hängen bleiben — und eine Tribe aus anderen Studierenden sorgt
+          dafür, dass du auch wirklich dranbleibst.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href={storeLink} rel="noopener">Octa im App Store ansehen</a>
+          <a class="btn btn--ghost" href="/tools/lerntyp-test/">Erst den 1-Minuten-Test machen</a>
+        </div>
+        <p class="hero__hint">iPhone und iPad · eine Android-Version ist in Arbeit</p>
+      </div>
+      <div class="hero__mockup">
+        <MockupSlideshow id="hero-slides" slides={HERO_SLIDES} intervalMs={4200} />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Was Octa wirklich kann</h2>
+    <p class="section-intro">
+      Alles zusammen im Einsatz — statt mehrerer separater Apps, die man
+      nebeneinander benutzen muss.
+    </p>
+    <div class="grid">
+      {
+        FEATURES.map((f) => (
+          <div class="card">
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="octa-cta">
+      <h2>Warum wir es so gebaut haben</h2>
+      <p>
+        Nochmal lesen und Markieren fühlt sich nach Fortschritt an, gehört
+        laut einer großen Übersichtsstudie zu Lerntechniken aber zu den am
+        wenigsten wirksamen Methoden — während Selbst-Abfragen und über
+        mehrere Tage verteilte Wiederholung durchgehend zu den wirksamsten
+        zählen. Octa ist genau um diese beiden Techniken herum gebaut, statt
+        dir zuzumuten, sie nebenbei von Hand selbst zu organisieren.
+        <cite>Dunlosky et al., Psychological Science in the Public Interest,
+        2013</cite>
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={storeLink} rel="noopener">Octa im App Store ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((item) => (
+          <details class="faq__item">
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <OctaCtaBox
+      id="closing-slides"
+      title="Lade dein erstes Unterlagen-Set hoch"
+      storeLink={storeLink}
+      primaryLabel="Octa im App Store ansehen"
+      secondaryLabel="Zum Lerntyp-Test"
+      secondaryHref="/tools/lerntyp-test/"
+      slides={HERO_SLIDES.slice(0, 3)}
+      intervalMs={4200}
+    >
+      Zehn Minuten, ein Thema — genug, um zu merken, ob sich lautes
+      Selbst-Abfragen wirklich anders anfühlt als nochmal die Notizen zu
+      lesen.
+    </OctaCtaBox>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    padding-block: 0.5rem 2.5rem;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2.5rem;
+    align-items: center;
+    max-width: min(var(--w-wide), 100%);
+  }
+
+  .hero__copy h1 {
+    margin-bottom: 1.1rem;
+  }
+
+  .hero__mockup {
+    max-width: 260px;
+    justify-self: center;
+  }
+
+  .hero__hint {
+    margin: 0.9rem 0 0;
+    font-size: 0.92rem;
+    color: var(--text-subtle);
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    max-width: 40rem;
+    margin-top: -0.35rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .octa-cta cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .faq {
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .faq__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1.2rem;
+    background: var(--bg-card);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    float: right;
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .faq__item[open] summary::after {
+    content: '–';
+  }
+
+  .faq__item p {
+    margin: 0.7rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  section + section {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__mockup {
+      order: -1;
+      max-width: 200px;
+    }
+  }
+</style>
