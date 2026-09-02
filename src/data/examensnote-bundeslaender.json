@@ -94,5 +94,69 @@
         "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis des Justizprüfungsamts."
       }
     ]
+  },
+  {
+    "slug": "hessen",
+    "name": "Hessen",
+    "kurz": "Hessen",
+    "pflichtfachAnteil": 0.7,
+    "schwerpunktAnteil": 0.3,
+    "paragraph": "§ 25 JAG Hessen",
+    "notenskalaParagraph": null,
+    "quelleUrl": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-JAGHErahmen/part/X",
+    "quelleName": "JAG Hessen auf hessenrecht.hessen.de",
+    "rundungshinweis": "§ 25 JAG Hessen schreibt vor: Eine dritte Dezimalstelle bleibt unberücksichtigt — die Gesamtnote wird also auf zwei Nachkommastellen ohne Aufrundung berechnet. Genau das macht dieser Rechner.",
+    "unis": "Frankfurt am Main, Gießen und Marburg",
+    "pruefungsaemter": "ist das Hessische Justizprüfungsamt",
+    "faq": [
+      {
+        "q": "Wie setzt sich die Gesamtnote der Ersten Prüfung in Hessen zusammen?",
+        "a": "Nach § 25 JAG Hessen fließt das Ergebnis der Schwerpunktbereichsprüfung mit 30 % und das Ergebnis der Pflichtfachprüfung mit 70 % in die Gesamtnote ein. Eine dritte Dezimalstelle bleibt bei der Berechnung ausdrücklich unberücksichtigt."
+      },
+      {
+        "q": "Welche Punkteskala gilt für die Umrechnung in eine Notenbezeichnung?",
+        "a": "Hessen verwendet dieselbe bundesweit gebräuchliche 18-Punkte-Skala mit Dezimalstellen wie die übrigen Länder: ab 14,00 Punkten „sehr gut\", ab 11,50 „gut\", ab 9,00 „vollbefriedigend\", ab 6,50 „befriedigend\", ab 4,00 „ausreichend\", ab 1,50 „mangelhaft\", darunter „ungenügend\"."
+      },
+      {
+        "q": "Gilt die Berechnung für alle hessischen Universitäten gleich?",
+        "a": "Ja — die 70/30-Gewichtung aus § 25 JAG Hessen gilt landesweit, egal ob du in Frankfurt am Main, Gießen oder Marburg deinen Schwerpunktbereich abgelegt hast. Zuständig für die staatliche Pflichtfachprüfung ist das Hessische Justizprüfungsamt."
+      },
+      {
+        "q": "Stimmt das Ergebnis mit meinem offiziellen Prüfungszeugnis überein?",
+        "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis des Justizprüfungsamts."
+      }
+    ]
+  },
+  {
+    "slug": "niedersachsen",
+    "name": "Niedersachsen",
+    "kurz": "Niedersachsen",
+    "pflichtfachAnteil": 0.7,
+    "schwerpunktAnteil": 0.3,
+    "paragraph": "§ 12 Abs. 3 NJAG",
+    "notenskalaParagraph": null,
+    "quelleUrl": "https://voris.wolterskluwer-online.de/browse/document/9578027f-ef06-312a-bdd7-bb73b0b39c40",
+    "quelleName": "NJAG § 12 auf NI-VORIS (Niedersächsisches Vorschrifteninformationssystem)",
+    "rundungshinweis": "Das NJAG nennt für die Gesamtnote der Ersten Prüfung keine ausdrückliche Rundungsregel. Dieser Rechner rechnet konservativ, ohne Aufrundung, auf zwei Nachkommastellen.",
+    "unis": "Göttingen, Hannover und Osnabrück",
+    "pruefungsaemter": "ist das Landesjustizprüfungsamt Niedersachsen",
+    "faq": [
+      {
+        "q": "Wie setzt sich die Prüfungsgesamtnote der Ersten Prüfung in Niedersachsen zusammen?",
+        "a": "Nach § 12 Abs. 3 NJAG geht die Prüfungsgesamtnote der Pflichtfachprüfung mit 70 % und die Prüfungsgesamtnote der Schwerpunktbereichsprüfung mit 30 % in die Gesamtnote der Ersten Prüfung ein."
+      },
+      {
+        "q": "Welche Punkteskala gilt für die Umrechnung in eine Notenbezeichnung?",
+        "a": "Niedersachsen verwendet dieselbe bundesweit gebräuchliche 18-Punkte-Skala mit Dezimalstellen wie die übrigen Länder: ab 14,00 Punkten „sehr gut\", ab 11,50 „gut\", ab 9,00 „vollbefriedigend\", ab 6,50 „befriedigend\", ab 4,00 „ausreichend\", ab 1,50 „mangelhaft\", darunter „ungenügend\"."
+      },
+      {
+        "q": "Gilt die Berechnung für alle niedersächsischen Universitäten gleich?",
+        "a": "Ja — die 70/30-Gewichtung aus § 12 Abs. 3 NJAG gilt landesweit, egal ob du in Göttingen, Hannover oder Osnabrück deinen Schwerpunktbereich abgelegt hast. Zuständig für die staatliche Pflichtfachprüfung ist das Landesjustizprüfungsamt Niedersachsen."
+      },
+      {
+        "q": "Stimmt das Ergebnis mit meinem offiziellen Prüfungszeugnis überein?",
+        "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis des Landesjustizprüfungsamts. Der Prüfungsausschuss darf zudem in Einzelfällen bis zu einem Punkt von der errechneten Note abweichen, wenn das den tatsächlichen Leistungsstand besser abbildet (§ 12 Abs. 5 NJAG)."
+      }
+    ]
   }
 ]

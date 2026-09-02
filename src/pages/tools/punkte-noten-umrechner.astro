@@ -1,0 +1,356 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+const TABLE = [
+  { p: 15, note: '1+' },
+  { p: 14, note: '1' },
+  { p: 13, note: '1−' },
+  { p: 12, note: '2+' },
+  { p: 11, note: '2' },
+  { p: 10, note: '2−' },
+  { p: 9, note: '3+' },
+  { p: 8, note: '3' },
+  { p: 7, note: '3−' },
+  { p: 6, note: '4+' },
+  { p: 5, note: '4' },
+  { p: 4, note: '4−' },
+  { p: 3, note: '5+' },
+  { p: 2, note: '5' },
+  { p: 1, note: '5−' },
+  { p: 0, note: '6' },
+];
+
+const FAQ = [
+  {
+    q: 'Wie funktioniert das 15-Punkte-System der Oberstufe?',
+    a: 'Statt der klassischen Schulnoten 1 bis 6 vergibt die gymnasiale Oberstufe für jede einzelne Klausur- oder Kursleistung eine Punktzahl von 0 bis 15. Jede Punktzahl entspricht dabei genau einer Note mit Tendenz — 15 Punkte sind eine glatte 1+, 9 Punkte eine 3+, 0 Punkte eine 6. Grundlage ist die KMK-Vereinbarung zur Gestaltung der gymnasialen Oberstufe von 1972.',
+  },
+  {
+    q: 'Wo berechne ich den Durchschnitt aus mehreren Punktzahlen?',
+    a: 'Dieses Tool rechnet eine einzelne Punktzahl in eine Note um (und umgekehrt). Willst du stattdessen den Schnitt aus mehreren Klausuren oder Kursen berechnen, nutze unseren Notendurchschnitt-Rechner im Punkte-Modus.',
+  },
+  {
+    q: 'Ist die Tabelle in jedem Bundesland gleich?',
+    a: 'Ja. Die Zuordnung von Punkten zu Noten ist durch die KMK-Vereinbarung zur Gestaltung der gymnasialen Oberstufe bundeseinheitlich geregelt und gilt unabhängig vom Bundesland. Wie die einzelnen Punktzahlen am Ende zur Abiturnote verrechnet werden, kann sich dagegen von Bundesland zu Bundesland unterscheiden.',
+  },
+  {
+    q: 'Warum gibt es bei der Note „6" kein Tendenz-Zeichen?',
+    a: '0 Punkte sind bereits die niedrigstmögliche Punktzahl — es gibt keine schlechtere Abstufung, die ein „6−" rechtfertigen würde. Deshalb steht „6" allein für 0 Punkte, während alle anderen Noten je nach Punktzahl ein „+" oder „−" bekommen.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE.url}/tools/punkte-noten-umrechner/#app`,
+      name: 'Punkte-Noten-Umrechner',
+      applicationCategory: 'EducationApplication',
+      operatingSystem: 'Any (Web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      url: `${SITE.url}/tools/punkte-noten-umrechner/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/tools/punkte-noten-umrechner/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Punkte in Note umrechnen: 15-Punkte-System der Oberstufe"
+  description="Einzelne Punktzahl (0–15) in die passende Schulnote umrechnen — und umgekehrt. Nach der bundesweiten KMK-Notentabelle. Kostenlos, ohne Anmeldung."
+  breadcrumbs={[
+    { label: 'Tools', href: '/tools/' },
+    { label: 'Punkte-Noten-Umrechner', href: '/tools/punkte-noten-umrechner/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Kostenloses Tool</p>
+    <h1>Punkte in Note umrechnen (15-Punkte-System)</h1>
+    <p class="lead intro">
+      Eine einzelne Punktzahl aus der Oberstufe in die passende Schulnote
+      umrechnen, oder umgekehrt — nach der bundesweit geltenden
+      KMK-Notentabelle. Für den Schnitt aus mehreren Punktzahlen nutz
+      stattdessen den <a href="/tools/notendurchschnitt-rechner/">Notendurchschnitt-Rechner</a> im Punkte-Modus.
+    </p>
+
+    <div class="rechner" id="rechner">
+      <div class="umrechner-grid">
+        <div class="umrechner-block">
+          <label for="punkte-input">Punkte (0–15)</label>
+          <input type="number" id="punkte-input" inputmode="numeric" step="1" min="0" max="15" placeholder="z. B. 11" />
+          <p class="umrechner-result">Note: <span id="note-output">–</span></p>
+        </div>
+        <div class="umrechner-block">
+          <label for="note-select">Note</label>
+          <select id="note-select">
+            <option value="">Note wählen</option>
+            {TABLE.map((row) => <option value={row.p}>{row.note}</option>)}
+          </select>
+          <p class="umrechner-result">Punkte: <span id="punkte-output">–</span></p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="rule rule--tight">Die vollständige Tabelle</h2>
+    <div class="tabelle">
+      <div class="tabelle__head">
+        <span>Punkte</span>
+        <span>Note</span>
+      </div>
+      {
+        TABLE.map((row) => (
+          <div class="tabelle__row">
+            <span>{row.p}</span>
+            <span>{row.note}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Willst du wissen, wo bei dir konkret Zeit verloren geht?</strong>{' '}
+        Unser Lerntyp-Test fragt nicht nach Sinneskanälen, sondern nach
+        deinem tatsächlichen Lernverhalten.
+      </p>
+      <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten — 8 Fragen, kostenlos →</a>
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Abschnitt 9.2 der{' '}
+        <a
+          href="https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/1972/1972_07_07-VB-gymnasiale-Oberstufe-Abiturpruefung.pdf"
+          rel="noopener nofollow"
+        >
+          KMK-Vereinbarung zur Gestaltung der gymnasialen Oberstufe
+        </a>{' '}
+        vom 07.07.1972.
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Durchschnitt aus mehreren Punktzahlen: <a href="/tools/notendurchschnitt-rechner/">Notendurchschnitt-Rechner</a>.
+      Zur Einordnung der Lerntypen-Theorie: <a href="/lerntypen/">Lerntypen — was die Forschung wirklich sagt</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ TABLE }}>
+  function initRechner(root) {
+    const punkteInput = root.querySelector('#punkte-input');
+    const noteOutput = root.querySelector('#note-output');
+    const noteSelect = root.querySelector('#note-select');
+    const punkteOutput = root.querySelector('#punkte-output');
+
+    const byPunkte = Object.fromEntries(TABLE.map((row) => [row.p, row.note]));
+
+    punkteInput.addEventListener('input', () => {
+      const raw = punkteInput.value.trim();
+      const p = parseInt(raw, 10);
+      if (raw !== '' && Number.isInteger(p) && p >= 0 && p <= 15) {
+        noteOutput.textContent = byPunkte[p];
+      } else {
+        noteOutput.textContent = '–';
+      }
+    });
+
+    noteSelect.addEventListener('change', () => {
+      punkteOutput.textContent = noteSelect.value === '' ? '–' : noteSelect.value;
+    });
+  }
+
+  document.querySelectorAll('#rechner').forEach(initRechner);
+</script>
+
+<style>
+  .intro {
+    max-width: 62ch;
+  }
+
+  .rechner {
+    max-width: 40rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    margin: 1.8rem 0 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .umrechner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+  }
+
+  .umrechner-block label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .umrechner-block input,
+  .umrechner-block select {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .umrechner-result {
+    margin: 0.8rem 0 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .umrechner-result span {
+    color: var(--accent);
+    font-size: 1.4rem;
+  }
+
+  .tabelle {
+    max-width: 22rem;
+    margin: 1rem 0 2rem;
+    font-size: 0.92rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .tabelle__head,
+  .tabelle__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem 1rem;
+  }
+
+  .tabelle__head {
+    font-weight: 700;
+    background: var(--bg-soft);
+    color: var(--text-subtle);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tabelle__row:nth-child(odd) {
+    background: var(--bg-soft);
+  }
+
+  .tabelle__row span:first-child {
+    font-family: var(--font-mono);
+  }
+
+  .tabelle__row span:last-child {
+    font-weight: 700;
+  }
+
+  .faq {
+    max-width: 62ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    max-width: 62ch;
+    margin-bottom: 1.6rem;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 62ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 62ch;
+  }
+
+  @media (max-width: 26rem) {
+    .umrechner-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
