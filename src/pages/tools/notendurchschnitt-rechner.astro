@@ -370,14 +370,24 @@ const jsonLd = JSON.stringify({
     gap: 0.6rem;
   }
 
-  .rechner__row {
+  /* :global() ist hier nötig, nicht nur Geschmackssache: .rechner__row und
+     seine Kinder werden zur Laufzeit per document.createElement() erzeugt,
+     nicht vom Astro-Compiler aus dem Template gebaut. Astros scoped styles
+     funktionieren aber über ein data-astro-cid-*-Attribut, das nur beim
+     Kompilieren an Template-Elemente angehängt wird — Elemente, die das
+     Client-Script per JS erzeugt, bekommen dieses Attribut nie. Ohne
+     :global() griff hier keine einzige Regel, die Zeilen blieben komplett
+     unstyled (Browser-Default-Inputs), und die Kopfzeile darüber (die zum
+     statischen Template gehört und daher regulär gescoped ist) lief
+     dadurch sichtbar auseinander. */
+  :global(.rechner__row) {
     display: grid;
     grid-template-columns: 1fr 1fr 2rem;
     gap: 0.7rem;
     align-items: center;
   }
 
-  .rechner__row input {
+  :global(.rechner__row input) {
     width: 100%;
     font: inherit;
     font-size: 1rem;
@@ -388,12 +398,12 @@ const jsonLd = JSON.stringify({
     color: var(--text);
   }
 
-  .rechner__row input:focus-visible {
+  :global(.rechner__row input:focus-visible) {
     outline: 2px solid var(--focus);
     outline-offset: 1px;
   }
 
-  .rechner__remove {
+  :global(.rechner__remove) {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -405,7 +415,7 @@ const jsonLd = JSON.stringify({
     cursor: pointer;
   }
 
-  .rechner__remove:hover {
+  :global(.rechner__remove:hover) {
     border-color: var(--brand-pink);
     color: var(--brand-pink);
   }

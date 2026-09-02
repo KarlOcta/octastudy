@@ -1,6 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../components/OctaCtaBox.astro';
 import { OCTA } from '../../site';
+
+const LERNPLAN_SLIDES = [
+  {
+    src: '/img/mockups/app/andere-plan.webp',
+    alt: 'Octa-Lernplan mit Lernpfad und Fortschritt bis zur Prüfung',
+    caption: 'Ein Lernplan aus deinen Unterlagen, getaktet bis zur Prüfung',
+    width: 752,
+    height: 1559,
+  },
+  {
+    src: '/img/mockups/app/andere-karte.webp',
+    alt: 'Octa-Karteikarte, generiert aus hochgeladenen Unterlagen',
+    caption: 'Automatisch erzeugte Karteikarten aus deinem Material',
+    width: 752,
+    height: 1559,
+  },
+];
 
 const faecher = [
   {
@@ -74,7 +92,7 @@ const faecher = [
       </p>
       <p>
         Der zweite Grund ist Ehrlichkeit über den Aufwand. Die meisten wissen,
-        dass Selbstabfragen besser wirkt als Markieren. Sie tun es trotzdem
+        dass Selbstabfragen (Active Recall) besser wirkt als Markieren. Sie tun es trotzdem
         nicht, weil zwanzig Karteikarten pro Kapitel eine gute Stunde
         Schreibarbeit sind — vor dem Lernen. Genau diese Stunde nehmen wir dir
         ab.
@@ -84,28 +102,22 @@ const faecher = [
       </p>
     </div>
 
-    <div class="octa-cta">
-      <h2>Und daraus einen kompletten Lernplan machen</h2>
-      <p>
-        Die Unterlagen von hier kannst du direkt in {OCTA.name} hochladen — PDF,
-        Karteikarten-Deck oder deine eigene abfotografierte Mitschrift. Octa
-        liest das Material, macht daraus einen Lernplan bis zu deinem
-        Prüfungstermin und erzeugt automatisch Karteikarten und Quizze dazu.
-      </p>
-      <p>
-        Der entscheidende Unterschied zum stillen Durchlesen: Du sprichst die
-        Antworten ein und bekommst gesagt, wo sie schwammig oder unvollständig
-        waren. Also genau die Rückmeldung, die beim Lernen allein fehlt.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
-          {OCTA.name} im App Store ansehen
-        </a>
-        <a class="btn btn--ghost" href="/tools/lerntyp-test/">
-          Erst herausfinden, wo es hakt
-        </a>
-      </div>
-    </div>
+    <OctaCtaBox
+      id="lernplan-slides"
+      title="Und daraus einen kompletten Lernplan machen"
+      storeLink={OCTA.appStoreUrl}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Erst herausfinden, wo es hakt"
+      secondaryHref="/tools/lerntyp-test/"
+      slides={LERNPLAN_SLIDES}
+      intervalMs={4200}
+    >
+      Die Unterlagen von hier kannst du direkt in {OCTA.name} hochladen — Octa
+      macht daraus einen Lernplan bis zu deinem Prüfungstermin und automatisch
+      Karteikarten und Quizze dazu. Beim Abfragen sprichst du die Antworten
+      ein und bekommst gesagt, wo sie noch schwammig waren — die Rückmeldung,
+      die beim stillen Lernen fehlt.
+    </OctaCtaBox>
 
     <h2 class="rule">Fächer</h2>
     <p class="section-intro">

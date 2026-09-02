@@ -27,6 +27,14 @@ const FAQ = [
     a: 'Statt der klassischen Schulnoten 1 bis 6 vergibt die gymnasiale Oberstufe für jede einzelne Klausur- oder Kursleistung eine Punktzahl von 0 bis 15. Jede Punktzahl entspricht dabei genau einer Note mit Tendenz — 15 Punkte sind eine glatte 1+, 9 Punkte eine 3+, 0 Punkte eine 6. Grundlage ist die KMK-Vereinbarung zur Gestaltung der gymnasialen Oberstufe von 1972.',
   },
   {
+    q: 'Ab welcher Klasse bekomme ich Punkte statt Noten?',
+    a: 'Das 15-Punkte-System gilt ausschließlich in der gymnasialen Oberstufe — je nach Bundesland und Schulform meist ab der Einführungsphase in Klasse 10, teils erst ab Klasse 11. In der Unter- und Mittelstufe bekommst du ganz normal Noten von 1 bis 6; Punkte auf einem Zeugnis oder unter einer Klausur bedeuten also, dass du entweder schon in der Oberstufe bist oder deine Schule sie dir vorab zur Orientierung mit angibt.',
+  },
+  {
+    q: 'Ab wie vielen Punkten ist ein Kurs bestanden?',
+    a: 'Als „ausreichend" und damit bestanden gilt ein Kurs ab 5 Punkten (entspricht einer Note 4). 0 Punkte entsprechen einer glatten 6 und sind ungenügend. Für die Gesamtqualifikation im Abitur gelten zusätzlich eigene Mindestpunktzahlen und Regeln, wie viele schwächere Kurse du dir leisten kannst — die legt die Abiturverordnung deines Bundeslands fest.',
+  },
+  {
     q: 'Wo berechne ich den Durchschnitt aus mehreren Punktzahlen?',
     a: 'Dieses Tool rechnet eine einzelne Punktzahl in eine Note um (und umgekehrt). Willst du stattdessen den Schnitt aus mehreren Klausuren oder Kursen berechnen, nutze unseren Notendurchschnitt-Rechner im Punkte-Modus.',
   },
@@ -85,6 +93,17 @@ const jsonLd = JSON.stringify({
       KMK-Notentabelle. Für den Schnitt aus mehreren Punktzahlen nutz
       stattdessen den <a href="/tools/notendurchschnitt-rechner/">Notendurchschnitt-Rechner</a> im Punkte-Modus.
     </p>
+
+    <div class="note">
+      <p>
+        <strong>Betrifft dich das schon?</strong> Das 15-Punkte-System gilt
+        nur in der gymnasialen Oberstufe — je nach Bundesland meist ab
+        Klasse 10 oder 11. Gehst du noch in die Unter- oder Mittelstufe,
+        bekommst du ganz normal Noten von 1 bis 6; die Punkte hier werden
+        erst relevant, sobald sie tatsächlich auf deinem Zeugnis oder unter
+        einer Klausur stehen.
+      </p>
+    </div>
 
     <div class="rechner" id="rechner">
       <div class="umrechner-grid">
