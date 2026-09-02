@@ -5,7 +5,7 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
 
 <BaseLayout
   title="Lerntools"
-  description="Kostenlose Tools für Studierende: Notendurchschnitt berechnen und den eigenen Lerntyp bestimmen. Ohne Anmeldung, in unter einer Minute erledigt."
+  description="Kostenlose Tools für Studierende: Notendurchschnitt und Examensnote berechnen, den eigenen Lerntyp bestimmen. Ohne Anmeldung, in unter einer Minute erledigt."
   breadcrumbs={[{ label: 'Tools', href: '/tools/' }]}
   wide
 >
@@ -40,6 +40,17 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
           Noten eintragen, Durchschnitt sehen — direkt beim Tippen berechnet.
           Optional mit Gewichtung nach ECTS-Punkten, falls deine
           Prüfungsordnung Module unterschiedlich stark zählt.
+        </p>
+        <p class="card__more">Rechner öffnen →</p>
+      </div>
+
+      <div class="card card--link">
+        <span class="card__tag">Verfügbar</span>
+        <h3><a class="card__link" href="/tools/examensnote-rechner/">Examensnote-Rechner (Jura)</a></h3>
+        <p>
+          Gesamtnote der Ersten Juristischen Prüfung berechnen — Staatsexamen
+          und Schwerpunktbereich kombiniert, nach der offiziellen Formel
+          deines Bundeslandes.
         </p>
         <p class="card__more">Rechner öffnen →</p>
       </div>
@@ -88,8 +99,8 @@ import CharakterTrio from '../../components/CharakterTrio.astro';
 
     <div class="note">
       <p>
-        Weitere Tools sind in Arbeit — ein Notendurchschnitt-Rechner steht als
-        Nächstes an.
+        Weitere Tools sind in Arbeit — der Examensnote-Rechner wird gerade um
+        weitere Bundesländer ergänzt.
       </p>
     </div>
   </div>

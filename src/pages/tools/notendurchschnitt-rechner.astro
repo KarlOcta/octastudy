@@ -85,7 +85,9 @@ const jsonLd = JSON.stringify({
 
       <div class="rechner__head">
         <span id="col-label">Note</span>
-        <span>Gewichtung <span class="rechner__hint">(optional)</span></span>
+        <span class="rechner__head-gewicht">
+          Gewichtung <span class="rechner__hint" id="gewicht-hint">(z. B. ECTS, optional)</span>
+        </span>
         <span aria-hidden="true"></span>
       </div>
       <div class="rechner__rows" id="rows"></div>
@@ -146,6 +148,7 @@ const jsonLd = JSON.stringify({
       resultLabel: string;
       caveat: string;
       removeLabel: string;
+      gewichtHint: string;
     }
   > = {
     noten: {
@@ -157,6 +160,7 @@ const jsonLd = JSON.stringify({
       resultLabel: 'Durchschnitt',
       caveat: 'Trag mindestens eine Note zwischen 1,0 und 6,0 ein.',
       removeLabel: 'Note entfernen',
+      gewichtHint: 'z. B. ECTS, optional',
     },
     punkte: {
       min: 0,
@@ -167,6 +171,7 @@ const jsonLd = JSON.stringify({
       resultLabel: 'Punkteschnitt',
       caveat: 'Trag mindestens eine Punktzahl zwischen 0 und 15 ein.',
       removeLabel: 'Punkte entfernen',
+      gewichtHint: 'z. B. LK doppelt, optional',
     },
   };
 
@@ -175,6 +180,7 @@ const jsonLd = JSON.stringify({
     const resultEl = root.querySelector<HTMLElement>('#result')!;
     const resultLabelEl = root.querySelector<HTMLElement>('#result-label')!;
     const colLabelEl = root.querySelector<HTMLElement>('#col-label')!;
+    const gewichtHintEl = root.querySelector<HTMLElement>('#gewicht-hint')!;
     const caveatEl = root.querySelector<HTMLElement>('#caveat')!;
     const addBtn = root.querySelector<HTMLButtonElement>('#add-row')!;
     const modeBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.rechner__mode-btn'));
@@ -244,6 +250,7 @@ const jsonLd = JSON.stringify({
       colLabelEl.textContent = cfg.colLabel;
       resultLabelEl.textContent = cfg.resultLabel;
       caveatEl.textContent = cfg.caveat;
+      gewichtHintEl.textContent = `(${cfg.gewichtHint})`;
 
       for (const btn of modeBtns) {
         const isActive = btn.dataset.mode === mode;
@@ -334,7 +341,19 @@ const jsonLd = JSON.stringify({
     padding: 0 0.1rem;
   }
 
+  /* min-width: 0 statt des grid-default "auto" — sonst zieht der lange
+     "Gewichtung (...)"-Text seine Spalte breiter als die tatsächliche
+     Eingabespalte darunter und die Überschriften laufen auseinander. */
+  .rechner__head > span {
+    min-width: 0;
+  }
+
+  .rechner__head-gewicht {
+    text-align: center;
+  }
+
   .rechner__hint {
+    display: block;
     font-weight: 500;
     color: var(--text-subtle);
   }

@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "nrw",
+    "name": "Nordrhein-Westfalen",
+    "kurz": "NRW",
+    "pflichtfachAnteil": 0.7,
+    "schwerpunktAnteil": 0.3,
+    "paragraph": "§ 29 Abs. 2 JAG NRW",
+    "notenskalaParagraph": "§ 17 Abs. 2 JAG NRW",
+    "quelleUrl": "https://recht.nrw.de/lrgv/gesetz/07052025-gesetz-ueber-die-juristischen-pruefungen-und-den-juristischen/",
+    "quelleName": "JAG NRW auf recht.nrw.de",
+    "rundungshinweis": "Das JAG NRW nennt für die Gesamtnote der Ersten Prüfung keine ausdrückliche Rundungsregel. Dieser Rechner rechnet konservativ, ohne Aufrundung, auf zwei Nachkommastellen.",
+    "unis": "Bonn, Köln, Düsseldorf, Münster, Bielefeld, Bochum und die FernUniversität Hagen",
+    "pruefungsaemter": "sind die Landesjustizprüfungsämter bei den Oberlandesgerichten Hamm, Köln und Düsseldorf",
+    "faq": [
+      {
+        "q": "Wie setzt sich die Gesamtnote der Ersten Prüfung in NRW zusammen?",
+        "a": "Nach § 29 Abs. 2 JAG NRW fließt das Ergebnis der staatlichen Pflichtfachprüfung mit 70 % und das Ergebnis der universitären Schwerpunktbereichsprüfung mit 30 % in die Gesamtnote ein. Beide Teilprüfungen müssen dafür bereits bestanden sein."
+      },
+      {
+        "q": "Welche Punkteskala gilt für die Umrechnung in eine Notenbezeichnung?",
+        "a": "NRW nutzt die bundesweit übliche 18-Punkte-Skala mit Dezimalstellen: ab 14,00 Punkten „sehr gut\", ab 11,50 „gut\", ab 9,00 „vollbefriedigend\", ab 6,50 „befriedigend\", ab 4,00 „ausreichend\", ab 1,50 „mangelhaft\", darunter „ungenügend\" (§ 17 Abs. 2 JAG NRW)."
+      },
+      {
+        "q": "Gilt die Berechnung für alle NRW-Universitäten gleich?",
+        "a": "Ja — die Gewichtung von 70/30 ist im JAG NRW landesweit einheitlich geregelt und gilt unabhängig davon, ob du in Bonn, Köln, Düsseldorf, Münster, Bielefeld, Bochum oder an der FernUniversität Hagen deinen Schwerpunktbereich abgelegt hast. Zuständig für die staatliche Pflichtfachprüfung sind die Landesjustizprüfungsämter bei den Oberlandesgerichten Hamm, Köln und Düsseldorf."
+      },
+      {
+        "q": "Stimmt das Ergebnis mit meinem offiziellen Prüfungszeugnis überein?",
+        "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis deines Landesjustizprüfungsamts."
+      }
+    ]
+  },
+  {
+    "slug": "bayern",
+    "name": "Bayern",
+    "kurz": "Bayern",
+    "pflichtfachAnteil": 0.7,
+    "schwerpunktAnteil": 0.3,
+    "paragraph": "§ 17 Abs. 1 JAPO",
+    "notenskalaParagraph": null,
+    "quelleUrl": "https://www.gesetze-bayern.de/Content/Document/BayJAPO-17",
+    "quelleName": "JAPO Bayern, § 17, auf gesetze-bayern.de",
+    "rundungshinweis": "Die JAPO nennt in § 17 keine ausdrückliche Rundungsregel für die Gesamtnote. Dieser Rechner rechnet konservativ, ohne Aufrundung, auf zwei Nachkommastellen.",
+    "unis": "München (LMU), Würzburg, Erlangen-Nürnberg, Regensburg, Augsburg, Bayreuth und Passau",
+    "pruefungsaemter": "ist das Landesjustizprüfungsamt beim Bayerischen Staatsministerium der Justiz",
+    "faq": [
+      {
+        "q": "Wie setzt sich die Prüfungsgesamtnote in Bayern zusammen?",
+        "a": "Nach § 17 Abs. 1 JAPO zählt die Prüfungsgesamtnote der staatlichen Ersten Juristischen Staatsprüfung mit 70 % und die Note der Juristischen Universitätsprüfung (Schwerpunktbereich) mit 30 % zur Gesamtnote der Ersten Juristischen Prüfung."
+      },
+      {
+        "q": "Welche Punkteskala gilt für die Umrechnung in eine Notenbezeichnung?",
+        "a": "Bayern verwendet dieselbe bundesweit gebräuchliche 18-Punkte-Skala mit Dezimalstellen wie die übrigen Länder: ab 14,00 Punkten „sehr gut\", ab 11,50 „gut\", ab 9,00 „vollbefriedigend\", ab 6,50 „befriedigend\", ab 4,00 „ausreichend\", ab 1,50 „mangelhaft\", darunter „ungenügend\"."
+      },
+      {
+        "q": "Gilt die Berechnung für alle bayerischen Universitäten gleich?",
+        "a": "Ja — die 70/30-Gewichtung aus § 17 JAPO gilt landesweit, egal ob du in München, Würzburg, Erlangen-Nürnberg, Regensburg, Augsburg, Bayreuth oder Passau deinen Schwerpunktbereich studiert hast. Zuständig für die staatliche Pflichtfachprüfung ist das Landesjustizprüfungsamt beim Bayerischen Staatsministerium der Justiz."
+      },
+      {
+        "q": "Stimmt das Ergebnis mit meinem offiziellen Prüfungszeugnis überein?",
+        "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis des Landesjustizprüfungsamts."
+      }
+    ]
+  },
+  {
+    "slug": "baden-wuerttemberg",
+    "name": "Baden-Württemberg",
+    "kurz": "Baden-Württemberg",
+    "pflichtfachAnteil": 0.7,
+    "schwerpunktAnteil": 0.3,
+    "paragraph": "§ 34 Abs. 2 und 3 JAPrO",
+    "notenskalaParagraph": "§ 19 Abs. 3 JAPrO",
+    "quelleUrl": "https://www.landesrecht-bw.de/jportal/?quelle=jlink&query=JAPV+BW&psml=bsbawueprod.psml&max=true&aiz=true",
+    "quelleName": "JAPrO Baden-Württemberg auf landesrecht-bw.de",
+    "rundungshinweis": "Die JAPrO schreibt in § 34 Abs. 2 ausdrücklich vor, ohne Rundung auf zwei Nachkommastellen zu rechnen — genau das macht dieser Rechner.",
+    "unis": "Heidelberg, Tübingen, Freiburg, Mannheim und Konstanz",
+    "pruefungsaemter": "ist das Justizprüfungsamt beim Ministerium der Justiz und für Migration Baden-Württemberg",
+    "faq": [
+      {
+        "q": "Wie setzt sich die Gesamtnote der Ersten Prüfung in Baden-Württemberg zusammen?",
+        "a": "Nach § 34 Abs. 2 und 3 JAPrO errechnet sich die Gesamtpunktzahl aus der Endpunktzahl der Staatsprüfung mit 70 % und der Endpunktzahl der Universitätsprüfung (Schwerpunktbereich) mit 30 %. Das Ergebnis wird ohne Rundung auf zwei Nachkommastellen ermittelt."
+      },
+      {
+        "q": "Welche Punkteskala gilt für die Umrechnung in eine Notenbezeichnung?",
+        "a": "Nach § 19 Abs. 3 JAPrO gilt: ab 14,00 Punkten „sehr gut\", ab 11,50 „gut\", ab 9,00 „vollbefriedigend\", ab 6,50 „befriedigend\", ab 4,00 „ausreichend\", ab 1,50 „mangelhaft\", darunter „ungenügend\"."
+      },
+      {
+        "q": "Gilt die Berechnung für alle Universitäten in Baden-Württemberg gleich?",
+        "a": "Ja — die 70/30-Gewichtung aus § 34 JAPrO gilt landesweit, egal ob du in Heidelberg, Tübingen, Freiburg, Mannheim oder Konstanz deinen Schwerpunktbereich abgelegt hast. Zuständig für die staatliche Pflichtfachprüfung ist das Justizprüfungsamt beim Ministerium der Justiz und für Migration Baden-Württemberg."
+      },
+      {
+        "q": "Stimmt das Ergebnis mit meinem offiziellen Prüfungszeugnis überein?",
+        "a": "Der Rechner bildet die gesetzliche Formel so genau wie möglich nach, ist aber kein amtliches Dokument. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis des Justizprüfungsamts."
+      }
+    ]
+  }
+]

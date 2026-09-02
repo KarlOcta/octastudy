@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../site';
+import bundeslaender from '../../../data/examensnote-bundeslaender.json';
+
+const FAQ = [
+  {
+    q: 'Warum unterscheidet sich der Rechner je nach Bundesland?',
+    a: 'Die Gewichtung zwischen Staatsexamen und Schwerpunktbereich ist Landesrecht — jedes Bundesland regelt sie in seinem eigenen Juristenausbildungsgesetz (JAG) bzw. seiner Prüfungsordnung (JAPO/JAPrO). Bei den hier abgedeckten Bundesländern liegt sie einheitlich bei 70 % Staatsexamen zu 30 % Schwerpunktbereich — das muss aber nicht in jedem Bundesland so sein.',
+  },
+  {
+    q: 'Mein Bundesland ist noch nicht dabei — was jetzt?',
+    a: 'Wir bauen den Rechner nach und nach für weitere Bundesländer aus. Bis dahin hilft der Blick ins Juristenausbildungsgesetz (JAG) bzw. die Prüfungsordnung (JAPO/JAPrO) deines Bundeslandes: Gesucht ist der Paragraph zur „Gesamtnote der Ersten Prüfung", der die Gewichtung von Staatsexamen und Schwerpunktbereich nennt.',
+  },
+  {
+    q: 'Was ist der Unterschied zwischen Staatsexamen und Schwerpunktbereich?',
+    a: 'Das Staatsexamen (staatliche Pflichtfachprüfung) prüft den examensrelevanten Pflichtstoff in Zivilrecht, Strafrecht und Öffentlichem Recht und wird vom Landesjustizprüfungsamt abgenommen. Der Schwerpunktbereich (universitäre Schwerpunktbereichsprüfung) ist ein selbst gewähltes Vertiefungsfach und wird von der jeweiligen Universität geprüft. Beide zusammen ergeben die Erste Juristische Prüfung.',
+  },
+  {
+    q: 'Ist die berechnete Note meine offizielle Examensnote?',
+    a: 'Der Rechner bildet die gesetzliche Formel deines Bundeslandes so genau wie möglich nach, ersetzt aber kein amtliches Zeugnis. Für das verbindliche Ergebnis zählt ausschließlich das Zeugnis deines Landesjustizprüfungsamts.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/tools/examensnote-rechner/#faq`,
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+
+<BaseLayout
+  title="Examensnote-Rechner: Erste Prüfung berechnen (nach Bundesland)"
+  description="Gesamtnote der Ersten Juristischen Prüfung berechnen — Staatsexamen und Schwerpunktbereich kombiniert, nach der offiziellen Formel deines Bundeslandes. Kostenlos, ohne Anmeldung."
+  breadcrumbs={[{ label: 'Tools', href: '/tools/' }, { label: 'Examensnote-Rechner', href: '/tools/examensnote-rechner/' }]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Kostenloses Tool</p>
+    <h1>Examensnote-Rechner: Gesamtnote der Ersten Prüfung berechnen</h1>
+    <p class="lead intro">
+      Die Gesamtnote deiner Ersten Juristischen Prüfung ergibt sich nicht
+      allein aus dem Staatsexamen, sondern aus der Kombination mit deiner
+      universitären Schwerpunktbereichsprüfung — nach einer gesetzlich
+      festgelegten Gewichtung, die von Bundesland zu Bundesland unterschiedlich
+      geregelt sein kann. Wähl dein Bundesland, um mit der dort geltenden
+      Formel zu rechnen.
+    </p>
+
+    <div class="bl-grid">
+      {
+        bundeslaender.map((b) => (
+          <a class="bl-card" href={`/tools/examensnote-rechner/${b.slug}/`}>
+            <span class="bl-card__name">{b.name}</span>
+            <span class="bl-card__formel">
+              {Math.round(b.pflichtfachAnteil * 100)} % Staatsexamen · {Math.round(b.schwerpunktAnteil * 100)} % Schwerpunkt
+            </span>
+            <span class="bl-card__link">Rechner öffnen →</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="note">
+      <p>
+        Weitere Bundesländer folgen. Falls deins noch nicht dabei ist: Die
+        Formel steht im Juristenausbildungsgesetz (JAG) bzw. der
+        Prüfungsordnung (JAPO/JAPrO) deines Bundeslandes, im Paragraphen zur
+        „Gesamtnote der Ersten Prüfung".
+      </p>
+    </div>
+
+    <h2 class="rule">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Schwerpunktbereich oder Pflichtfach noch offen?</strong>{' '}
+        Unsere juristischen Prüfungsschemata für Zivilrecht, Strafrecht und
+        Öffentliches Recht helfen bei der Wiederholung.
+      </p>
+      <a class="btn" href="/lernunterlagen/jura/">Zu den Jura-Schemata →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .bl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1.1rem;
+    margin: 1.8rem 0 2rem;
+  }
+
+  .bl-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .bl-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .bl-card__name {
+    font-weight: 800;
+    font-size: 1.08rem;
+  }
+
+  .bl-card__formel {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    font-family: var(--font-mono);
+  }
+
+  .bl-card__link {
+    margin-top: 0.4rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--accent);
+  }
+
+  .note {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1.4rem;
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .note p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    max-width: 70ch;
+    margin-bottom: 1rem;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+</style>

@@ -1,0 +1,466 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../../site';
+import bundeslaender from '../../../../data/examensnote-bundeslaender.json';
+
+export function getStaticPaths() {
+  return bundeslaender.map((entry) => ({
+    params: { bundesland: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const andere = bundeslaender.filter((b) => b.slug !== entry.slug);
+
+const pflichtfachProzent = Math.round(entry.pflichtfachAnteil * 100);
+const schwerpunktProzent = Math.round(entry.schwerpunktAnteil * 100);
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE.url}/tools/examensnote-rechner/${entry.slug}/#app`,
+      name: `Examensnote-Rechner ${entry.kurz}`,
+      applicationCategory: 'EducationApplication',
+      operatingSystem: 'Any (Web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      url: `${SITE.url}/tools/examensnote-rechner/${entry.slug}/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/tools/examensnote-rechner/${entry.slug}/#faq`,
+      mainEntity: entry.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Examensnote-Rechner ${entry.kurz}: Erste Prüfung berechnen`}
+  description={`Gesamtnote der Ersten Juristischen Prüfung in ${entry.name} berechnen — Staatsexamen (${pflichtfachProzent} %) und Schwerpunktbereich (${schwerpunktProzent} %) nach ${entry.paragraph}. Kostenlos, ohne Anmeldung.`}
+  breadcrumbs={[
+    { label: 'Tools', href: '/tools/' },
+    { label: 'Examensnote-Rechner', href: '/tools/examensnote-rechner/' },
+    { label: entry.kurz, href: `/tools/examensnote-rechner/${entry.slug}/` },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Kostenloses Tool · {entry.kurz}</p>
+    <h1>Examensnote berechnen: Erste Prüfung in {entry.name}</h1>
+    <p class="lead intro">
+      Die Gesamtnote der Ersten Juristischen Prüfung in {entry.name} setzt
+      sich aus zwei bereits bestandenen Teilprüfungen zusammen: der
+      staatlichen Pflichtfachprüfung (Staatsexamen) und der universitären
+      Schwerpunktbereichsprüfung. Nach {entry.paragraph} zählt die
+      Staatsprüfung mit {pflichtfachProzent} %, der Schwerpunktbereich mit{' '}
+      {schwerpunktProzent} %. Trag unten beide Punktzahlen ein.
+    </p>
+
+    <div class="rechner" id="rechner">
+      <div class="rechner__inputs">
+        <label>
+          <span>Staatsprüfung <span class="rechner__badge">{pflichtfachProzent} %</span></span>
+          <input type="number" id="staat" inputmode="decimal" step="0.01" min="0" max="18" placeholder="z. B. 8,47" />
+        </label>
+        <label>
+          <span>Schwerpunktbereich <span class="rechner__badge">{schwerpunktProzent} %</span></span>
+          <input type="number" id="schwerpunkt" inputmode="decimal" step="0.01" min="0" max="18" placeholder="z. B. 11,20" />
+        </label>
+      </div>
+
+      <div class="rechner__result">
+        <span class="rechner__result-label">Gesamtnote</span>
+        <div class="rechner__result-row">
+          <span class="rechner__result-value" id="result">–</span>
+          <span class="rechner__result-note" id="result-note"></span>
+        </div>
+      </div>
+      <p class="rechner__caveat" id="caveat" hidden>
+        Trag beide Punktzahlen zwischen 0 und 18 ein.
+      </p>
+    </div>
+
+    <h2 class="rule rule--tight">So wird gerechnet</h2>
+    <p class="intro">
+      Gesamtnote = Staatsprüfung × {entry.pflichtfachAnteil} + Schwerpunktbereich
+      × {entry.schwerpunktAnteil}. {entry.rundungshinweis} Die errechnete
+      Punktzahl wird anschließend nach der 18-Punkte-Skala in eine
+      Notenbezeichnung übersetzt{entry.notenskalaParagraph ? ` (${entry.notenskalaParagraph})` : ''}:
+    </p>
+
+    <div class="notenskala">
+      <div><span>14,00–18,00</span><span>sehr gut</span></div>
+      <div><span>11,50–13,99</span><span>gut</span></div>
+      <div><span>9,00–11,49</span><span>vollbefriedigend</span></div>
+      <div><span>6,50–8,99</span><span>befriedigend</span></div>
+      <div><span>4,00–6,49</span><span>ausreichend</span></div>
+      <div><span>1,50–3,99</span><span>mangelhaft</span></div>
+      <div><span>0,00–1,49</span><span>ungenügend</span></div>
+    </div>
+
+    <div class="note">
+      <p>
+        Dieser Rechner bildet die gesetzliche Formel so genau wie möglich
+        nach, ersetzt aber kein amtliches Zeugnis. Zuständig für die
+        verbindliche Berechnung {entry.pruefungsaemter}.
+      </p>
+    </div>
+
+    <div class="cta-frueh">
+      <p>
+        <strong>Schwerpunktbereich noch offen?</strong> Unsere juristischen
+        Prüfungsschemata für Zivilrecht, Strafrecht und Öffentliches Recht
+        helfen bei der Wiederholung — mit Definitionen, Fallbeispielen und
+        Karteikarten-Decks.
+      </p>
+      <a class="btn" href="/lernunterlagen/jura/">Zu den Jura-Schemata →</a>
+    </div>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        entry.faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Examensnote-Rechner für andere Bundesländer</h2>
+    <div class="andere-grid">
+      {
+        andere.map((b) => (
+          <a class="andere-card" href={`/tools/examensnote-rechner/${b.slug}/`}>
+            <span class="andere-card__kurz">{b.kurz}</span>
+            <span class="andere-card__hint">{Math.round(b.pflichtfachAnteil * 100)} % / {Math.round(b.schwerpunktAnteil * 100)} %</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        {entry.paragraph} —{' '}
+        <a href={entry.quelleUrl} rel="noopener nofollow">{entry.quelleName}</a>
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Übersicht aller Bundesländer: <a href="/tools/examensnote-rechner/">Examensnote-Rechner</a>.
+      Für den Notendurchschnitt aus dem übrigen Studium: <a href="/tools/notendurchschnitt-rechner/">Notendurchschnitt-Rechner</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ pflichtfachAnteil: entry.pflichtfachAnteil, schwerpunktAnteil: entry.schwerpunktAnteil }}>
+  function initRechner(root) {
+    const staatInput = root.querySelector('#staat');
+    const schwerpunktInput = root.querySelector('#schwerpunkt');
+    const resultEl = root.querySelector('#result');
+    const resultNoteEl = root.querySelector('#result-note');
+    const caveatEl = root.querySelector('#caveat');
+
+    function notenbezeichnung(p) {
+      if (p >= 14) return 'sehr gut';
+      if (p >= 11.5) return 'gut';
+      if (p >= 9) return 'vollbefriedigend';
+      if (p >= 6.5) return 'befriedigend';
+      if (p >= 4) return 'ausreichend';
+      if (p >= 1.5) return 'mangelhaft';
+      return 'ungenügend';
+    }
+
+    function truncate2(n) {
+      return Math.floor(n * 100 + 1e-9) / 100;
+    }
+
+    function recalc() {
+      const staatRaw = staatInput.value.replace(',', '.');
+      const schwerpunktRaw = schwerpunktInput.value.replace(',', '.');
+      const staat = parseFloat(staatRaw);
+      const schwerpunkt = parseFloat(schwerpunktRaw);
+      const anyInput = staatInput.value.trim() !== '' || schwerpunktInput.value.trim() !== '';
+
+      const staatValid = !Number.isNaN(staat) && staat >= 0 && staat <= 18;
+      const schwerpunktValid = !Number.isNaN(schwerpunkt) && schwerpunkt >= 0 && schwerpunkt <= 18;
+
+      if (staatValid && schwerpunktValid) {
+        const raw = staat * pflichtfachAnteil + schwerpunkt * schwerpunktAnteil;
+        const gesamt = truncate2(raw);
+        resultEl.textContent = gesamt.toFixed(2).replace('.', ',');
+        resultNoteEl.textContent = notenbezeichnung(gesamt);
+        caveatEl.hidden = true;
+      } else {
+        resultEl.textContent = '–';
+        resultNoteEl.textContent = '';
+        caveatEl.hidden = !anyInput;
+      }
+    }
+
+    staatInput.addEventListener('input', recalc);
+    schwerpunktInput.addEventListener('input', recalc);
+    recalc();
+  }
+
+  document.querySelectorAll('#rechner').forEach(initRechner);
+</script>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .rechner {
+    max-width: 40rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    margin: 1.8rem 0 1.6rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .rechner__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .rechner__inputs label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .rechner__badge {
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.15rem 0.55rem;
+    margin-left: 0.2rem;
+  }
+
+  .rechner__inputs input {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .rechner__inputs input:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+  }
+
+  .rechner__result {
+    margin-top: 1.4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .rechner__result-label {
+    display: block;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .rechner__result-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .rechner__result-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .rechner__result-note {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .rechner__caveat {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .notenskala {
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 1rem 0 1.6rem;
+    font-size: 0.92rem;
+  }
+
+  .notenskala div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .notenskala span:first-child {
+    font-family: var(--font-mono);
+    color: var(--text-subtle);
+  }
+
+  .notenskala span:last-child {
+    font-weight: 700;
+  }
+
+  .note {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1.4rem;
+    max-width: 70ch;
+    margin-bottom: 1.8rem;
+  }
+
+  .note p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .cta-frueh {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    margin: 1rem 0 2.2rem;
+    max-width: 70ch;
+  }
+
+  .cta-frueh p {
+    margin-bottom: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .andere-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem;
+    max-width: 40rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .andere-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+    padding: 1.1rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .andere-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .andere-card__kurz {
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  .andere-card__hint {
+    font-size: 0.78rem;
+    color: var(--text-subtle);
+    font-family: var(--font-mono);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+
+  @media (max-width: 30rem) {
+    .rechner__inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
