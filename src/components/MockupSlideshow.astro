@@ -129,7 +129,21 @@ const { slides, id, intervalMs = 3800, class: extra = '' } = Astro.props;
 
   .mockup-slides__caption {
     position: relative;
-    min-height: 2.6em;
+    /* Explizite Breite statt dem align-items: center-Default: Als
+       Flex-Kind einer Column (.mockup-slides) würde die Caption sonst
+       auf die Breite des jeweils sichtbaren Textes schrumpfen, statt
+       die volle Spaltenbreite zu nutzen — je nach Slide unterschiedlich
+       breit und dadurch unterschiedlich oft umgebrochen. Das liess die
+       Box beim Rotieren der Slides in der Höhe springen. */
+    width: 100%;
+    /* Feste Höhe statt min-height, plus overflow:hidden als Sicherheitsnetz:
+       Captions sind bewusst kurz gehalten, damit sie zuverlässig in zwei
+       Zeilen passen — aber Wortumbrüche hängen am Ende auch von der
+       Schriftart und ihrer Ladezeit ab. Mit fester Höhe kann die Box also
+       selbst bei einer minimal abweichenden Zeilenzahl nicht mehr wachsen
+       und beim Rotieren "springen". */
+    height: 2.6em;
+    overflow: hidden;
     margin: 0.6rem 0 0;
     text-align: center;
     font-size: 0.82rem;

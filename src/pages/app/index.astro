@@ -8,28 +8,28 @@ const HERO_SLIDES = [
   {
     src: '/img/mockups/app/andere-test.webp',
     alt: 'Octa-Karteikarte mit Button "Test yourself" — die Antwort wird laut gesprochen',
-    caption: '"Test yourself" auf der Karteikarte — du sprichst deine Antwort laut ein',
+    caption: 'Antwort einsprechen',
     width: 752,
     height: 1559,
   },
   {
     src: '/img/mockups/app/andere-plan.webp',
     alt: 'Octa-Lernplan mit Lernpfad und Fortschritt bis zur Prüfung',
-    caption: 'Ein Lernplan aus deinen Unterlagen, getaktet bis zur Prüfung',
+    caption: 'Automatischer Lernplan',
     width: 752,
     height: 1559,
   },
   {
     src: '/img/mockups/app/andere-karte.webp',
     alt: 'Octa-Karteikarte, generiert aus hochgeladenen Vorlesungsunterlagen',
-    caption: 'Karteikarten aus deinen eigenen Unterlagen, kein generisches Deck',
+    caption: 'Karten aus Unterlagen',
     width: 752,
     height: 1559,
   },
   {
     src: '/img/mockups/app/andere-tribes.webp',
     alt: 'Octa-Tribes-Bildschirm mit wöchentlicher Bestenliste von Lerngruppen',
-    caption: 'Tribes — Lerngruppen, in denen dein Fortschritt sichtbar ist',
+    caption: 'Fortschritt in Tribes',
     width: 752,
     height: 1559,
   },
@@ -237,7 +237,8 @@ const jsonLd = JSON.stringify({
     </div>
     <p class="faq-more">
       Ausführlicher im Vergleich: <a href="/blog/anki-alternative/">Anki-Alternative</a>{' '}
-      und <a href="/blog/quizlet-alternative/">Quizlet-Alternative</a>.
+      und <a href="/blog/quizlet-alternative/">Quizlet-Alternative</a>. Zur Einordnung von
+      KI beim Lernen: <a href="/blog/karteikarten-app-ki/">Karteikarten-App mit KI</a>.
     </p>
   </section>
 
@@ -279,7 +280,12 @@ const jsonLd = JSON.stringify({
   }
 
   .hero__mockup {
-    max-width: 260px;
+    /* Explizite Breite statt nur max-width: Als Flex-Kind mit
+       justify-self: center schrumpft die Box sonst auf ihren
+       Inhalt (die Bildunterschrift!) statt eine feste Breite zu
+       halten — kürzere Captions machten dadurch das ganze Mockup
+       kleiner und liessen die Slideshow beim Rotieren "springen". */
+    width: min(260px, 100%);
     justify-self: center;
   }
 
@@ -504,7 +510,7 @@ const jsonLd = JSON.stringify({
 
     .hero__mockup {
       order: -1;
-      max-width: 200px;
+      width: min(200px, 100%);
     }
   }
 </style>

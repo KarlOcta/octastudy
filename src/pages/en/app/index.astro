@@ -8,28 +8,28 @@ const HERO_SLIDES = [
   {
     src: '/img/mockups/app/en/andere-test.webp',
     alt: 'Octa flashcard with a "Test yourself" button — the student speaks the answer out loud',
-    caption: '"Test yourself" on the flashcard — you speak your answer out loud',
+    caption: 'Spoken answer',
     width: 792,
     height: 1599,
   },
   {
     src: '/img/mockups/app/en/andere-plan.webp',
     alt: 'Octa study plan with a learning path and progress toward the exam date',
-    caption: 'A study plan built from your material, timed before the exam',
+    caption: 'Automatic study plan',
     width: 792,
     height: 1599,
   },
   {
     src: '/img/mockups/app/en/andere-karte.webp',
     alt: 'Octa flashcard generated from uploaded course material',
-    caption: 'Flashcards built from your own material, not a generic deck',
+    caption: 'Automatic flashcards',
     width: 792,
     height: 1599,
   },
   {
     src: '/img/mockups/app/en/andere-tribes.webp',
     alt: 'Octa Tribes screen showing a weekly leaderboard of study groups',
-    caption: 'Tribes — study groups where your progress is visible',
+    caption: 'Progress in Tribes',
     width: 792,
     height: 1599,
   },
@@ -275,7 +275,12 @@ const jsonLd = JSON.stringify({
   }
 
   .hero__mockup {
-    max-width: 260px;
+    /* Explicit width instead of only max-width: as a flex child with
+       justify-self: center, the box otherwise shrinks to fit its
+       content (the caption!) instead of holding a fixed width —
+       shorter captions were shrinking the whole mockup and making
+       the slideshow "jump" as it rotated. */
+    width: min(260px, 100%);
     justify-self: center;
   }
 
@@ -493,7 +498,7 @@ const jsonLd = JSON.stringify({
 
     .hero__mockup {
       order: -1;
-      max-width: 200px;
+      width: min(200px, 100%);
     }
   }
 </style>
