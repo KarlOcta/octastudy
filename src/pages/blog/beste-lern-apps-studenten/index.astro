@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../components/OctaCtaBox.astro';
+import { OCTA, SITE } from '../../../site';
+
+const HERO_SLIDES = [
+  {
+    src: '/img/mockups/app/andere-plan.webp',
+    alt: 'Octa-Lernplan mit Lernpfad und Fortschritt bis zur Prüfung',
+    caption: 'Ein Lernplan aus deinen Unterlagen, getaktet bis zur Prüfung',
+    width: 752,
+    height: 1559,
+  },
+  {
+    src: '/img/mockups/app/andere-karte.webp',
+    alt: 'Octa-Karteikarte, generiert aus hochgeladenen Unterlagen',
+    caption: 'Karten aus deinem eigenen Material, kein generisches Deck',
+    width: 752,
+    height: 1559,
+  },
+  {
+    src: '/img/mockups/app/andere-test.webp',
+    alt: 'Octa-Karteikarte mit Button "Test yourself" — die Antwort wird laut gesprochen',
+    caption: '"Test yourself" — du sprichst die Antwort laut ein',
+    width: 752,
+    height: 1559,
+  },
+];
+
+const APPS = [
+  {
+    name: 'Anki',
+    fuer: 'Wer gerne selbst tüftelt und Kontrolle über jedes Detail will',
+    staerke: 'Bester Wiederholungsalgorithmus (SM2/FSRS), kostenlos auf Desktop & Android, riesiges Add-on-Ökosystem.',
+    schwaeche: 'Karten komplett von Hand schreiben, steile Lernkurve, iOS-App kostet einmalig 24,99 $.',
+  },
+  {
+    name: 'Quizlet',
+    fuer: 'Wer schnell auf fertige Sets zu Standardstoff zugreifen will',
+    staerke: 'Riesige Bibliothek öffentlicher Sets, mehrere Lernmodi, im Kern kostenlos, Web + iOS + Android.',
+    schwaeche: 'Fremde Sets passen selten exakt, Abfrage basiert auf Erkennen statt echtem Abrufen, kein Lernplan.',
+  },
+  {
+    name: OCTA.name,
+    fuer: 'Wer aus den eigenen Unterlagen lernen und wirklich geprüft werden will',
+    staerke: 'Karten automatisch aus eigenem Material, gesprochene Abfrage mit Feedback, Lernplan bis zur Prüfung, KI-Tutor erklärt Fehler.',
+    schwaeche: 'Aktuell nur iPhone & iPad, keine öffentliche Set-Bibliothek zum sofortigen Übernehmen.',
+  },
+];
+
+const FAQ = [
+  {
+    q: 'Welche App ist insgesamt die beste?',
+    a: 'Es gibt keine objektiv beste App — nur die beste für deine konkrete Situation. Wer viel Zeit ins Selbst-Organisieren stecken will, ist mit Anki gut bedient. Wer schnell auf fertige Sets zugreifen will, mit Quizlet. Wer aus dem eigenen Material lernen und dabei wirklich abgefragt werden will, findet das eher in einer App wie Octa.',
+  },
+  {
+    q: 'Muss ich mich auf eine App festlegen?',
+    a: 'Nein. Viele Studierende nutzen mehrere Tools parallel — zum Beispiel Quizlet für Sprachvokabeln, für die längst gute öffentliche Sets existieren, und eine Alternative mit automatischer Kartenerstellung für den eigenen, spezifischen Vorlesungsstoff.',
+  },
+  {
+    q: 'Was ist wichtiger: die App oder die Lernmethode?',
+    a: 'Die Methode. Active Recall (aktives Erinnern) und Spaced Repetition (verteiltes Wiederholen) sind die beiden am besten belegten Lerntechniken — unabhängig davon, mit welcher App du sie umsetzt. Die App entscheidet vor allem darüber, wie viel Reibung auf dem Weg dahin liegt.',
+  },
+  {
+    q: 'Lohnt sich eine kostenpflichtige App überhaupt?',
+    a: 'Das hängt davon ab, wie viel Zeit dir die Automatisierung erspart. Kostenlose Tools wie Anki oder die Basisversion von Quizlet erledigen dieselbe Grundfunktion — nur dass Kartenerstellung und Planung bei dir liegen. Ob dir das die Zeit wert ist, lässt sich am besten in der Praxis testen.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE.url}/blog/beste-lern-apps-studenten/#article`,
+      headline: 'Die besten Karteikarten- und Lern-Apps für Studenten im Vergleich',
+      description:
+        'Anki, Quizlet und Octa nebeneinander — welche App zu welchem Lerntyp passt und worauf es bei der Auswahl wirklich ankommt.',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: `${SITE.url}/blog/beste-lern-apps-studenten/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/blog/beste-lern-apps-studenten/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Die besten Lern-Apps für Studenten im Vergleich"
+  description="Anki, Quizlet und Octa nebeneinander — welche Karteikarten-App zu welchem Lerntyp passt und worauf es bei der Auswahl wirklich ankommt."
+  breadcrumbs={[
+    { label: 'Blog', href: '/blog/' },
+    { label: 'Beste Lern-Apps für Studenten', href: '/blog/beste-lern-apps-studenten/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Blog · App-Vergleich</p>
+    <h1>Die besten Karteikarten- und Lern-Apps für Studenten im Vergleich</h1>
+    <p class="lead intro">
+      Es gibt nicht die eine beste Lern-App — es gibt die beste App für das,
+      was du gerade brauchst. Hier die drei bekanntesten Namen nebeneinander,
+      mit ehrlicher Einschätzung, wofür jede tatsächlich taugt.
+    </p>
+
+    <div class="grid">
+      {
+        APPS.map((a) => (
+          <div class="card">
+            <h3>{a.name}</h3>
+            <p class="app-fuer"><strong>Am besten für:</strong> {a.fuer}</p>
+            <p><strong>Stärke:</strong> {a.staerke}</p>
+            <p><strong>Schwäche:</strong> {a.schwaeche}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Worauf es bei der Auswahl wirklich ankommt</h2>
+    <p class="intro">
+      So unterschiedlich die drei Apps sind — sie setzen alle auf dieselbe
+      Lerntheorie: Wissen aktiv aus dem Kopf abrufen statt passiv wiederlesen
+      (Active Recall), und das in wachsenden Abständen wiederholen (Spaced
+      Repetition). Beide Techniken gehören laut der bislang umfassendsten
+      Übersichtsarbeit zu Lerntechniken (Dunlosky et al., 2013) zu den
+      wenigen mit nachweislich hoher Wirksamkeit. Die eigentliche
+      Entscheidung ist also nicht "welche Methode", sondern: Wie viel von
+      der Vorarbeit — Karten schreiben, Wiederholungen planen — willst du
+      selbst übernehmen, und wie viel soll die App dir abnehmen?
+    </p>
+
+    <p class="intro">
+      Ausführlicher dazu: <a href="/blog/anki-alternative/">Anki im Detail</a>{' '}
+      und <a href="/blog/quizlet-alternative/">Quizlet im Detail</a>.
+    </p>
+
+    <OctaCtaBox
+      id="roundup-cta-slides"
+      title="Aus deinem eigenen Material lernen"
+      storeLink={OCTA.appStoreUrl}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Erst den Lerntyp-Test machen"
+      secondaryHref="/tools/lerntyp-test/"
+      slides={HERO_SLIDES}
+      intervalMs={4200}
+    >
+      {OCTA.pitch} Kostenlos zum Ausprobieren, aktuell für iPhone und iPad.
+    </OctaCtaBox>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &amp;
+        Willingham, D. T. (2013): <em
+          >Improving Students' Learning With Effective Learning Techniques.</em
+        > Psychological Science in the Public Interest, 14 (1), S. 4–58.
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Angaben zu Anki und Quizlet stammen aus deren offiziellen Angeboten,
+      Stand dieses Artikels. Mehr Vergleiche: <a href="/blog/">alle Blog-Artikel</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .app-fuer {
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../site';
+
+const ARTICLES = [
+  {
+    href: '/blog/beste-lern-apps-studenten/',
+    title: 'Die besten Karteikarten- und Lern-Apps für Studenten im Vergleich',
+    text: 'Anki, Quizlet und Octa nebeneinander — welche App zu welchem Lerntyp passt und worauf es bei der Auswahl wirklich ankommt.',
+  },
+  {
+    href: '/blog/anki-alternative/',
+    title: 'Anki-Alternative: Für wen sich der Wechsel lohnt',
+    text: 'Was Anki wirklich gut kann, wo es an seine Grenzen stößt, und für wen eine Alternative mit automatischer Kartenerstellung mehr Sinn ergibt.',
+  },
+  {
+    href: '/blog/quizlet-alternative/',
+    title: 'Quizlet-Alternative: Wenn du mehr willst als eine Karten-Bibliothek',
+    text: 'Quizlet ist stark bei fertigen Sets — aber schwach dabei, dich wirklich zu testen. Was eine Alternative anders macht.',
+  },
+  {
+    href: '/blog/karteikarten-app-ki/',
+    title: 'Karteikarten-App mit KI: Was bringt das wirklich?',
+    text: '"KI" steht auf vielen Apps drauf — aber es steckt ganz Unterschiedliches dahinter. Eine ehrliche Einordnung, worauf es ankommt.',
+  },
+  {
+    href: '/blog/app-muendlich-abfragen/',
+    title: 'App zum lauten Abfragen: Warum Sprechen besser wirkt als Klicken',
+    text: 'Die meisten Karteikarten-Apps fragen dich nie wirklich — du schätzt dich nur selbst ein. Was die Forschung zum lauten Antworten sagt.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${SITE.url}/blog/#collection`,
+  name: 'Blog',
+  url: `${SITE.url}/blog/`,
+  isPartOf: { '@id': `${SITE.url}/#website` },
+});
+---
+
+<BaseLayout
+  title="Blog: Lern-Apps im Vergleich"
+  description="Ehrliche Vergleiche und Einordnungen rund um Karteikarten-Apps, KI beim Lernen und wirksame Lernmethoden — für Studierende, die die richtige App für sich suchen."
+  breadcrumbs={[{ label: 'Blog', href: '/blog/' }]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap">
+    <p class="eyebrow">Blog</p>
+    <h1>Lern-Apps im Vergleich</h1>
+    <p class="lead intro">
+      Bevor du dich für eine App entscheidest, mit der du monatelang lernst,
+      lohnt sich ein ehrlicher Blick auf die Alternativen. Hier ordnen wir
+      ein, was Anki, Quizlet und Co. wirklich können — und wo eine App wie
+      Octa etwas anders macht.
+    </p>
+
+    <div class="grid">
+      {
+        ARTICLES.map((a) => (
+          <div class="card card--link">
+            <h3><a class="card__link" href={a.href}>{a.title}</a></h3>
+            <p>{a.text}</p>
+            <p class="card__more">Weiterlesen →</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="note">
+      <p>
+        Alle Angaben zu anderen Apps stammen aus deren offiziellen Store-
+        Einträgen und Webseiten, Stand des jeweiligen Artikels. Preise und
+        Funktionen können sich ändern — für die aktuellsten Infos lohnt
+        immer ein Blick in den jeweiligen App Store.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 44rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .card__more {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+</style>

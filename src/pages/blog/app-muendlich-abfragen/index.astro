@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../components/OctaCtaBox.astro';
+import { OCTA, SITE } from '../../../site';
+
+const HERO_SLIDES = [
+  {
+    src: '/img/mockups/app/andere-test.webp',
+    alt: 'Octa-Karteikarte mit Button "Test yourself" — die Antwort wird laut gesprochen',
+    caption: '"Test yourself" — du sprichst die Antwort laut ein',
+    width: 752,
+    height: 1559,
+  },
+  {
+    src: '/img/mockups/app/andere-tribes.webp',
+    alt: 'Octa-Tribes-Bildschirm mit wöchentlicher Bestenliste von Lerngruppen',
+    caption: 'Tribes — Lerngruppen, in denen dein Fortschritt sichtbar ist',
+    width: 752,
+    height: 1559,
+  },
+];
+
+const FAQ = [
+  {
+    q: 'Warum ist lautes Antworten besser als stilles Erinnern?',
+    a: 'Bei stillem Erinnern reicht oft schon ein vages Gefühl von "kenn ich" aus, um sich selbst als richtig einzuschätzen — ohne die Antwort wirklich vollständig zu Ende zu denken. Sobald du laut antwortest, merkst du sofort, wenn ein Teil fehlt oder unklar bleibt, weil du ihn tatsächlich formulieren musst.',
+  },
+  {
+    q: 'Reicht es nicht, die Antwort im Kopf zu Ende zu denken?',
+    a: 'Das ist schon deutlich besser als reines Wiedererkennen — aber lautes oder schriftliches Formulieren zwingt zu einer Präzision, die rein gedankliches Abrufen oft nicht hat. Der sogenannte Produktionseffekt zeigt, dass aktiv Produziertes (laut gesprochen oder geschrieben) besser erinnert wird als nur gedanklich Durchgegangenes.',
+  },
+  {
+    q: 'Brauche ich dafür eine spezielle App, oder reicht auch klassisches Karteikarten-Üben?',
+    a: 'Grundsätzlich reicht auch eine klassische Karteikarte, wenn du diszipliniert genug bist, die Antwort tatsächlich laut auszusprechen, bevor du umdrehst. Eine App mit eingebauter Spracherkennung nimmt dir ab, diese Disziplin durchzuhalten, und gibt zusätzlich Feedback dazu, ob deine gesprochene Antwort vollständig war.',
+  },
+  {
+    q: 'Funktioniert das auch, wenn ich woanders nicht laut sprechen kann?',
+    a: 'Schriftliches Formulieren aus dem Kopf — ein leeres Blatt, auf das du die Antwort schreibst, bevor du nachschaust — nutzt denselben Mechanismus und funktioniert überall dort, wo lautes Sprechen nicht geht.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE.url}/blog/app-muendlich-abfragen/#article`,
+      headline: 'App zum lauten Abfragen: Warum Sprechen besser wirkt als Klicken',
+      description:
+        'Die meisten Karteikarten-Apps fragen dich nie wirklich — du schätzt dich nur selbst ein. Was die Forschung zum lauten Antworten sagt.',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: `${SITE.url}/blog/app-muendlich-abfragen/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/blog/app-muendlich-abfragen/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="App zum lauten Abfragen: Warum Sprechen besser wirkt als Klicken"
+  description="Die meisten Karteikarten-Apps fragen dich nie wirklich — du schätzt dich nur selbst ein. Was die Forschung zum lauten Antworten sagt und wie eine App das nutzen kann."
+  breadcrumbs={[
+    { label: 'Blog', href: '/blog/' },
+    { label: 'App zum lauten Abfragen', href: '/blog/app-muendlich-abfragen/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Blog · Lernmethode</p>
+    <h1>App zum lauten Abfragen: Warum Sprechen besser wirkt als Klicken</h1>
+    <p class="lead intro">
+      Die meisten Karteikarten-Apps fragen dich streng genommen nie wirklich
+      ab. Du siehst die Frage, denkst dir kurz eine Antwort, drehst um und
+      schätzt selbst ein, ob du "richtig" lagst. Genau in diesem letzten
+      Schritt schleicht sich die größte Fehlerquelle beim Selbstlernen ein.
+    </p>
+
+    <h2 class="rule rule--tight">Das Problem mit der Selbsteinschätzung</h2>
+    <p class="intro">
+      Ein vages "kenn ich" reicht oft schon aus, um eine Karte für sich als
+      "gewusst" abzuhaken — ohne die Antwort tatsächlich bis zum Ende gedacht
+      zu haben. Diese Selbstüberschätzung ist gut belegt: Wiederlesen fühlt
+      sich im Moment erfolgreicher an, als es tatsächlich ist, weil
+      Vertrautheit mit dem Stoff leicht mit echtem Können verwechselt wird.
+      Sobald du gezwungen bist, eine Antwort tatsächlich zu formulieren —
+      laut oder schriftlich —, wird sofort sichtbar, ob sie vollständig ist
+      oder nicht.
+    </p>
+
+    <h2 class="rule rule--tight">Was die Forschung dazu sagt</h2>
+    <p class="intro">
+      Der sogenannte Produktionseffekt beschreibt, dass Inhalte, die aktiv
+      produziert werden — laut ausgesprochen oder geschrieben, statt nur
+      gedanklich durchgegangen oder still gelesen —, sich nachweislich besser
+      im Gedächtnis verankern als passiv aufgenommene oder nur innerlich
+      wiederholte Inhalte (MacLeod u. a., Journal of Experimental
+      Psychology: Learning, Memory, and Cognition). Kombiniert mit dem
+      allgemeineren <a href="/lernmethoden/aktives-erinnern/">Testeffekt</a>{' '}
+      — aktives Abrufen wirkt stärker als passives Wiederlesen — ergibt sich
+      ein klares Bild: Je aktiver und konkreter der Abrufversuch, desto
+      stärker der Lerneffekt.
+    </p>
+
+    <div class="note">
+      <p>
+        <strong>Kurz gesagt:</strong> Stilles Erkennen &lt; gedankliches
+        Erinnern &lt; laut oder schriftlich formulierte Antwort. Jede Stufe
+        verlangt mehr aktive Anstrengung — und genau die Anstrengung ist es,
+        die den Gedächtnispfad stärkt.
+      </p>
+    </div>
+
+    <h2 class="rule rule--tight">Wie eine App das umsetzen kann</h2>
+    <p class="intro">
+      Die meisten Karteikarten-Apps — auch die bekanntesten — verlangen
+      beim Abfragen einen Klick oder eine Selbsteinschätzung, keine
+      tatsächlich produzierte Antwort. {OCTA.name} geht diesen Schritt weiter:
+      Der „Test yourself"-Button verlangt eine gesprochene Antwort, bevor die
+      Lösung überhaupt erscheint, und gibt echtes Feedback dazu, was
+      vollständig war und was fehlte — statt dir nur die Selbsteinschätzung
+      zu überlassen.
+    </p>
+
+    <OctaCtaBox
+      id="abfragen-cta-slides"
+      title="Wirklich abgefragt statt nur erkannt"
+      storeLink={OCTA.appStoreUrl}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Erst den Lerntyp-Test machen"
+      secondaryHref="/tools/lerntyp-test/"
+      slides={HERO_SLIDES}
+      intervalMs={4200}
+    >
+      Lade dein erstes Kapitel hoch und probier den Unterschied selbst aus —
+      kostenlos, aktuell für iPhone und iPad.
+    </OctaCtaBox>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Quellen</h2>
+    <ul class="quellen">
+      <li>
+        MacLeod, C. M., Gopie, N., Hourihan, K. L., Neary, K. R. &amp;
+        Ozubko, J. D. (2010): <em>The Production Effect: Delineating a Phenomenon.</em>{' '}
+        Journal of Experimental Psychology: Learning, Memory, and Cognition,
+        36 (3), S. 671–685.
+      </li>
+      <li>
+        Roediger, H. L. &amp; Karpicke, J. D. (2006): <em
+          >The Power of Testing Memory: Basic Research and Implications for
+          Educational Practice.</em
+        > Perspectives on Psychological Science, 1 (3), S. 181–210.
+      </li>
+    </ul>
+    <p class="quellen-hint">
+      Zur Einordnung von Active Recall im Detail:{' '}
+      <a href="/lernmethoden/aktives-erinnern/">Aktives Erinnern</a>. Mehr
+      Vergleiche: <a href="/blog/">alle Blog-Artikel</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .note {
+    background: var(--bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.3rem 1.5rem;
+    max-width: 70ch;
+    margin: 1.2rem 0 1.8rem;
+  }
+
+  .note p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen {
+    max-width: 70ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen li {
+    margin-bottom: 0.8rem;
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

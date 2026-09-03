@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import OctaCtaBox from '../../../components/OctaCtaBox.astro';
+import { OCTA, SITE } from '../../../site';
+
+const HERO_SLIDES = [
+  {
+    src: '/img/mockups/app/andere-karte.webp',
+    alt: 'Octa-Karteikarte, generiert aus hochgeladenen Unterlagen',
+    caption: 'Karten aus deinem eigenen Material, nicht von Hand getippt',
+    width: 752,
+    height: 1559,
+  },
+  {
+    src: '/img/mockups/app/andere-tribes.webp',
+    alt: 'Octa-Tribes-Bildschirm mit wöchentlicher Bestenliste von Lerngruppen',
+    caption: 'Tribes — Lerngruppen, in denen dein Fortschritt sichtbar ist',
+    width: 752,
+    height: 1559,
+  },
+];
+
+const EBENEN = [
+  {
+    titel: 'KI erzeugt die Karten',
+    text: 'Die App liest hochgeladenes Material (PDF, Folien, Foto, eigener Text) und formuliert daraus selbstständig Frage-Antwort-Paare — statt dass du jede Karte von Hand eintippst. Das spart die meiste Zeit, weil Kartenerstellung normalerweise der größte manuelle Aufwand ist.',
+  },
+  {
+    titel: 'KI erklärt bei Fehlern',
+    text: 'Statt nur "richtig" oder "falsch" zu markieren, erklärt ein KI-Tutor bei einer falschen oder unvollständigen Antwort ausführlich, warum die richtige Lösung stimmt — angepasst an das, was du konkret nicht wusstest, statt einer generischen Musterlösung.',
+  },
+  {
+    titel: 'KI passt die Wiederholung an',
+    text: 'Manche Systeme nutzen KI, um vorherzusagen, wann du eine Karte vermutlich vergisst, und legen die Wiederholung genau davor — eine Weiterentwicklung klassischer Spaced-Repetition-Algorithmen, die eher auf festen Formeln als auf individueller Vorhersage beruhen.',
+  },
+];
+
+const FAQ = [
+  {
+    q: 'Ist "KI-Karteikarten-App" nur ein Marketing-Begriff?',
+    a: 'Teils. Der Begriff wird für sehr unterschiedliche Dinge verwendet — von "KI wandelt Notizen in Karten um" bis zu "KI erklärt dir jeden Fehler einzeln". Lohnt sich, konkret nachzuschauen, was die jeweilige App tatsächlich automatisiert, statt sich auf das Label allein zu verlassen.',
+  },
+  {
+    q: 'Ersetzt KI das eigentliche Lernen?',
+    a: 'Nein — sie ersetzt die Vorarbeit (Karten schreiben, Struktur bauen), nicht das Lernen selbst. Das Abrufen aus dem eigenen Kopf bleibt weiterhin an dir; die KI sorgt höchstens dafür, dass du dahin schneller kommst und weniger Zeit mit Organisation statt mit Lernen verbringst.',
+  },
+  {
+    q: 'Sind KI-generierte Karten genauso gut wie selbst geschriebene?',
+    a: 'Wenn die KI mit deinem eigenen Material arbeitet — nicht mit generischem Wissen von irgendwoher —, bilden die Karten exakt das ab, was in deiner Vorlesung oder deinem Skript steht. Der entscheidende Unterschied zu generischen, vorgefertigten Decks ist also nicht "von Mensch oder KI geschrieben", sondern "aus deinem Stoff oder aus fremdem Stoff".',
+  },
+  {
+    q: 'Braucht eine App mit KI-Kartenerstellung Internet?',
+    a: 'In der Regel ja, zumindest für die Erstellung und die Auswertung gesprochener Antworten — die eigentliche KI-Verarbeitung läuft meist über einen Server, nicht lokal auf dem Gerät.',
+  },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE.url}/blog/karteikarten-app-ki/#article`,
+      headline: 'Karteikarten-App mit KI: Was bringt das wirklich?',
+      description:
+        '"KI" steht auf vielen Lern-Apps drauf, aber es steckt ganz Unterschiedliches dahinter. Eine ehrliche Einordnung, worauf es bei KI-Karteikarten-Apps ankommt.',
+      inLanguage: 'de-DE',
+      isAccessibleForFree: true,
+      url: `${SITE.url}/blog/karteikarten-app-ki/`,
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/blog/karteikarten-app-ki/#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title="Karteikarten-App mit KI: Was bringt das wirklich?"
+  description={'"KI" steht auf vielen Lern-Apps drauf — aber es steckt ganz Unterschiedliches dahinter. Eine ehrliche Einordnung, worauf es bei KI-Karteikarten-Apps ankommt.'}
+  breadcrumbs={[
+    { label: 'Blog', href: '/blog/' },
+    { label: 'Karteikarten-App mit KI', href: '/blog/karteikarten-app-ki/' },
+  ]}
+  wide
+>
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+  <div class="wrap schema-page">
+    <p class="eyebrow">Blog · Einordnung</p>
+    <h1>Karteikarten-App mit KI: Was bringt das wirklich?</h1>
+    <p class="lead intro">
+      "KI" steht mittlerweile auf fast jeder Lern-App-Beschreibung — aber
+      dahinter steckt ganz Unterschiedliches. Bevor du dich für eine App
+      entscheidest, lohnt sich ein genauerer Blick darauf, was "KI" in dem
+      jeweiligen Fall überhaupt automatisiert.
+    </p>
+
+    <h2 class="rule rule--tight">Drei Ebenen, auf denen KI beim Lernen ansetzt</h2>
+    <div class="grid">
+      {
+        EBENEN.map((e) => (
+          <div class="card">
+            <h3>{e.titel}</h3>
+            <p>{e.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="rule rule--tight">Worauf du achten solltest</h2>
+    <p class="intro">
+      Die wichtigste Unterscheidung ist nicht, <em>ob</em> eine App KI
+      einsetzt, sondern <em>wofür</em>. Eine Funktion, die eigene Notizen in
+      Karten umwandelt, spart Zeit beim Erstellen. Ein KI-Tutor, der Fehler
+      erklärt, hilft beim eigentlichen Verstehen. Beides ist sinnvoll, löst
+      aber unterschiedliche Probleme — und nicht jede App, die "KI" im
+      Namen trägt, bietet beides.
+    </p>
+    <p class="intro">
+      {OCTA.name} setzt an beiden Stellen an: {OCTA.pitch} Bekommst du eine
+      Karte falsch oder nur halb richtig, erklärt der KI-Tutor ausführlich,
+      warum die Lösung stimmt — und du kannst ihm auch direkte Fragen zu
+      deinem eigenen Material stellen, ähnlich wie einem Tutor, der deine
+      Unterlagen tatsächlich gelesen hat.
+    </p>
+
+    <OctaCtaBox
+      id="ki-cta-slides"
+      title="KI, die aus deinem Material arbeitet"
+      storeLink={OCTA.appStoreUrl}
+      primaryLabel={`${OCTA.name} im App Store ansehen`}
+      secondaryLabel="Erst den Lerntyp-Test machen"
+      secondaryHref="/tools/lerntyp-test/"
+      slides={HERO_SLIDES}
+      intervalMs={4200}
+    >
+      Lade dein erstes Kapitel hoch und sieh in wenigen Minuten, was daraus
+      wird — kostenlos zum Ausprobieren, aktuell für iPhone und iPad.
+    </OctaCtaBox>
+
+    <h2 class="rule rule--tight">Häufige Fragen</h2>
+    <div class="faq">
+      {
+        FAQ.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="quellen-hint">
+      Mehr Vergleiche: <a href="/blog/">alle Blog-Artikel</a>. Zur Lerntheorie
+      dahinter: <a href="/lernmethoden/aktives-erinnern/">Active Recall</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 70ch;
+  }
+
+  .faq {
+    max-width: 70ch;
+    margin-bottom: 2rem;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::before {
+    content: '+';
+    color: var(--accent);
+    font-weight: 800;
+    flex: none;
+    line-height: 1.5;
+  }
+
+  .faq details[open] summary::before {
+    content: '–';
+  }
+
+  .faq details p {
+    margin: 0.6rem 0 0 1.4rem;
+    color: var(--text-muted);
+  }
+
+  .quellen-hint {
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+    max-width: 70ch;
+  }
+</style>

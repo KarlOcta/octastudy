@@ -235,6 +235,10 @@ const jsonLd = JSON.stringify({
         ))
       }
     </div>
+    <p class="faq-more">
+      Ausführlicher im Vergleich: <a href="/blog/anki-alternative/">Anki-Alternative</a>{' '}
+      und <a href="/blog/quizlet-alternative/">Quizlet-Alternative</a>.
+    </p>
   </section>
 
   <section class="wrap">
@@ -446,6 +450,13 @@ const jsonLd = JSON.stringify({
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
+  }
+
+  .faq-more {
+    max-width: 50rem;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    color: var(--text-subtle);
   }
 
   .faq__item {
