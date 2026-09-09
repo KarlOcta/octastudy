@@ -83,6 +83,51 @@ const FEATURES = [
   },
 ];
 
+/** Wiedererkennbare Momente statt abstrakter Problembeschreibung. Stehen
+ *  bewusst vor den Features: Erst der Grund, dann die Mechanik. */
+const PROBLEM = [
+  'Du liest das Kapitel zum dritten Mal. Es kommt dir alles bekannt vor. Ob du es erklären könntest, hast du nie ausprobiert.',
+  'Du drehst die Karteikarte um, nickst innerlich „wusste ich" und legst sie auf den Fertig-Stapel. Ausgesprochen hast du die Antwort nie.',
+  'Zwei Tage vor der Prüfung merkst du, dass die Hälfte vom Anfang wieder weg ist. Also fängst du nochmal von vorne an.',
+];
+
+/** Der Mechanismus in drei Schritten — die ausführliche Feature-Liste
+ *  kommt später als Beleg, nicht als Einstieg. */
+const STEPS = [
+  {
+    title: 'Du lädst hoch, was du ohnehin hast',
+    text: 'Vorlesungsfolien, ein Skript, ein Foto deiner Notizen. Octa liest das und baut daraus Karteikarten. Du tippst keine einzige Frage selbst.',
+  },
+  {
+    title: 'Du wirst abgefragt — laut',
+    text: 'Die Lösung erscheint erst, wenn du geantwortet hast: gesprochen, nicht angeklickt. Danach hörst du, was gefehlt hat. Wer eine mündliche Prüfung vor sich hat, übt damit nebenbei genau die Situation, um die es dort geht.',
+  },
+  {
+    title: 'Die Wiederholung kommt, wenn sie nötig ist',
+    text: 'Du gibst deinen Prüfungstermin und deine Wunschnote an. Octa verteilt die Wiederholungen darauf — jede Karte kommt zurück, kurz bevor du sie vergessen hättest.',
+  },
+];
+
+/** Antwort auf den Einwand, den heute jeder Besucher mitbringt. */
+const CONTRA = [
+  {
+    title: 'Es weiß nicht, was du vergessen hast',
+    text: 'ChatGPT führt kein Protokoll darüber, welche Karte du letzte Woche nicht konntest, und meldet sich nicht, wenn sie wieder fällig wäre. Du müsstest selbst wissen, was wann dran ist — also genau die Arbeit machen, die du abgeben wolltest.',
+  },
+  {
+    title: 'Du tippst, statt zu sprechen',
+    text: 'Getipptes darf ungefähr bleiben, und bewertet hast du dich am Ende wieder selbst. Genau die Selbsteinschätzung ist aber die Stelle, an der Lernen kippt.',
+  },
+  {
+    title: 'Dein Stoff ist dort nur ein Anhang',
+    text: 'Jede neue Sitzung beginnt damit, dass du den Kontext erneut einfügst. Es gibt keinen Bestand, gegen den systematisch geprüft wird, und keinen Überblick darüber, wo du schwach bist.',
+  },
+  {
+    title: 'Es gibt keinen Termin und keine Gruppe',
+    text: 'Kein Plan, der auf deine Prüfung zuläuft, und niemand, dem auffällt, dass du drei Tage nicht da warst.',
+  },
+];
+
 const FAQ = [
   {
     q: 'Auf welchen Geräten läuft Octa?',
@@ -103,6 +148,10 @@ const FAQ = [
   {
     q: 'Was ist der Unterschied zu Anki oder Quizlet?',
     a: 'Anki und Quizlet basieren auf Karten, die du (oder jemand anders) bereits von Hand geschrieben hat. Octa baut die Karten aus deinen eigenen Unterlagen, ergänzt lautes Selbst-Abfragen statt bloßem Umdrehen der Karte, und setzt die Wiederholungen automatisch für dich an, statt dir die Planung manuell zu überlassen.',
+  },
+  {
+    q: 'Warum nicht einfach ChatGPT zum Abfragen nutzen?',
+    a: 'Für eine einzelne Frage funktioniert das gut. Was fehlt, ist alles, was daraus ein Lernsystem macht: ChatGPT merkt sich nicht, welche Karte du letzte Woche nicht konntest, terminiert keine Wiederholungen, lässt dich tippen statt sprechen und kennt weder deinen Prüfungstermin noch deinen Stoff als dauerhaften Bestand. Du müsstest die Organisation weiterhin selbst übernehmen.',
   },
   {
     q: 'Was macht der KI-Tutor genau?',
@@ -138,9 +187,10 @@ const jsonLd = JSON.stringify({
         <p class="eyebrow">Für alle, die den Stoff wirklich behalten müssen</p>
         <h1>Stoff, den du <span class="hl">abrufen</span> kannst — nicht nur einmal gelesen hast</h1>
         <p class="lead">
-          {OCTA.pitch} Ein Lernplan verteilt die Wiederholungen so, dass sie
-          hängen bleiben — und eine Tribe aus anderen Studierenden sorgt
-          dafür, dass du auch wirklich dranbleibst.
+          Drei Wochen gelernt, alles mehrfach gelesen — und in der Prüfung
+          kommst du trotzdem nicht drauf. Das liegt selten an zu wenig Zeit.
+          Es liegt daran, dass sich Wiedererkennen anfühlt wie Können.{' '}
+          {OCTA.name} fragt dich so lange ab, bis du den Unterschied merkst.
         </p>
         <div class="btn-row">
           <a class="btn" href={storeLink} rel="noopener">Octa im App Store ansehen</a>
@@ -155,22 +205,14 @@ const jsonLd = JSON.stringify({
   </section>
 
   <section class="wrap">
-    <h2 class="rule">Was Octa wirklich kann</h2>
-    <p class="section-intro">
-      Alles zusammen im Einsatz — statt mehrerer separater Apps, die man
-      nebeneinander benutzen muss.
-    </p>
-    <div class="grid">
-      {
-        FEATURES.map((f) => (
-          <div class="card">
-            <div class={`card__icon card__icon--${f.tint}`} set:html={f.icon} />
-            <h3>{f.title}</h3>
-            <p>{f.text}</p>
-          </div>
-        ))
-      }
+    <h2 class="rule">Kennst du das?</h2>
+    <div class="beats">
+      {PROBLEM.map((t) => <p class="beat">{t}</p>)}
     </div>
+    <p class="beats__fazit">
+      Der gemeinsame Nenner: Geprüft hat dich nie jemand — du hast dich immer
+      nur selbst eingeschätzt. Genau an dieser Stelle kippt Lernen.
+    </p>
   </section>
 
   <section class="wrap">
@@ -206,6 +248,23 @@ const jsonLd = JSON.stringify({
   </section>
 
   <section class="wrap">
+    <h2 class="rule">Wie Octa das macht</h2>
+    <ol class="steps">
+      {
+        STEPS.map((s, i) => (
+          <li class="step">
+            <span class="step__nr">{i + 1}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="wrap">
     <div class="octa-cta">
       <h2>Warum wir es so gebaut haben</h2>
       <p>
@@ -222,6 +281,48 @@ const jsonLd = JSON.stringify({
         <a class="btn" href={storeLink} rel="noopener">Octa im App Store ansehen</a>
       </div>
     </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Alles, was drinsteckt</h2>
+    <p class="section-intro">
+      Alles zusammen in einer App — statt mehrerer Werkzeuge, die man
+      nebeneinander benutzen muss.
+    </p>
+    <div class="grid">
+      {
+        FEATURES.map((f) => (
+          <div class="card">
+            <div class={`card__icon card__icon--${f.tint}`} set:html={f.icon} />
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">„Das kann ich mir doch von ChatGPT abfragen lassen"</h2>
+    <p class="section-intro">
+      Kannst du — und für eine einzelne Frage ist es gut darin. Was fehlt, ist
+      alles, was aus Abfragen ein Lernsystem macht.
+    </p>
+    <div class="grid">
+      {
+        CONTRA.map((c) => (
+          <div class="card">
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="contra__fazit">
+      ChatGPT beantwortet jede Frage, die du stellst. Ein Lernsystem stellt dir
+      die Fragen, die du nicht stellen würdest — weil du nicht weißt, dass du
+      sie nicht kannst.
+    </p>
   </section>
 
   <section class="wrap">
@@ -266,6 +367,73 @@ const jsonLd = JSON.stringify({
     border-bottom: 1px solid var(--border);
     margin-bottom: 2.5rem;
     padding-block: 0.5rem 2.5rem;
+  }
+
+  /* Problem-Abschnitt: drei wiedererkennbare Momente. Bewusst schlichter
+     als die Feature-Karten — sie sollen wie Beobachtungen wirken, nicht
+     wie Produktnutzen. */
+  .beats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.2rem;
+  }
+
+  .beat {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-pink);
+    color: var(--text-muted);
+  }
+
+  .beats__fazit {
+    max-width: 44rem;
+    margin-top: 1.6rem;
+    font-weight: 600;
+  }
+
+  /* Mechanismus in drei nummerierten Schritten. */
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.4rem;
+    max-width: 48rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .step__nr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-strong);
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .step h3 {
+    margin: 0.2rem 0 0.35rem;
+  }
+
+  .step p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .contra__fazit {
+    max-width: 44rem;
+    margin-top: 1.6rem;
+    font-weight: 600;
   }
 
   .hero__inner {

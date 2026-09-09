@@ -83,6 +83,51 @@ const FEATURES = [
   },
 ];
 
+/** Recognisable moments instead of an abstract problem statement. These
+ *  deliberately come before the features: first the reason, then the how. */
+const PROBLEM = [
+  "You read the chapter for the third time. All of it looks familiar. Whether you could explain it, you never actually tested.",
+  "You flip the flashcard, nod to yourself — “knew that” — and move it to the done pile. You never said the answer out loud.",
+  "Two days before the exam you notice half of the early material is gone again. So you start over from the beginning.",
+];
+
+/** The mechanism in three steps — the full feature list comes later as
+ *  evidence, not as the opening. */
+const STEPS = [
+  {
+    title: 'You upload what you already have',
+    text: 'Lecture slides, a handout, a photo of your notes. Octa reads it and builds flashcards from it. You never type a single question yourself.',
+  },
+  {
+    title: 'You get tested — out loud',
+    text: "The answer only appears once you've given yours: spoken, not tapped. Then you hear what was missing. If you have an oral exam coming up, you're rehearsing exactly that situation along the way.",
+  },
+  {
+    title: 'Reviews come back when they need to',
+    text: "You give Octa your exam date and the grade you're aiming for. It spreads the reviews across that time — every card returns just before you'd have forgotten it.",
+  },
+];
+
+/** Answers the objection every visitor now brings with them. */
+const CONTRA = [
+  {
+    title: "It doesn't know what you forgot",
+    text: "ChatGPT keeps no record of which card you couldn't do last week, and it won't come back to you when that card is due again. You'd have to know yourself what to review and when — which is exactly the work you wanted to hand over.",
+  },
+  {
+    title: 'You type instead of speaking',
+    text: 'Typed answers are allowed to stay vague, and in the end you grade yourself again. That self-assessment is precisely the point where studying goes wrong.',
+  },
+  {
+    title: 'Your material is only an attachment',
+    text: "Every new session starts with pasting the context back in. There's no body of material to be tested against systematically, and no picture of where you're weak.",
+  },
+  {
+    title: "There's no deadline and no group",
+    text: "No plan running toward your exam, and nobody who notices that you haven't shown up for three days.",
+  },
+];
+
 const FAQ = [
   {
     q: 'What devices does Octa run on?',
@@ -103,6 +148,10 @@ const FAQ = [
   {
     q: 'Is this different from just using Anki or Quizlet?',
     a: "Anki and Quizlet are built around cards you (or someone else) already wrote by hand. Octa builds the cards from your own material, adds spoken self-testing instead of just flipping a card, and times the reviews for you instead of leaving spacing up to a manual schedule.",
+  },
+  {
+    q: "Why not just use ChatGPT to quiz me?",
+    a: "For a single question it works well. What's missing is everything that turns quizzing into a study system: ChatGPT doesn't remember which card you couldn't do last week, doesn't schedule reviews, lets you type instead of speak, and knows neither your exam date nor your material as a lasting body of work. The organising would still be on you.",
   },
   {
     q: 'What does the AI tutor actually do?',
@@ -139,9 +188,10 @@ const jsonLd = JSON.stringify({
         <p class="eyebrow">For students who need to actually retain it</p>
         <h1>Material you <span class="hl">recall</span>, not just material you read</h1>
         <p class="lead">
-          {OCTA.pitchEn} A study plan spaces the reviews out so it sticks —
-          and a Tribe of other students makes sure you actually show up for
-          it.
+          Three weeks of studying, everything read several times — and in the
+          exam it still won't come. That's rarely a matter of too little time.
+          It's that recognising something feels exactly like knowing it.{' '}
+          {OCTA.name} keeps testing you until you can tell the difference.
         </p>
         <div class="btn-row">
           <a class="btn" href={storeLink} rel="noopener">Get Octa on the App Store</a>
@@ -156,22 +206,14 @@ const jsonLd = JSON.stringify({
   </section>
 
   <section class="wrap">
-    <h2 class="rule">What Octa actually does</h2>
-    <p class="section-intro">
-      All of this working together — not a handful of separate apps bolted
-      onto each other.
-    </p>
-    <div class="grid">
-      {
-        FEATURES.map((f) => (
-          <div class="card">
-            <div class={`card__icon card__icon--${f.tint}`} set:html={f.icon} />
-            <h3>{f.title}</h3>
-            <p>{f.text}</p>
-          </div>
-        ))
-      }
+    <h2 class="rule">Sound familiar?</h2>
+    <div class="beats">
+      {PROBLEM.map((t) => <p class="beat">{t}</p>)}
     </div>
+    <p class="beats__fazit">
+      The common thread: nobody ever actually tested you — you only ever
+      assessed yourself. That is the exact point where studying goes wrong.
+    </p>
   </section>
 
   <section class="wrap">
@@ -207,6 +249,23 @@ const jsonLd = JSON.stringify({
   </section>
 
   <section class="wrap">
+    <h2 class="rule">How Octa does it</h2>
+    <ol class="steps">
+      {
+        STEPS.map((s, i) => (
+          <li class="step">
+            <span class="step__nr">{i + 1}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="wrap">
     <div class="octa-cta">
       <h2>Why we built it this way</h2>
       <p>
@@ -223,6 +282,48 @@ const jsonLd = JSON.stringify({
         <a class="btn" href={storeLink} rel="noopener">Get Octa on the App Store</a>
       </div>
     </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Everything that's in it</h2>
+    <p class="section-intro">
+      All of this working together in one app — not a handful of separate
+      tools bolted onto each other.
+    </p>
+    <div class="grid">
+      {
+        FEATURES.map((f) => (
+          <div class="card">
+            <div class={`card__icon card__icon--${f.tint}`} set:html={f.icon} />
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">“I can just get ChatGPT to quiz me”</h2>
+    <p class="section-intro">
+      You can — and for a single question it's good at it. What's missing is
+      everything that turns quizzing into a study system.
+    </p>
+    <div class="grid">
+      {
+        CONTRA.map((c) => (
+          <div class="card">
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="contra__fazit">
+      ChatGPT answers every question you ask it. A study system asks you the
+      questions you wouldn't think to ask — because you don't know that you
+      can't answer them.
+    </p>
   </section>
 
   <section class="wrap">
@@ -261,6 +362,72 @@ const jsonLd = JSON.stringify({
     border-bottom: 1px solid var(--border);
     margin-bottom: 2.5rem;
     padding-block: 0.5rem 2.5rem;
+  }
+
+  /* Problem section: three recognisable moments. Deliberately plainer than
+     the feature cards — they should read as observations, not as benefits. */
+  .beats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.2rem;
+  }
+
+  .beat {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-pink);
+    color: var(--text-muted);
+  }
+
+  .beats__fazit {
+    max-width: 44rem;
+    margin-top: 1.6rem;
+    font-weight: 600;
+  }
+
+  /* The mechanism as three numbered steps. */
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.4rem;
+    max-width: 48rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .step__nr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-strong);
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .step h3 {
+    margin: 0.2rem 0 0.35rem;
+  }
+
+  .step p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .contra__fazit {
+    max-width: 44rem;
+    margin-top: 1.6rem;
+    font-weight: 600;
   }
 
   .hero__inner {
