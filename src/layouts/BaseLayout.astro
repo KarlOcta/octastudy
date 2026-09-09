@@ -47,6 +47,9 @@ const fullTitle =
 const ogLocale = lang === 'en' ? 'en_US' : 'de_DE';
 const skipLinkLabel = lang === 'en' ? 'Skip to content' : 'Zum Inhalt springen';
 const homeLabel = lang === 'en' ? 'Home' : 'Startseite';
+/* Muss der Sprache folgen — sonst führt der Breadcrumb "Home" auf
+   englischen Seiten auf die deutsche Startseite. */
+const homeHref = lang === 'en' ? '/en/' : '/';
 const breadcrumbLabel = lang === 'en' ? 'Breadcrumb' : 'Brotkrumen-Navigation';
 
 const containerClass = wide ? 'wrap' : 'prose';
@@ -67,7 +70,7 @@ if (breadcrumbs.length > 0) {
   graph.push({
     '@type': 'BreadcrumbList',
     '@id': `${canonical}#breadcrumb`,
-    itemListElement: [{ label: 'Startseite', href: '/' }, ...breadcrumbs].map(
+    itemListElement: [{ label: homeLabel, href: homeHref }, ...breadcrumbs].map(
       (crumb, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -314,7 +317,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
             <nav class="breadcrumb" aria-label={breadcrumbLabel}>
               <ol>
                 <li>
-                  <a href="/">{homeLabel}</a>
+                  <a href={homeHref}>{homeLabel}</a>
                 </li>
                 {breadcrumbs.map((crumb, i) =>
                   i === breadcrumbs.length - 1 ? (

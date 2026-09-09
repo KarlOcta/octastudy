@@ -189,15 +189,20 @@ export const FOOTER_NAV: NavItem[] = [
 ];
 
 /**
- * Englische Navigation. Bewusst schlank: Solange nur einzelne Seiten (z. B.
- * der Lerntyp-Test) uebersetzt sind, verlinkt die Hauptnavigation nicht auf
- * deutschsprachige Unterseiten, die ein englischsprachiger Besucher nicht
- * lesen kann. Wird erweitert, sobald mehr /en/-Seiten existieren.
+ * Englische Navigation. Bewusst schlank: Sie verlinkt ausschliesslich auf
+ * uebersetzte /en/-Seiten, damit englischsprachige Besucher nicht auf
+ * deutschen Unterseiten landen, die sie nicht lesen koennen. Impressum und
+ * Datenschutz bleiben deutsch — das sind die rechtlichen Pflichtangaben.
+ * Wird erweitert, sobald weitere /en/-Seiten existieren.
  */
-export const NAV_EN: NavItem[] = [{ label: 'The App', href: '/en/app/' }];
+export const NAV_EN: NavItem[] = [
+  { label: 'The App', href: '/en/app/' },
+  { label: 'Study Type Test', href: '/en/tools/lerntyp-test/' },
+];
 
 export const FOOTER_NAV_EN: NavItem[] = [
   { label: 'The App', href: '/en/app/' },
+  { label: 'Study Type Test', href: '/en/tools/lerntyp-test/' },
   { label: 'Imprint', href: '/impressum/' },
   { label: 'Privacy Policy', href: '/datenschutz/' },
 ];

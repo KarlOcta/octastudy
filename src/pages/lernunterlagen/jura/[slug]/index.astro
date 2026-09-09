@@ -188,7 +188,7 @@ const jsonLd = JSON.stringify({
           <div class="related-grid">
             {relatedEntries.map((r) => (
               <a class="related-card" href={`/lernunterlagen/jura/${r.slug}/`}>
-                <span class="related-card__label">{r.keyword.replace(/\s*Schema$/, '')}</span>
+                <span class="related-card__label">{r.linkLabel ?? r.keyword.replace(/\s*Schema$/, '')}</span>
                 <span class="related-card__sub">{r.teilgebiet}</span>
               </a>
             ))}

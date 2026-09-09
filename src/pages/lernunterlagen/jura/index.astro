@@ -18,8 +18,18 @@ const RECHTSGEBIETE = [
   },
 ];
 
+/**
+ * Ankertext für interne Links auf eine Schemaseite.
+ *
+ * Bevorzugt das optionale Feld `linkLabel`, das die Tat beim Namen nennt
+ * ("Betrug (§ 263 StGB)") statt nur die Paragraphennummer. Hintergrund: Die
+ * Search-Console-Daten zeigten, dass Seiten auf nummernbasierte Suchanfragen
+ * ("schema 263") deutlich besser ranken als auf wortbasierte ("betrug
+ * schema") — plausibel, weil bis dahin *jeder* interne Ankertext nur die
+ * Nummer enthielt. Ohne `linkLabel` bleibt es beim bisherigen Verhalten.
+ */
 function shortLabel(entry) {
-  return entry.keyword.replace(/\s*Schema$/, '');
+  return entry.linkLabel ?? entry.keyword.replace(/\s*Schema$/, '');
 }
 
 const groups = RECHTSGEBIETE.map((rg) => {

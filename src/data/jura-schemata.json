@@ -556,11 +556,11 @@
     "keyword": "263 StGB Schema",
     "related": [
       "242-stgb",
-      "notwehr",
-      "223-stgb"
+      "untreue",
+      "erpressung"
     ],
     "datePublished": "2026-08-19",
-    "dateModified": "2026-08-19",
+    "dateModified": "2026-09-09",
     "intro": "§ 263 StGB gehört zu den am häufigsten geprüften Delikten im 1. und 2. Staatsexamen, da er die zentralen Strukturprobleme des Vermögensstrafrechts bündelt: die Abgrenzung zu § 242 StGB über die Vermögensverfügung sowie die dogmatisch umstrittene Bestimmung des Vermögensschadens.",
     "schema": [
       {
@@ -633,6 +633,16 @@
         "tag": "Zweckverfehlung",
         "title": "Zweckverfehlungslehre beim Spendenbetrug",
         "text": "Beim Spendenbetrug ist umstritten, ob ein Schaden vorliegt, wenn ein sozial anerkannter Zweck durch die Täuschung verfehlt wird, ohne dass objektiv eine Gegenleistung geschuldet war."
+      },
+      {
+        "tag": "Dreiecksbetrug",
+        "title": "Näheverhältnis beim Dreiecksbetrug",
+        "text": "Fallen Getäuschter und Geschädigter auseinander, muss die Verfügung dem Opfer zurechenbar sein — umstritten ist, woraus sich das ergibt. Die Befugnistheorie verlangt eine rechtliche Verfügungsbefugnis, die herrschende Lagertheorie ein tatsächliches Näheverhältnis, bei dem der Verfügende schon vor der Tat „im Lager\" des Geschädigten stand, die faktische Nähetheorie lässt bloße Zugriffsmöglichkeit genügen. Gegen Letztere spricht, dass sie die Grenze zum Diebstahl in mittelbarer Täterschaft verwischt. Beim Prozessbetrug führen alle Ansichten zum selben Ergebnis, weil das Gericht kraft Amtes über fremdes Vermögen entscheidet."
+      },
+      {
+        "tag": "Abgrenzung",
+        "title": "Betrug oder Trickdiebstahl?",
+        "text": "Die Abgrenzung entscheidet sich am Verfügungsbewusstsein: Gibt das Opfer den Gewahrsam bewusst und freiwillig auf, liegt eine Vermögensverfügung und damit Betrug vor; nimmt der Täter die Sache an sich, während das Opfer den Gewahrsam gerade nicht aufgeben will, bleibt es beim Diebstahl (§ 242 StGB). Klassischer Prüfungsfall ist die Übergabe „nur zur Ansicht\" — hier fehlt der Wille zur endgültigen Gewahrsamsübertragung. Umstritten ist, ob Verfügungsbewusstsein auch bei Forderungen zu verlangen ist; die herrschende Meinung fordert es nur beim Sachbetrug."
       }
     ],
     "faq": [
@@ -655,8 +665,13 @@
       {
         "q": "Wie prüft man einen Dreiecksbetrug richtig?",
         "a": "Zusätzlich muss eine Verfügungsbefugnis bzw. ein Näheverhältnis des Verfügenden zum geschädigten Vermögen geprüft werden (Lagertheorie), da Verfügender und Geschädigter auseinanderfallen."
+      },
+      {
+        "q": "Wann liegt ein Dreiecksbetrug statt eines Diebstahls in mittelbarer Täterschaft vor?",
+        "a": "Entscheidend ist, ob der getäuschte Dritte dem Vermögen des Geschädigten so nahe steht, dass seine Verfügung diesem zuzurechnen ist. Nach der herrschenden Lagertheorie muss er bereits vor der Tat im Lager des Geschädigten gestanden haben — fehlt dieses Näheverhältnis, bleibt es bei einem Diebstahl in mittelbarer Täterschaft."
       }
-    ]
+    ],
+    "linkLabel": "Betrug (§ 263 StGB)"
   },
   {
     "slug": "242-stgb",
@@ -885,15 +900,17 @@
     "silo": "strafrecht",
     "rechtsgebiet": "Strafrecht (StGB)",
     "teilgebiet": "Straßenverkehrsdelikte",
-    "h1": "Prüfungsschema § 315c StGB",
+    "h1": "Prüfungsschema § 315c StGB — Gefährdung des Straßenverkehrs",
     "metaTitle": "§ 315c StGB Schema — Gefährdung des Straßenverkehrs",
     "metaDescription": "Prüfungsschema zu § 315c StGB: Fahruntüchtigkeit, die „sieben Todsünden\", konkrete Gefährdung. Mit Streitständen, PDF und Karteikarten-Deck.",
     "keyword": "315c StGB Schema",
     "related": [
-      "223-stgb"
+      "142-stgb",
+      "222-stgb",
+      "fahrlaessigkeitsdelikt"
     ],
     "datePublished": "2026-08-19",
-    "dateModified": "2026-08-19",
+    "dateModified": "2026-09-09",
     "intro": "§ 315c StGB gehört zu den examensrelevantesten Delikten des Nebenstrafrechts, da er regelmäßig mit § 316 StGB und fahrlässigen Körperverletzungs- oder Tötungsdelikten kombiniert wird. Als konkretes Gefährdungsdelikt muss im Gutachten der Eintritt einer tatsächlichen Gefahrenlage sauber subsumiert werden.",
     "schema": [
       {
@@ -952,6 +969,11 @@
         "tag": "Konkurrenzen",
         "title": "Verhältnis zu § 316 StGB",
         "text": "§ 315c StGB verdrängt § 316 StGB als lex specialis, sobald die konkrete Gefahr tatsächlich eingetreten ist; ansonsten bleibt nur § 316 StGB einschlägig."
+      },
+      {
+        "tag": "Abgrenzung",
+        "title": "Verhältnis zu § 315b StGB",
+        "text": "§ 315c StGB erfasst Gefährdungen aus dem Verkehrsvorgang heraus, § 315b StGB Eingriffe von außen. Problematisch sind Fälle, in denen ein Verkehrsteilnehmer sein Fahrzeug bewusst zweckentfremdet und als Waffe einsetzt. Die Rechtsprechung nimmt dann trotz Innenverhältnisses § 315b StGB an, verlangt dafür aber eine verkehrsfeindliche Innentendenz und mindestens bedingten Schädigungsvorsatz — ein bloß grober Fahrfehler genügt nicht."
       }
     ],
     "faq": [
@@ -974,8 +996,13 @@
       {
         "q": "Reicht ein bloßer Fahrfehler ohne Unfall für eine konkrete Gefährdung aus?",
         "a": "Nein, erforderlich ist ein Beinahe-Unfall, bei dem nach allgemeiner Lebenserfahrung nur der Zufall einen Schaden verhindert hat."
+      },
+      {
+        "q": "Wann ist statt § 315c StGB der § 315b StGB einschlägig?",
+        "a": "Wenn der Täter sein Fahrzeug nicht mehr als Fortbewegungsmittel, sondern bewusst als Waffe einsetzt. Die Rechtsprechung verlangt dafür eine verkehrsfeindliche Innentendenz und mindestens bedingten Schädigungsvorsatz; ohne diese bleibt es bei § 315c StGB."
       }
-    ]
+    ],
+    "linkLabel": "Gefährdung des Straßenverkehrs (§ 315c StGB)"
   },
   {
     "slug": "notwehr",

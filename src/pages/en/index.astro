@@ -1,0 +1,218 @@
+---
+/**
+ * Englische Startseite.
+ *
+ * Bewusst schlank gehalten und klar abgegrenzt von /en/app/: Diese Seite ist
+ * die Landefläche für englischsprachige Besucher (Product Hunt, App Store,
+ * internationale Suche) und leitet weiter — die ausführliche Produktdarstellung
+ * mit Features, Bewertungen und FAQ steht auf /en/app/ und wird hier bewusst
+ * nicht wiederholt, um Doppelinhalte zu vermeiden.
+ *
+ * Ein deutsches Gegenstück im hreflang-Sinn gibt es nicht: Die deutsche
+ * Startseite bewirbt die Lernunterlagen-Cluster, die es auf Englisch nicht
+ * gibt. Deshalb kein altHref.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CharakterTrio from '../../components/CharakterTrio.astro';
+import { OCTA, APP_RATING, APP_REVIEWS } from '../../site';
+
+const storeLink = OCTA.appStoreUrlEn;
+
+const ROUTES = [
+  {
+    href: '/en/app/',
+    title: 'See what Octa does',
+    text: 'Flashcards built from your own material, spoken self-testing with real feedback, and a study plan timed to your exam. The full walkthrough, with features and reviews.',
+    cta: 'Explore the app →',
+  },
+  {
+    href: '/en/tools/lerntyp-test/',
+    title: 'Find out how you study',
+    text: 'Eight questions, under a minute, no sign-up. You get a concrete read on where your study time is leaking — and which techniques are worth your effort.',
+    cta: 'Take the test →',
+  },
+];
+---
+
+<BaseLayout
+  title="Octa — Study material you actually recall"
+  description="Turn your own lecture notes into flashcards, answer out loud, and get told what you missed. Free to try on iPhone and iPad — built for students who study in a second language."
+  lang="en"
+  wide
+>
+  <section class="hero">
+    <div class="hero__inner wrap">
+      <p class="eyebrow">For students who study in a second language</p>
+      <h1>Reading it again isn't <span class="hl">knowing</span> it.</h1>
+      <p class="lead">
+        Most study apps let you flip a card and grade yourself — and "I knew
+        that" is the easiest lie in studying. {OCTA.name} builds flashcards from
+        your own lecture material and asks you to say the answer out loud
+        before it shows you anything. Then it tells you what you actually
+        missed.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={storeLink} rel="noopener">
+          Get {OCTA.name} on the App Store
+        </a>
+        <a class="btn btn--ghost" href="/en/app/">See how it works</a>
+      </div>
+      <p class="hero__hint">
+        iPhone and iPad · an Android version is in the works
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Where to start</h2>
+    <div class="grid">
+      {
+        ROUTES.map((r) => (
+          <div class="card card--link">
+            <h3><a class="card__link" href={r.href}>{r.title}</a></h3>
+            <p>{r.text}</p>
+            <p class="card__more">{r.cta}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="rule">Why saying it out loud works</h2>
+    <div class="why">
+      <div class="why__copy">
+        <p>
+          Re-reading your notes feels productive, but most of what it builds is
+          familiarity — the sense that you've seen something before, which is
+          easy to mistake for knowing it. Retrieving an answer from memory is
+          what actually strengthens it, and formulating that answer out loud
+          goes one step further than thinking it through silently: you find out
+          immediately whether the answer was complete.
+        </p>
+        <p>
+          That's the whole idea behind {OCTA.name}. You upload your slides, your
+          script, or a photo of your notes. It makes the cards. You speak the
+          answers. When you're wrong, an AI tutor that has read your material
+          explains why — not a generic answer from somewhere else.
+        </p>
+      </div>
+      <CharakterTrio class="why__art" />
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="octa-cta">
+      <h2>Try it on your next chapter</h2>
+      <p>
+        Upload one chapter and see in a few minutes how different it feels to be
+        asked out loud. Free to try.
+      </p>
+      <div class="rating">
+        <span class="rating__score">{APP_RATING.en.schnitt} ★</span>
+        <span class="rating__sub">
+          {APP_RATING.en.anzahl} ratings on the App Store · as of {APP_RATING.en.stand}
+        </span>
+      </div>
+      <blockquote class="quote">
+        "{APP_REVIEWS.en[0].t}"
+        <cite>{APP_REVIEWS.en[0].w}, App Store review</cite>
+      </blockquote>
+      <div class="btn-row">
+        <a class="btn" href={storeLink} rel="noopener">
+          Get {OCTA.name} on the App Store
+        </a>
+        <a class="btn btn--ghost" href="/en/tools/lerntyp-test/">
+          Take the 1-minute test first
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    padding-block: 0.5rem 3rem;
+  }
+
+  .hero__inner {
+    max-width: 46rem;
+  }
+
+  .hero__hint {
+    margin: 0.9rem 0 0;
+    font-size: 0.92rem;
+    color: var(--text-subtle);
+  }
+
+  .card__more {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .why {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .why__copy p {
+    max-width: 42rem;
+  }
+
+  .why__art {
+    align-self: end;
+  }
+
+  .rating {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .rating__score {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--brand-pink);
+  }
+
+  .rating__sub {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .quote {
+    margin: 0.9rem 0 1.2rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-pink);
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 42rem;
+  }
+
+  .quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  @media (max-width: 760px) {
+    .why {
+      grid-template-columns: 1fr;
+    }
+
+    .why__art {
+      margin-top: 0.5rem;
+    }
+  }
+</style>

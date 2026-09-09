@@ -7,7 +7,9 @@ export interface Props {
 
 const { lang = 'de' } = Astro.props;
 const nav = lang === 'en' ? NAV_EN : NAV;
-const homeHref = lang === 'en' ? '/' : '/';
+/* Englische Seiten führen auf die englische Startseite — sonst landen
+   englischsprachige Besucher beim Klick auf das Logo im Deutschen. */
+const homeHref = lang === 'en' ? '/en/' : '/';
 const navLabel = lang === 'en' ? 'Main navigation' : 'Hauptnavigation';
 const logoLabel =
   lang === 'en' ? `${SITE.name} — Home` : `${SITE.name} — Startseite`;
