@@ -24,6 +24,10 @@ export interface Props {
    * der deutschen Seite aus, oder umgekehrt) — erzeugt die hreflang-Paarung.
    * Weglassen, wenn es (noch) keine Übersetzung dieser Seite gibt. */
   altHref?: string;
+  /** Vorschaubild fuers Teilen (Open Graph), absoluter Pfad ab Domainwurzel,
+   * z. B. '/img/og/lerntyp-test.jpg'. Empfohlen 1200x630. Ohne Angabe wird
+   * kein og:image gesetzt — dann zeigen WhatsApp und Co. nur Titel und Text. */
+  ogImage?: string;
 }
 
 const {
@@ -34,6 +38,7 @@ const {
   wide = false,
   lang = 'de',
   altHref,
+  ogImage,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
@@ -45,6 +50,11 @@ const fullTitle =
     ? `${SITE.name} — ${SITE.tagline}`
     : `${title} | ${SITE.name}`;
 const ogLocale = lang === 'en' ? 'en_US' : 'de_DE';
+/* Open Graph verlangt eine absolute URL — ein Pfad allein wird von den
+   meisten Messengern nicht aufgeloest. */
+const ogImageUrl = ogImage
+  ? new URL(ogImage, Astro.site ?? SITE.url).href
+  : undefined;
 const skipLinkLabel = lang === 'en' ? 'Skip to content' : 'Zum Inhalt springen';
 const homeLabel = lang === 'en' ? 'Home' : 'Startseite';
 /* Muss der Sprache folgen — sonst führt der Breadcrumb "Home" auf
@@ -114,7 +124,15 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {ogImageUrl && (
+      <>
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImageUrl} />
+      </>
+    )}
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
 
     <meta name="generator" content={Astro.generator} />
 

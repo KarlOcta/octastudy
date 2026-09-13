@@ -41,6 +41,7 @@ const jsonLd = JSON.stringify({
     { label: 'Lerntyp-Test', href: '/tools/lerntyp-test/' },
   ]}
   altHref="/en/tools/lerntyp-test/"
+  ogImage="/img/og/lerntyp-test.jpg"
   wide
 >
   <script type="application/ld+json" is:inline set:html={jsonLd} />
@@ -1622,6 +1623,82 @@ const jsonLd = JSON.stringify({
     font-size: 0.9rem;
     color: var(--text-subtle);
   }
+  /* ---------------------------------------------------- Tipp und Sharekarte -- */
+  .lt-tipp {
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+  }
+  .lt-tipp__text {
+    margin: 0.5rem 0 0;
+    font-size: 1.12rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .lt-share {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    margin: 1.6rem 0 0;
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+  }
+  .lt-share__preview { line-height: 0; }
+  /* Das Canvas ist intern 1080x1920 und wird hier nur verkleinert angezeigt. */
+  .lt-share__canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1080 / 1920;
+    border-radius: 14px;
+    background: #15102a;
+    display: block;
+  }
+  .lt-share__text h3 { margin: 0 0 0.5rem; }
+  .lt-share__text p { margin: 0 0 0.7rem; }
+  .lt-share__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .lt-nudge {
+    margin-top: 1.2rem;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--brand-pink);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+  }
+  .lt-nudge p { margin: 0; }
+
+  .lt-sharefoot {
+    margin: 1.4rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .lt-share {
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+    }
+    /* Auf dem Handy reicht ein Ausschnitt als Vorschau — die volle Karte
+       wuerde den Teilen-Knopf aus dem Bild schieben. */
+    .lt-share__preview {
+      max-width: 210px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .lt-tipp { background: rgb(91 75 208 / 0.18); }
+  }
 </style>
 
 <script is:inline>
@@ -2328,6 +2405,12 @@ const jsonLd = JSON.stringify({
       });
     });
 
+    /* Die Karte wird gleich gezeichnet, damit im Teilen-Block eine echte
+       Vorschau steht. Menschen teilen, was sie sehen koennen. */
+    const zeichnen = () => { cardReady().catch(() => {}); };
+    if (window.requestIdleCallback) requestIdleCallback(zeichnen, { timeout: 1500 });
+    else setTimeout(zeichnen, 300);
+
     if (!reduceMotion) confetti();
     if (window.plausible) window.plausible('quiz_fertig', { props: { profil: best } });
   }
@@ -2358,9 +2441,253 @@ const jsonLd = JSON.stringify({
     sprinter: [R.timmi],
   };
 
+
+  /* ================================================================ *
+   *  Sharekarte
+   *  ----------------------------------------------------------------
+   *  Je Lerntyp ein Attributprofil, ein Tipp und eine Ansprache fuers
+   *  Teilen. Die Attributreihenfolge ist fix: Verstehen, Struktur,
+   *  Dranbleiben, Abrufen, Behalten. "weak" ist der Index der einen
+   *  schwachen Zeile — sie wird auf der Karte pink hervorgehoben und
+   *  traegt damit die eigentliche Diagnose.
+   * ================================================================ */
+  const CARD = {
+    koenner: {
+      lines: ['Der', 'stille Könner'],
+      attrs: [['Verstehen',94,'sehr hoch'],['Struktur',76,'hoch'],['Dranbleiben',76,'hoch'],['Abrufen',18,'gering'],['Behalten',52,'mittel']],
+      weak: 3,
+      tipp: 'Lies einen Abschnitt, klapp das Skript zu und erklär ihn laut, als säße jemand vor dir. Erst wenn der Satz ohne Stocken kommt, kannst du ihn.',
+      share: 'Du kennst bestimmt jemanden, der in der Lerngruppe alles versteht und in der mündlichen Prüfung kein Wort rausbekommt.',
+    },
+    sammler: {
+      lines: ['Der', 'Sammler'],
+      attrs: [['Verstehen',52,'mittel'],['Struktur',18,'gering'],['Dranbleiben',94,'sehr hoch'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
+      weak: 1,
+      tipp: 'Zieh einen Schlussstrich: Ab heute kommt kein neues Material mehr dazu. Was du hast, reicht. Jede weitere Datei verschiebt nur den Moment, an dem du anfängst.',
+      share: 'Du kennst bestimmt jemanden, dessen Cloud-Ordner drei Versionen von jedem Skript enthält.',
+    },
+    markierer: {
+      lines: ['Der', 'Markierer'],
+      attrs: [['Verstehen',52,'mittel'],['Struktur',52,'mittel'],['Dranbleiben',94,'sehr hoch'],['Abrufen',18,'gering'],['Behalten',52,'mittel']],
+      weak: 3,
+      tipp: 'Deck zu, was du markiert hast, und sag es laut auf. Wenn du dabei stockst, kanntest du die Stelle nur wieder — gekonnt hast du sie nicht.',
+      share: 'Du kennst bestimmt jemanden, dessen Skript nach zwei Wochen aussieht wie ein Farbkasten.',
+    },
+    ueberfordert: {
+      lines: ['Der', 'Überforderte'],
+      attrs: [['Verstehen',76,'hoch'],['Struktur',18,'gering'],['Dranbleiben',52,'mittel'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
+      weak: 1,
+      tipp: 'Fang bewusst beim schwersten Kapitel an, nicht beim ersten. Die Reihenfolge, die du suchst, entsteht beim Lernen — nicht davor.',
+      share: 'Du kennst bestimmt jemanden, der seit drei Wochen bei Kapitel 2 hängt.',
+    },
+    einzel: {
+      lines: ['Der', 'Einzelkämpfer'],
+      attrs: [['Verstehen',76,'hoch'],['Struktur',52,'mittel'],['Dranbleiben',18,'gering'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
+      weak: 2,
+      tipp: 'Setz dir einen Termin mit einem Menschen, nicht mit dir selbst. Ein Vorsatz, den niemand kennt, überlebt die erste schlechte Woche nicht.',
+      share: 'Du kennst bestimmt jemanden, der nie in der Lerngruppe auftaucht und trotzdem behauptet, es läuft.',
+    },
+    sprinter: {
+      lines: ['Der', 'Sprinter'],
+      attrs: [['Verstehen',76,'hoch'],['Struktur',76,'hoch'],['Dranbleiben',34,'schwankend'],['Abrufen',76,'hoch'],['Behalten',18,'gering']],
+      weak: 4,
+      tipp: 'Geh drei Tage nach der Klausur noch einmal zwanzig Minuten über den Stoff. Dieser eine Termin entscheidet, ob du ihn nächstes Semester wieder lernen musst.',
+      share: 'Du kennst bestimmt jemanden, der drei Tage vorher anfängt und trotzdem besteht.',
+    },
+  };
+
+  const SHARE_SATZ =
+    'Zwei verschiedene Profile ergänzen sich beim Abfragen besser als zwei gleiche — wer an einer anderen Stelle hängt als du, merkt genau die Lücken, die du selbst überliest.';
+
+  /* Zeichenmasse der Karte. 1080x1920 ist das Story-Format von Instagram
+     und WhatsApp; beide zeigen es ohne Beschnitt. */
+  const CK = {
+    W: 1080, H: 1920, PAD: 88, TOP: 86, BOT: 76,
+    bg: '#15102a', accent: '#d6146e', accentSoft: '#ff5fa2',
+    white: '#ffffff', dim: '#aba5c4', line: '#2b2348',
+    bar: '#8d7ef0', label: '#efecf8', muted: '#8e86ad',
+    font: "'Plus Jakarta Sans', system-ui, sans-serif",
+  };
+
+  /* Buchstabenabstand von Hand gesetzt: ctx.letterSpacing kennt Safari erst
+     ab 17.4, und ein grosser Teil der Zielgruppe ist aelter unterwegs. */
+  function lcTracked(ctx, text, x, y, spacing) {
+    let cx = x;
+    for (const ch of text) {
+      ctx.fillText(ch, cx, y);
+      cx += ctx.measureText(ch).width + spacing;
+    }
+  }
+  function lcWrap(ctx, text, maxW) {
+    const words = String(text).split(' ');
+    const lines = [];
+    let line = '';
+    for (const w of words) {
+      const probe = line ? line + ' ' + w : w;
+      if (ctx.measureText(probe).width > maxW && line) { lines.push(line); line = w; }
+      else line = probe;
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function lcRound(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  async function drawLerntypCard(canvas, key) {
+    const c = CARD[key];
+    if (!c) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = CK.W; canvas.height = CK.H;
+
+    if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+
+    /* Kein crossOrigin: Die Illustrationen liegen auf derselben Domain.
+       Gesetztes crossOrigin wuerde den Export ohne CORS-Header brechen. */
+    const img = await new Promise((res, rej) => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = rej;
+      i.src = '/img/lerntypen/' + key + '.webp';
+    });
+
+    ctx.fillStyle = CK.bg; ctx.fillRect(0, 0, CK.W, CK.H);
+    ctx.fillStyle = CK.accent; ctx.fillRect(0, 0, CK.W, 9);
+
+    const L = CK.PAD, R = CK.W - CK.PAD, IW = R - L;
+    let y = CK.TOP;
+    ctx.textBaseline = 'top';
+
+    ctx.fillStyle = CK.accentSoft; ctx.font = '700 25px ' + CK.font;
+    lcTracked(ctx, 'DEIN LERNTYP', L, y, 8.5);
+    y += 51;
+
+    ctx.fillStyle = CK.white; ctx.font = '800 118px ' + CK.font;
+    for (const part of c.lines) { ctx.fillText(part, L, y); y += 110; }
+    y += 12;
+
+    ctx.fillStyle = CK.dim; ctx.font = '500 40px ' + CK.font;
+    for (const ln of lcWrap(ctx, PROFILES[key].tagline ? '„' + PROFILES[key].tagline + '“' : '', IW)) {
+      ctx.fillText(ln, L, y); y += 51;
+    }
+
+    const IH = 540;
+    ctx.drawImage(img, (CK.W - img.width * (IH / img.height)) / 2, y + 14,
+                  img.width * (IH / img.height), IH);
+    y += 14 + IH + 22;
+
+    const sec = (title) => {
+      ctx.strokeStyle = CK.line; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(L, y + 1); ctx.lineTo(R, y + 1); ctx.stroke();
+      y += 38;
+      ctx.fillStyle = CK.accentSoft; ctx.font = '700 23px ' + CK.font;
+      lcTracked(ctx, title, L, y, 6.5);
+      y += 53;
+    };
+
+    sec('DEIN PROFIL');
+    const LABW = 280, VALW = 196, GAP = 30;
+    c.attrs.forEach(([name, pct, word], i) => {
+      const weak = i === c.weak;
+      ctx.fillStyle = weak ? CK.accentSoft : CK.label;
+      ctx.font = '700 31px ' + CK.font;
+      ctx.fillText(name, L, y + 1);
+      const tx = L + LABW, tw = IW - LABW - VALW - GAP;
+      ctx.fillStyle = CK.line; lcRound(ctx, tx, y + 12, tw, 16, 8); ctx.fill();
+      ctx.fillStyle = weak ? CK.accent : CK.bar;
+      lcRound(ctx, tx, y + 12, Math.max(16, tw * pct / 100), 16, 8); ctx.fill();
+      ctx.fillStyle = weak ? CK.accentSoft : CK.muted;
+      ctx.font = '600 27px ' + CK.font;
+      ctx.textAlign = 'right'; ctx.fillText(word, R, y + 5); ctx.textAlign = 'left';
+      y += 64;
+    });
+    y += 14;
+
+    sec('DEIN TIPP');
+    ctx.fillStyle = CK.label; ctx.font = '600 38px ' + CK.font;
+    for (const ln of lcWrap(ctx, c.tipp, IW)) { ctx.fillText(ln, L, y); y += 51; }
+
+    const fy = CK.H - CK.BOT - 34;
+    ctx.strokeStyle = CK.line; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(L, fy - 44); ctx.lineTo(R, fy - 44); ctx.stroke();
+    ctx.font = '800 29px ' + CK.font; ctx.fillStyle = CK.white;
+    const w1 = ctx.measureText('octastudy.com').width;
+    ctx.fillText('octastudy.com', L, fy);
+    ctx.font = '600 29px ' + CK.font; ctx.fillStyle = CK.muted;
+    ctx.fillText('/lerntyp', L + w1, fy);
+    ctx.textAlign = 'right'; ctx.fillText('Welcher bist du?', R, fy); ctx.textAlign = 'left';
+  }
+
+  /* Blob wird einmal erzeugt und gemerkt — Teilen und Speichern nutzen denselben. */
+  let cardBlob = null;
+  async function cardReady() {
+    const cv = document.getElementById('cardcanvas');
+    if (!cv || !lerntyp) return null;
+    if (!cv.dataset.drawn) {
+      await drawLerntypCard(cv, lerntyp);
+      cv.dataset.drawn = '1';
+    }
+    if (!cardBlob) cardBlob = await new Promise((r) => cv.toBlob(r, 'image/png'));
+    return cardBlob;
+  }
+
+  async function saveCard() {
+    const blob = await cardReady();
+    if (!blob) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mein-lerntyp.png';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    if (window.plausible) window.plausible('karte_gespeichert', { props: { profil: lerntyp } });
+  }
+
+  async function shareCard() {
+    const blob = await cardReady();
+    if (!blob) return;
+    const file = new File([blob], 'mein-lerntyp.png', { type: 'image/png' });
+    const text = 'Ich bin ' + PROFILES[lerntyp].name + '. Welcher Lerntyp bist du?';
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], text: text });
+        if (window.plausible) window.plausible('karte_geteilt', { props: { profil: lerntyp } });
+        return;
+      } catch (e) {
+        /* Abbruch durch den Nutzer ist kein Fehler — dann passiert nichts. */
+        if (e && e.name === 'AbortError') return;
+      }
+    }
+    saveCard();
+  }
+
+  /* Nach einem Klick auf den App-Store-Link wird der Merker gesetzt. Kommt der
+     Nutzer danach in den Tab zurueck, zeigen wir die Teilen-Aufforderung ein
+     zweites Mal. Ohne diesen Merker wuerde sie schon beim ersten App-Wechsel
+     erscheinen, denn visibilitychange feuert auch beim Sperren des Geraets.
+     Der Listener aendert ausschliesslich hidden — er rendert nichts neu und
+     fasst damit den fachspezifischen Store-Link nicht an. */
+  let storeKlick = false;
+  function armShare() { storeKlick = true; }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible' || !storeKlick) return;
+    storeKlick = false;
+    const n = document.getElementById('sharenudge');
+    if (n) {
+      n.hidden = false;
+      n.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
   function resultHTML(p, s, key) {
     const d = DETAIL[key];
     const c = CONCEPT[key];
+    const cd = CARD[key];
 
     const bars = ORDER.map(
       (k) => `
@@ -2406,7 +2733,15 @@ const jsonLd = JSON.stringify({
           <button class="lt-copy" type="button" onclick="copyCode()">Code kopieren</button>
         </div>
         <a class="btn lt-btn-block" href="${storeLink(fach)}" target="_blank" rel="noopener"
-           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Octa im App Store laden</a>
+           onclick="armShare();if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Octa im App Store laden</a>
+      </div>
+
+      <div class="lt-nudge" id="sharenudge" hidden>
+        <p><strong>Eine Sache noch:</strong> Schick deine Karte der Person, an die du beim
+           Lesen gedacht hast — und frag, was bei ihr rauskommt.</p>
+        <div class="lt-share__btns">
+          <button class="btn" type="button" onclick="shareCard()">Karte teilen</button>
+        </div>
       </div>`;
 
     const mail = CONFIG.mailAktiv
@@ -2452,6 +2787,28 @@ const jsonLd = JSON.stringify({
           <p>${c.warum}</p>
         </div>
         <p><strong>Die Hürde im Alltag:</strong> ${c.huerde}</p>
+      </div>
+
+      <div class="lt-block lt-tipp">
+        <span class="eyebrow">Dein Tipp</span>
+        <p class="lt-tipp__text">${cd.tipp}</p>
+      </div>
+
+      <div class="lt-share">
+        <div class="lt-share__preview">
+          <canvas id="cardcanvas" class="lt-share__canvas" width="1080" height="1920"
+                  role="img" aria-label="Deine Lerntyp-Karte zum Teilen"></canvas>
+        </div>
+        <div class="lt-share__text">
+          <h3>Wem schickst du das?</h3>
+          <p>${cd.share}</p>
+          <p><strong>Schick ihr deine Karte und frag, was bei ihr rauskommt.</strong>
+             ${SHARE_SATZ}</p>
+          <div class="lt-share__btns">
+            <button class="btn" type="button" onclick="shareCard()">Karte teilen</button>
+            <button class="btn btn--ghost" type="button" onclick="saveCard()">Bild speichern</button>
+          </div>
+        </div>
       </div>
 
       <hr class="lt-divider">
@@ -2515,6 +2872,11 @@ const jsonLd = JSON.stringify({
       ${mail}
 
       <hr class="lt-divider">
+
+      <p class="lt-sharefoot">
+        Noch nicht geteilt?
+        <button class="lt-link" type="button" onclick="shareCard()">Karte an jemanden schicken</button>
+      </p>
 
       <button class="lt-back" type="button" onclick="location.reload()">← Test noch einmal machen</button>`;
   }
