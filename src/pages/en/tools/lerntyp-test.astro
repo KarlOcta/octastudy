@@ -12,6 +12,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   ]}
   lang="en"
   altHref="/tools/lerntyp-test/"
+  ogImage="/img/og/lerntyp-test-en.jpg"
   wide
 >
   <div class="wrap lt-page">
@@ -1524,6 +1525,180 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       display: none;
     }
   }
+  /* ---------------------------------------------------- Tip and share card -- */
+  .lt-tipp {
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+  }
+  .lt-tipp__text {
+    margin: 0.5rem 0 0;
+    font-size: 1.12rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .lt-share {
+    margin: 1.6rem 0 0;
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+  }
+  .lt-share__frage { margin: 0 0 0.5rem; }
+  .lt-share__wen { margin: 0 0 1rem; }
+  /* Card and buttons sit behind the toggle, the opener stays visible — it is
+     the part that makes people open it. */
+  .lt-share__mehr > summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--accent);
+    list-style: none;
+  }
+  .lt-share__mehr > summary::-webkit-details-marker { display: none; }
+  .lt-share__mehr > summary::after {
+    content: ' \2193';
+    font-weight: 600;
+  }
+  .lt-share__mehr[open] > summary::after { content: ' \2191'; }
+  .lt-share__inner {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1.2rem;
+  }
+  .lt-share__preview { line-height: 0; }
+  /* The canvas is 1080x1920 internally and only displayed scaled down here. */
+  .lt-share__canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1080 / 1920;
+    border-radius: 14px;
+    background: #15102a;
+    display: block;
+  }
+  .lt-share__text h3 { margin: 0 0 0.5rem; }
+  .lt-share__text p { margin: 0 0 0.7rem; }
+  .lt-share__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .lt-nudge {
+    margin-top: 1.2rem;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--brand-pink);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+  }
+  .lt-nudge p { margin: 0; }
+
+  .lt-sharefoot {
+    margin: 1.4rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .lt-share__inner {
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+    }
+    /* On a phone a crop is enough as a preview — the full card would push the
+       share button out of view. */
+    .lt-share__preview {
+      max-width: 210px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .lt-tipp { background: rgb(91 75 208 / 0.18); }
+  }
+  /* -------------------------------------------------- Attribute profile -- */
+  .lt-attrs { display: grid; gap: 0.75rem; }
+  .lt-attr {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr) 6.5rem;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .lt-attr__name { font-weight: 700; font-size: 0.98rem; color: var(--text); }
+  .lt-attr__track {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .lt-attr__fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lt-attr__val {
+    text-align: right;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-subtle);
+  }
+  /* The single low row carries the diagnosis — hence the colour break. */
+  .lt-attr.is-weak .lt-attr__name,
+  .lt-attr.is-weak .lt-attr__val { color: var(--brand-pink); }
+  .lt-attr.is-weak .lt-attr__fill { background: var(--brand-pink); }
+
+  .lt-attrs__note {
+    margin: 1rem 0 0;
+    font-size: 0.88rem;
+    color: var(--text-subtle);
+  }
+
+  .lt-eindeutig {
+    margin: 1.4rem 0 0;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .lt-eindeutig > summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .lt-eindeutig > p { margin: 0.8rem 0; font-size: 0.92rem; }
+
+  @media (max-width: 560px) {
+    .lt-attr {
+      grid-template-columns: 7.6rem minmax(0, 1fr) 5.4rem;
+      gap: 0.6rem;
+    }
+    .lt-attr__name { font-size: 0.88rem; }
+    .lt-attr__val { font-size: 0.82rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lt-attr__fill { transition: none; }
+  }
+  /* Jump marks inside the result. scroll-margin keeps the targeted block clear
+     of the sticky header. */
+  .lt-jump {
+    color: var(--accent);
+    font-weight: 600;
+    text-underline-offset: 2px;
+  }
+  #lt-tipp,
+  #lt-umsetzung { scroll-margin-top: 5.5rem; }
+  .lt-tipp__bruecke {
+    margin: 0.9rem 0 0;
+    font-size: 0.97rem;
+    color: var(--text-muted);
+  }
 </style>
 
 <script is:inline>
@@ -2229,6 +2404,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       sessionStorage.setItem('octa-quiz-finished', '1');
     } catch (e) {}
 
+    /* Derive the attribute profile from the points before the result is built —
+       page and card then read the same object. */
+    attrAktuell = attrProfil(s);
+
     show('s-result');
     el('s-result').innerHTML = resultHTML(PROFILES[best], s, best);
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -2238,7 +2417,17 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       document.querySelectorAll('.lt-bar-fill').forEach((b) => {
         b.style.width = Math.round((+b.dataset.v / max) * 100) + '%';
       });
+      /* Attribute values are already 0–100, so usable as a width directly. */
+      document.querySelectorAll('.lt-attr__fill').forEach((b) => {
+        b.style.width = Math.max(6, Math.min(100, +b.dataset.v)) + '%';
+      });
     });
+
+    /* The card is drawn right away so the share block shows a real preview.
+       People share what they can see. */
+    const zeichnen = () => { cardReady().catch(() => {}); };
+    if (window.requestIdleCallback) requestIdleCallback(zeichnen, { timeout: 1500 });
+    else setTimeout(zeichnen, 300);
 
     if (!reduceMotion) confetti();
     if (window.plausible) window.plausible('quiz_fertig', { props: { profil: best } });
@@ -2270,9 +2459,309 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     sprinter: [R.timmi],
   };
 
+  /* ================================================================ *
+   *  Share card
+   *  ----------------------------------------------------------------
+   *  One attribute profile, one tip and one opener per study type.
+   *  The attribute order is fixed: Understanding, Structure,
+   *  Consistency, Recall, Retention. "weak" is the index of the single
+   *  low row — highlighted pink on the card, it carries the actual
+   *  diagnosis.
+   * ================================================================ */
+  const CARD = {
+    koenner: {
+      lines: ['The', 'Quiet Achiever'],
+      tipp: 'Read one section, close the script and explain it out loud as if someone were sitting in front of you. You only know it once the sentence comes out without stumbling.',
+      share: 'You definitely know someone who understands everything in the study group and cannot get a word out in an oral exam.',
+    },
+    sammler: {
+      lines: ['The', 'Collector'],
+      tipp: 'Draw a line: from today, nothing new gets added. What you have is enough. Every extra file only postpones the moment you start.',
+      share: 'You definitely know someone whose cloud folder holds three versions of every lecture script.',
+    },
+    markierer: {
+      lines: ['The', 'Highlighter'],
+      tipp: 'Cover what you highlighted and say it out loud. If you stumble, you only recognised the passage — you never knew it.',
+      share: 'You definitely know someone whose notes look like a paint box after two weeks.',
+    },
+    ueberfordert: {
+      lines: ['The', 'Overwhelmed'],
+      tipp: 'Deliberately start with the hardest chapter, not the first one. The order you are looking for emerges while you study, not before.',
+      share: 'You definitely know someone who has been stuck on chapter 2 for three weeks.',
+    },
+    einzel: {
+      lines: ['The', 'Lone Wolf'],
+      tipp: 'Make the appointment with a person, not with yourself. A plan nobody else knows about does not survive the first bad week.',
+      share: 'You definitely know someone who never shows up to the study group and still says it is going fine.',
+    },
+    sprinter: {
+      lines: ['The', 'Sprinter'],
+      tipp: 'Three days after the exam, go over the material one more time for twenty minutes. That single session decides whether you have to learn it again next semester.',
+      share: 'You definitely know someone who starts three days before and passes anyway.',
+    },
+  };
+
+  const TEST_URL = 'https://octastudy.com/en/tools/lerntyp-test/';
+
+  /* Base profile per study type: the values a pure representative would have.
+     Order is fixed — Understanding, Structure, Consistency, Recall, Retention. */
+  const ATTR_NAMEN = ['Understanding', 'Structure', 'Consistency', 'Recall', 'Retention'];
+  const ATTR_BASIS = {
+    koenner:      [94, 76, 76, 18, 52],
+    sammler:      [52, 18, 94, 52, 52],
+    markierer:    [52, 52, 94, 18, 52],
+    ueberfordert: [76, 18, 52, 52, 52],
+    einzel:       [76, 52, 18, 52, 52],
+    sprinter:     [76, 76, 34, 76, 18],
+  };
+  /* Word grades by rank within the profile, not by absolute threshold. That
+     guarantees exactly one "low" — two identically labelled rows in different
+     colours read like a bug. */
+  const ATTR_WORTE = ['very high', 'high', 'medium', 'fairly low', 'low'];
+
+  /* Mixes an individual attribute profile from the per-type points.
+     Weighted quadratically: the dominant type carries the profile, the rest
+     only tint it. Linear weighting would pull every result to the middle and
+     make them all look alike. */
+  function attrProfil(punkte) {
+    let gw = 0;
+    const summe = [0, 0, 0, 0, 0];
+    for (const t of ORDER) {
+      const w = Math.pow(Math.max(0, punkte[t] || 0), 2);
+      if (!w) continue;
+      gw += w;
+      ATTR_BASIS[t].forEach((v, i) => { summe[i] += v * w; });
+    }
+    const werte = gw ? summe.map((v) => Math.round(v / gw)) : ATTR_BASIS[ORDER[0]].slice();
+    const rang = werte.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]).map((x) => x[1]);
+    const zeilen = werte.map((v, i) => [ATTR_NAMEN[i], v, '']);
+    rang.forEach((i, r) => { zeilen[i][2] = ATTR_WORTE[r]; });
+    return { zeilen: zeilen, weak: rang[rang.length - 1] };
+  }
+
+  /* Profile of the current run. Card and result page read the same object so
+     both are guaranteed to show identical values. */
+  let attrAktuell = null;
+
+  const SHARE_SATZ =
+    'Two different profiles quiz each other better than two identical ones — someone who gets stuck somewhere else than you spots exactly the gaps you read straight past.';
+
+  /* Card dimensions. 1080x1920 is the story format on Instagram and WhatsApp;
+     both show it without cropping. */
+  const CK = {
+    W: 1080, H: 1920, PAD: 88, TOP: 86, BOT: 76,
+    bg: '#15102a', accent: '#d6146e', accentSoft: '#ff5fa2',
+    white: '#ffffff', dim: '#aba5c4', line: '#2b2348',
+    bar: '#8d7ef0', label: '#efecf8', muted: '#8e86ad',
+    font: "'Plus Jakarta Sans', system-ui, sans-serif",
+  };
+
+  /* Letter spacing set by hand: Safari only learned ctx.letterSpacing in 17.4,
+     and a good part of the audience is on older versions. */
+  function lcTracked(ctx, text, x, y, spacing) {
+    let cx = x;
+    for (const ch of text) {
+      ctx.fillText(ch, cx, y);
+      cx += ctx.measureText(ch).width + spacing;
+    }
+  }
+  function lcWrap(ctx, text, maxW) {
+    const words = String(text).split(' ');
+    const lines = [];
+    let line = '';
+    for (const w of words) {
+      const probe = line ? line + ' ' + w : w;
+      if (ctx.measureText(probe).width > maxW && line) { lines.push(line); line = w; }
+      else line = probe;
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function lcRound(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  /* English type names run longer than the German ones ("Quiet Achiever" vs.
+     "stille Koenner"), so the headline size is fitted to the widest line
+     instead of being hard-coded. */
+  function lcFitFont(ctx, lines, maxW, startPx, minPx) {
+    let px = startPx;
+    while (px > minPx) {
+      ctx.font = '800 ' + px + 'px ' + CK.font;
+      if (Math.max.apply(null, lines.map((l) => ctx.measureText(l).width)) <= maxW) break;
+      px -= 2;
+    }
+    ctx.font = '800 ' + px + 'px ' + CK.font;
+    return px;
+  }
+
+  async function drawLerntypCard(canvas, key) {
+    const c = CARD[key];
+    if (!c) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = CK.W; canvas.height = CK.H;
+
+    if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+
+    /* No crossOrigin: the illustrations sit on the same domain. Setting
+       crossOrigin would break the export without CORS headers. */
+    const img = await new Promise((res, rej) => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = rej;
+      i.src = '/img/lerntypen/' + key + '.webp';
+    });
+
+    ctx.fillStyle = CK.bg; ctx.fillRect(0, 0, CK.W, CK.H);
+    ctx.fillStyle = CK.accent; ctx.fillRect(0, 0, CK.W, 9);
+
+    const L = CK.PAD, R = CK.W - CK.PAD, IW = R - L;
+    let y = CK.TOP;
+    ctx.textBaseline = 'top';
+
+    ctx.fillStyle = CK.accentSoft; ctx.font = '700 25px ' + CK.font;
+    lcTracked(ctx, 'YOUR STUDY TYPE', L, y, 8.5);
+    y += 51;
+
+    ctx.fillStyle = CK.white;
+    const hPx = lcFitFont(ctx, c.lines, IW, 118, 74);
+    for (const part of c.lines) { ctx.fillText(part, L, y); y += Math.round(hPx * 0.93); }
+    y += 12;
+
+    /* Taglines are longer in English. Shrink a touch to avoid a one-word
+       second line, which looks sloppy on a card built to be shared. */
+    const tag = PROFILES[key].tagline ? '“' + PROFILES[key].tagline + '”' : '';
+    let tPx = 40;
+    ctx.fillStyle = CK.dim;
+    while (tPx > 33) {
+      ctx.font = '500 ' + tPx + 'px ' + CK.font;
+      if (lcWrap(ctx, tag, IW).length <= 1) break;
+      tPx -= 1;
+    }
+    ctx.font = '500 ' + tPx + 'px ' + CK.font;
+    for (const ln of lcWrap(ctx, tag, IW)) {
+      ctx.fillText(ln, L, y); y += Math.round(tPx * 1.28);
+    }
+
+    const IH = 540;
+    ctx.drawImage(img, (CK.W - img.width * (IH / img.height)) / 2, y + 14,
+                  img.width * (IH / img.height), IH);
+    y += 14 + IH + 22;
+
+    const sec = (title) => {
+      ctx.strokeStyle = CK.line; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(L, y + 1); ctx.lineTo(R, y + 1); ctx.stroke();
+      y += 38;
+      ctx.fillStyle = CK.accentSoft; ctx.font = '700 23px ' + CK.font;
+      lcTracked(ctx, title, L, y, 6.5);
+      y += 53;
+    };
+
+    sec('YOUR PROFILE');
+    const LABW = 300, VALW = 196, GAP = 30;
+    const prof = attrAktuell || attrProfil({ [key]: 1 });
+    prof.zeilen.forEach(([name, pct, word], i) => {
+      const weak = i === prof.weak;
+      ctx.fillStyle = weak ? CK.accentSoft : CK.label;
+      ctx.font = '700 31px ' + CK.font;
+      ctx.fillText(name, L, y + 1);
+      const tx = L + LABW, tw = IW - LABW - VALW - GAP;
+      ctx.fillStyle = CK.line; lcRound(ctx, tx, y + 12, tw, 16, 8); ctx.fill();
+      ctx.fillStyle = weak ? CK.accent : CK.bar;
+      lcRound(ctx, tx, y + 12, Math.max(16, tw * pct / 100), 16, 8); ctx.fill();
+      ctx.fillStyle = weak ? CK.accentSoft : CK.muted;
+      ctx.font = '600 27px ' + CK.font;
+      ctx.textAlign = 'right'; ctx.fillText(word, R, y + 5); ctx.textAlign = 'left';
+      y += 64;
+    });
+    y += 14;
+
+    sec('YOUR TIP');
+    ctx.fillStyle = CK.label; ctx.font = '600 38px ' + CK.font;
+    for (const ln of lcWrap(ctx, c.tipp, IW)) { ctx.fillText(ln, L, y); y += 51; }
+
+    const fy = CK.H - CK.BOT - 34;
+    ctx.strokeStyle = CK.line; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(L, fy - 44); ctx.lineTo(R, fy - 44); ctx.stroke();
+    ctx.font = '800 29px ' + CK.font; ctx.fillStyle = CK.white;
+    ctx.fillText('octastudy.com', L, fy);
+    ctx.font = '600 29px ' + CK.font; ctx.fillStyle = CK.muted;
+    ctx.textAlign = 'right'; ctx.fillText('Which one are you?', R, fy); ctx.textAlign = 'left';
+  }
+
+  /* The blob is produced once and kept — share and save use the same one. */
+  let cardBlob = null;
+  async function cardReady() {
+    const cv = document.getElementById('cardcanvas');
+    if (!cv || !lerntyp) return null;
+    if (!cv.dataset.drawn) {
+      await drawLerntypCard(cv, lerntyp);
+      cv.dataset.drawn = '1';
+    }
+    if (!cardBlob) cardBlob = await new Promise((r) => cv.toBlob(r, 'image/png'));
+    return cardBlob;
+  }
+
+  async function saveCard() {
+    const blob = await cardReady();
+    if (!blob) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'my-study-type.png';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    if (window.plausible) window.plausible('karte_gespeichert', { props: { profil: lerntyp } });
+  }
+
+  async function shareCard() {
+    const blob = await cardReady();
+    if (!blob) return;
+    const file = new File([blob], 'my-study-type.png', { type: 'image/png' });
+    /* The address deliberately sits INSIDE the text and not in the url field of
+       navigator.share: as soon as a file is attached, several target apps drop
+       the url field. Inside the text it survives and WhatsApp, iMessage and
+       Signal turn it into a link automatically. */
+    const text =
+      "I'm " + PROFILES[lerntyp].name + ". What's your study type? " + TEST_URL;
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], text: text });
+        if (window.plausible) window.plausible('karte_geteilt', { props: { profil: lerntyp } });
+        return;
+      } catch (e) {
+        /* A user-cancelled share is not an error — nothing happens then. */
+        if (e && e.name === 'AbortError') return;
+      }
+    }
+    saveCard();
+  }
+
+  /* Clicking the App Store link sets the flag. If the user then comes back to
+     the tab, we show the share prompt a second time. Without the flag it would
+     already fire on the first app switch, because visibilitychange also fires
+     when the device is locked. The listener only touches hidden — it renders
+     nothing and therefore never touches the subject-specific store link. */
+  let storeKlick = false;
+  function armShare() { storeKlick = true; }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible' || !storeKlick) return;
+    storeKlick = false;
+    const n = document.getElementById('sharenudge');
+    if (n) {
+      n.hidden = false;
+      n.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
   function resultHTML(p, s, key) {
     const d = DETAIL[key];
     const c = CONCEPT[key];
+    const cd = CARD[key];
 
     const bars = ORDER.map(
       (k) => `
@@ -2284,6 +2773,18 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <span class="lt-bar-val">${s[k]} pts</span>
       </div>`
     ).join('');
+
+    const prof = attrAktuell || attrProfil({ [key]: 1 });
+    const attrBars = prof.zeilen
+      .map(
+        ([name, val, wort], i) => `
+      <div class="lt-attr${i === prof.weak ? ' is-weak' : ''}">
+        <span class="lt-attr__name">${name}</span>
+        <span class="lt-attr__track"><span class="lt-attr__fill" data-v="${val}"></span></span>
+        <span class="lt-attr__val">${wort}</span>
+      </div>`
+      )
+      .join('');
 
     const reviews = REVIEWS[key] || [];
     const bewertungen = `
@@ -2318,8 +2819,16 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           <button class="lt-copy" type="button" onclick="copyCode()">Copy code</button>
         </div>
         <a class="btn lt-btn-block" href="${storeLink(fach)}" target="_blank" rel="noopener"
-           onclick="if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Get Octa on the App Store</a>
+           onclick="armShare();if(window.plausible)plausible('store_klick',{props:{code:'${p.code}',fach:fach}})">Get Octa on the App Store</a>
         <p class="lt-fine"><a class="lt-link" href="/en/app/">See everything Octa can do →</a></p>
+      </div>
+
+      <div class="lt-nudge" id="sharenudge" hidden>
+        <p><strong>One more thing:</strong> send your card to the person you were
+           thinking of while reading — and ask what they get.</p>
+        <div class="lt-share__btns">
+          <button class="btn" type="button" onclick="shareCard()">Share card</button>
+        </div>
       </div>`;
 
     const mail = CONFIG.mailAktiv
@@ -2345,14 +2854,28 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       </div>
 
       <div class="lt-befund">
-        <span class="eyebrow" style="margin-bottom:1rem">Breakdown</span>
-        <div class="lt-bars">${bars}</div>
+        <span class="eyebrow" style="margin-bottom:1rem">Your profile</span>
+        <div class="lt-attrs">${attrBars}</div>
+        <p class="lt-attrs__note">
+          Derived from your eight answers. The highlighted row is the one where
+          it breaks down for you — and it is where
+          <a class="lt-jump" href="#lt-tipp">your tip</a> comes in.
+        </p>
       </div>
 
       <div class="lt-block"><h3>What you're good at</h3><p>${p.strength}</p></div>
       <div class="lt-block"><h3>Sound familiar?</h3><p class="lt-moment">${d.moment}</p></div>
       <div class="lt-block"><h3>Why this happens</h3><p>${d.why}</p></div>
       <div class="lt-block"><h3>What it's costing you</h3><p>${p.cost}</p></div>
+
+      <details class="lt-eindeutig">
+        <summary>How clear-cut was that?</summary>
+        <p class="text-muted">
+          Nobody is only one type. This is how your answers spread across the
+          six patterns:
+        </p>
+        <div class="lt-bars">${bars}</div>
+      </details>
 
       <hr class="lt-divider">
 
@@ -2367,9 +2890,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <p><strong>The everyday hurdle:</strong> ${c.huerde}</p>
       </div>
 
+      <div class="lt-block lt-tipp" id="lt-tipp">
+        <span class="eyebrow">Your tip</span>
+        <p class="lt-tipp__text">${cd.tipp}</p>
+        <p class="lt-tipp__bruecke">
+          Keeping that up on your own is the hard part — a good app takes it off
+          your hands. <a class="lt-jump" href="#lt-umsetzung">This is how we built that</a>.
+        </p>
+      </div>
+
+      <div class="lt-share">
+        <h3 class="lt-share__frage">Who are you sending this to?</h3>
+        <p class="lt-share__wen">${cd.share}</p>
+        <details class="lt-share__mehr">
+          <summary>See the card and send it</summary>
+          <div class="lt-share__inner">
+            <div class="lt-share__preview">
+              <canvas id="cardcanvas" class="lt-share__canvas" width="1080" height="1920"
+                      role="img" aria-label="Your study type card, ready to share"></canvas>
+            </div>
+            <div class="lt-share__text">
+              <p><strong>Send them your card and ask what they get.</strong>
+                 ${SHARE_SATZ}</p>
+              <div class="lt-share__btns">
+                <button class="btn" type="button" onclick="shareCard()">Share card</button>
+                <button class="btn btn--ghost" type="button" onclick="saveCard()">Save image</button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
       <hr class="lt-divider">
 
-      <div class="lt-block">
+      <div class="lt-block" id="lt-umsetzung">
         <span class="eyebrow">Putting it into practice</span>
         <h3 style="margin:.75rem 0 .5rem">This is exactly why we built Octa</h3>
         <div class="lt-app">
@@ -2428,6 +2982,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       ${mail}
 
       <hr class="lt-divider">
+
+      <p class="lt-sharefoot">
+        Still haven't shared it?
+        <button class="lt-link" type="button" onclick="shareCard()">Send your card to someone</button>
+      </p>
 
       <button class="lt-back" type="button" onclick="location.reload()">← Take the quiz again</button>`;
   }
