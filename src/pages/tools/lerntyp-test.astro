@@ -1699,6 +1699,71 @@ const jsonLd = JSON.stringify({
   @media (prefers-color-scheme: dark) {
     .lt-tipp { background: rgb(91 75 208 / 0.18); }
   }
+  /* -------------------------------------------------- Attributprofil (Seite) -- */
+  .lt-attrs { display: grid; gap: 0.75rem; }
+  .lt-attr {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr) 6.5rem;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .lt-attr__name { font-weight: 700; font-size: 0.98rem; color: var(--text); }
+  .lt-attr__track {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .lt-attr__fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lt-attr__val {
+    text-align: right;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-subtle);
+  }
+  /* Die eine schwache Zeile traegt die Diagnose — deshalb farblich abgesetzt. */
+  .lt-attr.is-weak .lt-attr__name,
+  .lt-attr.is-weak .lt-attr__val { color: var(--brand-pink); }
+  .lt-attr.is-weak .lt-attr__fill { background: var(--brand-pink); }
+
+  .lt-attrs__note {
+    margin: 1rem 0 0;
+    font-size: 0.88rem;
+    color: var(--text-subtle);
+  }
+
+  .lt-eindeutig {
+    margin: 1.4rem 0 0;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .lt-eindeutig > summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .lt-eindeutig > p { margin: 0.8rem 0; font-size: 0.92rem; }
+
+  @media (max-width: 560px) {
+    .lt-attr {
+      grid-template-columns: 7rem minmax(0, 1fr) 5.4rem;
+      gap: 0.6rem;
+    }
+    .lt-attr__name { font-size: 0.9rem; }
+    .lt-attr__val { font-size: 0.84rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lt-attr__fill { transition: none; }
+  }
 </style>
 
 <script is:inline>
@@ -2394,6 +2459,10 @@ const jsonLd = JSON.stringify({
       sessionStorage.setItem('octa-quiz-finished', '1');
     } catch (e) {}
 
+    /* Attributprofil aus den Punkten ableiten, bevor das Ergebnis gebaut wird —
+       Seite und Karte greifen anschliessend auf dasselbe Objekt zu. */
+    attrAktuell = attrProfil(s);
+
     show('s-result');
     el('s-result').innerHTML = resultHTML(PROFILES[best], s, best);
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -2402,6 +2471,10 @@ const jsonLd = JSON.stringify({
       const max = Math.max(...Object.values(s), 1);
       document.querySelectorAll('.lt-bar-fill').forEach((b) => {
         b.style.width = Math.round((+b.dataset.v / max) * 100) + '%';
+      });
+      /* Attributwerte sind bereits 0–100, also direkt als Breite nutzbar. */
+      document.querySelectorAll('.lt-attr__fill').forEach((b) => {
+        b.style.width = Math.max(6, Math.min(100, +b.dataset.v)) + '%';
       });
     });
 
@@ -2454,47 +2527,77 @@ const jsonLd = JSON.stringify({
   const CARD = {
     koenner: {
       lines: ['Der', 'stille Könner'],
-      attrs: [['Verstehen',94,'sehr hoch'],['Struktur',76,'hoch'],['Dranbleiben',76,'hoch'],['Abrufen',18,'gering'],['Behalten',52,'mittel']],
-      weak: 3,
       tipp: 'Lies einen Abschnitt, klapp das Skript zu und erklär ihn laut, als säße jemand vor dir. Erst wenn der Satz ohne Stocken kommt, kannst du ihn.',
       share: 'Du kennst bestimmt jemanden, der in der Lerngruppe alles versteht und in der mündlichen Prüfung kein Wort rausbekommt.',
     },
     sammler: {
       lines: ['Der', 'Sammler'],
-      attrs: [['Verstehen',52,'mittel'],['Struktur',18,'gering'],['Dranbleiben',94,'sehr hoch'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
-      weak: 1,
       tipp: 'Zieh einen Schlussstrich: Ab heute kommt kein neues Material mehr dazu. Was du hast, reicht. Jede weitere Datei verschiebt nur den Moment, an dem du anfängst.',
       share: 'Du kennst bestimmt jemanden, dessen Cloud-Ordner drei Versionen von jedem Skript enthält.',
     },
     markierer: {
       lines: ['Der', 'Markierer'],
-      attrs: [['Verstehen',52,'mittel'],['Struktur',52,'mittel'],['Dranbleiben',94,'sehr hoch'],['Abrufen',18,'gering'],['Behalten',52,'mittel']],
-      weak: 3,
       tipp: 'Deck zu, was du markiert hast, und sag es laut auf. Wenn du dabei stockst, kanntest du die Stelle nur wieder — gekonnt hast du sie nicht.',
       share: 'Du kennst bestimmt jemanden, dessen Skript nach zwei Wochen aussieht wie ein Farbkasten.',
     },
     ueberfordert: {
       lines: ['Der', 'Überforderte'],
-      attrs: [['Verstehen',76,'hoch'],['Struktur',18,'gering'],['Dranbleiben',52,'mittel'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
-      weak: 1,
       tipp: 'Fang bewusst beim schwersten Kapitel an, nicht beim ersten. Die Reihenfolge, die du suchst, entsteht beim Lernen — nicht davor.',
       share: 'Du kennst bestimmt jemanden, der seit drei Wochen bei Kapitel 2 hängt.',
     },
     einzel: {
       lines: ['Der', 'Einzelkämpfer'],
-      attrs: [['Verstehen',76,'hoch'],['Struktur',52,'mittel'],['Dranbleiben',18,'gering'],['Abrufen',52,'mittel'],['Behalten',52,'mittel']],
-      weak: 2,
       tipp: 'Setz dir einen Termin mit einem Menschen, nicht mit dir selbst. Ein Vorsatz, den niemand kennt, überlebt die erste schlechte Woche nicht.',
       share: 'Du kennst bestimmt jemanden, der nie in der Lerngruppe auftaucht und trotzdem behauptet, es läuft.',
     },
     sprinter: {
       lines: ['Der', 'Sprinter'],
-      attrs: [['Verstehen',76,'hoch'],['Struktur',76,'hoch'],['Dranbleiben',34,'schwankend'],['Abrufen',76,'hoch'],['Behalten',18,'gering']],
-      weak: 4,
       tipp: 'Geh drei Tage nach der Klausur noch einmal zwanzig Minuten über den Stoff. Dieser eine Termin entscheidet, ob du ihn nächstes Semester wieder lernen musst.',
       share: 'Du kennst bestimmt jemanden, der drei Tage vorher anfängt und trotzdem besteht.',
     },
   };
+
+  const TEST_URL = 'https://octastudy.com/tools/lerntyp-test/';
+
+  /* Basisprofil je Lerntyp: die Werte, die ein reiner Vertreter haette.
+     Reihenfolge fix — Verstehen, Struktur, Dranbleiben, Abrufen, Behalten. */
+  const ATTR_NAMEN = ['Verstehen', 'Struktur', 'Dranbleiben', 'Abrufen', 'Behalten'];
+  const ATTR_BASIS = {
+    koenner:      [94, 76, 76, 18, 52],
+    sammler:      [52, 18, 94, 52, 52],
+    markierer:    [52, 52, 94, 18, 52],
+    ueberfordert: [76, 18, 52, 52, 52],
+    einzel:       [76, 52, 18, 52, 52],
+    sprinter:     [76, 76, 34, 76, 18],
+  };
+  /* Wortstufen nach Rang im eigenen Profil statt nach absoluter Schwelle.
+     So gibt es immer genau ein "gering" — zwei gleich beschriftete Zeilen in
+     unterschiedlicher Farbe haben wie ein Fehler ausgesehen. */
+  const ATTR_WORTE = ['sehr hoch', 'hoch', 'mittel', 'eher gering', 'gering'];
+
+  /* Mischt aus den Punkten je Lerntyp ein individuelles Attributprofil.
+     Quadratisch gewichtet: Der dominante Typ traegt das Profil, die uebrigen
+     faerben es nur ein. Linear gewichtet zoege der Durchschnitt alles zur
+     Mitte und jedes Ergebnis saehe gleich aus. */
+  function attrProfil(punkte) {
+    let gw = 0;
+    const summe = [0, 0, 0, 0, 0];
+    for (const t of ORDER) {
+      const w = Math.pow(Math.max(0, punkte[t] || 0), 2);
+      if (!w) continue;
+      gw += w;
+      ATTR_BASIS[t].forEach((v, i) => { summe[i] += v * w; });
+    }
+    const werte = gw ? summe.map((v) => Math.round(v / gw)) : ATTR_BASIS[ORDER[0]].slice();
+    const rang = werte.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]).map((x) => x[1]);
+    const zeilen = werte.map((v, i) => [ATTR_NAMEN[i], v, '']);
+    rang.forEach((i, r) => { zeilen[i][2] = ATTR_WORTE[r]; });
+    return { zeilen: zeilen, weak: rang[rang.length - 1] };
+  }
+
+  /* Profil des laufenden Durchgangs. Karte und Ergebnisseite lesen dasselbe
+     Objekt, damit beide garantiert dieselben Werte zeigen. */
+  let attrAktuell = null;
 
   const SHARE_SATZ =
     'Zwei verschiedene Profile ergänzen sich beim Abfragen besser als zwei gleiche — wer an einer anderen Stelle hängt als du, merkt genau die Lücken, die du selbst überliest.';
@@ -2593,8 +2696,9 @@ const jsonLd = JSON.stringify({
 
     sec('DEIN PROFIL');
     const LABW = 280, VALW = 196, GAP = 30;
-    c.attrs.forEach(([name, pct, word], i) => {
-      const weak = i === c.weak;
+    const prof = attrAktuell || attrProfil({ [key]: 1 });
+    prof.zeilen.forEach(([name, pct, word], i) => {
+      const weak = i === prof.weak;
       ctx.fillStyle = weak ? CK.accentSoft : CK.label;
       ctx.font = '700 31px ' + CK.font;
       ctx.fillText(name, L, y + 1);
@@ -2617,10 +2721,8 @@ const jsonLd = JSON.stringify({
     ctx.strokeStyle = CK.line; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(L, fy - 44); ctx.lineTo(R, fy - 44); ctx.stroke();
     ctx.font = '800 29px ' + CK.font; ctx.fillStyle = CK.white;
-    const w1 = ctx.measureText('octastudy.com').width;
     ctx.fillText('octastudy.com', L, fy);
     ctx.font = '600 29px ' + CK.font; ctx.fillStyle = CK.muted;
-    ctx.fillText('/lerntyp', L + w1, fy);
     ctx.textAlign = 'right'; ctx.fillText('Welcher bist du?', R, fy); ctx.textAlign = 'left';
   }
 
@@ -2652,7 +2754,12 @@ const jsonLd = JSON.stringify({
     const blob = await cardReady();
     if (!blob) return;
     const file = new File([blob], 'mein-lerntyp.png', { type: 'image/png' });
-    const text = 'Ich bin ' + PROFILES[lerntyp].name + '. Welcher Lerntyp bist du?';
+    /* Die Adresse steht bewusst IM Text und nicht im url-Feld von navigator.share:
+       Sobald eine Datei mitgegeben wird, verwerfen mehrere Ziel-Apps das
+       url-Feld. Im Text bleibt sie erhalten und wird von WhatsApp, iMessage
+       und Signal automatisch anklickbar gemacht. */
+    const text =
+      'Ich bin ' + PROFILES[lerntyp].name + '. Welcher Lerntyp bist du? ' + TEST_URL;
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
         await navigator.share({ files: [file], text: text });
@@ -2699,6 +2806,18 @@ const jsonLd = JSON.stringify({
         <span class="lt-bar-val">${s[k]} Pkt.</span>
       </div>`
     ).join('');
+
+    const prof = attrAktuell || attrProfil({ [key]: 1 });
+    const attrBars = prof.zeilen
+      .map(
+        ([name, val, wort], i) => `
+      <div class="lt-attr${i === prof.weak ? ' is-weak' : ''}">
+        <span class="lt-attr__name">${name}</span>
+        <span class="lt-attr__track"><span class="lt-attr__fill" data-v="${val}"></span></span>
+        <span class="lt-attr__val">${wort}</span>
+      </div>`
+      )
+      .join('');
 
     const reviews = REVIEWS[key] || [];
     const bewertungen = `
@@ -2767,14 +2886,27 @@ const jsonLd = JSON.stringify({
       </div>
 
       <div class="lt-befund">
-        <span class="eyebrow" style="margin-bottom:1rem">Auswertung</span>
-        <div class="lt-bars">${bars}</div>
+        <span class="eyebrow" style="margin-bottom:1rem">Dein Profil</span>
+        <div class="lt-attrs">${attrBars}</div>
+        <p class="lt-attrs__note">
+          Abgeleitet aus deinen acht Antworten. Die markierte Zeile ist die,
+          an der es bei dir kippt — dort setzt auch dein Tipp an.
+        </p>
       </div>
 
       <div class="lt-block"><h3>Was du gut kannst</h3><p>${p.strength}</p></div>
       <div class="lt-block"><h3>Kennst du das?</h3><p class="lt-moment">${d.moment}</p></div>
       <div class="lt-block"><h3>Warum das passiert</h3><p>${d.why}</p></div>
       <div class="lt-block"><h3>Was dich das kostet</h3><p>${p.cost}</p></div>
+
+      <details class="lt-eindeutig">
+        <summary>Wie eindeutig war das?</summary>
+        <p class="text-muted">
+          Kein Mensch ist nur ein Typ. So haben sich deine Antworten auf die
+          sechs Muster verteilt:
+        </p>
+        <div class="lt-bars">${bars}</div>
+      </details>
 
       <hr class="lt-divider">
 
