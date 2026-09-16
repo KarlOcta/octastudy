@@ -1638,16 +1638,35 @@ const jsonLd = JSON.stringify({
   }
 
   .lt-share {
-    display: grid;
-    grid-template-columns: 250px minmax(0, 1fr);
-    gap: 2rem;
-    align-items: center;
     margin: 1.6rem 0 0;
     padding: 1.6rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--bg-card);
     box-shadow: var(--shadow);
+  }
+  .lt-share__frage { margin: 0 0 0.5rem; }
+  .lt-share__wen { margin: 0 0 1rem; }
+  /* Karte und Knoepfe liegen hinter dem Aufklapper, die Ansprache bleibt
+     sichtbar — sie ist der Teil, der zum Oeffnen bewegt. */
+  .lt-share__mehr > summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--accent);
+    list-style: none;
+  }
+  .lt-share__mehr > summary::-webkit-details-marker { display: none; }
+  .lt-share__mehr > summary::after {
+    content: ' ↓';
+    font-weight: 600;
+  }
+  .lt-share__mehr[open] > summary::after { content: ' ↑'; }
+  .lt-share__inner {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1.2rem;
   }
   .lt-share__preview { line-height: 0; }
   /* Das Canvas ist intern 1080x1920 und wird hier nur verkleinert angezeigt. */
@@ -1684,7 +1703,7 @@ const jsonLd = JSON.stringify({
   }
 
   @media (max-width: 720px) {
-    .lt-share {
+    .lt-share__inner {
       grid-template-columns: 1fr;
       gap: 1.3rem;
     }
@@ -1763,6 +1782,20 @@ const jsonLd = JSON.stringify({
 
   @media (prefers-reduced-motion: reduce) {
     .lt-attr__fill { transition: none; }
+  }
+  /* Sprungmarken innerhalb des Ergebnisses. scroll-margin haelt den
+     angesprungenen Block unter dem klebenden Kopfbereich frei. */
+  .lt-jump {
+    color: var(--accent);
+    font-weight: 600;
+    text-underline-offset: 2px;
+  }
+  #lt-tipp,
+  #lt-umsetzung { scroll-margin-top: 5.5rem; }
+  .lt-tipp__bruecke {
+    margin: 0.9rem 0 0;
+    font-size: 0.97rem;
+    color: var(--text-muted);
   }
 </style>
 
@@ -2890,7 +2923,8 @@ const jsonLd = JSON.stringify({
         <div class="lt-attrs">${attrBars}</div>
         <p class="lt-attrs__note">
           Abgeleitet aus deinen acht Antworten. Die markierte Zeile ist die,
-          an der es bei dir kippt — dort setzt auch dein Tipp an.
+          an der es bei dir kippt — dort setzt auch
+          <a class="lt-jump" href="#lt-tipp">dein Tipp</a> an.
         </p>
       </div>
 
@@ -2921,31 +2955,40 @@ const jsonLd = JSON.stringify({
         <p><strong>Die Hürde im Alltag:</strong> ${c.huerde}</p>
       </div>
 
-      <div class="lt-block lt-tipp">
+      <div class="lt-block lt-tipp" id="lt-tipp">
         <span class="eyebrow">Dein Tipp</span>
         <p class="lt-tipp__text">${cd.tipp}</p>
+        <p class="lt-tipp__bruecke">
+          Allein durchzuhalten ist dabei der schwere Teil — eine gute App nimmt
+          ihn dir ab. <a class="lt-jump" href="#lt-umsetzung">So haben wir das gebaut</a>.
+        </p>
       </div>
 
       <div class="lt-share">
-        <div class="lt-share__preview">
-          <canvas id="cardcanvas" class="lt-share__canvas" width="1080" height="1920"
-                  role="img" aria-label="Deine Lerntyp-Karte zum Teilen"></canvas>
-        </div>
-        <div class="lt-share__text">
-          <h3>Wem schickst du das?</h3>
-          <p>${cd.share}</p>
-          <p><strong>Schick ihr deine Karte und frag, was bei ihr rauskommt.</strong>
-             ${SHARE_SATZ}</p>
-          <div class="lt-share__btns">
-            <button class="btn" type="button" onclick="shareCard()">Karte teilen</button>
-            <button class="btn btn--ghost" type="button" onclick="saveCard()">Bild speichern</button>
+        <h3 class="lt-share__frage">Wem schickst du das?</h3>
+        <p class="lt-share__wen">${cd.share}</p>
+        <details class="lt-share__mehr">
+          <summary>Karte ansehen und schicken</summary>
+          <div class="lt-share__inner">
+            <div class="lt-share__preview">
+              <canvas id="cardcanvas" class="lt-share__canvas" width="1080" height="1920"
+                      role="img" aria-label="Deine Lerntyp-Karte zum Teilen"></canvas>
+            </div>
+            <div class="lt-share__text">
+              <p><strong>Schick ihr deine Karte und frag, was bei ihr rauskommt.</strong>
+                 ${SHARE_SATZ}</p>
+              <div class="lt-share__btns">
+                <button class="btn" type="button" onclick="shareCard()">Karte teilen</button>
+                <button class="btn btn--ghost" type="button" onclick="saveCard()">Bild speichern</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </details>
       </div>
 
       <hr class="lt-divider">
 
-      <div class="lt-block">
+      <div class="lt-block" id="lt-umsetzung">
         <span class="eyebrow">Die Umsetzung</span>
         <h3 style="margin:.75rem 0 .5rem">Genau dafür haben wir Octa gebaut</h3>
         <div class="lt-app">
