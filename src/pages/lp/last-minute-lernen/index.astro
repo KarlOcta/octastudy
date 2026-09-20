@@ -55,13 +55,36 @@ import AdLandingpage from '../../../components/AdLandingpage.astro';
   ]}
   mockupSrc="/img/mockups/app/andere-plan.webp"
   mockupAlt="Octa-Lernplan mit Lernpfad und Fortschritt bis zum Prüfungstermin"
-  zitat="Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte."
-  zitatWer="Timmi.bremmen · App Store"
+  zitate={[
+    {
+      text: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      wer: 'Timmi.bremmen',
+    },
+    {
+      text: 'Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben.',
+      wer: 'So fifi',
+    },
+    {
+      text: 'Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      wer: 'DexterBerlin36',
+    },
+  ]}
+  prozess={[
+    {
+      src: '/img/mockups/app/andere-karte.webp',
+      alt: 'Octa-Karteikarte mit Frage und Antwort, darüber die Knöpfe „Erklären“ und „Test yourself“',
+      caption: 'Aus deinen Unterlagen wird eine Karteikarte — mit Test-yourself-Knopf',
+      width: 752,
+      height: 1559,
+    },
+    {
+      src: '/img/mockups/app/andere-test.webp',
+      alt: 'Test-yourself-Ansicht: Prüfungsmodus, wählbarer Prüfer-Ton und Aufnahmeknopf',
+      caption: 'Antwort laut einsprechen — Prüfungsmodus und Ton des Prüfers wählbar',
+      width: 752,
+      height: 1559,
+    },
+  ]}
   ctaTitel="Nächste Klausur: gleicher Sprint, aber er hält"
   ctaText="Gib deinen nächsten Prüfungstermin ein und sieh dir den Plan an, den Octa daraus macht. Das kostet zwei Minuten und entscheidet, ob du den Stoff im nächsten Semester noch einmal anfassen musst."
-  ehrlich={[
-    'Wenn du wirklich erst am Vorabend anfängst, holt auch Octa das nicht auf.',
-    'Die Wiederholungen bringen nur etwas, wenn du sie machst — Erinnerungen kannst du abschalten, die Lücke bleibt dann trotzdem.',
-    'Octa nimmt dir das Lernen nicht ab. Es sorgt dafür, dass die Zeit, die du investierst, länger hält als bis zur Klausur.',
-  ]}
 />

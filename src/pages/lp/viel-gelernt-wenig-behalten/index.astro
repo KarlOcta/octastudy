@@ -54,13 +54,36 @@ import AdLandingpage from '../../../components/AdLandingpage.astro';
   ]}
   mockupSrc="/img/mockups/app/andere-karte.webp"
   mockupAlt="Octa-Karteikarte, automatisch aus hochgeladenen Vorlesungsunterlagen erstellt"
-  zitat="Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben."
-  zitatWer="So fifi · App Store"
+  zitate={[
+    {
+      text: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      wer: 'Timmi.bremmen',
+    },
+    {
+      text: 'Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben.',
+      wer: 'So fifi',
+    },
+    {
+      text: 'Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      wer: 'DexterBerlin36',
+    },
+  ]}
+  prozess={[
+    {
+      src: '/img/mockups/app/andere-karte.webp',
+      alt: 'Octa-Karteikarte mit Frage und Antwort, darüber die Knöpfe „Erklären“ und „Test yourself“',
+      caption: 'Aus deinen Unterlagen wird eine Karteikarte — mit Test-yourself-Knopf',
+      width: 752,
+      height: 1559,
+    },
+    {
+      src: '/img/mockups/app/andere-test.webp',
+      alt: 'Test-yourself-Ansicht: Prüfungsmodus, wählbarer Prüfer-Ton und Aufnahmeknopf',
+      caption: 'Antwort laut einsprechen — Prüfungsmodus und Ton des Prüfers wählbar',
+      width: 752,
+      height: 1559,
+    },
+  ]}
   ctaTitel="Nimm ein Kapitel, das du schon markiert hast"
   ctaText="Lade es hoch und lass dich zehn Minuten lang dazu abfragen. Du wirst in diesen zehn Minuten genauer wissen, was du davon kannst, als nach dem dritten Durchlesen."
-  ehrlich={[
-    'Octa lernt nicht für dich. Die Karten kommen automatisch, das Abfragen musst du selbst machen.',
-    'Die ersten Durchgänge fühlen sich schlechter an als Lesen. Das ist kein Fehler, sondern der Grund, warum es wirkt.',
-    'Wenn deine Unterlagen unvollständig sind, sind es die Karten auch — Octa erfindet deinen Stoff nicht.',
-  ]}
 />

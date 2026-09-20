@@ -43,11 +43,11 @@ import AdLandingpage from '../../../components/AdLandingpage.astro';
   schritte={[
     {
       titel: 'Stoff rein, Fragen raus',
-      text: 'Lade dein Skript oder deine Folien hoch. Octa macht daraus die Fragen, die dir jemand stellen würde — du musst dir nichts selbst ausdenken.',
+      text: 'Lade dein Skript oder deine Folien hoch. Octa macht daraus Karteikarten mit inkludiertem mündlichem Prüfer — du musst dir nichts selbst erstellen, weder Karteikarten noch Fragen.',
     },
     {
       titel: 'Antwort einsprechen, bevor du die Lösung siehst',
-      text: 'Du drückst auf Abfragen und sagst deine Antwort laut. Genau die Situation, die dich in der Prüfung erwischt — nur ohne Prüfer.',
+      text: 'Du drückst auf Abfragen und sagst deine Antwort laut. Genau die Situation, die dich in der Prüfung erwischt.',
     },
     {
       titel: 'Gesprochene Rückmeldung darauf',
@@ -56,13 +56,36 @@ import AdLandingpage from '../../../components/AdLandingpage.astro';
   ]}
   mockupSrc="/img/mockups/app/andere-test.webp"
   mockupAlt="Octa-Karteikarte mit Abfrage-Knopf — die Antwort wird laut eingesprochen"
-  zitat="Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen."
-  zitatWer="DexterBerlin36 · App Store"
+  zitate={[
+    {
+      text: 'Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte.',
+      wer: 'Timmi.bremmen',
+    },
+    {
+      text: 'Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben.',
+      wer: 'So fifi',
+    },
+    {
+      text: 'Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen.',
+      wer: 'DexterBerlin36',
+    },
+  ]}
+  prozess={[
+    {
+      src: '/img/mockups/app/andere-karte.webp',
+      alt: 'Octa-Karteikarte mit Frage und Antwort, darüber die Knöpfe „Erklären“ und „Test yourself“',
+      caption: 'Aus deinen Unterlagen wird eine Karteikarte — mit Test-yourself-Knopf',
+      width: 752,
+      height: 1559,
+    },
+    {
+      src: '/img/mockups/app/andere-test.webp',
+      alt: 'Test-yourself-Ansicht: Prüfungsmodus, wählbarer Prüfer-Ton und Aufnahmeknopf',
+      caption: 'Antwort laut einsprechen — Prüfungsmodus und Ton des Prüfers wählbar',
+      width: 752,
+      height: 1559,
+    },
+  ]}
   ctaTitel="Sprich eine einzige Antwort laut aus"
   ctaText="Nimm ein Thema, bei dem du sicher bist, dass du es kannst, und sag die Antwort einmal laut. Dieser eine Versuch sagt dir mehr über deinen Prüfungsstand als ein weiterer Leseabend."
-  ehrlich={[
-    'Du musst tatsächlich laut sprechen. Wer das nicht will, hat von Octa wenig.',
-    'Es ersetzt keine echte Prüfungssimulation mit einem Menschen — es sorgt dafür, dass du bis dahin nicht bei null anfängst.',
-    'Die Rückmeldung bezieht sich auf deine hochgeladenen Unterlagen. Was da nicht drinsteht, kann Octa auch nicht einfordern.',
-  ]}
 />

@@ -19,6 +19,8 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AndroidWarteliste from './AndroidWarteliste.astro';
+import ZitatSlideshow from './ZitatSlideshow.astro';
+import MockupSlideshow from './MockupSlideshow.astro';
 import { OCTA, APP_RATING } from '../site';
 
 interface Schritt {
@@ -55,14 +57,16 @@ interface Props {
   mockupSrc: string;
   mockupAlt: string;
 
-  zitat: string;
-  zitatWer: string;
+  /** Echte App-Store-Bewertungen. Rotieren als Slideshow. */
+  zitate: { text: string; wer: string }[];
+
+  /** Optionale Ablauf-Slideshow: zeigt Schritt für Schritt, was in der App
+   *  passiert. Weggelassen, wenn für die Seite keine passenden Screens
+   *  vorliegen — lieber kein Ablauf als ein irreführender. */
+  prozess?: { src: string; alt: string; caption: string; width: number; height: number }[];
 
   ctaTitel: string;
   ctaText: string;
-
-  /** Was die App ausdrücklich nicht tut — filtert und schafft Vertrauen. */
-  ehrlich: string[];
 }
 
 const p = Astro.props as Props;
@@ -135,6 +139,22 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
     </ol>
   </section>
 
+  {
+    p.prozess && (
+      <section class="wrap lp-section">
+        <h2 class="rule">So sieht das in der App aus</h2>
+        <div class="lp-prozess">
+          <MockupSlideshow
+            id="lp-prozess"
+            slides={p.prozess}
+            intervalMs={3600}
+            class="lp-prozess__show"
+          />
+        </div>
+      </section>
+    )
+  }
+
   <section class="wrap lp-section">
     <div class="lp-proof">
       <div class="lp-rating">
@@ -145,10 +165,9 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
           }
         </span>
       </div>
-      <blockquote class="lp-zitat">
-        „{p.zitat}"
-        <cite>{p.zitatWer}</cite>
-      </blockquote>
+      <div class="lp-zitate">
+        <ZitatSlideshow id="lp-bewertungen" zitate={p.zitate} />
+      </div>
     </div>
   </section>
 
@@ -164,25 +183,18 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
         >{OCTA.name} im App Store ansehen</a
       >
       <p class="lp-hint lp-hint--center">
-        Kostenlos ausprobieren · keine Kreditkarte nötig
+        Kostenlos ausprobieren · iPhone und iPad
       </p>
     </div>
   </section>
 
   <section class="wrap lp-section">
-    <div class="lp-ehrlich">
-      <h2>Damit du es vorher weißt</h2>
-      <ul>
-        {p.ehrlich.map((t) => <li>{t}</li>)}
-      </ul>
-      <p class="lp-ehrlich__android">
-        Und: Octa gibt es bisher nur für iPhone und iPad. Wenn du Android
-        nutzt,{' '}
-        <button class="owl-link" type="button" onclick="octaWlOpen()"
-          >trag dich hier ein</button
-        > — du bekommst genau eine Nachricht, sobald die Android-Version da ist.
-      </p>
-    </div>
+    <p class="lp-android">
+      Octa gibt es bisher nur für iPhone und iPad. Wenn du Android nutzt,{' '}
+      <button class="owl-link" type="button" onclick="octaWlOpen()"
+        >trag dich hier ein</button
+      > — du bekommst genau eine Nachricht, sobald die Android-Version da ist.
+    </p>
   </section>
 
   <AndroidWarteliste quelle={`lp-${p.kennung}`} />
@@ -345,20 +357,20 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
     color: var(--text-subtle);
   }
 
-  .lp-zitat {
-    margin: 1rem 0 0;
-    padding-left: 1rem;
-    border-left: 3px solid var(--brand-pink);
-    font-style: italic;
-    color: var(--text-muted);
+  .lp-zitate {
+    margin-top: 1rem;
   }
 
-  .lp-zitat cite {
-    display: block;
-    margin-top: 0.45rem;
-    font-style: normal;
-    font-size: 0.85rem;
-    color: var(--text-subtle);
+  /* Ablauf-Slideshow: schmal halten, ein Telefon liest sich besser als ein
+     bildschirmbreiter Screenshot. */
+  .lp-prozess {
+    display: flex;
+    justify-content: center;
+  }
+
+  .lp-prozess__show {
+    width: 100%;
+    max-width: 260px;
   }
 
   .lp-cta {
@@ -379,28 +391,9 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
     color: var(--text-muted);
   }
 
-  .lp-ehrlich {
+  .lp-android {
     max-width: 42rem;
-  }
-
-  .lp-ehrlich h2 {
-    font-size: 1.2rem;
-    margin: 0 0 0.7rem;
-  }
-
-  .lp-ehrlich ul {
     margin: 0;
-    padding-left: 1.2rem;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-  }
-
-  .lp-ehrlich li {
-    margin-bottom: 0.4rem;
-  }
-
-  .lp-ehrlich__android {
-    margin: 1rem 0 0;
     font-size: 0.95rem;
     color: var(--text-muted);
   }

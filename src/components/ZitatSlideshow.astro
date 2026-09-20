@@ -1,0 +1,152 @@
+---
+/**
+ * Rotierende App-Store-Bewertungen.
+ *
+ * Gleiche Machart wie MockupSlideshow.astro (Crossfade, Punkte darunter,
+ * klickbar) — nur für Text statt Bilder. Eine einzelne Bewertung wirkt wie
+ * ein herausgepickter Einzelfall; mehrere nacheinander zeigen, dass es
+ * mehr als eine gibt, ohne die Seite mit einer langen Liste zu füllen.
+ *
+ * Hier stehen ausschließlich echte Bewertungen aus dem App Store. Nichts
+ * davon wird ausgedacht oder umformuliert — Bewertungen zu erfinden wäre
+ * Irreführung und rechtlich angreifbar.
+ */
+export interface Zitat {
+  /** Wortlaut der Bewertung, ohne Anführungszeichen. */
+  text: string;
+  /** Verfassername wie im App Store. */
+  wer: string;
+}
+
+export interface Props {
+  zitate: Zitat[];
+  /** Eindeutige ID, falls mehrere Slideshows auf derselben Seite laufen. */
+  id: string;
+  intervalMs?: number;
+}
+
+const { zitate, id, intervalMs = 5200 } = Astro.props;
+---
+
+<div class="zs" id={id} data-interval={intervalMs}>
+  <div class="zs__frame">
+    {
+      zitate.map((z, i) => (
+        <blockquote class="zs__zitat" data-active={i === 0 ? 'true' : 'false'}>
+          <p>„{z.text}"</p>
+          <cite>{z.wer} · App&nbsp;Store</cite>
+        </blockquote>
+      ))
+    }
+  </div>
+  {
+    zitate.length > 1 && (
+      <div class="zs__dots" role="tablist" aria-label="Bewertungen">
+        {zitate.map((_, i) => (
+          <button
+            type="button"
+            class="zs__dot"
+            data-index={i}
+            aria-current={i === 0 ? 'true' : undefined}
+            aria-label={`Bewertung ${i + 1} von ${zitate.length}`}
+          />
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<script>
+  function initZitate(root: HTMLElement) {
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.zs__zitat'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.zs__dot'));
+    if (items.length < 2) return;
+
+    let active = 0;
+    const interval = Number(root.dataset.interval) || 5200;
+
+    const show = (i: number) => {
+      items[active].dataset.active = 'false';
+      dots[active].removeAttribute('aria-current');
+      active = i;
+      items[active].dataset.active = 'true';
+      dots[active].setAttribute('aria-current', 'true');
+    };
+
+    let timer = setInterval(() => show((active + 1) % items.length), interval);
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        show(Number(dot.dataset.index));
+        timer = setInterval(() => show((active + 1) % items.length), interval);
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.zs').forEach(initZitate);
+</script>
+
+<style>
+  .zs__frame {
+    position: relative;
+  }
+
+  /* Alle Zitate liegen übereinander; nur das aktive steht im Fluss und
+     bestimmt damit die Höhe. Ohne das würde der Block beim Wechsel
+     springen, weil die Bewertungen unterschiedlich lang sind. */
+  .zs__zitat {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-pink);
+    transition: opacity 0.45s ease;
+  }
+
+  .zs__zitat[data-active='true'] {
+    position: relative;
+    opacity: 1;
+  }
+
+  .zs__zitat p {
+    margin: 0;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .zs__zitat cite {
+    display: block;
+    margin-top: 0.45rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .zs__dots {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.9rem;
+  }
+
+  .zs__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: var(--border-strong, #d8d6e8);
+    cursor: pointer;
+  }
+
+  .zs__dot[aria-current='true'] {
+    background: var(--accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .zs__zitat {
+      transition: none;
+    }
+  }
+</style>
