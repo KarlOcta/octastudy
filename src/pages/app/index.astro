@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import OctaCtaBox from '../../components/OctaCtaBox.astro';
 import MockupSlideshow from '../../components/MockupSlideshow.astro';
+import AndroidWarteliste from '../../components/AndroidWarteliste.astro';
 import { OCTA, APP_RATING, APP_REVIEWS, SITE } from '../../site';
 
 const HERO_SLIDES = [
@@ -131,7 +132,7 @@ const CONTRA = [
 const FAQ = [
   {
     q: 'Auf welchen Geräten läuft Octa?',
-    a: 'Octa gibt es aktuell nur für iPhone und iPad. Eine Android-Version ist in Arbeit — du kannst dich über die Seite zum Lerntyp-Test auf die Warteliste setzen.',
+    a: 'Octa gibt es aktuell nur für iPhone und iPad. Eine Android-Version ist in Arbeit — auf dieser Seite kannst du dich auf die Warteliste setzen und bekommst genau eine Nachricht, sobald sie da ist.',
   },
   {
     q: 'Woher kommen die Karteikarten?',
@@ -196,7 +197,12 @@ const jsonLd = JSON.stringify({
           <a class="btn" href={storeLink} rel="noopener">Octa im App Store ansehen</a>
           <a class="btn btn--ghost" href="/tools/lerntyp-test/">Erst den 1-Minuten-Test machen</a>
         </div>
-        <p class="hero__hint">iPhone und iPad · eine Android-Version ist in Arbeit</p>
+        <p class="hero__hint">
+          iPhone und iPad · Android ist in Arbeit —{' '}
+          <button class="owl-link" type="button" onclick="octaWlOpen()"
+            >sag mir Bescheid, wenn es so weit ist</button
+          >
+        </p>
       </div>
       <div class="hero__mockup">
         <MockupSlideshow id="hero-slides" slides={HERO_SLIDES} intervalMs={4200} />
@@ -345,6 +351,23 @@ const jsonLd = JSON.stringify({
   </section>
 
   <section class="wrap">
+    <div class="android">
+      <div class="android__copy">
+        <h2>Du bist auf Android?</h2>
+        <p>
+          Dann kannst du Octa gerade noch nicht nutzen — die App gibt es bisher
+          nur für iPhone und iPad. Die Android-Fassung wird gebaut. Trag deine
+          E-Mail ein und du bekommst genau eine Nachricht, sobald sie da ist:
+          kein Newsletter, keine Werbung.
+        </p>
+        <button class="btn btn--ghost" type="button" onclick="octaWlOpen()">
+          Auf die Warteliste
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
     <OctaCtaBox
       id="closing-slides"
       title="Lade dein erstes Unterlagen-Set hoch"
@@ -360,9 +383,34 @@ const jsonLd = JSON.stringify({
       lesen.
     </OctaCtaBox>
   </section>
+
+  <AndroidWarteliste quelle="app-landingpage" />
 </BaseLayout>
 
 <style>
+  /* Android-Block: bewusst zurueckgenommen statt als zweite Haupt-CTA — er
+     richtet sich an die Minderheit, die gerade gar nicht kaufen kann. */
+  .android {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-soft);
+    padding: 1.8rem;
+  }
+
+  .android__copy {
+    max-width: 42rem;
+  }
+
+  .android h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.35rem;
+  }
+
+  .android p {
+    margin: 0 0 1.2rem;
+    color: var(--text-muted);
+  }
+
   .hero {
     border-bottom: 1px solid var(--border);
     margin-bottom: 2.5rem;

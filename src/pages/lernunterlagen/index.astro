@@ -20,17 +20,21 @@ const LERNPLAN_SLIDES = [
   },
 ];
 
+/* "kurz" ist das Chip-Label in der Schnellauswahl oben. Der lange Titel
+   bleibt fuer die ausfuehrlichen Karten weiter unten stehen — in einer
+   Chip-Reihe wuerde "Wirtschaftsingenieurwesen" alles andere erschlagen. */
 const faecher = [
   {
     title: 'Rechtswissenschaft',
+    kurz: 'Jura',
     href: '/lernunterlagen/jura/',
     text: 'Prüfungsschemata und ausformulierte Klausurfälle zu den klassischen Klausurparagrafen — Zivilrecht, Strafrecht und Öffentliches Recht.',
     status: 'verfügbar',
   },
-  { title: 'BWL & Wirtschaft', text: 'Kennzahlen, Buchungssätze, Schemata für die typischen Klausuraufgaben.', status: 'in Vorbereitung' },
-  { title: 'Sportwissenschaften', text: 'Anatomie, Trainingslehre und Prüfungsstoff aus der Bewegungswissenschaft.', status: 'in Vorbereitung' },
-  { title: 'Wirtschaftsingenieurwesen', text: 'Technik trifft Betriebswirtschaft — Formelsammlungen und Rechenwege.', status: 'in Vorbereitung' },
-  { title: 'Bauingenieurwesen', text: 'Statik, Baustoffkunde und die Nachweise, die in jeder Klausur drankommen.', status: 'in Vorbereitung' },
+  { title: 'BWL & Wirtschaft', kurz: 'BWL', text: 'Kennzahlen, Buchungssätze, Schemata für die typischen Klausuraufgaben.', status: 'in Vorbereitung' },
+  { title: 'Sportwissenschaften', kurz: 'Sport', text: 'Anatomie, Trainingslehre und Prüfungsstoff aus der Bewegungswissenschaft.', status: 'in Vorbereitung' },
+  { title: 'Wirtschaftsingenieurwesen', kurz: 'Wirtschaftsing.', text: 'Technik trifft Betriebswirtschaft — Formelsammlungen und Rechenwege.', status: 'in Vorbereitung' },
+  { title: 'Bauingenieurwesen', kurz: 'Bauing.', text: 'Statik, Baustoffkunde und die Nachweise, die in jeder Klausur drankommen.', status: 'in Vorbereitung' },
 ];
 ---
 
@@ -48,6 +52,25 @@ const faecher = [
       — die stand schon im Skript. Gebraucht wird das Material: die Struktur,
       die Gliederung, die Karten zum Abfragen. Genau das liegt hier.
     </p>
+
+    <nav class="fachwahl" aria-label="Schnellauswahl Studienfach">
+      <span class="fachwahl__label">Dein Fach:</span>
+      <ul class="fachwahl__list">
+        {
+          faecher.map((fach) =>
+            fach.href ? (
+              <li><a class="chip chip--on" href={fach.href}>{fach.kurz}</a></li>
+            ) : (
+              <li><span class="chip chip--soon">{fach.kurz}<small>bald</small></span></li>
+            )
+          )
+        }
+      </ul>
+      <p class="fachwahl__hint">
+        Fertig ist bislang Jura. Die übrigen Fächer entstehen der Reihe nach —
+        <a href="#faecher">weiter unten</a> steht, was jeweils geplant ist.
+      </p>
+    </nav>
 
     <h2 class="rule">Was du bekommst</h2>
     <div class="grid">
@@ -119,7 +142,7 @@ const faecher = [
       die beim stillen Lernen fehlt.
     </OctaCtaBox>
 
-    <h2 class="rule">Fächer</h2>
+    <h2 class="rule" id="faecher">Fächer</h2>
     <p class="section-intro">
       Wir bauen Fach für Fach auf, statt überall etwas Halbes anzubieten. Was
       fertig ist, ist vollständig.
@@ -156,6 +179,99 @@ const faecher = [
 </BaseLayout>
 
 <style>
+  /* Schnellauswahl ganz oben: Wer mit einem Fach im Kopf herkommt, soll nicht
+     erst an drei Textabschnitten vorbei. Die ausfuehrlichen Karten unten
+     bleiben fuer alle, die sich erst einen Ueberblick verschaffen. */
+  .fachwahl {
+    margin: 1.4rem 0 2.2rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-soft);
+  }
+
+  .fachwahl__label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-bottom: 0.7rem;
+  }
+
+  .fachwahl__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .chip--on {
+    background: var(--bg-card);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .chip--on:hover,
+  .chip--on:focus-visible {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Geplante Faecher sind sichtbar, aber eindeutig nicht klickbar — sonst
+     klickt jemand darauf und landet im Nichts. */
+  .chip--soon {
+    color: var(--text-subtle);
+    border-style: dashed;
+    cursor: default;
+  }
+
+  .chip--soon small {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.8;
+  }
+
+  .fachwahl__hint {
+    margin: 0.85rem 0 0;
+    font-size: 0.86rem;
+    color: var(--text-subtle);
+  }
+
+  .fachwahl__hint a {
+    color: var(--accent);
+  }
+
+  @media (max-width: 560px) {
+    .fachwahl {
+      padding: 1rem;
+    }
+
+    .chip {
+      font-size: 0.9rem;
+      padding: 0.45rem 0.8rem;
+    }
+  }
+
   .intro {
     max-width: 44rem;
     margin-bottom: 1rem;

@@ -1,0 +1,67 @@
+---
+/**
+ * Werbe-Landingpage — Persona "der Sprinter".
+ *
+ * Diese Persona ist die schwierigste der drei, weil sie sich nicht für ein
+ * Problem hält: Ihr System funktioniert, sie besteht ja. Jede Anzeige, die ihr
+ * sagt "du machst es falsch", verliert sie sofort — sie hat den Gegenbeweis in
+ * der Hand.
+ *
+ * Der Winkel ist deshalb nicht Belehrung, sondern Kosten-Verschiebung: Das
+ * Sprinten wird ausdrücklich als Fähigkeit anerkannt, und angegriffen wird nur
+ * die Wiederholung im nächsten Semester. Die Botschaft lautet "behalte dein
+ * System, zahl es nur nicht zweimal", nicht "fang früher an".
+ */
+import AdLandingpage from '../../../components/AdLandingpage.astro';
+---
+
+<AdLandingpage
+  metaTitle="Bestanden und trotzdem alles vergessen? Das ist kein Zufall"
+  metaDescription="Drei Tage vorher anfangen funktioniert — bis zum Aufbaumodul. Warum Kurzfrist-Lernen zuverlässig besteht und ebenso zuverlässig nichts hinterlässt."
+  kennung="lastminute"
+  eyebrow="Für alle, bei denen es unter Druck funktioniert"
+  h1Vorn="Bestanden. Und nächstes Semester "
+  h1Highlight="wieder bei null"
+  h1Hinten="."
+  lead="Drei Tage vorher anfangen und trotzdem durchkommen ist eine echte Fähigkeit. Sie hat nur einen Preis, und der wird nicht in dieser Klausur fällig, sondern in der nächsten, die darauf aufbaut."
+  szenen={[
+    'Du fängst spät an, ziehst es durch und bestehst — jedes Mal aufs Neue.',
+    'Vier Wochen später könntest du zum selben Stoff keine zehn Minuten mehr frei reden.',
+    'Im Aufbaumodul wird Wissen vorausgesetzt, das du formal schon nachgewiesen hast.',
+    'Vor der mündlichen Prüfung merkst du, dass du halbe Semester noch einmal lernen musst.',
+  ]}
+  szenenFazit="Dein System funktioniert für den Termin. Es funktioniert nur nicht für alles, was nach dem Termin kommt — und das ist inzwischen der größere Teil."
+  grundTitel="Warum Kurzfrist-Lernen zuverlässig besteht und ebenso zuverlässig verschwindet"
+  grundAbsaetze={[
+    'Alles in wenige Tage zu pressen bringt den Stoff kurzfristig sehr gut verfügbar — und genau deshalb funktioniert es. Was dabei aber nicht passiert, ist Festigung: Damit etwas bleibt, muss es <strong>mehrfach mit Abstand dazwischen</strong> abgerufen werden. Diesen Abstand lässt ein Drei-Tage-Sprint konstruktionsbedingt nicht zu.',
+    'Der Effekt ist gut untersucht und ziemlich unbarmherzig: Bei <em>gleicher</em> Gesamtlernzeit behält man deutlich mehr, wenn sie verteilt ist. Du müsstest also nicht mehr lernen, sondern dieselbe Zeit anders verteilen — nur merkt man den Unterschied erst Wochen später, wenn die Entscheidung längst gefallen ist.',
+    'Dazu kommt, warum sich daran nie etwas ändert: Jede bestandene Klausur bestätigt das Vorgehen. Der Erfolg ist sofort da, die Kosten kommen Monate später und sehen dann aus wie ein neues, unabhängiges Problem. Deshalb ist das hier auch kein Rat, früher anzufangen — sondern einer, die Nacharbeit zu sparen.',
+  ]}
+  loesungTitel="Den Sprint behalten, die Wiederholung automatisieren"
+  loesungText="Octa verlangt nicht, dass du dein Vorgehen umstellst. Es macht aus dem Stoff, den du ohnehin durchziehst, einen Plan mit eingebauten Wiederholungen — die kommen dann von selbst zurück, in kurzen Einheiten, damit du dasselbe Semester nicht zweimal lernst."
+  schritte={[
+    {
+      titel: 'Prüfungstermin und Stoff eingeben',
+      text: 'Octa rechnet vom Termin rückwärts und teilt den Stoff in Tagesportionen — auch wenn bis dahin nur noch drei Tage sind.',
+    },
+    {
+      titel: 'Abfragen statt durchlesen',
+      text: 'Du sprichst die Antworten laut ein und bekommst gesagt, was gefehlt hat. Das geht schneller als Lesen und zeigt sofort, was noch nicht sitzt.',
+    },
+    {
+      titel: 'Wiederholungen kommen von allein zurück',
+      text: 'Was du kannst, taucht seltener auf, was wackelt, häufiger — und zwar genau dann, wenn es sonst verloren ginge. Ein paar Minuten, nicht ein neuer Lernabend.',
+    },
+  ]}
+  mockupSrc="/img/mockups/app/andere-plan.webp"
+  mockupAlt="Octa-Lernplan mit Lernpfad und Fortschritt bis zum Prüfungstermin"
+  zitat="Zwei Tage vor der Klausur, Lernplan in zwei Minuten — am Ende 12 Punkte."
+  zitatWer="Timmi.bremmen · App Store"
+  ctaTitel="Nächste Klausur: gleicher Sprint, aber er hält"
+  ctaText="Gib deinen nächsten Prüfungstermin ein und sieh dir den Plan an, den Octa daraus macht. Das kostet zwei Minuten und entscheidet, ob du den Stoff im nächsten Semester noch einmal anfassen musst."
+  ehrlich={[
+    'Wenn du wirklich erst am Vorabend anfängst, holt auch Octa das nicht auf.',
+    'Die Wiederholungen bringen nur etwas, wenn du sie machst — Erinnerungen kannst du abschalten, die Lücke bleibt dann trotzdem.',
+    'Octa nimmt dir das Lernen nicht ab. Es sorgt dafür, dass die Zeit, die du investierst, länger hält als bis zur Klausur.',
+  ]}
+/>

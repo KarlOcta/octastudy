@@ -1,0 +1,429 @@
+---
+/**
+ * Gemeinsames Gerüst der Werbe-Landingpages unter /lp/.
+ *
+ * Diese Seiten sind NICHT für die organische Suche gedacht. Sie sind Ziele für
+ * bezahlte Meta-Anzeigen und deshalb bewusst anders gebaut als /app/:
+ *
+ *  - Ein einziges Ziel, der App-Store-Klick. Keine Querverlinkung in die
+ *    Seite hinein, die den Besucher wieder aus dem Trichter nimmt.
+ *  - Der Einstieg ist das Problem in den Worten der Zielperson, nicht das
+ *    Produkt. Wer über eine Anzeige kommt, hat nicht gesucht, sondern wurde
+ *    unterbrochen — die ersten zwei Zeilen müssen ihn erkennen lassen.
+ *  - Sie stehen auf noindex, weil sie inhaltlich nah an /app/ liegen und
+ *    sonst mit der eigenen Hauptseite um dieselben Begriffe konkurrieren.
+ *
+ * Der Lerntyp-Test wird hier absichtlich nirgends erwähnt. Die Seiten sollen
+ * für sich stehen und die Zielperson über ihr Problem abholen, nicht über
+ * eine Kategorie, in die sie sich erst einsortieren müsste.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AndroidWarteliste from './AndroidWarteliste.astro';
+import { OCTA, APP_RATING } from '../site';
+
+interface Schritt {
+  titel: string;
+  text: string;
+}
+
+interface Props {
+  /** Für <title> und Meta — taucht auf der Seite selbst nicht auf. */
+  metaTitle: string;
+  metaDescription: string;
+  /** Kennung für Plausible, damit die drei Seiten auseinanderzuhalten sind. */
+  kennung: string;
+
+  eyebrow: string;
+  /** Vor dem hervorgehobenen Teil. */
+  h1Vorn: string;
+  h1Highlight: string;
+  h1Hinten: string;
+  lead: string;
+
+  /** Drei bis vier konkrete Szenen zum Wiedererkennen. */
+  szenen: string[];
+  szenenFazit: string;
+
+  /** Der Reframe: warum es passiert. Zwei bis drei Absätze. */
+  grundTitel: string;
+  grundAbsaetze: string[];
+
+  loesungTitel: string;
+  loesungText: string;
+  schritte: Schritt[];
+
+  mockupSrc: string;
+  mockupAlt: string;
+
+  zitat: string;
+  zitatWer: string;
+
+  ctaTitel: string;
+  ctaText: string;
+
+  /** Was die App ausdrücklich nicht tut — filtert und schafft Vertrauen. */
+  ehrlich: string[];
+}
+
+const p = Astro.props as Props;
+const storeLink = OCTA.appStoreUrl;
+const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
+---
+
+<BaseLayout title={p.metaTitle} description={p.metaDescription} noindex wide>
+  <section class="lp-hero">
+    <div class="lp-hero__inner wrap">
+      <div class="lp-hero__copy">
+        <p class="eyebrow">{p.eyebrow}</p>
+        <h1>
+          {p.h1Vorn}<span class="hl">{p.h1Highlight}</span>{p.h1Hinten}
+        </h1>
+        <p class="lead">{p.lead}</p>
+        <a
+          class="btn lp-btn"
+          href={storeLink}
+          rel="noopener"
+          onclick={`if(window.plausible)plausible('lp_store_klick',${plausibleProps})`}
+          >{OCTA.name} im App Store ansehen</a
+        >
+        <p class="lp-hint">
+          Kostenlos ausprobieren · iPhone und iPad ·{' '}
+          <button class="owl-link" type="button" onclick="octaWlOpen()"
+            >Android?</button
+          >
+        </p>
+      </div>
+      <div class="lp-hero__shot">
+        <img
+          src={p.mockupSrc}
+          alt={p.mockupAlt}
+          width="752"
+          height="1559"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap lp-section">
+    <h2 class="rule">Kennst du das?</h2>
+    <ul class="lp-szenen">
+      {p.szenen.map((s) => <li>{s}</li>)}
+    </ul>
+    <p class="lp-fazit">{p.szenenFazit}</p>
+  </section>
+
+  <section class="wrap lp-section">
+    <h2 class="rule">{p.grundTitel}</h2>
+    <div class="lp-prosa">
+      {p.grundAbsaetze.map((t) => <p set:html={t} />)}
+    </div>
+  </section>
+
+  <section class="wrap lp-section">
+    <h2 class="rule">{p.loesungTitel}</h2>
+    <p class="lp-prosa">{p.loesungText}</p>
+    <ol class="lp-schritte">
+      {
+        p.schritte.map((s) => (
+          <li>
+            <strong>{s.titel}</strong>
+            <span>{s.text}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="wrap lp-section">
+    <div class="lp-proof">
+      <div class="lp-rating">
+        <span class="lp-rating__num">{APP_RATING.de.schnitt} ★</span>
+        <span class="lp-rating__sub">
+          {APP_RATING.de.anzahl} Bewertungen im App&nbsp;Store · Stand {
+            APP_RATING.de.stand
+          }
+        </span>
+      </div>
+      <blockquote class="lp-zitat">
+        „{p.zitat}"
+        <cite>{p.zitatWer}</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="wrap lp-section">
+    <div class="lp-cta">
+      <h2>{p.ctaTitel}</h2>
+      <p>{p.ctaText}</p>
+      <a
+        class="btn lp-btn"
+        href={storeLink}
+        rel="noopener"
+        onclick={`if(window.plausible)plausible('lp_store_klick',${plausibleProps})`}
+        >{OCTA.name} im App Store ansehen</a
+      >
+      <p class="lp-hint lp-hint--center">
+        Kostenlos ausprobieren · keine Kreditkarte nötig
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap lp-section">
+    <div class="lp-ehrlich">
+      <h2>Damit du es vorher weißt</h2>
+      <ul>
+        {p.ehrlich.map((t) => <li>{t}</li>)}
+      </ul>
+      <p class="lp-ehrlich__android">
+        Und: Octa gibt es bisher nur für iPhone und iPad. Wenn du Android
+        nutzt,{' '}
+        <button class="owl-link" type="button" onclick="octaWlOpen()"
+          >trag dich hier ein</button
+        > — du bekommst genau eine Nachricht, sobald die Android-Version da ist.
+      </p>
+    </div>
+  </section>
+
+  <AndroidWarteliste quelle={`lp-${p.kennung}`} />
+</BaseLayout>
+
+<style>
+  /* Werbe-Landingpage: schmaler und ruhiger als /app/. Ein Ziel pro Seite,
+     also auch nur eine Sorte Knopf. */
+  .lp-hero {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.2rem;
+    padding-block: 0.5rem 2.5rem;
+  }
+
+  .lp-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .lp-hero__copy {
+    max-width: 38rem;
+  }
+
+  .lp-hero h1 {
+    margin: 0.35rem 0 0.8rem;
+  }
+
+  .lp-hero__shot img {
+    display: block;
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+    margin-inline: auto;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .lp-btn {
+    margin-top: 0.4rem;
+  }
+
+  .lp-hint {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+  }
+
+  .lp-hint--center {
+    text-align: center;
+  }
+
+  .lp-section {
+    margin-bottom: 2.6rem;
+  }
+
+  .lp-prosa {
+    max-width: 42rem;
+  }
+
+  .lp-szenen {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+    max-width: 42rem;
+  }
+
+  .lp-szenen li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--text-muted);
+  }
+
+  .lp-szenen li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--brand-pink);
+  }
+
+  .lp-fazit {
+    max-width: 42rem;
+    margin-top: 1.3rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .lp-schritte {
+    counter-reset: s;
+    list-style: none;
+    margin: 1.3rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 42rem;
+  }
+
+  .lp-schritte li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .lp-schritte li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+
+  .lp-schritte strong {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .lp-schritte span {
+    color: var(--text-muted);
+  }
+
+  .lp-proof {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+    padding: 1.6rem;
+    max-width: 42rem;
+  }
+
+  .lp-rating {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .lp-rating__num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--brand-pink);
+  }
+
+  .lp-rating__sub {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .lp-zitat {
+    margin: 1rem 0 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-pink);
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .lp-zitat cite {
+    display: block;
+    margin-top: 0.45rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+  }
+
+  .lp-cta {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-soft);
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+  }
+
+  .lp-cta h2 {
+    margin: 0 0 0.6rem;
+  }
+
+  .lp-cta p {
+    margin: 0 auto 1.3rem;
+    max-width: 34rem;
+    color: var(--text-muted);
+  }
+
+  .lp-ehrlich {
+    max-width: 42rem;
+  }
+
+  .lp-ehrlich h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.7rem;
+  }
+
+  .lp-ehrlich ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .lp-ehrlich li {
+    margin-bottom: 0.4rem;
+  }
+
+  .lp-ehrlich__android {
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 760px) {
+    .lp-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+
+    /* Auf dem Handy zuerst der Text: Wer aus einer Anzeige kommt, entscheidet
+       in den ersten zwei Zeilen, ob er weiterliest. */
+    .lp-hero__shot {
+      order: 2;
+    }
+
+    .lp-hero__shot img {
+      max-width: 190px;
+    }
+
+    .lp-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

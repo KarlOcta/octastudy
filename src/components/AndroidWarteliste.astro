@@ -1,0 +1,331 @@
+---
+/**
+ * Android-Warteliste als wiederverwendbarer Dialog.
+ *
+ * Hintergrund: Die Warteliste existierte zuerst nur im Lerntyp-Test
+ * (src/pages/tools/lerntyp-test.astro). Weil sie inzwischen auf mehreren
+ * Seiten gebraucht wird — App-Landingpage und die Werbe-Landingpages — liegt
+ * sie hier als eigene Komponente.
+ *
+ * Bewusst NICHT im Lerntyp-Test eingebaut: Der Test hat seine eigene, laufende
+ * Fassung mit Fach- und Lerntyp-Kontext im Datensatz. Beide gleichzeitig auf
+ * einer Seite würden sich über doppelte Funktionsnamen in die Quere kommen.
+ * Die Funktionen heißen hier deshalb octaWl*, damit ein späteres Zusammenlegen
+ * ohne Namenskollision möglich ist.
+ *
+ * Öffnen von außen: <button onclick="octaWlOpen()">…</button>
+ */
+interface Props {
+  /** Landet als "quelle" im Datensatz — damit auswertbar bleibt, über welche
+   *  Seite sich jemand eingetragen hat. */
+  quelle: string;
+}
+
+const { quelle } = Astro.props;
+
+const ENDPOINT = 'https://octastudy-warteliste.karl-7b5.workers.dev/';
+const KONTAKT_MAIL = 'info@octaai.app';
+
+/* Wortlaut der Einwilligung. Wird mitgespeichert, damit später belegbar ist,
+   wozu genau der Nutzer zugestimmt hat. Bei jeder Textänderung mitziehen —
+   auch in der sichtbaren Checkbox-Beschriftung weiter unten. */
+const EINWILLIGUNG =
+  'Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht.';
+---
+
+<div
+  class="owl-overlay hide"
+  id="octa-wl"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="octa-wl-title"
+>
+  <div class="owl-dialog">
+    <button
+      class="owl-dialog__x"
+      type="button"
+      onclick="octaWlClose()"
+      aria-label="Schließen">✕</button
+    >
+    <h3 id="octa-wl-title">Android-Version</h3>
+    <p>
+      Octa gibt es aktuell nur für iPhone und iPad. Die Android-Fassung wird
+      gebaut — trag dich ein und wir sagen dir Bescheid, sobald sie da ist.
+    </p>
+    <div id="octa-wl-body"></div>
+  </div>
+</div>
+
+<script
+  is:inline
+  define:vars={{ ENDPOINT, KONTAKT_MAIL, EINWILLIGUNG, QUELLE: quelle }}
+>
+  const owlEl = (id) => document.getElementById(id);
+
+  function octaWlOpen() {
+    const body = owlEl('octa-wl-body');
+    if (ENDPOINT) {
+      body.innerHTML = `
+        <label for="octa-wl-mail">E-Mail</label>
+        <input id="octa-wl-mail" type="email" inputmode="email" autocomplete="email" placeholder="du@beispiel.de">
+        <input id="octa-wl-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="owl-hp">
+        <label class="owl-check" for="octa-wl-consent">
+          <input id="octa-wl-consent" type="checkbox">
+          <span>Ich möchte per E-Mail benachrichtigt werden, sobald die Android-Version von Octa verfügbar ist. Meine E-Mail-Adresse wird ausschließlich dafür genutzt und danach gelöscht. Die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> habe ich gelesen.</span>
+        </label>
+        <button class="btn" type="button" id="octa-wl-send" onclick="octaWlSend()">Auf die Warteliste</button>
+        <p class="owl-msg hide" id="octa-wl-msg"></p>
+        <p class="owl-fine">Kein Newsletter, keine Werbung — genau eine Nachricht, wenn es so weit ist.</p>`;
+    } else {
+      body.innerHTML = `
+        <p class="owl-fine" style="margin-bottom:1rem">Die Warteliste wird gerade eingerichtet. Bis dahin genügt eine kurze Mail — Betreff ist schon gesetzt.</p>
+        <a class="btn" href="mailto:${KONTAKT_MAIL}?subject=Android-Warteliste">Per E-Mail eintragen</a>`;
+    }
+    owlEl('octa-wl').classList.remove('hide');
+    if (window.plausible)
+      window.plausible('warteliste_geoeffnet', { props: { quelle: QUELLE } });
+  }
+
+  function octaWlClose() {
+    owlEl('octa-wl').classList.add('hide');
+  }
+
+  function octaWlFehler(text) {
+    const m = owlEl('octa-wl-msg');
+    m.textContent = text;
+    m.classList.remove('hide');
+  }
+
+  function octaWlSend() {
+    const feld = owlEl('octa-wl-mail');
+    const consent = owlEl('octa-wl-consent');
+    const knopf = owlEl('octa-wl-send');
+    const mail = feld.value.trim();
+
+    owlEl('octa-wl-msg').classList.add('hide');
+    feld.style.borderColor = '';
+    consent.closest('.owl-check').classList.remove('owl-check--miss');
+
+    if (!/^\S+@\S+\.\S+$/.test(mail)) {
+      feld.style.borderColor = '#E5177B';
+      feld.focus();
+      octaWlFehler('Diese E-Mail-Adresse sieht nicht vollständig aus.');
+      return;
+    }
+    if (!consent.checked) {
+      consent.closest('.owl-check').classList.add('owl-check--miss');
+      consent.focus();
+      octaWlFehler('Ohne dein Einverständnis dürfen wir die Adresse nicht speichern.');
+      return;
+    }
+
+    knopf.disabled = true;
+    knopf.textContent = 'Wird gesendet …';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: mail,
+        fach: '',
+        lerntyp: '',
+        quelle: QUELLE,
+        einwilligung: EINWILLIGUNG,
+        hp: owlEl('octa-wl-hp').value,
+      }),
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => {
+        if (!d || d.ok !== true) return Promise.reject('antwort');
+        owlEl('octa-wl-body').innerHTML =
+          '<div class="owl-done"><strong>Du stehst auf der Liste.</strong><br />Wir schreiben dir, sobald die Android-Version da ist — und sonst nie.</div>';
+        if (window.plausible)
+          window.plausible('warteliste_eingetragen', { props: { quelle: QUELLE } });
+      })
+      .catch(() => {
+        knopf.disabled = false;
+        knopf.textContent = 'Noch einmal versuchen';
+        octaWlFehler(
+          'Das hat gerade nicht geklappt. Versuch es noch einmal oder schreib uns an ' +
+            KONTAKT_MAIL +
+            '.'
+        );
+      });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') octaWlClose();
+  });
+  owlEl('octa-wl').addEventListener('click', (e) => {
+    if (e.target.id === 'octa-wl') octaWlClose();
+  });
+
+  /* Astro kapselt Skripte mit define:vars in eine IIFE. Die Funktionen sind
+     dadurch NICHT global, und onclick="octaWlOpen()" im Markup wuerde ins
+     Leere laufen. Deshalb hier ausdruecklich am window registrieren. */
+  window.octaWlOpen = octaWlOpen;
+  window.octaWlClose = octaWlClose;
+  window.octaWlSend = octaWlSend;
+</script>
+
+<style is:global>
+  .owl-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgb(28 26 40 / 0.55);
+    backdrop-filter: blur(3px);
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+  }
+
+  .owl-overlay.hide {
+    display: none;
+  }
+
+  .owl-dialog {
+    position: relative;
+    width: min(30rem, 100%);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .owl-dialog h3 {
+    margin: 0 0 0.5rem;
+  }
+
+  .owl-dialog p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .owl-dialog__x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 0;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .owl-dialog label {
+    display: block;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 1rem 0 0.35rem;
+  }
+
+  .owl-dialog input {
+    width: 100%;
+    background: var(--bg-soft);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.8rem 0.9rem;
+  }
+
+  .owl-dialog input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .owl-dialog .btn {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  .owl-dialog label.owl-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 1.1rem 0 0;
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-subtle);
+    cursor: pointer;
+  }
+
+  .owl-dialog label.owl-check input {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+    margin-top: 0.15rem;
+    padding: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .owl-dialog label.owl-check a {
+    color: var(--accent);
+    text-underline-offset: 2px;
+  }
+
+  .owl-check--miss span {
+    color: var(--highlight);
+  }
+
+  /* Honigtopf gegen Bots — für Menschen unsichtbar, für Screenreader weg */
+  .owl-dialog input.owl-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .owl-msg {
+    margin-top: 0.9rem;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    color: var(--highlight);
+    font-weight: 600;
+  }
+
+  .owl-msg.hide {
+    display: none;
+  }
+
+  .owl-fine {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    line-height: 1.55;
+    margin-top: 0.9rem;
+  }
+
+  .owl-done {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.15rem;
+    font-size: 0.98rem;
+  }
+
+  /* Auslöser im Fließtext — sieht aus wie ein Link, ist aber ein Button */
+  .owl-link {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+</style>

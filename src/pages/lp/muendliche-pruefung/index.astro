@@ -1,0 +1,68 @@
+---
+/**
+ * Werbe-Landingpage — Persona "der stille Könner".
+ *
+ * Kernkonflikt: Diese Person kann den Stoff und wirkt trotzdem schlechter, als
+ * sie ist. Die tragende Emotion ist Scham, nicht Angst vor Nichtwissen — die
+ * Demütigung, dümmer zu wirken als man ist, und das Nachspielen der Szene im
+ * Kopf ("ich wusste es doch").
+ *
+ * Die entscheidende Kaufbarriere: Sie hält das für ein Persönlichkeitsproblem
+ * ("ich bin halt schüchtern") und damit für nicht behebbar. Die Seite deutet es
+ * deshalb in eine trainierbare Fertigkeit um. Das stärkste Argument ist, dass
+ * man laut üben kann, ohne sich vor jemandem zu blamieren — hier ist der
+ * Produkt-Fit von Octa am direktesten.
+ */
+import AdLandingpage from '../../../components/AdLandingpage.astro';
+---
+
+<AdLandingpage
+  metaTitle="In der mündlichen Prüfung blockiert? Es liegt nicht an den Nerven"
+  metaDescription="Du kennst die Antwort und bekommst sie nicht heraus. Laut antworten ist eine eigene Fähigkeit — und die lässt sich üben, ohne sich vor jemandem zu blamieren."
+  kennung="muendlich"
+  eyebrow="Für alle, die schriftlich gut sind und mündlich untergehen"
+  h1Vorn="Du wusstest die Antwort. Du hast sie nur "
+  h1Highlight="nicht herausbekommen"
+  h1Hinten="."
+  lead="Zwei Minuten nach der Prüfung fällt dir alles wieder ein, in ganzen Sätzen. Das ist kein Zeichen von Nervosität — es ist das Zeichen dafür, dass du eine bestimmte Sache nie geübt hast."
+  szenen={[
+    'Der Prüfer fragt, und du weißt genau, auf welcher Seite im Skript es steht — nur der Satz kommt nicht.',
+    'Du hörst dich selbst etwas Halbrichtiges sagen und kannst es im Moment nicht stoppen.',
+    'Schriftlich schreibst du solide Noten. Mündlich liegst du regelmäßig darunter.',
+    'Auf dem Heimweg läuft die Szene noch dreimal ab, diesmal mit der richtigen Antwort.',
+  ]}
+  szenenFazit="Der gemeinsame Nenner: Du hast den Stoff hundertmal gelesen und kein einziges Mal ausgesprochen. Geprüft wird aber das Aussprechen."
+  grundTitel="Warum es ausgerechnet im Prüfungsgespräch kippt"
+  grundAbsaetze={[
+    'Beim Lesen erkennst du den Stoff wieder, und Wiedererkennen fühlt sich exakt an wie Können. Im Prüfungsgespräch gibt es aber nichts wiederzuerkennen — du musst frei abrufen und dabei <strong>gleichzeitig formulieren</strong>. Das sind zwei Aufgaben auf einmal, und du hast bisher keine davon geübt.',
+    'Dazu kommt ein Effekt, den viele unterschätzen: Etwas laut zu formulieren ist etwas anderes, als es still zu denken. Gedanklich wirkt eine Antwort oft vollständig — sobald sie in Sätze muss, zeigen sich die Lücken. Deshalb <strong>fühlst du dich beim Lernen sicherer, als du in der Prüfung bist</strong>.',
+    'Es ist also keine Frage von Nerven oder Charakter, sondern eine ungeübte Fertigkeit. Und ungeübte Fertigkeiten sind gute Nachrichten: Man kann sie trainieren. Der Grund, warum das kaum jemand tut, ist banal — dafür braucht man üblicherweise ein Gegenüber, und sich vor jemandem beim Stottern zuhören zu lassen, will niemand.',
+  ]}
+  loesungTitel="Laut üben, ohne dass jemand zusieht"
+  loesungText="Genau diese Lücke schließt Octa. Du sprichst deine Antworten laut ein und bekommst gesagt, was gefehlt hat — ohne Lerngruppe, ohne Termin, ohne dass irgendjemand mitbekommt, wie die ersten Versuche klingen."
+  schritte={[
+    {
+      titel: 'Stoff rein, Fragen raus',
+      text: 'Lade dein Skript oder deine Folien hoch. Octa macht daraus die Fragen, die dir jemand stellen würde — du musst dir nichts selbst ausdenken.',
+    },
+    {
+      titel: 'Antwort einsprechen, bevor du die Lösung siehst',
+      text: 'Du drückst auf Abfragen und sagst deine Antwort laut. Genau die Situation, die dich in der Prüfung erwischt — nur ohne Prüfer.',
+    },
+    {
+      titel: 'Gesprochene Rückmeldung darauf',
+      text: 'Octa antwortet dir mündlich: was gefehlt hat, wo du unpräzise warst, wie der Satz sitzen müsste. Auf Wunsch streng oder freundlich.',
+    },
+  ]}
+  mockupSrc="/img/mockups/app/andere-test.webp"
+  mockupAlt="Octa-Karteikarte mit Abfrage-Knopf — die Antwort wird laut eingesprochen"
+  zitat="Endlich eine App, die viele ersetzt: Karteikarten, Übersetzer und Sprachnotizen zusammen."
+  zitatWer="DexterBerlin36 · App Store"
+  ctaTitel="Sprich eine einzige Antwort laut aus"
+  ctaText="Nimm ein Thema, bei dem du sicher bist, dass du es kannst, und sag die Antwort einmal laut. Dieser eine Versuch sagt dir mehr über deinen Prüfungsstand als ein weiterer Leseabend."
+  ehrlich={[
+    'Du musst tatsächlich laut sprechen. Wer das nicht will, hat von Octa wenig.',
+    'Es ersetzt keine echte Prüfungssimulation mit einem Menschen — es sorgt dafür, dass du bis dahin nicht bei null anfängst.',
+    'Die Rückmeldung bezieht sich auf deine hochgeladenen Unterlagen. Was da nicht drinsteht, kann Octa auch nicht einfordern.',
+  ]}
+/>

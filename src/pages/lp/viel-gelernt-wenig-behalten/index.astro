@@ -1,0 +1,66 @@
+---
+/**
+ * Werbe-Landingpage — Persona "der fleißige Markierer".
+ *
+ * Kernkonflikt: Diese Person arbeitet hart und bekommt dafür zu wenig zurück.
+ * Der Schmerz ist nicht Faulheit, sondern empfundene Ungerechtigkeit: "Ich
+ * habe mehr gelernt als die, die besser abgeschnitten haben."
+ *
+ * Deshalb darf die Seite ihr nie sagen, sie solle sich mehr anstrengen — sie
+ * strengt sich bereits mehr an als nötig. Der Reframe lautet: nicht mehr Zeit,
+ * sondern andere Zeit. Die Anstrengung wird ausdrücklich anerkannt und nur
+ * umgeleitet.
+ */
+import AdLandingpage from '../../../components/AdLandingpage.astro';
+---
+
+<AdLandingpage
+  metaTitle="Viel gelernt, wenig behalten? Das liegt nicht an deiner Disziplin"
+  metaDescription="Du lernst stundenlang und in der Prüfung ist es weg. Der Grund ist nicht zu wenig Fleiß, sondern eine Lernmethode, die sich gut anfühlt und wenig bringt."
+  kennung="markieren"
+  eyebrow="Für alle, die mehr lernen als andere — und schlechter abschneiden"
+  h1Vorn="Du lernst nicht zu wenig. Du lernst auf eine Art, die sich "
+  h1Highlight="nur gut anfühlt"
+  h1Hinten="."
+  lead="Markieren, abschreiben, nochmal durchlesen: Das erzeugt ein starkes Gefühl von Beherrschung — und genau dieses Gefühl ist das Problem. In der Prüfung wird nichts davon abgefragt."
+  szenen={[
+    'Dein Skript ist nach zwei Wochen dreifarbig, und beim Durchblättern kommt dir alles bekannt vor.',
+    'Du liest ein Kapitel, verstehst alles — und zwei Tage später ist es weg.',
+    'Du sitzt länger in der Bibliothek als die meisten aus deinem Kurs und schreibst trotzdem nicht besser.',
+    'Beim Lernen fühlst du dich sicher. Beim Aufschlagen der Klausur ist das Gefühl sofort weg.',
+  ]}
+  szenenFazit="Das Muster dahinter ist immer dasselbe: Du hast viel Zeit investiert, um dir etwas vertraut zu machen. Geprüft wird aber nicht Vertrautheit."
+  grundTitel="Warum ausgerechnet Fleiß hier nichts bringt"
+  grundAbsaetze={[
+    'Markieren und Wiederlesen machen einen Text mit jedem Durchgang flüssiger lesbar. Dein Gehirn deutet diese Leichtigkeit als Beherrschung — obwohl sie nur bedeutet, dass du den Text schon einmal gesehen hast. Die Psychologie nennt das die <strong>Illusion von Kompetenz</strong>, und sie ist deshalb so hartnäckig, weil sie sich beim Lernen richtig anfühlt.',
+    'In der Prüfung liegt der Text aber nicht vor dir. Dort musst du die Antwort <strong>aus dem Gedächtnis herausholen</strong>, ohne Hinweisreiz. Das ist eine andere Fähigkeit als Wiedererkennen — und du hast sie beim Markieren kein einziges Mal geübt. Du trainierst monatelang das eine und wirst im anderen geprüft.',
+    'Das erklärt auch, warum mehr Stunden nicht helfen: Zehn zusätzliche Stunden Markieren machen den Text noch vertrauter, aber den Abruf nicht sicherer. Der Hebel liegt nicht in der Menge, sondern darin, dich selbst abzufragen, bevor die Prüfung es tut.',
+  ]}
+  loesungTitel="Was stattdessen wirkt"
+  loesungText="Sich selbst abzufragen, statt nochmal zu lesen, ist die am besten belegte Lernmethode überhaupt — und die unbeliebteste, weil sie sich beim Lernen schlechter anfühlt. Genau das ist der Punkt: Die Anstrengung beim Abrufen ist das, was hängen bleibt. Octa nimmt dir den lästigen Teil daran ab."
+  schritte={[
+    {
+      titel: 'Deine Unterlagen hochladen',
+      text: 'Vorlesungsfolien, das abfotografierte Skript, deine eigenen Notizen. Octa liest sie und baut daraus die Karteikarten — du tippst keine einzige Frage selbst.',
+    },
+    {
+      titel: 'Antworten laut sagen statt nur denken',
+      text: 'Jede Karte hat einen Abfrage-Knopf. Du sprichst die Antwort, bevor du die Lösung siehst — dann merkst du sofort, wo du nur dachtest, dass du es kannst.',
+    },
+    {
+      titel: 'Rückmeldung, die konkret wird',
+      text: 'Octa sagt dir, was in deiner Antwort gefehlt hat und wo sie schwammig war. Nicht richtig oder falsch, sondern woran es lag.',
+    },
+  ]}
+  mockupSrc="/img/mockups/app/andere-karte.webp"
+  mockupAlt="Octa-Karteikarte, automatisch aus hochgeladenen Vorlesungsunterlagen erstellt"
+  zitat="Einfach, wirksam und motivierend — vor allem hilft es mir, organisiert zu bleiben."
+  zitatWer="So fifi · App Store"
+  ctaTitel="Nimm ein Kapitel, das du schon markiert hast"
+  ctaText="Lade es hoch und lass dich zehn Minuten lang dazu abfragen. Du wirst in diesen zehn Minuten genauer wissen, was du davon kannst, als nach dem dritten Durchlesen."
+  ehrlich={[
+    'Octa lernt nicht für dich. Die Karten kommen automatisch, das Abfragen musst du selbst machen.',
+    'Die ersten Durchgänge fühlen sich schlechter an als Lesen. Das ist kein Fehler, sondern der Grund, warum es wirkt.',
+    'Wenn deine Unterlagen unvollständig sind, sind es die Karten auch — Octa erfindet deinen Stoff nicht.',
+  ]}
+/>
