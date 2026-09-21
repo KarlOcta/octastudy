@@ -144,12 +144,9 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
       <section class="wrap lp-section">
         <h2 class="rule">So sieht das in der App aus</h2>
         <div class="lp-prozess">
-          <MockupSlideshow
-            id="lp-prozess"
-            slides={p.prozess}
-            intervalMs={3600}
-            class="lp-prozess__show"
-          />
+          <div class="lp-prozess__mitte">
+            <MockupSlideshow id="lp-prozess" slides={p.prozess} intervalMs={3600} />
+          </div>
         </div>
       </section>
     )
@@ -361,16 +358,31 @@ const plausibleProps = `{props:{lp:'${p.kennung}'}}`;
     margin-top: 1rem;
   }
 
-  /* Ablauf-Slideshow: schmal halten, ein Telefon liest sich besser als ein
-     bildschirmbreiter Screenshot. */
+  /* Ablauf-Slideshow: Die Mockups sind 752x1559px gross. Ohne Begrenzung
+     rendert das Telefon in voller Originalgroesse und ist hoeher als der
+     Bildschirm. Begrenzt wird bewusst dieser Wrapper und nicht die
+     Slideshow selbst: Astro kapselt Styles pro Komponente, eine Regel von
+     hier erreicht das Wurzelelement der Slideshow also gar nicht.
+     240px Breite ergibt rund 500px Hoehe — dieselbe Groessenordnung wie
+     das Telefon im Seitenkopf. */
+  /* Aeussere Spalte auf dasselbe Mass wie der Fliesstext der Seite, damit das
+     Telefon nicht mittig in der vollen Seitenbreite schwebt, waehrend die
+     Ueberschrift links steht. */
   .lp-prozess {
-    display: flex;
-    justify-content: center;
+    max-width: 42rem;
   }
 
-  .lp-prozess__show {
-    width: 100%;
-    max-width: 260px;
+  .lp-prozess__mitte {
+    max-width: 240px;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 560px) {
+    /* Auf dem Handy wuerde ein 500px hohes Telefon den halben Bildschirm
+       fuellen und den Rest der Seite verdecken. */
+    .lp-prozess__mitte {
+      max-width: 190px;
+    }
   }
 
   .lp-cta {
