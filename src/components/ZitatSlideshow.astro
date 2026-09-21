@@ -7,15 +7,26 @@
  * ein herausgepickter Einzelfall; mehrere nacheinander zeigen, dass es
  * mehr als eine gibt, ohne die Seite mit einer langen Liste zu füllen.
  *
- * Hier stehen ausschließlich echte Bewertungen aus dem App Store. Nichts
- * davon wird ausgedacht oder umformuliert — Bewertungen zu erfinden wäre
- * Irreführung und rechtlich angreifbar.
+ * Gezeigt wird die Bewertung so, wie sie im App Store steht: Sterne, Titel,
+ * Datum, Verfasser und der vollständige Wortlaut. Der Wortlaut wird NICHT
+ * gekürzt, geglättet oder übersetzt — auch englische Bewertungen bleiben
+ * englisch. Eine Rezension umzuschreiben wäre eine Falschdarstellung, und
+ * in Deutschland ist das wettbewerbsrechtlich angreifbar.
+ *
+ * Hier stehen ausschließlich echte Bewertungen. Nichts wird erfunden.
  */
 export interface Zitat {
-  /** Wortlaut der Bewertung, ohne Anführungszeichen. */
+  /** Überschrift der Bewertung im App Store. */
+  titel: string;
+  /** Wortlaut, unverändert. */
   text: string;
   /** Verfassername wie im App Store. */
   wer: string;
+  /** Datum wie im App Store, z. B. "24. Feb. 2026". */
+  datum: string;
+  /** Sterne, 1–5. Praktisch immer 5 — steht trotzdem in den Daten, damit
+   *  niemand versehentlich eine Vier-Sterne-Bewertung als fünf ausweist. */
+  sterne?: number;
 }
 
 export interface Props {
@@ -25,16 +36,27 @@ export interface Props {
   intervalMs?: number;
 }
 
-const { zitate, id, intervalMs = 5200 } = Astro.props;
+const { zitate, id, intervalMs = 6500 } = Astro.props;
 ---
 
 <div class="zs" id={id} data-interval={intervalMs}>
   <div class="zs__frame">
     {
       zitate.map((z, i) => (
-        <blockquote class="zs__zitat" data-active={i === 0 ? 'true' : 'false'}>
-          <p>„{z.text}"</p>
-          <cite>{z.wer} · App&nbsp;Store</cite>
+        <blockquote class="zs__item" data-active={i === 0 ? 'true' : 'false'}>
+          <div
+            class="zs__sterne"
+            role="img"
+            aria-label={`${z.sterne ?? 5} von 5 Sternen`}
+          >
+            {'★'.repeat(z.sterne ?? 5)}
+            <span class="zs__leer">{'★'.repeat(5 - (z.sterne ?? 5))}</span>
+          </div>
+          <p class="zs__titel">{z.titel}</p>
+          <p class="zs__text">{z.text}</p>
+          <cite class="zs__wer">
+            {z.wer} · {z.datum} · App&nbsp;Store
+          </cite>
         </blockquote>
       ))
     }
@@ -58,12 +80,12 @@ const { zitate, id, intervalMs = 5200 } = Astro.props;
 
 <script>
   function initZitate(root: HTMLElement) {
-    const items = Array.from(root.querySelectorAll<HTMLElement>('.zs__zitat'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.zs__item'));
     const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.zs__dot'));
     if (items.length < 2) return;
 
     let active = 0;
-    const interval = Number(root.dataset.interval) || 5200;
+    const interval = Number(root.dataset.interval) || 6500;
 
     const show = (i: number) => {
       items[active].dataset.active = 'false';
@@ -88,37 +110,59 @@ const { zitate, id, intervalMs = 5200 } = Astro.props;
 </script>
 
 <style>
+  /* Alle Bewertungen liegen in derselben Rasterzelle übereinander. Dadurch
+     ist der Block immer so hoch wie die längste Bewertung — auf jeder
+     Breite, ohne feste Zahl. Eine gesetzte Mindesthöhe wäre hier falsch:
+     gemessen braucht dieselbe Bewertung bei 1280px 14rem und bei 320px
+     32rem, jeder feste Wert wäre also mal zu klein und mal zu groß.
+     visibility statt display haelt den Platz frei und nimmt die inaktiven
+     Bewertungen trotzdem aus der Vorlesereihenfolge. */
   .zs__frame {
-    position: relative;
+    display: grid;
   }
 
-  /* Alle Zitate liegen übereinander; nur das aktive steht im Fluss und
-     bestimmt damit die Höhe. Ohne das würde der Block beim Wechsel
-     springen, weil die Bewertungen unterschiedlich lang sind. */
-  .zs__zitat {
-    position: absolute;
-    inset: 0;
+  .zs__item {
+    grid-area: 1 / 1;
     opacity: 0;
+    visibility: hidden;
     margin: 0;
-    padding-left: 1rem;
+    padding-left: 1.1rem;
     border-left: 3px solid var(--brand-pink);
     transition: opacity 0.45s ease;
   }
 
-  .zs__zitat[data-active='true'] {
-    position: relative;
+  .zs__item[data-active='true'] {
     opacity: 1;
+    visibility: visible;
   }
 
-  .zs__zitat p {
+  .zs__sterne {
+    color: var(--brand-pink);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .zs__leer {
+    color: var(--border-strong, #d8d6e8);
+  }
+
+  .zs__titel {
+    margin: 0.55rem 0 0.3rem;
+    font-weight: 800;
+    font-size: 1.02rem;
+    color: var(--text);
+  }
+
+  .zs__text {
     margin: 0;
-    font-style: italic;
     color: var(--text-muted);
+    line-height: 1.55;
   }
 
-  .zs__zitat cite {
+  .zs__wer {
     display: block;
-    margin-top: 0.45rem;
+    margin-top: 0.6rem;
     font-style: normal;
     font-size: 0.85rem;
     color: var(--text-subtle);
@@ -127,7 +171,7 @@ const { zitate, id, intervalMs = 5200 } = Astro.props;
   .zs__dots {
     display: flex;
     gap: 0.35rem;
-    margin-top: 0.9rem;
+    margin-top: 1rem;
   }
 
   .zs__dot {
@@ -145,7 +189,7 @@ const { zitate, id, intervalMs = 5200 } = Astro.props;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .zs__zitat {
+    .zs__item {
       transition: none;
     }
   }
