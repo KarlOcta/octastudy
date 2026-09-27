@@ -4,25 +4,26 @@
 /* ==========================================================================
    octastudy.com — Design-System
    Farben und Formsprache abgeleitet von octa-ai.app:
-   Pink = Handlung, Violett = Struktur, Navy = Text, Lavendel = Flächen.
+   Ein Lila für alles: Octa-Lila #6C499E (aus dem App-Icon) für Marke,
+   Handlung und Akzente. Navy = Text, Lavendel = Flächen.
    Alle Textfarben sind auf WCAG-AA-Kontrast (≥ 4.5:1) geprüft.
    ========================================================================== */
 
 :root {
   /* Markenfarben */
-  --brand-pink: #d6146e;
-  --brand-pink-deep: #c51e8f;
-  --brand-purple: #5b4bd0;
+  --brand-pink: #6c499e; /* ehemals Pink – jetzt Octa-Lila */
+  --brand-pink-deep: #573b80;
+  --brand-purple: #6c499e;
   --brand-navy: #2c2a44;
   --brand-mint: #17b98d;
   --brand-yellow: #f5a524;
 
   /* Flächen — Light */
   --bg: #fcfbff;
-  --bg-soft: #f3f0fd;
+  --bg-soft: #f4f0fa;
   --bg-card: #ffffff;
-  --border: #e6e1f5;
-  --border-strong: #cfc7ea;
+  --border: #e7e0f1;
+  --border-strong: #d2c5e6;
 
   /* Text — Light */
   --text: #2c2a44;
@@ -30,20 +31,20 @@
   --text-subtle: #6f6b8e;
 
   /* Akzent — Light */
-  --accent: #5b4bd0;
-  --accent-hover: #4737b8;
-  --accent-soft: #eeebfd;
+  --accent: #6c499e;
+  --accent-hover: #573b80;
+  --accent-soft: #f1ebf8;
 
-  --focus: #5b4bd0;
+  --focus: #6c499e;
 
   /* Handlungsfarbe — in beiden Modi gleich */
-  --cta-from: #d6146e;
-  --cta-to: #c51e8f;
+  --cta-from: #6c499e;
+  --cta-to: #573b80;
   --cta-text: #ffffff;
-  --cta-glow: 0 6px 20px -6px rgb(214 20 110 / 0.55);
+  --cta-glow: 0 6px 20px -6px rgb(108 73 158 / 0.55);
 
   /* Hervorgehobenes Wort in Überschriften */
-  --highlight: #d6146e;
+  --highlight: #6c499e;
 
   /* Typografie */
   --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui,
@@ -76,18 +77,22 @@
     --text-muted: #aba5c4;
     --text-subtle: #8a84ad;
 
-    --accent: #b4a6ff;
-    --accent-hover: #cbc0ff;
-    --accent-soft: #2a2150;
+    --accent: #c3aeea;
+    --accent-hover: #d6c8f2;
+    --accent-soft: #2e2240;
 
-    --focus: #b4a6ff;
+    /* Lila als Textfarbe auf dunklem Grund aufhellen (Kontrast) */
+    --brand-pink: #b89be3;
+    --brand-purple: #b89be3;
 
-    --highlight: #ff7fbb;
+    --focus: #c3aeea;
+
+    --highlight: #c3aeea;
 
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow: 0 8px 28px -10px rgb(0 0 0 / 0.55);
     --shadow-lg: 0 18px 45px -18px rgb(0 0 0 / 0.7);
-    --cta-glow: 0 6px 22px -6px rgb(214 20 110 / 0.7);
+    --cta-glow: 0 6px 22px -6px rgb(108 73 158 / 0.7);
   }
 }
 
@@ -371,7 +376,7 @@ main {
   color: var(--cta-text);
   filter: brightness(1.07);
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px -8px rgb(214 20 110 / 0.65);
+  box-shadow: 0 10px 26px -8px rgb(108 73 158 / 0.65);
 }
 
 .btn--ghost {
