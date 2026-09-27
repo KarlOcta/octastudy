@@ -66,6 +66,11 @@ const jsonLd = JSON.stringify({
           <button class="btn lt-btn-block" type="button" onclick="start()">
             Jetzt kostenlosen Test starten →
           </button>
+          <p class="lt-zweck">
+            Der Test sucht nicht, was du gut machst, sondern die eine Stelle, an
+            der deine Lernzeit verloren geht. Das Ergebnis benennt deshalb ein
+            Problem — nicht dein Können.
+          </p>
           <ul class="lt-meta">
             <li>8 Fragen</li>
             <li>unter 60 Sekunden</li>
@@ -1797,6 +1802,83 @@ const jsonLd = JSON.stringify({
     font-size: 0.97rem;
     color: var(--text-muted);
   }
+  /* ------------------------------------------- Ausweg, Zustaende, Rahmen -- */
+  /* "Nichts davon trifft auf mich zu": erreichbar, aber bewusst leiser als
+     die echten Optionen — sonst wird der Ausweg zum bequemsten Klick und
+     die Antwortdaten sind wertlos. */
+  .lt-opt--aus {
+    border-style: dashed;
+    color: var(--text-subtle);
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+  }
+
+  .lt-opt--aus .lt-opt__key {
+    background: transparent;
+    border: 1px dashed var(--border);
+    color: var(--text-subtle);
+  }
+
+  /* Zweck des Tests, direkt unter dem Startknopf — vor dem Klick, nicht in
+     einem Abschnitt darunter, den beim Einstieg ueber einen Direktlink
+     ohnehin niemand liest. */
+  .lt-zweck {
+    margin: 0.9rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-subtle);
+    max-width: 34rem;
+  }
+
+  /* Vorspann fuer die Zustaende B und C: ordnet das Ergebnis ein, bevor der
+     Typ genannt wird. */
+  .lt-vorspann {
+    margin: 0 0 1.6rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .lt-vorspann--aus {
+    border-left-color: var(--brand-pink);
+  }
+
+  .lt-vorspann h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .lt-vorspann p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .lt-vorspann__bitte {
+    margin-top: 0.8rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .lt-vorspann__bitte a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Ein Satz unter der Tagline, der den Typ als Stelle rahmt statt als Urteil. */
+  .lt-rahmen {
+    margin: 0.7rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+  }
+
+  /* Zweitplatzierter im Aufklapper "Wie eindeutig war das?" */
+  .lt-zweit {
+    margin: 1rem 0 0;
+    font-size: 0.94rem;
+    color: var(--text-muted);
+  }
 </style>
 
 <script is:inline>
@@ -1867,6 +1949,12 @@ const jsonLd = JSON.stringify({
   /* Gesamtbewertung im deutschen App Store. Stand regelmaessig pruefen. */
   const STORE = { schnitt: '5,0', anzahl: 9, stand: 'Juli 2026' };
 
+  /* Drittes Feld 'ausweg' markiert die Option "Nichts davon trifft auf mich
+     zu". Sie vergibt keine Punkte und wird gezaehlt: Wer sie mehrfach waehlt,
+     bekommt am Ende kein Typ-Urteil, sondern das Eingestaendnis, dass der Test
+     ihn nicht beschreibt. Ebenfalls ohne Punkte, aber ohne Marker, sind die
+     Antworten, bei denen das Lernen funktioniert â "hier ist kein Bruchpunkt"
+     ist eine Information, aber kein Typ-Signal. */
   const QUESTIONS = [
     {
       q: 'Du setzt dich hin, um zu lernen. Was passiert in den ersten zehn Minuten?',
@@ -1875,6 +1963,8 @@ const jsonLd = JSON.stringify({
         ['Ich lese da weiter, wo ich aufgehört habe, und markiere', { markierer: 2 }],
         ['Ich rechne aus, wie viele Tage noch bis zur Prüfung sind', { sprinter: 2 }],
         ['Ich fange an — aber es merkt ohnehin niemand, ob ich dranbleibe', { einzel: 2 }],
+        ['Ich weiß, was heute dran ist, und fange damit an', {}],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1884,6 +1974,8 @@ const jsonLd = JSON.stringify({
         ['Ordentlich abgelegt, aber nie wirklich durchgearbeitet', { sammler: 2, ueberfordert: 1 }],
         ['Vollgeschrieben und in drei Farben markiert', { markierer: 3 }],
         ['Kaum was. Ich lerne aus dem, was ich kurz vorher zusammensuche', { sprinter: 2 }],
+        ['Durchgearbeitet, mit eigenen Zusammenfassungen', {}],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1893,6 +1985,8 @@ const jsonLd = JSON.stringify({
         ['Weg. Als hätte ich es nie gelesen', { markierer: 1, sprinter: 2 }],
         ['Sitzt — solange ich es aufschreiben darf', { koenner: 2 }],
         ['Keine Ahnung, so früh lerne ich nie', { sprinter: 3 }],
+        ['Ich müsste erst suchen, wo das überhaupt stand', { sammler: 3 }],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1902,6 +1996,7 @@ const jsonLd = JSON.stringify({
         ['Gern — so merke ich überhaupt erst, was ich wirklich kann', { einzel: 1, markierer: 1 }],
         ['Geht klar, wenn ich vorher kurz nachsehen darf', { markierer: 2 }],
         ['Kommt drauf an, wer fragt. Vor anderen wird es schlimmer', { koenner: 2, einzel: 1 }],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1911,6 +2006,7 @@ const jsonLd = JSON.stringify({
         ['Zwei, drei Tage vorher. Dann aber durch', { sprinter: 3 }],
         ['Ich fange früh an und verliere schnell wieder den Faden', { ueberfordert: 2, einzel: 1 }],
         ['Ich nehme mir jeden Tag etwas vor und schiebe es dann', { ueberfordert: 2, einzel: 2 }],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1920,6 +2016,7 @@ const jsonLd = JSON.stringify({
         ['Allein — aber mir fehlt jemand, dem auffällt, wenn ich nichts tue', { einzel: 3 }],
         ['Mit anderen. Wobei wir mehr reden als lernen', { einzel: 1, ueberfordert: 1 }],
         ['Gegenseitig abfragen ist das Einzige, was bei mir hängen bleibt', { koenner: 2 }],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
@@ -1929,17 +2026,20 @@ const jsonLd = JSON.stringify({
         ['Ich habe das Falsche gelernt', { ueberfordert: 2, sammler: 1 }],
         ['Ich wusste es. Ich habe es nur nicht rausbekommen', { koenner: 3 }],
         ['Gelesen hatte ich es. Abrufbar war es nicht', { markierer: 3 }],
+        ['Das lief ungefähr so, wie ich es geplant hatte', {}],
+        ['Nichts davon trifft auf mich zu', {}, 'ausweg'],
       ],
     },
     {
-      q: 'Was fehlt dir gerade am meisten?',
+      q: 'Wenn du eine Sache an deinem Lernen ändern könntest — was wäre es?',
       a: [
-        ['Jemand, der mich abfragt und merkt, wenn die Antwort schwammig war', { koenner: 4 }],
-        ['Ordnung in dem, was ich schon alles gesammelt habe', { sammler: 4 }],
-        ['Eine Methode, bei der es wirklich hängen bleibt', { markierer: 4 }],
-        ['Ein Plan, der mir sagt, was heute dran ist', { ueberfordert: 4 }],
-        ['Jemand, dem auffällt, ob ich dranbleibe', { einzel: 4 }],
-        ['Ein Rhythmus, statt immer nur kurz vorher', { sprinter: 4 }],
+        ['Jemand, der mich abfragt und merkt, wenn die Antwort schwammig war', { koenner: 2 }],
+        ['Ordnung in dem, was ich schon alles gesammelt habe', { sammler: 2 }],
+        ['Eine Methode, bei der es wirklich hängen bleibt', { markierer: 2 }],
+        ['Ein Plan, der mir sagt, was heute dran ist', { ueberfordert: 2 }],
+        ['Jemand, dem auffällt, ob ich dranbleibe', { einzel: 2 }],
+        ['Ein Rhythmus, statt immer nur kurz vorher', { sprinter: 2 }],
+        ['Nichts Grundsätzliches — mein Lernen läuft', {}, 'ausweg'],
       ],
     },
   ];
@@ -1952,7 +2052,7 @@ const jsonLd = JSON.stringify({
     'Es wird persönlich',
     'Gleich hast du’s',
     'Vorletzte',
-    'Die entscheidet',
+    'Letzte',
   ];
 
   const PROFILES = {
@@ -2101,7 +2201,7 @@ const jsonLd = JSON.stringify({
     '<b>Warum das zählt:</b> Derselbe Stoff über mehrere Tage verteilt bleibt deutlich länger hängen als am Stück gelernt. Verteiltes Lernen ist die zweite der beiden hochwirksamen Methoden. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
     '<b>Warum das zählt:</b> Gemeinsam lernen wirkt nicht durch die Gesellschaft, sondern durch das, was sie erzwingt: erklären, abgefragt werden, sich festlegen. Fehlen diese drei, bringt eine Lerngruppe wenig.',
     '<b>Warum das zählt:</b> Markieren und Wiederlesen sind die beiden beliebtesten Lernmethoden überhaupt — und landeten in derselben Übersichtsarbeit in der niedrigsten Wirksamkeitsklasse. <cite>Dunlosky u.&nbsp;a. 2013</cite>',
-    '<b>Fast geschafft.</b> Diese Antwort wiegt am stärksten: Bei einem knappen Ergebnis gibt sie den Ausschlag.',
+    '<b>Fast geschafft.</b> Diese Antwort zählt so viel wie die übrigen — bei einem knappen Ergebnis gibt sie den Ausschlag.',
   ];
 
   /* ---------------------------------------------------------- Grafiken -- */
@@ -2299,6 +2399,9 @@ const jsonLd = JSON.stringify({
   let locked = false;
   let fach = 'andere';
   let lerntyp = '';
+  /* 'A' = normales Typ-Ergebnis, 'B' = kein klarer Bruchpunkt,
+     'C' = der Test beschreibt diese Person nicht. Siehe finish(). */
+  let zustand = 'A';
 
   /* ------------------------------------------ anonyme Durchlaufstatistik --
      `laufId` entsteht bei jedem Seitenaufruf neu und wird nirgends abgelegt —
@@ -2422,14 +2525,16 @@ const jsonLd = JSON.stringify({
     el('fill').style.width =
       Math.round(((step + 1) / QUESTIONS.length) * 100) + '%';
     el('mascot').innerHTML = MASCOT_FACES[step % MASCOT_FACES.length]();
+    /* Der Ausweg steht bewusst zurueckgenommen unter den echten Optionen:
+       erreichbar, aber nicht der bequemste Klick. */
     el('opts').innerHTML = item.a
-      .map(
-        (o, i) =>
-          `<button class="lt-opt" type="button" onclick="pick(${i},this)">
-             <span class="lt-opt__key">${String.fromCharCode(65 + i)}</span>
+      .map((o, i) => {
+        const aus = o[2] === 'ausweg';
+        return `<button class="lt-opt${aus ? ' lt-opt--aus' : ''}" type="button" onclick="pick(${i},this)">
+             <span class="lt-opt__key">${aus ? '\u2013' : String.fromCharCode(65 + i)}</span>
              <span>${o[0]}</span>
-           </button>`
-      )
+           </button>`;
+      })
       .join('');
     el('note').innerHTML = NOTES[step];
     el('back').classList.toggle('hide', step === 0);
@@ -2463,6 +2568,17 @@ const jsonLd = JSON.stringify({
     }
   }
 
+  /* Zaehlt, wie oft "Nichts davon trifft auf mich zu" gewaehlt wurde. Das ist
+     etwas anderes als eine niedrige Punktzahl: niedrige Punkte heissen "kein
+     Bruchpunkt erkennbar", der Ausweg heisst "dieser Test beschreibt mich
+     nicht". Beides verdient eine andere Antwort. */
+  function auswege() {
+    return picks.reduce(
+      (n, choice, qi) => n + (QUESTIONS[qi].a[choice][2] === 'ausweg' ? 1 : 0),
+      0
+    );
+  }
+
   function score() {
     const s = Object.fromEntries(ORDER.map((k) => [k, 0]));
     picks.forEach((choice, qi) => {
@@ -2480,8 +2596,17 @@ const jsonLd = JSON.stringify({
     ORDER.forEach((k) => {
       if (s[k] > s[best]) best = k;
     });
-    // Gleichstand entscheidet die Selbsteinschaetzung aus der letzten Frage
-    if (s[lastKey] === s[best]) best = lastKey;
+    /* Gleichstand entscheidet die Selbsteinschaetzung aus der letzten Frage.
+       Wurde dort der Ausweg gewaehlt, ist lastKey undefined — dann bleibt es
+       beim hoechsten Wert. */
+    if (lastKey && s[lastKey] === s[best]) best = lastKey;
+
+    /* Reihenfolge ist wichtig: Wer den Ausweg mehrfach gewaehlt hat, bekommt
+       das Eingestaendnis, auch wenn nebenbei Punkte zusammengekommen sind. */
+    const ausgewichen = auswege();
+    if (ausgewichen >= 3) zustand = 'C';
+    else if (s[best] <= 3) zustand = 'B';
+    else zustand = 'A';
 
     lerntyp = best;
     melden(true);
@@ -2840,6 +2965,40 @@ const jsonLd = JSON.stringify({
       </div>`
     ).join('');
 
+    /* Zweitplatzierter: beantwortet "ich bin eher ein Mischtyp". Wird nur
+       genannt, wenn der Abstand hoechstens einen Punkt betraegt — sonst ist
+       es kein Mischbild, sondern ein klares Ergebnis. */
+    const rang = ORDER.slice().sort((a, b) => s[b] - s[a]);
+    const zweiter = rang[0] === key ? rang[1] : rang[0];
+    const knapp = s[key] - s[zweiter] <= 1;
+
+    /* Zustand B und C bekommen einen Vorspann, der das Ergebnis einordnet,
+       bevor der Typ genannt wird. Der Typ bleibt in beiden Faellen stehen —
+       als Tendenz, nicht als Befund. */
+    const vorspann =
+      zustand === 'C'
+        ? `<div class="lt-vorspann lt-vorspann--aus">
+             <h2>Dieser Test beschreibt dich nicht.</h2>
+             <p>Du hast mehrfach angegeben, dass keine der Antworten auf dich
+                passt. Dann hat der Test hier eine Lücke — nicht du.
+                Wir zeigen dir trotzdem, wohin deine übrigen Antworten
+                tendieren, aber nimm es als groben Hinweis, nicht als Ergebnis.</p>
+             <p class="lt-vorspann__bitte">
+               Was hätte bei dir stehen müssen?
+               <a href="mailto:${CONFIG.kontaktMail}?subject=Lerntyp-Test:%20Antwort%20hat%20gefehlt">Schreib uns kurz</a>
+               — wir bauen die Fragen danach um.
+             </p>
+           </div>`
+        : zustand === 'B'
+          ? `<div class="lt-vorspann">
+               <h2>Bei dir gibt es keinen klaren Bruchpunkt.</h2>
+               <p>Deine Antworten verteilen sich zu gleichmäßig, als dass eine
+                  Stelle heraussticht. Das heißt im Zweifel: Dein Lernen läuft
+                  weitgehend rund. Am ehesten tendierst du noch in diese Richtung —
+                  als Hinweis, nicht als Diagnose.</p>
+             </div>`
+          : '';
+
     const prof = attrAktuell || attrProfil({ [key]: 1 });
     const attrBars = prof.zeilen
       .map(
@@ -2911,11 +3070,22 @@ const jsonLd = JSON.stringify({
       : '';
 
     return `
+      ${vorspann}
+
       <div class="lt-result-head">
         <img class="lt-result-img" src="/img/lerntypen/${key}.webp" srcset="/img/lerntypen/${key}@1x.webp 450w, /img/lerntypen/${key}.webp 900w" sizes="(max-width: 640px) 78vw, 340px" alt="Illustration: ${p.name}" />
         <span class="eyebrow">Dein Ergebnis</span>
         <h1 style="margin:.4rem 0 .5rem">${p.name}</h1>
         <p class="lt-tagline">${p.tagline}</p>
+        ${
+          /* In Zustand C haben wir oben schon gesagt, dass der Test nicht
+             passt — dann waere dieser Satz nur noch Beschwichtigung. */
+          zustand === 'C'
+            ? ''
+            : `<p class="lt-rahmen">
+                 Das benennt eine Stelle in deinem Lernprozess — kein Urteil über dich.
+               </p>`
+        }
       </div>
 
       <div class="lt-befund">
@@ -2940,6 +3110,13 @@ const jsonLd = JSON.stringify({
           sechs Muster verteilt:
         </p>
         <div class="lt-bars">${bars}</div>
+        ${
+          knapp
+            ? `<p class="lt-zweit">Bei dir liegt <strong>${PROFILES[zweiter].name}</strong>
+                 fast gleichauf. Du bist eher ein Mischbild aus beiden — lies den
+                 zweiten Teil ruhig mit.</p>`
+            : ''
+        }
       </details>
 
       <hr class="lt-divider">

@@ -36,6 +36,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           <button class="btn lt-btn-block" type="button" onclick="start()">
             Start the free quiz now →
           </button>
+          <p class="lt-zweck">
+            This quiz does not look for what you do well. It looks for the one
+            spot where your study time is lost. The result therefore names a
+            problem — not your ability.
+          </p>
           <ul class="lt-meta">
             <li>8 questions</li>
             <li>under 60 seconds</li>
@@ -1699,6 +1704,73 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-size: 0.97rem;
     color: var(--text-muted);
   }
+  /* --------------------------------------------- Escape, states, framing -- */
+  .lt-opt--aus {
+    border-style: dashed;
+    color: var(--text-subtle);
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+  }
+
+  .lt-opt--aus .lt-opt__key {
+    background: transparent;
+    border: 1px dashed var(--border);
+    color: var(--text-subtle);
+  }
+
+  .lt-zweck {
+    margin: 0.9rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-subtle);
+    max-width: 34rem;
+  }
+
+  .lt-vorspann {
+    margin: 0 0 1.6rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .lt-vorspann--aus {
+    border-left-color: var(--brand-pink);
+  }
+
+  .lt-vorspann h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .lt-vorspann p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .lt-vorspann__bitte {
+    margin-top: 0.8rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .lt-vorspann__bitte a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .lt-rahmen {
+    margin: 0.7rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
+  }
+
+  .lt-zweit {
+    margin: 1rem 0 0;
+    font-size: 0.94rem;
+    color: var(--text-muted);
+  }
 </style>
 
 <script is:inline>
@@ -1769,79 +1841,97 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   /* Gesamtbewertung im deutschen App Store. Stand regelmaessig pruefen. */
   const STORE = { schnitt: '5.0', anzahl: 9, stand: 'July 2026' };
 
+  /* The third field 'ausweg' marks the option "None of these applies to me".
+     It scores nothing and is counted: whoever picks it repeatedly gets no type
+     verdict at the end, but the admission that this quiz does not describe
+     them. Also scoreless, but without the marker, are the answers where
+     studying works — "no break point here" is information, not a type
+     signal. */
   const QUESTIONS = [
     {
       q: 'You sit down to study. What happens in the first ten minutes?',
       a: [
-        ['I flip through my materials looking for where to start', { ueberfordert: 2, sammler: 1 }],
-        ['I pick up where I left off, and highlight', { markierer: 2 }],
-        ['I calculate how many days are left until the exam', { sprinter: 2 }],
-        ['I get started — but nobody would notice either way if I stuck with it', { einzel: 2 }],
+        ['I leaf through my materials looking for where to start', { ueberfordert: 2, sammler: 1 }],
+        ['I pick up where I left off and highlight', { markierer: 2 }],
+        ['I work out how many days are left until the exam', { sprinter: 2 }],
+        ['I start — but nobody would notice either way if I stopped', { einzel: 2 }],
+        ['I know what is due today and start with it', {}],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: 'What do your study materials look like right now?',
       a: [
-        ['Slides, photos, screenshots, PDFs — scattered across several apps', { sammler: 3 }],
-        ['Neatly filed away, but never actually worked through', { sammler: 2, ueberfordert: 1 }],
-        ['Covered in writing and highlighted in three colors', { markierer: 3 }],
-        ['Barely anything. I study from whatever I pull together right beforehand', { sprinter: 2 }],
+        ['Slides, photos, screenshots, PDFs — spread across several apps', { sammler: 3 }],
+        ['Neatly filed, but never actually worked through', { sammler: 2, ueberfordert: 1 }],
+        ['Covered in notes and highlighted in three colours', { markierer: 3 }],
+        ['Barely anything. I study from whatever I pull together beforehand', { sprinter: 2 }],
+        ['Worked through, with summaries in my own words', {}],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: "You read a chapter and understood it. Two days later?",
       a: [
-        ["I recognize all of it — I couldn't recall it freely, though", { markierer: 3, koenner: 1 }],
-        ['Gone. As if I never read it', { markierer: 1, sprinter: 2 }],
-        ['Sticks — as long as I can write it down', { koenner: 2 }],
-        ["No idea, I never study that far ahead", { sprinter: 3 }],
+        ['I recognise all of it — but I could not reproduce it freely', { markierer: 3, koenner: 1 }],
+        ['Gone. As if I had never read it', { markierer: 1, sprinter: 2 }],
+        ['It sticks — as long as I am allowed to write it down', { koenner: 2 }],
+        ['No idea, I never study that early', { sprinter: 3 }],
+        ['I would have to go looking for where that even was', { sammler: 3 }],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: 'Someone quizzes you out loud. First thought?',
       a: [
-        ["Please don't. I know it, I just can't get it out", { koenner: 3 }],
-        ["Sure — that's actually the only way I find out what I really know", { einzel: 1, markierer: 1 }],
-        ["Fine, if I can glance at my notes first", { markierer: 2 }],
-        ['Depends who\'s asking. In front of others it gets worse', { koenner: 2, einzel: 1 }],
+        ['Please no. I know it, I just cannot get it out', { koenner: 3 }],
+        ['Gladly — that is how I find out what I actually know', { einzel: 1, markierer: 1 }],
+        ['Fine, as long as I can look it up first', { markierer: 2 }],
+        ['Depends who is asking. In front of others it gets worse', { koenner: 2, einzel: 1 }],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: 'When do you actually study — not when you plan to?',
       a: [
-        ['Starting about a week out, then fairly consistently', { einzel: 1 }],
-        ['Two, three days before. But then I go all in', { sprinter: 3 }],
-        ['I start early and quickly lose the thread', { ueberfordert: 2, einzel: 1 }],
-        ['I plan something every day and then push it off', { ueberfordert: 2, einzel: 2 }],
+        ['From about a week before, then fairly steadily', { einzel: 1 }],
+        ['Two or three days before. But then all the way through', { sprinter: 3 }],
+        ['I start early and lose the thread quickly', { ueberfordert: 2, einzel: 1 }],
+        ['I plan something every day and then put it off', { ueberfordert: 2, einzel: 2 }],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: 'Alone or with others?',
       a: [
         ['Alone. Anything else distracts me', { einzel: 2 }],
-        ["Alone — but I wish someone would notice if I did nothing", { einzel: 3 }],
+        ['Alone — but I miss having someone who notices when I do nothing', { einzel: 3 }],
         ['With others. Though we talk more than we study', { einzel: 1, ueberfordert: 1 }],
-        ['Quizzing each other is the only thing that actually sticks for me', { koenner: 2 }],
+        ['Quizzing each other is the only thing that sticks for me', { koenner: 2 }],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
       q: 'What do you say most often after an exam?',
       a: [
-        ['I just didn’t have enough time', { sprinter: 2, ueberfordert: 1 }],
+        ['I simply did not have enough time', { sprinter: 2, ueberfordert: 1 }],
         ['I studied the wrong things', { ueberfordert: 2, sammler: 1 }],
-        ["I knew it. I just couldn't get it out", { koenner: 3 }],
-        ["I'd read it. I just couldn't recall it", { markierer: 3 }],
+        ['I knew it. I just could not get it out', { koenner: 3 }],
+        ['I had read it. I could not retrieve it', { markierer: 3 }],
+        ['That went roughly the way I had planned', {}],
+        ['None of these applies to me', {}, 'ausweg'],
       ],
     },
     {
-      q: 'What do you need most right now?',
+      q: 'If you could change one thing about how you study — what would it be?',
       a: [
-        ['Someone to quiz me and notice when my answer was fuzzy', { koenner: 4 }],
-        ["Order in everything I've already collected", { sammler: 4 }],
-        ['A method that actually makes things stick', { markierer: 4 }],
-        ["A plan that tells me what's up today", { ueberfordert: 4 }],
-        ['Someone who notices whether I stick with it', { einzel: 4 }],
-        ['A rhythm, instead of always cramming right before', { sprinter: 4 }],
+        ['Someone who quizzes me and notices when the answer was vague', { koenner: 2 }],
+        ['Order in everything I have already collected', { sammler: 2 }],
+        ['A method where it actually sticks', { markierer: 2 }],
+        ['A plan that tells me what is due today', { ueberfordert: 2 }],
+        ['Someone who notices whether I keep at it', { einzel: 2 }],
+        ['A rhythm, instead of always just beforehand', { sprinter: 2 }],
+        ['Nothing fundamental — my studying works', {}, 'ausweg'],
       ],
     },
   ];
@@ -1854,7 +1944,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     'Getting personal',
     'Almost there',
     'Second to last',
-    'This one decides it',
+    'Last one',
   ];
 
   const PROFILES = {
@@ -2003,7 +2093,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     '<b>Why this matters:</b> The same material spread across several days sticks far longer than the same amount crammed into one session. Spaced study is the second of the two highly effective methods. <cite>Dunlosky et al. 2013</cite>',
     '<b>Why this matters:</b> Studying together doesn’t work because of the company — it works because of what it forces you to do: explain, get quizzed, commit. Without those three things, a study group doesn’t help much.',
     '<b>Why this matters:</b> Highlighting and rereading are the two most popular study methods of all — and landed in the lowest-effectiveness category in the same review. <cite>Dunlosky et al. 2013</cite>',
-    '<b>Almost there.</b> This answer carries the most weight: in a close call, it tips the result.',
+    '<b>Almost there.</b> This answer counts the same as the others — in a close call, it tips the result.',
   ];
 
   /* ---------------------------------------------------------- Grafiken -- */
@@ -2201,6 +2291,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   let locked = false;
   let fach = 'andere';
   let lerntyp = '';
+  /* 'A' = normal type result, 'B' = no clear break point,
+     'C' = this quiz does not describe the person. See finish(). */
+  let zustand = 'A';
 
   /* ------------------------------------------ anonyme Durchlaufstatistik --
      `laufId` entsteht bei jedem Seitenaufruf neu und wird nirgends abgelegt —
@@ -2334,14 +2427,16 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     el('fill').style.width =
       Math.round(((step + 1) / QUESTIONS.length) * 100) + '%';
     el('mascot').innerHTML = MASCOT_FACES[step % MASCOT_FACES.length]();
+    /* The escape sits deliberately subdued below the real options: reachable,
+       but not the easiest click. */
     el('opts').innerHTML = item.a
-      .map(
-        (o, i) =>
-          `<button class="lt-opt" type="button" onclick="pick(${i},this)">
-             <span class="lt-opt__key">${String.fromCharCode(65 + i)}</span>
+      .map((o, i) => {
+        const aus = o[2] === 'ausweg';
+        return `<button class="lt-opt${aus ? ' lt-opt--aus' : ''}" type="button" onclick="pick(${i},this)">
+             <span class="lt-opt__key">${aus ? '\u2013' : String.fromCharCode(65 + i)}</span>
              <span>${o[0]}</span>
-           </button>`
-      )
+           </button>`;
+      })
       .join('');
     el('note').innerHTML = NOTES[step];
     el('back').classList.toggle('hide', step === 0);
@@ -2375,6 +2470,17 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     }
   }
 
+  /* Counts how often "None of these applies to me" was chosen. That is
+     something else than a low score: low points mean "no break point
+     detectable", the escape means "this quiz does not describe me". Each
+     deserves a different answer. */
+  function auswege() {
+    return picks.reduce(
+      (n, choice, qi) => n + (QUESTIONS[qi].a[choice][2] === 'ausweg' ? 1 : 0),
+      0
+    );
+  }
+
   function score() {
     const s = Object.fromEntries(ORDER.map((k) => [k, 0]));
     picks.forEach((choice, qi) => {
@@ -2392,8 +2498,17 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     ORDER.forEach((k) => {
       if (s[k] > s[best]) best = k;
     });
-    // Gleichstand entscheidet die Selbsteinschaetzung aus der letzten Frage
-    if (s[lastKey] === s[best]) best = lastKey;
+    /* A tie is settled by the self-assessment from the last question. If the
+       escape was chosen there, lastKey is undefined — then the highest score
+       stands. */
+    if (lastKey && s[lastKey] === s[best]) best = lastKey;
+
+    /* Order matters: whoever used the escape repeatedly gets the admission,
+       even if points happened to accumulate along the way. */
+    const ausgewichen = auswege();
+    if (ausgewichen >= 3) zustand = 'C';
+    else if (s[best] <= 3) zustand = 'B';
+    else zustand = 'A';
 
     lerntyp = best;
     melden(true);
@@ -2774,6 +2889,37 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       </div>`
     ).join('');
 
+    /* Runner-up: answers "I am more of a mixed type". Only named when the gap
+       is at most one point — otherwise it is a clear result, not a mix. */
+    const rang = ORDER.slice().sort((a, b) => s[b] - s[a]);
+    const zweiter = rang[0] === key ? rang[1] : rang[0];
+    const knapp = s[key] - s[zweiter] <= 1;
+
+    /* States B and C get an opening that frames the result before the type is
+       named. The type stays in both cases — as a tendency, not a finding. */
+    const vorspann =
+      zustand === 'C'
+        ? `<div class="lt-vorspann lt-vorspann--aus">
+             <h2>This quiz does not describe you.</h2>
+             <p>You said several times that none of the answers fitted. That is
+                a gap in the quiz — not in you. We still show you where your
+                remaining answers point, but treat it as a rough hint, not a
+                result.</p>
+             <p class="lt-vorspann__bitte">
+               What should have been there instead?
+               <a href="mailto:${CONFIG.kontaktMail}?subject=Study%20type%20quiz:%20a%20missing%20answer">Drop us a line</a>
+               — we rebuild the questions from that.
+             </p>
+           </div>`
+        : zustand === 'B'
+          ? `<div class="lt-vorspann">
+               <h2>There is no clear break point in your answers.</h2>
+               <p>They spread too evenly for one spot to stand out. In doubt that
+                  means your studying largely works. This is the direction you
+                  lean towards — as a hint, not a diagnosis.</p>
+             </div>`
+          : '';
+
     const prof = attrAktuell || attrProfil({ [key]: 1 });
     const attrBars = prof.zeilen
       .map(
@@ -2846,11 +2992,22 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       : '';
 
     return `
+      ${vorspann}
+
       <div class="lt-result-head">
         <img class="lt-result-img" src="/img/lerntypen/${key}.webp" srcset="/img/lerntypen/${key}@1x.webp 450w, /img/lerntypen/${key}.webp 900w" sizes="(max-width: 640px) 78vw, 340px" alt="Illustration: ${p.name}" />
         <span class="eyebrow">Your result</span>
         <h1 style="margin:.4rem 0 .5rem">${p.name}</h1>
         <p class="lt-tagline">${p.tagline}</p>
+        ${
+          /* In state C we already said the quiz does not fit — this line would
+             only be soothing noise on top of that. */
+          zustand === 'C'
+            ? ''
+            : `<p class="lt-rahmen">
+                 This names a spot in how you study — not a verdict on you.
+               </p>`
+        }
       </div>
 
       <div class="lt-befund">
@@ -2875,6 +3032,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           six patterns:
         </p>
         <div class="lt-bars">${bars}</div>
+        ${
+          knapp
+            ? `<p class="lt-zweit"><strong>${PROFILES[zweiter].name}</strong> is almost
+                 level with it. You are more of a mix of the two — read the second
+                 part as well.</p>`
+            : ''
+        }
       </details>
 
       <hr class="lt-divider">
