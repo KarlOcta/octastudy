@@ -29,7 +29,14 @@ export default defineConfig({
         !page.includes('/impressum/') &&
         !page.includes('/datenschutz/') &&
         // Vorerst ausgeblendet — Zeile entfernen, wenn /ueber-uns/ live geht
-        !page.includes('/ueber-uns/'),
+        !page.includes('/ueber-uns/') &&
+        // Werbe-Landingpages stehen auf noindex und sollen das auch bleiben.
+        // Eine noindex-Seite in der Sitemap ist ein Widerspruch: Die Sitemap
+        // bittet Google, sie aufzunehmen, das Meta-Tag verbietet es. Die
+        // Search Console meldet das als Fehler ("Übermittelte URL als
+        // noindex markiert"). Die Seiten bleiben erreichbar und funktionieren
+        // fuer Anzeigen unveraendert — sie stehen nur nicht mehr drin.
+        !page.includes('/lp/'),
     }),
   ],
 });

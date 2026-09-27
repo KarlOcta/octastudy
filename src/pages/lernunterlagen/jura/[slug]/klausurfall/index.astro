@@ -47,6 +47,39 @@ const SLIDES = [
 
 const breadcrumbLabel = entry.h1.replace(/^Prüfungsschema\s*/, '').replace(/^Notwehr\s*—\s*/, 'Notwehr — ');
 
+/**
+ * Verwandte Klausurfälle.
+ *
+ * Bis hierher war jede Fallseite eine Sackgasse: Ihr einziger interner Link
+ * führte zurück auf das eigene Schema. Damit gab die Hälfte des Clusters
+ * nichts weiter — weder an Leser, die nach dem gelösten Fall den nächsten
+ * suchen, noch an den Crawler.
+ *
+ * Reihenfolge: zuerst die Fälle zu den `related`-Schemata (fachlich gesetzt
+ * und bereits redaktionell geprüft), danach aufgefüllt mit Fällen aus
+ * demselben Teilgebiet. Der eigene Fall fällt raus, Dubletten ebenso.
+ */
+const MAX_VERWANDTE = 4;
+
+const fallSlugs = new Set(klausurfaelle.map((f) => f.slug));
+
+const kandidaten = [
+  ...(entry.related || []).filter((slug) => fallSlugs.has(slug)),
+  ...klausurfaelle
+    .filter((f) => f.teilgebiet === fall.teilgebiet)
+    .map((f) => f.slug),
+];
+
+const verwandteFaelle = [...new Set(kandidaten)]
+  .filter((slug) => slug !== fall.slug)
+  .slice(0, MAX_VERWANDTE)
+  .map((slug) => ({
+    slug,
+    fall: klausurfaelle.find((f) => f.slug === slug),
+    schema: schemata.find((e) => e.slug === slug),
+  }))
+  .filter((x) => x.fall && x.schema);
+
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -115,6 +148,27 @@ const jsonLd = JSON.stringify({
       <p>{fall.ergebnis}</p>
     </div>
 
+    {
+      verwandteFaelle.length > 0 && (
+        <Fragment>
+          <h2 class="rule">Weitere Klausurfälle</h2>
+          <div class="related-grid">
+            {verwandteFaelle.map((v) => (
+              <a class="related-card" href={`/lernunterlagen/jura/${v.slug}/klausurfall/`}>
+                <span class="related-card__label">
+                  {v.schema.linkLabel ?? v.schema.keyword.replace(/\s*Schema$/, '')}
+                </span>
+                <span class="related-card__sub">{v.fall.teilgebiet}</span>
+              </a>
+            ))}
+          </div>
+          <p class="alle-faelle">
+            <a href="/lernunterlagen/jura/klausurfaelle/">Alle Klausurfälle im Überblick →</a>
+          </p>
+        </Fragment>
+      )
+    }
+
     <OctaCtaBox
       id="klausurfall-slides"
       title="Direkt in Octa weiterlernen"
@@ -168,6 +222,52 @@ const jsonLd = JSON.stringify({
 
   .rule--tight {
     margin-top: 0.15rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.6rem;
+    max-width: 54rem;
+    margin-bottom: 1rem;
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .related-card:hover {
+    border-color: var(--accent);
+  }
+
+  .related-card__label {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .related-card__sub {
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+  }
+
+  .alle-faelle {
+    max-width: 54rem;
+    margin: 0 0 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .alle-faelle a {
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .sachverhalt {
