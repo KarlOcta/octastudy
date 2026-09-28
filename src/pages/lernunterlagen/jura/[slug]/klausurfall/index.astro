@@ -5,6 +5,8 @@ import StickyAppCta from '../../../../../components/StickyAppCta.astro';
 import { OCTA, appStoreCppUrl } from '../../../../../site';
 import schemata from '../../../../../data/jura-schemata.json';
 import klausurfaelle from '../../../../../data/jura-klausurfaelle.json';
+import JuraSuche from '../../../../../components/JuraSuche.astro';
+import { suchtextFuer, kurzLabel } from '../../../../../lib/jura-suche';
 
 export function getStaticPaths() {
   return klausurfaelle.map((fall) => {
@@ -79,6 +81,25 @@ const verwandteFaelle = [...new Set(kandidaten)]
     schema: schemata.find((e) => e.slug === slug),
   }))
   .filter((x) => x.fall && x.schema);
+
+/* Sprungziele: alle übrigen Klausurfälle. Gleiche Überlegung wie auf der
+   Schemaseite — nur Daten, keine 53 zusätzlichen Links im HTML. */
+const sprungziele = klausurfaelle
+  .filter((f) => f.slug !== fall.slug)
+  .map((f) => {
+    const sch = schemata.find((e) => e.slug === f.slug);
+    return {
+      href: `/lernunterlagen/jura/${f.slug}/klausurfall/`,
+      label: sch ? kurzLabel(sch) : f.bezug,
+      gruppe: f.teilgebiet,
+      such: sch
+        ? suchtextFuer(sch, `${f.bezug} ${f.h1} Klausurfall Fall Gutachten`)
+        : suchtextFuer(
+            { slug: f.slug, keyword: f.bezug, h1: f.h1, teilgebiet: f.teilgebiet, rechtsgebiet: f.rechtsgebiet },
+            'Klausurfall Fall Gutachten'
+          ),
+    };
+  });
 
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -168,6 +189,16 @@ const jsonLd = JSON.stringify({
         </Fragment>
       )
     }
+
+    <JuraSuche
+      id="suche-sprung-fall"
+      modus="sprung"
+      eintraege={sprungziele}
+      label="Anderen Klausurfall suchen"
+      platzhalter="Paragraf oder Stichwort, z. B. 242 oder Diebstahl"
+      leerHref="/lernunterlagen/jura/klausurfaelle/"
+      leerText="Alle Klausurfälle ansehen →"
+    />
 
     <OctaCtaBox
       id="klausurfall-slides"

@@ -109,7 +109,8 @@
         "a": "Nein. Ohne Verletzung eines der ausdrücklich genannten Rechtsgüter (Leben, Körper, Gesundheit, Freiheit, Eigentum, sonstiges Recht) sind reine Vermögensschäden über § 823 I BGB nicht ersatzfähig."
       }
     ],
-    "linkLabel": "Deliktische Haftung (§ 823 BGB)"
+    "linkLabel": "Deliktische Haftung (§ 823 BGB)",
+    "suchbegriffe": "Schadensersatz unerlaubte Handlung Delikt Deliktsrecht Verkehrssicherungspflicht Rechtsgutsverletzung Schutzgesetz"
   },
   {
     "slug": "985-bgb",
@@ -208,7 +209,8 @@
         "a": "Der Anspruch verjährt gemäß § 197 I Nr. 1 BGB in 30 Jahren und damit erheblich länger als die regelmäßige Verjährungsfrist des § 195 BGB von drei Jahren."
       }
     ],
-    "linkLabel": "Herausgabeanspruch (§ 985 BGB)"
+    "linkLabel": "Herausgabeanspruch (§ 985 BGB)",
+    "suchbegriffe": "Vindikation Vindikationslage Herausgabe Herausgabeanspruch EBV Eigentümer-Besitzer-Verhältnis Sachenrecht"
   },
   {
     "slug": "812-bgb",
@@ -314,7 +316,8 @@
         "a": "§ 814 BGB schließt die Rückforderung aus, wenn der Leistende bei Erbringung der Leistung positiv wusste, dass er nicht verpflichtet war. Er greift nur bei der Leistungskondiktion und nicht bei bloß fahrlässiger Unkenntnis."
       }
     ],
-    "linkLabel": "Bereicherungsanspruch (§ 812 BGB)"
+    "linkLabel": "Bereicherungsanspruch (§ 812 BGB)",
+    "suchbegriffe": "Bereicherungsrecht ungerechtfertigte Bereicherung Kondiktion Leistungskondiktion Nichtleistungskondiktion"
   },
   {
     "slug": "280-bgb",
@@ -426,7 +429,8 @@
         "a": "§ 280 I BGB ist im Kaufrecht über die Verweisung des § 437 Nr. 3 BGB anzuwenden, sobald Mangel und Gefahrübergang vorliegen — ergänzt um die kaufrechtlichen Besonderheiten."
       }
     ],
-    "linkLabel": "Schadensersatz wegen Pflichtverletzung (§ 280 BGB)"
+    "linkLabel": "Schadensersatz wegen Pflichtverletzung (§ 280 BGB)",
+    "suchbegriffe": "Pflichtverletzung Leistungsstörung Schadensersatz statt der Leistung neben der Leistung Verzug"
   },
   {
     "slug": "929-bgb",
@@ -550,7 +554,8 @@
         "a": "An die Stelle der realen Übergabe tritt die Vereinbarung eines Besitzmittlungsverhältnisses bzw. die Abtretung des Herausgabeanspruchs. Für den gutgläubigen Erwerb gelten die verschärften §§ 933, 934 BGB."
       }
     ],
-    "linkLabel": "Übereignung beweglicher Sachen (§ 929 BGB)"
+    "linkLabel": "Übereignung beweglicher Sachen (§ 929 BGB)",
+    "suchbegriffe": "Übereignung Eigentumsübertragung Einigung Übergabe Einigsein beweglich Mobiliarsachenrecht"
   },
   {
     "slug": "263-stgb",
@@ -679,7 +684,8 @@
         "a": "Entscheidend ist, ob der getäuschte Dritte dem Vermögen des Geschädigten so nahe steht, dass seine Verfügung diesem zuzurechnen ist. Nach der herrschenden Lagertheorie muss er bereits vor der Tat im Lager des Geschädigten gestanden haben — fehlt dieses Näheverhältnis, bleibt es bei einem Diebstahl in mittelbarer Täterschaft."
       }
     ],
-    "linkLabel": "Betrug (§ 263 StGB)"
+    "linkLabel": "Betrug (§ 263 StGB)",
+    "suchbegriffe": "Betrug Täuschung Irrtum Vermögensverfügung Vermögensschaden Dreiecksbetrug Bereicherungsabsicht"
   },
   {
     "slug": "242-stgb",
@@ -795,7 +801,8 @@
         "a": "Beide Normen setzen tatbestandlich einen vollendeten oder versuchten Diebstahl nach § 242 StGB voraus — ohne sauber geprüften Grundtatbestand lässt sich keine Qualifikation bejahen."
       }
     ],
-    "linkLabel": "Diebstahl (§ 242 StGB)"
+    "linkLabel": "Diebstahl (§ 242 StGB)",
+    "suchbegriffe": "Diebstahl Wegnahme Gewahrsam Zueignungsabsicht fremde bewegliche Sache"
   },
   {
     "slug": "223-stgb",
@@ -904,7 +911,8 @@
         "a": "Ja, für den subjektiven Tatbestand genügt gemäß § 15 StGB dolus eventualis, also das billigende Inkaufnehmen der Misshandlung oder Gesundheitsschädigung."
       }
     ],
-    "linkLabel": "Körperverletzung (§ 223 StGB)"
+    "linkLabel": "Körperverletzung (§ 223 StGB)",
+    "suchbegriffe": "Körperverletzung körperliche Misshandlung Gesundheitsschädigung Einwilligung"
   },
   {
     "slug": "315c-stgb",
@@ -1013,7 +1021,8 @@
         "a": "Wenn der Täter sein Fahrzeug nicht mehr als Fortbewegungsmittel, sondern bewusst als Waffe einsetzt. Die Rechtsprechung verlangt dafür eine verkehrsfeindliche Innentendenz und mindestens bedingten Schädigungsvorsatz; ohne diese bleibt es bei § 315c StGB."
       }
     ],
-    "linkLabel": "Gefährdung des Straßenverkehrs (§ 315c StGB)"
+    "linkLabel": "Gefährdung des Straßenverkehrs (§ 315c StGB)",
+    "suchbegriffe": "Straßenverkehr Gefährdung Trunkenheit Fahruntüchtigkeit Verkehrsdelikt Beinaheunfall"
   },
   {
     "slug": "notwehr",
@@ -1123,7 +1132,8 @@
         "a": "Der spätere Verteidiger hat den Angriff durch eigenes vorwerfbares Vorverhalten mitverursacht. Je nach Verschuldensgrad wird sein Notwehrrecht über die Gebotenheit eingeschränkt oder ausnahmsweise ganz versagt."
       }
     ],
-    "linkLabel": "Notwehr (§ 32 StGB)"
+    "linkLabel": "Notwehr (§ 32 StGB)",
+    "suchbegriffe": "Notwehr Rechtfertigungsgrund gegenwärtiger rechtswidriger Angriff Verteidigung Erforderlichkeit Gebotenheit"
   },
   {
     "slug": "versuch",
@@ -1288,7 +1298,8 @@
         "a": "Erst nach Tatbestand, Rechtswidrigkeit und Schuld, weil § 24 StGB persönlicher Strafaufhebungsgrund ist. Vorab ist stets zu klären, ob der Versuch fehlgeschlagen ist, und anschließend zwischen unbeendetem Versuch (bloßes Aufgeben genügt) und beendetem Versuch (aktives Verhindern der Vollendung erforderlich) zu unterscheiden."
       }
     ],
-    "linkLabel": "Versuch (§§ 22, 23 StGB)"
+    "linkLabel": "Versuch (§§ 22, 23 StGB)",
+    "suchbegriffe": "Versuch Tatentschluss unmittelbares Ansetzen untauglicher Versuch Vorbereitungshandlung"
   },
   {
     "slug": "ruecktritt-versuch",
@@ -1430,7 +1441,8 @@
         "a": "Er muss die Vollendung der Tat freiwillig verhindern; das bloße Aufgeben des eigenen Tatbeitrags genügt nicht. Wird die Tat ohne sein Zutun nicht vollendet oder unabhängig von seinem früheren Beitrag begangen, reicht sein freiwilliges und ernsthaftes Bemühen um Verhinderung, § 24 II 2 StGB."
       }
     ],
-    "linkLabel": "Rücktritt vom Versuch (§ 24 StGB)"
+    "linkLabel": "Rücktritt vom Versuch (§ 24 StGB)",
+    "suchbegriffe": "Rücktritt Aufgeben Verhindern fehlgeschlagener Versuch Strafaufhebungsgrund Freiwilligkeit"
   },
   {
     "slug": "mittaeterschaft",
@@ -1560,7 +1572,8 @@
         "a": "Nach der herrschenden Gesamtlösung setzt jeder Mittäter zur Tat an, sobald einer von ihnen nach dem gemeinsamen Tatplan unmittelbar zur Tatbestandsverwirklichung ansetzt, § 22 StGB. Die Einzellösung stellt demgegenüber auf das unmittelbare Ansetzen jedes einzelnen Beteiligten ab."
       }
     ],
-    "linkLabel": "Mittäterschaft (§ 25 II StGB)"
+    "linkLabel": "Mittäterschaft (§ 25 II StGB)",
+    "suchbegriffe": "Mittäterschaft gemeinschaftliche Begehung Tatherrschaft gemeinsamer Tatplan Zurechnung Exzess"
   },
   {
     "slug": "anstiftung",
@@ -1722,7 +1735,8 @@
         "a": "Gleich einem Täter, § 26 StGB — der Strafrahmen der Haupttat gilt ohne obligatorische Milderung, anders als bei der Beihilfe nach § 27 II 2 StGB. Fehlen dem Anstifter strafbegründende besondere persönliche Merkmale, ist die Strafe nach § 28 I StGB in Verbindung mit § 49 I StGB zu mildern."
       }
     ],
-    "linkLabel": "Anstiftung (§ 26 StGB)"
+    "linkLabel": "Anstiftung (§ 26 StGB)",
+    "suchbegriffe": "Anstiftung Bestimmen Teilnahme Haupttat Doppelvorsatz"
   },
   {
     "slug": "beihilfe",
@@ -1870,7 +1884,8 @@
         "a": "Ja, § 27 II 2 StGB ordnet eine zwingende Milderung nach § 49 I StGB an; ein Ermessen des Gerichts besteht insoweit nicht. Kommen weitere Milderungsgründe hinzu, etwa § 28 I StGB oder § 13 II StGB, ist eine doppelte Milderung möglich."
       }
     ],
-    "linkLabel": "Beihilfe (§ 27 StGB)"
+    "linkLabel": "Beihilfe (§ 27 StGB)",
+    "suchbegriffe": "Beihilfe Hilfeleisten Gehilfe Teilnahme Haupttat"
   },
   {
     "slug": "unterlassungsdelikt",
@@ -2006,7 +2021,8 @@
         "a": "Das Unterlassen muss der Tatbestandsverwirklichung durch aktives Tun entsprechen. Bei reinen Erfolgsdelikten wie § 212 StGB hat die Klausel neben der Garantenstellung kaum eigenständige Bedeutung; bei verhaltensgebundenen Delikten ist dagegen gesondert zu begründen, dass das Unterlassen der geforderten Begehungsform gleichwertig ist."
       }
     ],
-    "linkLabel": "Unechtes Unterlassungsdelikt (§ 13 StGB)"
+    "linkLabel": "Unechtes Unterlassungsdelikt (§ 13 StGB)",
+    "suchbegriffe": "Unterlassen Garantenstellung Garantenpflicht Ingerenz Handlungspflicht Quasikausalität"
   },
   {
     "slug": "fahrlaessigkeitsdelikt",
@@ -2163,7 +2179,8 @@
         "a": "Wer sich selbst verkehrsgerecht verhält, darf grundsätzlich darauf vertrauen, dass sich auch andere ordnungsgemäß verhalten; dadurch werden die Sorgfaltsanforderungen begrenzt. Das Vertrauen entfällt, sobald konkrete Anhaltspunkte für Fehlverhalten erkennbar sind, etwa bei Kindern, ersichtlich Ortsunkundigen oder erkennbar gefährdeten Personen."
       }
     ],
-    "linkLabel": "Fahrlässigkeitsdelikt"
+    "linkLabel": "Fahrlässigkeitsdelikt",
+    "suchbegriffe": "Fahrlässigkeit Sorgfaltspflichtverletzung objektive Zurechnung Vorhersehbarkeit Pflichtwidrigkeitszusammenhang"
   },
   {
     "slug": "34-stgb",
@@ -2300,7 +2317,8 @@
         "a": "Sie ist ein zusätzliches Korrektiv: Selbst bei wesentlich überwiegendem Interesse scheidet die Rechtfertigung aus, wenn die Tat mit grundlegenden Wertungen der Rechtsordnung unvereinbar ist, etwa bei einem Eingriff in die Menschenwürde oder bei Umgehung eines besonderen rechtsstaatlichen Verfahrens. Nach verbreiteter Ansicht hat sie neben einer sorgfältig durchgeführten Interessenabwägung nur geringe eigenständige Bedeutung, ist in der Klausur aber stets kurz anzusprechen."
       }
     ],
-    "linkLabel": "Rechtfertigender Notstand (§ 34 StGB)"
+    "linkLabel": "Rechtfertigender Notstand (§ 34 StGB)",
+    "suchbegriffe": "Notstand rechtfertigender Notstand Gefahr Interessenabwägung Angemessenheit"
   },
   {
     "slug": "raub",
@@ -2432,7 +2450,8 @@
         "a": "Beim Raub (§ 249 StGB) setzt der Täter das Nötigungsmittel ein, um die Wegnahme erst zu ermöglichen. Beim räuberischen Diebstahl (§ 252 StGB) ist der Diebstahl bereits vollendet und der Täter nötigt, nachdem er auf frischer Tat betroffen wurde, um sich den Besitz an der Beute zu erhalten."
       }
     ],
-    "linkLabel": "Raub (§ 249 StGB)"
+    "linkLabel": "Raub (§ 249 StGB)",
+    "suchbegriffe": "Raub Gewalt Drohung Wegnahme Finalzusammenhang schwerer Raub"
   },
   {
     "slug": "urkundenfaelschung",
@@ -2574,7 +2593,8 @@
         "a": "Nein. § 267 StGB schützt allein die Echtheit der Urkunde, also die Identität des Ausstellers, nicht die Wahrheit ihres Inhalts; eine unter eigenem Namen abgegebene unwahre Erklärung bleibt insoweit straflos."
       }
     ],
-    "linkLabel": "Urkundenfälschung (§ 267 StGB)"
+    "linkLabel": "Urkundenfälschung (§ 267 StGB)",
+    "suchbegriffe": "Urkundenfälschung Urkunde unechte Urkunde Verfälschen Gebrauchmachen Aussteller"
   },
   {
     "slug": "unterschlagung",
@@ -2690,7 +2710,8 @@
         "a": "Die Unterschlagung einer Sache, die dem Täter anvertraut war, also mit der Verpflichtung übergeben wurde, sie zu einem bestimmten Zweck zu verwenden, zu verwahren oder zurückzugeben. Nach herrschender Meinung handelt es sich um eine Qualifikation mit einem besonderen persönlichen Merkmal im Sinne des § 28 II StGB."
       }
     ],
-    "linkLabel": "Unterschlagung (§ 246 StGB)"
+    "linkLabel": "Unterschlagung (§ 246 StGB)",
+    "suchbegriffe": "Unterschlagung Zueignung Fundunterschlagung Gewahrsam Subsidiarität"
   },
   {
     "slug": "noetigung",
@@ -2828,7 +2849,8 @@
         "a": "Das bloße Sichsetzen auf die Fahrbahn ist gegenüber dem Fahrer des ersten Fahrzeugs keine Gewalt, weil es nur psychisch wirkt. Nach der Zweite-Reihe-Rechtsprechung liegt Gewalt aber gegenüber den nachfolgenden Fahrern vor, für die die haltenden Fahrzeuge ein physisches Hindernis bilden; die Verwerflichkeit ist dann gesondert unter Berücksichtigung der Versammlungsfreiheit aus Art. 8 GG zu prüfen."
       }
     ],
-    "linkLabel": "Nötigung (§ 240 StGB)"
+    "linkLabel": "Nötigung (§ 240 StGB)",
+    "suchbegriffe": "Nötigung Gewalt Drohung empfindliches Übel Verwerflichkeit"
   },
   {
     "slug": "mord",
@@ -2997,7 +3019,8 @@
         "a": "Beweggründe, die nach allgemeiner sittlicher Wertung auf tiefster Stufe stehen und deshalb besonders verachtenswert sind; das ist in einer Gesamtwürdigung von Tat, Täterpersönlichkeit und Lebensverhältnissen zu bestimmen. Der Täter muss die Umstände, die die Niedrigkeit begründen, erkannt und seine Antriebe gedanklich beherrschen können."
       }
     ],
-    "linkLabel": "Mord (§ 211 StGB)"
+    "linkLabel": "Mord (§ 211 StGB)",
+    "suchbegriffe": "Mord Mordmerkmale Heimtücke Habgier niedrige Beweggründe Verdeckungsabsicht Grausamkeit"
   },
   {
     "slug": "totschlag",
@@ -3145,7 +3168,8 @@
         "a": "Er beginnt nach h. M. mit dem Beginn der Geburt, also mit dem Einsetzen der Eröffnungswehen, bei der Schnittentbindung mit dem Beginn des Eingriffs; davor schützen nur die §§ 218 ff. StGB. Er endet mit dem Hirntod, dem irreversiblen Ausfall der Gesamtfunktion von Groß- und Kleinhirn sowie Hirnstamm."
       }
     ],
-    "linkLabel": "Totschlag (§ 212 StGB)"
+    "linkLabel": "Totschlag (§ 212 StGB)",
+    "suchbegriffe": "Totschlag vorsätzliche Tötung Grundtatbestand minder schwerer Fall"
   },
   {
     "slug": "erpressung",
@@ -3286,7 +3310,8 @@
         "a": "Wenn die Anwendung der Gewalt oder die Androhung des Übels zu dem angestrebten Zweck als verwerflich anzusehen ist; maßgeblich ist eine Abwägung der Zweck-Mittel-Relation. Erstrebt der Täter einen rechtswidrigen Vermögensvorteil, ist die Verwerflichkeit regelmäßig indiziert."
       }
     ],
-    "linkLabel": "Erpressung (§§ 253, 255 StGB)"
+    "linkLabel": "Erpressung (§§ 253, 255 StGB)",
+    "suchbegriffe": "Erpressung räuberische Erpressung Vermögensnachteil Nötigungsmittel Abgrenzung Raub"
   },
   {
     "slug": "untreue",
@@ -3412,7 +3437,8 @@
         "a": "Ja — § 266 StGB schützt allein das Vermögen des Treugebers, sodass dessen Einverständnis bereits die Pflichtverletzung und damit den Tatbestand entfallen lässt. Bei der GmbH ist Vermögensinhaber die Gesellschaft selbst: Die Zustimmung aller Gesellschafter wirkt nur, soweit sie nicht gegen zwingendes Kapitalerhaltungsrecht verstößt oder die Existenz der Gesellschaft gefährdet."
       }
     ],
-    "linkLabel": "Untreue (§ 266 StGB)"
+    "linkLabel": "Untreue (§ 266 StGB)",
+    "suchbegriffe": "Untreue Vermögensbetreuungspflicht Missbrauchstatbestand Treubruchtatbestand Vermögensnachteil"
   },
   {
     "slug": "224-stgb",
@@ -3550,7 +3576,8 @@
         "a": "Ja, § 224 II StGB ordnet die Versuchsstrafbarkeit ausdrücklich an. Geprüft wird der Versuch nach dem allgemeinen Schema der §§ 22, 23 I StGB mit Tatentschluss, unmittelbarem Ansetzen, Rechtswidrigkeit, Schuld und Rücktritt nach § 24 StGB."
       }
     ],
-    "linkLabel": "Gefährliche Körperverletzung (§ 224 StGB)"
+    "linkLabel": "Gefährliche Körperverletzung (§ 224 StGB)",
+    "suchbegriffe": "gefährliche Körperverletzung gefährliches Werkzeug Qualifikation hinterlistiger Überfall gemeinschaftlich lebensgefährdende Behandlung"
   },
   {
     "slug": "227-stgb",
@@ -3683,7 +3710,8 @@
         "a": "§ 227 StGB setzt Vorsatz nur hinsichtlich der Körperverletzung und wenigstens Fahrlässigkeit hinsichtlich des Todes voraus; hat der Täter auch nur bedingten Tötungsvorsatz, liegt ein vorsätzliches Tötungsdelikt nach §§ 211, 212 StGB vor. Fehlt es dagegen schon am Körperverletzungsvorsatz, bleibt allein die fahrlässige Tötung nach § 222 StGB."
       }
     ],
-    "linkLabel": "Körperverletzung mit Todesfolge (§ 227 StGB)"
+    "linkLabel": "Körperverletzung mit Todesfolge (§ 227 StGB)",
+    "suchbegriffe": "Körperverletzung mit Todesfolge Erfolgsqualifikation Gefahrverwirklichungszusammenhang Letalität"
   },
   {
     "slug": "222-stgb",
@@ -3857,7 +3885,8 @@
         "a": "§ 227 StGB setzt eine vorsätzliche Körperverletzung voraus, an die sich der Tod als besondere Folge anschließt, wobei nach § 18 StGB wenigstens Fahrlässigkeit hinsichtlich der Todesfolge und ein spezifischer Gefahrzusammenhang erforderlich sind. § 222 StGB greift dagegen, wenn schon die Grundhandlung nur fahrlässig war; § 227 StGB verdrängt als Erfolgsqualifikation den § 222 StGB."
       }
     ],
-    "linkLabel": "Fahrlässige Tötung (§ 222 StGB)"
+    "linkLabel": "Fahrlässige Tötung (§ 222 StGB)",
+    "suchbegriffe": "fahrlässige Tötung Sorgfaltspflichtverletzung Vorhersehbarkeit"
   },
   {
     "slug": "142-stgb",
@@ -3999,7 +4028,8 @@
         "a": "Ohne Vorsatz bezüglich des Unfalls liegt ein Tatbestandsirrtum nach § 16 I 1 StGB vor; eine Fahrlässigkeitsstrafbarkeit kennt § 142 StGB nicht. Erfährt der Beteiligte erst später von dem Unfall, lehnt die Rechtsprechung eine analoge Anwendung des § 142 II Nr. 2 StGB wegen Art. 103 II GG ab, sodass insoweit Straflosigkeit eintritt; Teile der Literatur wollen die Vorschrift demgegenüber ausdehnen."
       }
     ],
-    "linkLabel": "Unerlaubtes Entfernen vom Unfallort (§ 142 StGB)"
+    "linkLabel": "Unerlaubtes Entfernen vom Unfallort (§ 142 StGB)",
+    "suchbegriffe": "Unfallflucht Fahrerflucht unerlaubtes Entfernen Unfallort Feststellungen Wartepflicht"
   },
   {
     "slug": "303-stgb",
@@ -4108,7 +4138,8 @@
         "a": "Ja, § 303 III StGB ordnet die Strafbarkeit des Versuchs ausdrücklich an. Geprüft wird nach dem allgemeinen Versuchsaufbau: Vorprüfung, Tatentschluss, unmittelbares Ansetzen (§ 22 StGB), Rechtswidrigkeit, Schuld und Rücktritt (§ 24 StGB)."
       }
     ],
-    "linkLabel": "Sachbeschädigung (§ 303 StGB)"
+    "linkLabel": "Sachbeschädigung (§ 303 StGB)",
+    "suchbegriffe": "Sachbeschädigung Beschädigen Zerstören fremde Sache Substanzverletzung Graffiti"
   },
   {
     "slug": "239-stgb",
@@ -4261,7 +4292,8 @@
         "a": "§ 239 III Nr. 1 StGB erfasst als echte Qualifikation die Freiheitsentziehung von mehr als einer Woche, § 239 III Nr. 2 StGB als Erfolgsqualifikation die schwere Gesundheitsschädigung und § 239 IV StGB den Tod des Opfers. Für die schweren Folgen genügt nach § 18 StGB Fahrlässigkeit; zusätzlich ist der tatbestandsspezifische Gefahrzusammenhang festzustellen."
       }
     ],
-    "linkLabel": "Freiheitsberaubung (§ 239 StGB)"
+    "linkLabel": "Freiheitsberaubung (§ 239 StGB)",
+    "suchbegriffe": "Freiheitsberaubung Einsperren Fortbewegungsfreiheit potentieller Fortbewegungswille"
   },
   {
     "slug": "hehlerei",
@@ -4409,7 +4441,8 @@
         "a": "§ 259 StGB erfasst nur die abgeleitete Erlangung oder Verwertung der Sache, also ein Handeln mit Willen des Vortäters. Wer dem Dieb die Beute wegnimmt, abnötigt oder ablistet, perpetuiert nicht dessen Besitzlage, sondern begründet eine neue — er macht sich nicht wegen Hehlerei, sondern wegen eines eigenständigen Vermögensdelikts strafbar."
       }
     ],
-    "linkLabel": "Hehlerei (§ 259 StGB)"
+    "linkLabel": "Hehlerei (§ 259 StGB)",
+    "suchbegriffe": "Hehlerei Ankaufen Absetzen Absatzhilfe rechtswidrige Vortat Perpetuierung"
   },
   {
     "slug": "244-stgb",
@@ -4556,7 +4589,8 @@
         "a": "§ 243 StGB enthält bloße Regelbeispiele für einen besonders schweren Fall des Diebstahls; sie werden erst auf der Strafzumessungsebene geprüft und können durch eine Gesamtwürdigung entkräftet werden. § 244 StGB ist demgegenüber eine echte Qualifikation: Die Merkmale gehören zum Tatbestand, müssen vom Vorsatz umfasst sein und lösen einen eigenen, höheren Strafrahmen aus."
       }
     ],
-    "linkLabel": "Wohnungseinbruchdiebstahl (§ 244 StGB)"
+    "linkLabel": "Wohnungseinbruchdiebstahl (§ 244 StGB)",
+    "suchbegriffe": "Wohnungseinbruchdiebstahl Einbruch Einbruchdiebstahl Diebstahl mit Waffen Bandendiebstahl Qualifikation"
   },
   {
     "slug": "verfassungsbeschwerde",
@@ -4713,7 +4747,8 @@
         "a": "Nur die Verletzung spezifischen Verfassungsrechts: Auslegung und Anwendung des einfachen Rechts sind Sache der Fachgerichte, so dass das BVerfG keine Superrevisionsinstanz ist. Ein Verstoß liegt nach der Heckschen Formel erst vor, wenn die Entscheidung auf einer grundsätzlich unrichtigen Anschauung von Bedeutung und Tragweite eines Grundrechts beruht; die Kontrolldichte steigt mit der Intensität des Grundrechtseingriffs."
       }
     ],
-    "linkLabel": "Verfassungsbeschwerde (Art. 93 GG)"
+    "linkLabel": "Verfassungsbeschwerde (Art. 93 GG)",
+    "suchbegriffe": "Verfassungsbeschwerde BVerfG Beschwerdebefugnis Rechtswegerschöpfung Subsidiarität Zulässigkeit Begründetheit"
   },
   {
     "slug": "grundrechtspruefung",
@@ -4913,7 +4948,8 @@
         "a": "Grundrechte ohne Gesetzesvorbehalt — etwa Art. 4 I und II sowie Art. 5 III 1 GG — sind nur zum Schutz kollidierender Grundrechte Dritter oder anderer Rechtsgüter von Verfassungsrang einschränkbar (verfassungsimmanente Schranken). Auch dafür ist eine hinreichend bestimmte gesetzliche Grundlage erforderlich; der Ausgleich erfolgt im Wege praktischer Konkordanz, also durch schonenden Ausgleich beider Verfassungsgüter statt durch einseitige Zurücksetzung."
       }
     ],
-    "linkLabel": "Grundrechtsprüfung (Freiheitsrechte)"
+    "linkLabel": "Grundrechtsprüfung (Freiheitsrechte)",
+    "suchbegriffe": "Grundrechte Schutzbereich Eingriff verfassungsrechtliche Rechtfertigung Freiheitsrechte Aufbau"
   },
   {
     "slug": "verhaeltnismaessigkeit",
@@ -5124,7 +5160,8 @@
         "a": "Ja. Er folgt aus dem Rechtsstaatsprinzip (Art. 20 III GG) und bindet die gesamte Staatsgewalt; die Polizei- und Ordnungsgesetze schreiben ihn zusätzlich ausdrücklich fest. Im Klausuraufbau wird er bei Ermessensentscheidungen regelmäßig als gesetzliche Grenze des Ermessens (§ 40 VwVfG, § 114 S. 1 VwGO) geprüft, gilt der Sache nach aber unabhängig davon."
       }
     ],
-    "linkLabel": "Verhältnismäßigkeit"
+    "linkLabel": "Verhältnismäßigkeit",
+    "suchbegriffe": "Verhältnismäßigkeit legitimer Zweck Geeignetheit Erforderlichkeit Angemessenheit Übermaßverbot Schranken-Schranke"
   },
   {
     "slug": "art-3-gg",
@@ -5297,7 +5334,8 @@
         "a": "Art. 3 I GG ist der allgemeine Gleichheitssatz und erfasst als Auffangnorm jede Differenzierung, die sich nicht sachlich rechtfertigen lässt. Art. 3 III GG enthält demgegenüber spezielle Differenzierungsverbote für abschließend aufgezählte Merkmale wie Geschlecht, Abstammung, Sprache oder Glauben; eine Anknüpfung daran ist nur durch kollidierendes Verfassungsrecht oder zwingende sachliche Gründe zu rechtfertigen und verdrängt in ihrem Anwendungsbereich Art. 3 I GG."
       }
     ],
-    "linkLabel": "Allgemeiner Gleichheitssatz (Art. 3 GG)"
+    "linkLabel": "Allgemeiner Gleichheitssatz (Art. 3 GG)",
+    "suchbegriffe": "Gleichheitssatz Gleichbehandlung Ungleichbehandlung neue Formel Willkürformel Vergleichsgruppe"
   },
   {
     "slug": "art-12-gg",
@@ -5467,7 +5505,8 @@
         "a": "Art. 12 I GG schützt den Erwerb, also die künftige Erwerbstätigkeit, Art. 14 I GG das Erworbene, also bereits erlangte vermögenswerte Rechtspositionen. Bei Überschneidungen entscheidet der Schwerpunkt der belastenden Wirkung."
       }
     ],
-    "linkLabel": "Berufsfreiheit (Art. 12 GG)"
+    "linkLabel": "Berufsfreiheit (Art. 12 GG)",
+    "suchbegriffe": "Berufsfreiheit Berufswahl Berufsausübung Drei-Stufen-Theorie Beruf"
   },
   {
     "slug": "art-14-gg",
@@ -5665,7 +5704,8 @@
         "a": "Wenn sie im Grundsatz zulässig ist, in atypischen Sonderfällen aber zu einer unzumutbaren Belastung einzelner Eigentümer führt und deshalb nur mit einer gesetzlichen Härtevorkehrung verhältnismäßig bleibt — etwa Befreiungstatbeständen, Übergangsfristen, Übernahmeansprüchen oder, nachrangig, einem finanziellen Ausgleich. Die Vorkehrung muss im Gesetz selbst vorgesehen sein; ohne sie ist die Regelung verfassungswidrig."
       }
     ],
-    "linkLabel": "Eigentumsgarantie (Art. 14 GG)"
+    "linkLabel": "Eigentumsgarantie (Art. 14 GG)",
+    "suchbegriffe": "Eigentumsgarantie Eigentum Inhalts- und Schrankenbestimmung Enteignung Bestandsgarantie"
   },
   {
     "slug": "organstreitverfahren",
@@ -5795,7 +5835,8 @@
         "a": "Der Organstreit betrifft Streitigkeiten über organschaftliche Rechte und Pflichten zwischen Verfassungsorganen und ihren Teilen, die Verfassungsbeschwerde nach Art. 93 I Nr. 4a GG die Verletzung eigener Grundrechte oder grundrechtsgleicher Rechte. Entscheidend ist deshalb, ob der Antragsteller ein Statusrecht aus der Verfassungsorganisation oder ein Grundrecht geltend macht."
       }
     ],
-    "linkLabel": "Organstreitverfahren (Art. 93 GG)"
+    "linkLabel": "Organstreitverfahren (Art. 93 GG)",
+    "suchbegriffe": "Organstreit Organstreitverfahren Antragsbefugnis Verfassungsorgan BVerfG Partei Fraktion"
   },
   {
     "slug": "gesetzgebungsverfahren",
@@ -5981,7 +6022,8 @@
         "a": "Zu dem Zeitpunkt, den das Gesetz selbst bestimmt. Fehlt eine solche Bestimmung, tritt es nach Art. 82 II GG am vierzehnten Tag nach Ablauf des Tages in Kraft, an dem das Bundesgesetzblatt ausgegeben worden ist."
       }
     ],
-    "linkLabel": "Gesetzgebungsverfahren (Art. 76 ff. GG)"
+    "linkLabel": "Gesetzgebungsverfahren (Art. 76 ff. GG)",
+    "suchbegriffe": "Gesetzgebungsverfahren Gesetzgebungskompetenz Bundesrat Zustimmungsgesetz formelle Verfassungsmäßigkeit"
   },
   {
     "slug": "anfechtungsklage",
@@ -6175,7 +6217,8 @@
         "a": "Nach § 113 I 1 VwGO, soweit der Verwaltungsakt rechtswidrig und der Kläger dadurch in seinen Rechten verletzt ist. Rechtswidrig ist er, wenn es an einer wirksamen Ermächtigungsgrundlage fehlt oder die formellen oder materiellen Anforderungen — Zuständigkeit, Verfahren, Form, Tatbestandsvoraussetzungen, fehlerfreie Ermessensausübung, Verhältnismäßigkeit — nicht eingehalten sind."
       }
     ],
-    "linkLabel": "Anfechtungsklage (§ 42 I VwGO)"
+    "linkLabel": "Anfechtungsklage (§ 42 I VwGO)",
+    "suchbegriffe": "Anfechtungsklage Zulässigkeit Begründetheit Klagebefugnis Vorverfahren Widerspruch Verwaltungsakt VwGO"
   },
   {
     "slug": "verpflichtungsklage",
@@ -6366,7 +6409,8 @@
         "a": "Ja. Ohne vorherigen Antrag bei der zuständigen Behörde fehlt das allgemeine Rechtsschutzbedürfnis, weil die Verwaltung zunächst selbst über das Begehren entscheiden können muss. Der Antrag ist zugleich Anknüpfungspunkt für die Dreimonatsfrist des § 75 S. 2 VwGO."
       }
     ],
-    "linkLabel": "Verpflichtungsklage (§ 42 I VwGO)"
+    "linkLabel": "Verpflichtungsklage (§ 42 I VwGO)",
+    "suchbegriffe": "Verpflichtungsklage Versagungsgegenklage Untätigkeitsklage Spruchreife Bescheidungsurteil VwGO"
   },
   {
     "slug": "fortsetzungsfeststellungsklage",
@@ -6558,7 +6602,8 @@
         "a": "Erledigt sich der Verwaltungsakt nach Klageerhebung, mussten Widerspruchsverfahren (§§ 68 ff. VwGO) und Klagefrist (§ 74 VwGO) ohnehin gewahrt sein. Tritt die Erledigung vor Klageerhebung ein, ist das Vorverfahren nach verbreiteter Auffassung entbehrlich und § 74 VwGO nicht anwendbar; das Klagerecht kann aber verwirkt werden."
       }
     ],
-    "linkLabel": "Fortsetzungsfeststellungsklage (§ 113 I 4 VwGO)"
+    "linkLabel": "Fortsetzungsfeststellungsklage (§ 113 I 4 VwGO)",
+    "suchbegriffe": "Fortsetzungsfeststellungsklage FFK Erledigung Fortsetzungsfeststellungsinteresse Rehabilitationsinteresse VwGO"
   },
   {
     "slug": "feststellungsklage",
@@ -6698,7 +6743,8 @@
         "a": "Nein. §§ 68 ff. und § 74 VwGO gelten nur für die Anfechtungs- und die Verpflichtungsklage, so dass weder ein Vorverfahren durchzuführen ist noch eine Klagefrist läuft. Das Klagerecht kann jedoch ausnahmsweise verwirkt sein, wenn der Kläger längere Zeit untätig bleibt und der Gegner darauf vertrauen durfte."
       }
     ],
-    "linkLabel": "Feststellungsklage (§ 43 VwGO)"
+    "linkLabel": "Feststellungsklage (§ 43 VwGO)",
+    "suchbegriffe": "Feststellungsklage Rechtsverhältnis Feststellungsinteresse Subsidiarität Normerlassklage VwGO"
   },
   {
     "slug": "verwaltungsakt",
@@ -6947,7 +6993,8 @@
         "a": "Nichtig ist er nach § 44 I VwVfG nur bei einem besonders schwerwiegenden Fehler, der bei verständiger Würdigung aller Umstände zugleich offensichtlich ist, sowie in den absoluten Fällen des § 44 II VwVfG. Der bloß rechtswidrige Verwaltungsakt bleibt dagegen nach § 43 II VwVfG wirksam und ist zu befolgen, bis er aufgehoben wird; der nichtige Verwaltungsakt ist nach § 43 III VwVfG von Anfang an unwirksam."
       }
     ],
-    "linkLabel": "Verwaltungsakt (§ 35 VwVfG)"
+    "linkLabel": "Verwaltungsakt (§ 35 VwVfG)",
+    "suchbegriffe": "Verwaltungsakt VA Regelung Außenwirkung Einzelfall hoheitliche Maßnahme Allgemeinverfügung VwVfG"
   },
   {
     "slug": "anfechtung",
@@ -7158,7 +7205,8 @@
         "a": "Nach Gefahrübergang nicht mehr: Die §§ 434 ff. BGB sind gegenüber § 119 II BGB vorrangig, weil sonst Nacherfüllungsvorrang, Verjährung und Haftungsausschluss umgangen würden. Zulässig bleibt die Anfechtung wegen arglistiger Täuschung nach § 123 BGB, die neben dem Gewährleistungsrecht anwendbar ist."
       }
     ],
-    "linkLabel": "Anfechtung (§§ 119, 123 BGB)"
+    "linkLabel": "Anfechtung (§§ 119, 123 BGB)",
+    "suchbegriffe": "Anfechtung Willenserklärung Erklärungsirrtum Inhaltsirrtum Eigenschaftsirrtum arglistige Täuschung Drohung"
   },
   {
     "slug": "stellvertretung",
@@ -7394,7 +7442,8 @@
         "a": "Verweigert der Vertretene die Genehmigung, haftet der Vertreter nach Wahl des Dritten auf Erfüllung oder Schadensersatz, § 179 I BGB; kannte er den Mangel nicht, schuldet er nur den Vertrauensschaden bis zur Höhe des Erfüllungsinteresses, § 179 II BGB. Die Haftung entfällt, wenn der Dritte den Mangel kannte oder kennen musste, § 179 III 1 BGB."
       }
     ],
-    "linkLabel": "Stellvertretung (§ 164 BGB)"
+    "linkLabel": "Stellvertretung (§ 164 BGB)",
+    "suchbegriffe": "Stellvertretung Vertretungsmacht Vollmacht Offenkundigkeit Vertreter ohne Vertretungsmacht Insichgeschäft"
   },
   {
     "slug": "agb-kontrolle",
@@ -7639,7 +7688,8 @@
         "a": "Nach § 307 III 1 BGB nur solche Bestimmungen, die von Rechtsvorschriften abweichen oder diese ergänzen — kontrollfrei sind daher rein deklaratorische Klauseln sowie die Beschreibung der Hauptleistungspflicht und die unmittelbare Preisabrede. Preisnebenabreden bleiben kontrollfähig, und auch kontrollfreie Klauseln unterliegen über § 307 III 2 in Verbindung mit § 307 I 2 BGB dem Transparenzgebot."
       }
     ],
-    "linkLabel": "AGB-Kontrolle (§§ 305 ff. BGB)"
+    "linkLabel": "AGB-Kontrolle (§§ 305 ff. BGB)",
+    "suchbegriffe": "AGB Allgemeine Geschäftsbedingungen Einbeziehung Inhaltskontrolle Klauselverbot überraschende Klausel"
   },
   {
     "slug": "433-bgb",
@@ -7829,7 +7879,8 @@
         "a": "Nach § 447 I BGB bereits mit der Auslieferung der Sache an den Spediteur, Frachtführer oder die sonst zur Versendung bestimmte Person. Beim Verbrauchsgüterkauf gilt das nach § 475 II BGB nicht: Dort geht die Gefahr erst mit der Aushändigung an den Verbraucher über, sofern dieser den Beförderer nicht selbst ohne Benennung durch den Unternehmer beauftragt hat."
       }
     ],
-    "linkLabel": "Kaufvertrag (§ 433 BGB)"
+    "linkLabel": "Kaufvertrag (§ 433 BGB)",
+    "suchbegriffe": "Kaufvertrag Kauf Verkäufer Käufer Hauptleistungspflichten Sachmangel"
   },
   {
     "slug": "831-bgb",
@@ -7984,7 +8035,8 @@
         "a": "§ 831 BGB ist eine deliktische Anspruchsgrundlage mit Entlastungsmöglichkeit des Geschäftsherrn, § 278 BGB dagegen eine bloße Zurechnungsnorm ohne Exkulpation, die ein bestehendes Schuldverhältnis voraussetzt."
       }
     ],
-    "linkLabel": "Haftung für Verrichtungsgehilfen (§ 831 BGB)"
+    "linkLabel": "Haftung für Verrichtungsgehilfen (§ 831 BGB)",
+    "suchbegriffe": "Verrichtungsgehilfe Haftung für Dritte Exkulpation Auswahlverschulden Weisungsgebundenheit"
   },
   {
     "slug": "1004-bgb",
@@ -8174,7 +8226,8 @@
         "a": "Der aus § 1004 BGB analog abgeleitete Beseitigungs- und Unterlassungsanspruch zum Schutz sonstiger absoluter Rechte und Rechtsgüter, insbesondere der in § 823 I BGB genannten sowie des allgemeinen Persönlichkeitsrechts. Er schließt die Lücke, dass das Deliktsrecht nur Schadensersatz, aber keinen vorbeugenden Rechtsschutz gewährt."
       }
     ],
-    "linkLabel": "Beseitigung und Unterlassung (§ 1004 BGB)"
+    "linkLabel": "Beseitigung und Unterlassung (§ 1004 BGB)",
+    "suchbegriffe": "Beseitigungsanspruch Unterlassungsanspruch Störer Handlungsstörer Zustandsstörer negatorischer Anspruch"
   },
   {
     "slug": "311-bgb",
@@ -8327,6 +8380,7 @@
         "a": "Wenn er in besonderem Maße persönliches Vertrauen für sich in Anspruch genommen und dadurch die Vertragsverhandlungen erheblich beeinflusst hat, § 311 III 2 BGB — etwa der Sachwalter, der eine zusätzliche persönliche Gewähr für die Richtigkeit seiner Angaben übernimmt. Ein bloßes eigenes wirtschaftliches Interesse am Vertragsschluss reicht nach der Rechtsprechung für sich allein grundsätzlich nicht aus."
       }
     ],
-    "linkLabel": "Culpa in contrahendo (§ 311 II BGB)"
+    "linkLabel": "Culpa in contrahendo (§ 311 II BGB)",
+    "suchbegriffe": "culpa in contrahendo cic c.i.c. vorvertragliches Schuldverhältnis Aufklärungspflicht Vertrauenshaftung"
   }
 ]

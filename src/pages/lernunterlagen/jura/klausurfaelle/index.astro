@@ -2,6 +2,9 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { OCTA } from '../../../../site';
 import klausurfaelle from '../../../../data/jura-klausurfaelle.json';
+import schemata from '../../../../data/jura-schemata.json';
+import JuraSuche from '../../../../components/JuraSuche.astro';
+import { suchtextFuer } from '../../../../lib/jura-suche';
 
 const RECHTSGEBIETE = [
   {
@@ -33,6 +36,18 @@ const groups = RECHTSGEBIETE.map((rg) => {
 });
 
 const total = klausurfaelle.length;
+
+/* Der Suchtext kommt aus dem zugehoerigen Schema: dort stehen Klarname und
+   Synonyme. Der Fall selbst liefert nur `bezug` und das Teilgebiet. */
+function fallSuchtext(fall) {
+  const schema = schemata.find((e) => e.slug === fall.slug);
+  return schema
+    ? suchtextFuer(schema, `${fall.bezug} ${fall.h1} Klausurfall Fall Gutachten`)
+    : suchtextFuer(
+        { slug: fall.slug, keyword: fall.bezug, h1: fall.h1, teilgebiet: fall.teilgebiet, rechtsgebiet: fall.rechtsgebiet },
+        'Klausurfall Fall Gutachten'
+      );
+}
 ---
 
 <BaseLayout
@@ -57,20 +72,31 @@ const total = klausurfaelle.length;
       1:1 durchdekliniert.
     </p>
 
+    <JuraSuche
+      id="suche-faelle"
+      modus="filter"
+      container="#faelle-liste"
+      label="Klausurfall suchen"
+      platzhalter="Paragraf oder Stichwort, z. B. 263 oder Betrug"
+      leerHref="/lernunterlagen/jura/"
+      leerText="Zu den Prüfungsschemata →"
+    />
+
+    <div id="faelle-liste">
     {
       groups.map((g) => (
-        <section class="silo">
+        <section class="silo" data-such-gruppe>
           <div class="silo__head">
             <h2>{g.key}</h2>
             <span class="silo__count">{g.count} Klausurfälle</span>
           </div>
           <p class="silo__text">{g.text}</p>
           {g.byTeilgebiet.map((b) => (
-            <div class="teilgebiet">
+            <div class="teilgebiet" data-such-gruppe>
               <h3>{b.teilgebiet}</h3>
               <ul class="chips" aria-label={`Klausurfälle: ${b.teilgebiet}`}>
                 {b.entries.map((e) => (
-                  <li>
+                  <li data-such={fallSuchtext(e)}>
                     <a href={`/lernunterlagen/jura/${e.slug}/klausurfall/`}>{e.bezug} →</a>
                   </li>
                 ))}
@@ -80,6 +106,7 @@ const total = klausurfaelle.length;
         </section>
       ))
     }
+    </div>
 
     <h2 class="rule">Wie ein Klausurfall aufgebaut ist</h2>
     <ol>
@@ -148,6 +175,12 @@ const total = klausurfaelle.length;
     background: var(--accent-soft);
     border-radius: 100px;
     padding: 0.15rem 0.65rem;
+  }
+
+  /* Beim Filtern zeigt der Zähler eine Zahl, die nicht mehr zur Liste
+     darunter passt. */
+  [data-gefiltert] .silo__count {
+    display: none;
   }
 
   .silo__text {

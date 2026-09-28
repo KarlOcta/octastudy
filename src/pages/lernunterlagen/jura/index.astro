@@ -2,6 +2,8 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { OCTA } from '../../../site';
 import schemata from '../../../data/jura-schemata.json';
+import JuraSuche from '../../../components/JuraSuche.astro';
+import { suchtextFuer } from '../../../lib/jura-suche';
 
 const RECHTSGEBIETE = [
   {
@@ -82,20 +84,31 @@ const total = schemata.length;
       </span>
     </a>
 
+    <JuraSuche
+      id="suche-schemata"
+      modus="filter"
+      container="#schemata-liste"
+      label="Schema suchen"
+      platzhalter="Paragraf oder Stichwort, z. B. 263 oder Betrug"
+      leerHref="/lernunterlagen/jura/klausurfaelle/"
+      leerText="Zu den Klausurfällen →"
+    />
+
+    <div id="schemata-liste">
     {
       groups.map((g) => (
-        <section class="silo">
+        <section class="silo" data-such-gruppe>
           <div class="silo__head">
             <h2>{g.key}</h2>
             <span class="silo__count">{g.count} Schemata</span>
           </div>
           <p class="silo__text">{g.text}</p>
           {g.byTeilgebiet.map((b) => (
-            <div class="teilgebiet">
+            <div class="teilgebiet" data-such-gruppe>
               <h3>{b.teilgebiet}</h3>
               <ul class="chips" aria-label={`Schemata: ${b.teilgebiet}`}>
                 {b.entries.map((e) => (
-                  <li>
+                  <li data-such={suchtextFuer(e)}>
                     <a href={`/lernunterlagen/jura/${e.slug}/`}>{shortLabel(e)} →</a>
                   </li>
                 ))}
@@ -105,6 +118,7 @@ const total = schemata.length;
         </section>
       ))
     }
+    </div>
 
     <h2 class="rule">Wie eine Schema-Seite aufgebaut ist</h2>
     <ol>
@@ -219,6 +233,12 @@ const total = schemata.length;
     background: var(--accent-soft);
     border-radius: 100px;
     padding: 0.15rem 0.65rem;
+  }
+
+  /* Beim Filtern zeigt der Zähler eine Zahl, die nicht mehr zur Liste
+     darunter passt. */
+  [data-gefiltert] .silo__count {
+    display: none;
   }
 
   .silo__text {

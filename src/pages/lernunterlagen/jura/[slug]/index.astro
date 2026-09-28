@@ -5,6 +5,8 @@ import StickyAppCta from '../../../../components/StickyAppCta.astro';
 import { OCTA, appStoreCppUrl } from '../../../../site';
 import schemata from '../../../../data/jura-schemata.json';
 import klausurfaelle from '../../../../data/jura-klausurfaelle.json';
+import JuraSuche from '../../../../components/JuraSuche.astro';
+import { suchtextFuer, kurzLabel } from '../../../../lib/jura-suche';
 
 export function getStaticPaths() {
   return schemata.map((entry) => ({
@@ -47,6 +49,19 @@ const breadcrumbLabel = entry.h1.replace(/^Prüfungsschema\s*/, '').replace(/^No
 const relatedEntries = (entry.related || [])
   .map((slug) => schemata.find((e) => e.slug === slug))
   .filter(Boolean);
+
+/* Sprungziele für das Suchfeld weiter unten. Bewusst nur als Daten, nicht als
+   gerenderte Links: 53 zusätzliche Links auf jeder der 54 Schemaseiten würden
+   den internen Linkgraphen einebnen. Der Crawler folgt weiter den verwandten
+   Schemata und der Übersichtsseite, der Mensch bekommt den Direktsprung. */
+const sprungziele = schemata
+  .filter((e) => e.slug !== entry.slug)
+  .map((e) => ({
+    href: `/lernunterlagen/jura/${e.slug}/`,
+    label: kurzLabel(e),
+    gruppe: e.teilgebiet,
+    such: suchtextFuer(e),
+  }));
 
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -196,6 +211,16 @@ const jsonLd = JSON.stringify({
         </Fragment>
       )
     }
+
+    <JuraSuche
+      id="suche-sprung"
+      modus="sprung"
+      eintraege={sprungziele}
+      label="Anderes Schema suchen"
+      platzhalter="Paragraf oder Stichwort, z. B. 267 oder Urkunde"
+      leerHref="/lernunterlagen/jura/"
+      leerText="Alle Schemata ansehen →"
+    />
 
     <OctaCtaBox
       id="closing-slides"

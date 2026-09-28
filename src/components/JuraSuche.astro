@@ -1,0 +1,393 @@
+---
+/**
+ * Suche über die Jura-Lernunterlagen.
+ *
+ * Zwei Betriebsarten, weil zwei verschiedene Probleme dahinterstehen:
+ *
+ *   modus="filter"  — auf den Übersichtsseiten. Blendet die bereits vom Server
+ *                     gerenderten Einträge ein und aus. Wichtig: Die Links
+ *                     stehen unabhängig davon im HTML. Ohne JavaScript ist
+ *                     schlicht alles sichtbar, und der Crawler sieht ohnehin
+ *                     jeden Link. Eine Suche, die Treffer erst per JavaScript
+ *                     erzeugt, würde die interne Verlinkung zerstören.
+ *
+ *   modus="sprung"  — auf den Detailseiten. Hier gibt es keine Liste zum
+ *                     Filtern, deshalb baut das Skript die Treffer aus einer
+ *                     eingebetteten Liste. Diese Links sind bewusst NICHT im
+ *                     HTML: 54 zusätzliche Links auf jeder der 108 Seiten
+ *                     würden den Linkgraphen platt machen und die gesetzten
+ *                     `related`-Bezüge entwerten. Für Menschen ist der
+ *                     Direktsprung nützlich, für den Crawler bleibt es bei
+ *                     den verwandten Schemata und der Übersichtsseite.
+ *
+ * Gesucht wird über Paragraf, Gesetz, Klarnamen, Teilgebiet und die in den
+ * Daten hinterlegten `suchbegriffe`. Zahlen-Eingaben treffen nur am
+ * Wortanfang, sonst würde "23" auch "823" finden.
+ */
+export interface Eintrag {
+  href: string;
+  label: string;
+  gruppe: string;
+  such: string;
+}
+
+export interface Props {
+  id: string;
+  modus: 'filter' | 'sprung';
+  /** modus="filter": Selektor des Containers mit den [data-such]-Elementen. */
+  container?: string;
+  /** modus="sprung": die durchsuchbaren Einträge. */
+  eintraege?: Eintrag[];
+  label: string;
+  platzhalter: string;
+  /** Wohin, wenn nichts passt. */
+  leerHref?: string;
+  leerText?: string;
+}
+
+const {
+  id,
+  modus,
+  container,
+  eintraege = [],
+  label,
+  platzhalter,
+  leerHref,
+  leerText,
+} = Astro.props;
+---
+
+<div
+  class:list={['jsuche', `jsuche--${modus}`]}
+  id={id}
+  data-modus={modus}
+  data-container={container}
+  data-leer-href={leerHref}
+  data-leer-text={leerText}
+>
+  <label class="jsuche__label" for={`${id}-feld`}>{label}</label>
+  <div class="jsuche__zeile">
+    <input
+      class="jsuche__feld"
+      id={`${id}-feld`}
+      type="search"
+      inputmode="search"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder={platzhalter}
+      aria-describedby={`${id}-status`}
+    />
+    <button class="jsuche__leeren" type="button" hidden aria-label="Suche zurücksetzen">
+      ×
+    </button>
+  </div>
+  <p class="jsuche__status" id={`${id}-status`} role="status" aria-live="polite"></p>
+
+  {
+    modus === 'sprung' && (
+      <Fragment>
+        <ul class="jsuche__treffer" hidden />
+        <script
+          type="application/json"
+          class="jsuche__daten"
+          is:inline
+          set:html={JSON.stringify(eintraege)}
+        />
+      </Fragment>
+    )
+  }
+</div>
+
+<script>
+  type Eintrag = { href: string; label: string; gruppe: string; such: string };
+
+  /* Umlaute und Sonderzeichen vereinheitlichen, damit "Verhältnismäßigkeit",
+     "verhaeltnismaessigkeit" und "verhaltnismassigkeit" dasselbe finden. */
+  function normalisieren(s: string): string {
+    return s
+      .toLowerCase()
+      .replace(/ä/g, 'ae')
+      .replace(/ö/g, 'oe')
+      .replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  /* Jedes Wort der Eingabe muss vorkommen — so findet "263 betrug" dasselbe
+     wie "betrug 263". Beginnt ein Wort mit einer Ziffer, muss es am
+     Wortanfang sitzen: "23" soll nicht "823" treffen. */
+  function passt(heuhaufen: string, worte: string[]): boolean {
+    return worte.every((w) =>
+      /^[0-9]/.test(w)
+        ? new RegExp(`(^| )${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(heuhaufen)
+        : heuhaufen.includes(w)
+    );
+  }
+
+  function init(wurzel: HTMLElement) {
+    const feld = wurzel.querySelector<HTMLInputElement>('.jsuche__feld');
+    const status = wurzel.querySelector<HTMLElement>('.jsuche__status');
+    const leeren = wurzel.querySelector<HTMLButtonElement>('.jsuche__leeren');
+    if (!feld || !status) return;
+
+    const leerHref = wurzel.dataset.leerHref;
+    const leerText = wurzel.dataset.leerText;
+
+    const nichtsGefunden = (roh: string) => {
+      const sicher = roh.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      status.innerHTML =
+        `Nichts gefunden für „${sicher}“.` +
+        (leerHref && leerText ? ` <a href="${leerHref}">${leerText}</a>` : '');
+    };
+
+    /* ------------------------------------------------ Modus "filter" */
+    if (wurzel.dataset.modus === 'filter') {
+      const container = document.querySelector<HTMLElement>(wurzel.dataset.container || '');
+      if (!container) return;
+      const posten = Array.from(container.querySelectorAll<HTMLElement>('[data-such]'));
+      const gruppen = Array.from(container.querySelectorAll<HTMLElement>('[data-such-gruppe]'));
+      const gesamt = posten.length;
+
+      const anwenden = () => {
+        const roh = feld.value.trim();
+        const worte = normalisieren(roh).split(' ').filter(Boolean);
+        if (leeren) leeren.hidden = roh === '';
+
+        if (worte.length === 0) {
+          posten.forEach((p) => (p.hidden = false));
+          gruppen.forEach((g) => (g.hidden = false));
+          delete container.dataset.gefiltert;
+          status.textContent = '';
+          return;
+        }
+
+        /* Solange gefiltert wird, stimmen die Zähler an den Überschriften
+           ("12 Schemata") nicht mehr. Statt sie mitzurechnen, werden sie
+           ausgeblendet — die Gesamtzahl steht ohnehin in der Statuszeile. */
+        container.dataset.gefiltert = '';
+
+        let treffer = 0;
+        posten.forEach((p) => {
+          const ok = passt(p.dataset.such || '', worte);
+          p.hidden = !ok;
+          if (ok) treffer++;
+        });
+        gruppen.forEach((g) => {
+          g.hidden = !g.querySelector<HTMLElement>('[data-such]:not([hidden])');
+        });
+
+        if (treffer === 0) nichtsGefunden(roh);
+        else status.textContent = `${treffer} von ${gesamt}`;
+      };
+
+      feld.addEventListener('input', anwenden);
+      leeren?.addEventListener('click', () => {
+        feld.value = '';
+        anwenden();
+        feld.focus();
+      });
+      anwenden();
+      return;
+    }
+
+    /* ------------------------------------------------ Modus "sprung" */
+    const daten = wurzel.querySelector<HTMLElement>('.jsuche__daten');
+    const liste = wurzel.querySelector<HTMLElement>('.jsuche__treffer');
+    if (!daten || !liste) return;
+
+    let eintraege: Eintrag[] = [];
+    try {
+      eintraege = JSON.parse(daten.textContent || '[]');
+    } catch {
+      return;
+    }
+    const MAX = 6;
+
+    const anwenden = () => {
+      const roh = feld.value.trim();
+      const worte = normalisieren(roh).split(' ').filter(Boolean);
+      if (leeren) leeren.hidden = roh === '';
+
+      if (worte.length === 0) {
+        liste.hidden = true;
+        liste.innerHTML = '';
+        status.textContent = '';
+        return;
+      }
+
+      const treffer = eintraege.filter((e) => passt(e.such, worte)).slice(0, MAX);
+      if (treffer.length === 0) {
+        liste.hidden = true;
+        liste.innerHTML = '';
+        nichtsGefunden(roh);
+        return;
+      }
+
+      liste.innerHTML = treffer
+        .map(
+          (t) =>
+            `<li><a href="${t.href}"><span class="jsuche__t-label">${t.label}</span>` +
+            `<span class="jsuche__t-gruppe">${t.gruppe}</span></a></li>`
+        )
+        .join('');
+      liste.hidden = false;
+      status.textContent = '';
+    };
+
+    /* Enter springt auf den ersten Treffer — Tastaturnutzer sollen nicht
+       erst durch die Liste tabben muessen. */
+    feld.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      const erster = liste.querySelector<HTMLAnchorElement>('a');
+      if (erster) {
+        e.preventDefault();
+        window.location.href = erster.href;
+      }
+    });
+
+    feld.addEventListener('input', anwenden);
+    leeren?.addEventListener('click', () => {
+      feld.value = '';
+      anwenden();
+      feld.focus();
+    });
+    anwenden();
+  }
+
+  document.querySelectorAll<HTMLElement>('.jsuche').forEach(init);
+</script>
+
+<style>
+  .jsuche {
+    max-width: 34rem;
+  }
+
+  .jsuche--filter {
+    margin-bottom: 2rem;
+  }
+
+  .jsuche--sprung {
+    margin: 0 0 2.5rem;
+  }
+
+  .jsuche__label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-subtle);
+    margin-bottom: 0.35rem;
+  }
+
+  .jsuche__zeile {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .jsuche__feld {
+    width: 100%;
+    padding: 0.6rem 2.2rem 0.6rem 0.9rem;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--surface, #fff);
+    border: 1px solid var(--border-strong, #d8d6e8);
+    border-radius: var(--radius-lg);
+  }
+
+  .jsuche__feld:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+
+  /* Das eigene Kreuz ersetzt das browsereigene, das es nur in einigen
+     Browsern gibt und das auf Mobil kaum zu treffen ist. */
+  .jsuche__feld::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  .jsuche__leeren {
+    position: absolute;
+    right: 0.35rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .jsuche__leeren:hover {
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+
+  .jsuche__status {
+    min-height: 1.2rem;
+    margin: 0.4rem 0 0;
+    font-size: 0.82rem;
+    color: var(--text-subtle);
+  }
+
+  .jsuche__status a {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jsuche__treffer {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  /* ACHTUNG :global() — die Treffer werden zur Laufzeit per innerHTML
+     erzeugt und tragen deshalb NICHT das data-astro-cid-Attribut, mit dem
+     Astro seine Styles bindet. Ohne :global() greift hier keine einzige
+     Regel, und die Liste erscheint als nackte, unterstrichene Links. Die
+     Klassennamen sind mit jsuche__ vorangestellt, global ist also gefahrlos;
+     die Verschachtelung unter .jsuche__treffer hält es zusätzlich eng. */
+  .jsuche__treffer :global(li) {
+    margin-top: 0;
+  }
+
+  .jsuche__treffer :global(li + li) {
+    border-top: 1px solid var(--border);
+  }
+
+  .jsuche__treffer :global(a) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.55rem 0.9rem;
+    text-decoration: none;
+  }
+
+  .jsuche__treffer :global(a:hover),
+  .jsuche__treffer :global(a:focus-visible) {
+    background: var(--accent-soft);
+  }
+
+  .jsuche__treffer :global(.jsuche__t-label) {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+
+  .jsuche__treffer :global(.jsuche__t-gruppe) {
+    font-size: 0.78rem;
+    color: var(--text-subtle);
+  }
+</style>
