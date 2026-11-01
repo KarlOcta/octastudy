@@ -1,5 +1,6 @@
 ---
 import CharakterTrio from '../components/CharakterTrio.astro';
+import LerntypenHero from '../components/LerntypenHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { OCTA } from '../site';
 
@@ -29,6 +30,7 @@ const geplant = [
 >
   <section class="hero">
     <div class="hero__inner wrap">
+      <div class="hero__text">
       <p class="eyebrow">Lernmaterial für dein Studium</p>
       <h1>Material, mit dem du <span class="hl">tatsächlich</span> lernst.</h1>
       <p class="lead">
@@ -45,6 +47,9 @@ const geplant = [
       <p class="hero__hint">
         8 Fragen · unter 60 Sekunden · funktioniert für jeden Studiengang
       </p>
+      </div>
+
+      <LerntypenHero class="hero__bild" />
     </div>
   </section>
 
@@ -141,12 +146,32 @@ const geplant = [
     padding-block: 0.5rem 3rem;
   }
 
+  /* Zweispaltig: Text links, die sechs Lerntyp-Figuren rechts. Vorher war
+     der Hero einspaltig in einem wide-Container, jedes Kind auf 42rem
+     gedeckelt — die rechte Haelfte blieb dadurch zwangslaeufig leer.
+     1.3fr/1fr laesst dem Text rund 580px (noch eine gut lesbare Zeilen-
+     laenge) und der Spalte rechts genug fuer drei Figuren nebeneinander. */
   .hero__inner {
     max-width: min(var(--w-wide), 100%);
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
   }
 
-  .hero__inner > * {
+  .hero__text > * {
     max-width: 42rem;
+  }
+
+  @media (max-width: 920px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+    }
+
+    .hero__bild {
+      max-width: 30rem;
+    }
   }
 
   .hero h1 {

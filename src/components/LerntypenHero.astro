@@ -1,0 +1,134 @@
+---
+/**
+ * Die sechs Lerntyp-Figuren als Hero-Begleiter auf der Startseite.
+ *
+ * Bewusst alle sechs und nicht die drei aus CharakterTrio: Der Block steht
+ * auf derselben Seite wie das Trio weiter unten, und sechs Figuren sagen
+ * zugleich das, was der Test verspricht — sechs Profile, nicht drei.
+ *
+ * Die Bilder liegen als eigene, kleine Fassung unter /img/lerntypen/klein/.
+ * Die grossen Dateien (zusammen rund 420 KB) im Hero zu laden waere das
+ * Teuerste auf der ganzen Seite, noch dazu ueber der Falz; diese hier wiegen
+ * zusammen rund 100 KB.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: extra = '' } = Astro.props;
+
+/* Reihenfolge bewusst gemischt, damit nicht alle sitzenden Figuren in einer
+   Zeile landen. Die Groessen sind die echten Bildmasse — ohne sie springt
+   das Raster beim Laden. */
+const figuren = [
+  { slug: 'markierer', name: 'Der Markierer', w: 175, h: 260 },
+  { slug: 'sprinter', name: 'Der Sprinter', w: 178, h: 260 },
+  { slug: 'sammler', name: 'Der Sammler', w: 197, h: 260 },
+  { slug: 'koenner', name: 'Der stille Könner', w: 169, h: 260 },
+  { slug: 'ueberfordert', name: 'Der Überforderte', w: 196, h: 260 },
+  { slug: 'einzel', name: 'Der Einzelkämpfer', w: 252, h: 260 },
+];
+---
+
+<a class:list={['lth', extra]} href="/tools/lerntyp-test/">
+  <p class="lth__oben">Sechs Lerntypen</p>
+  <ul class="lth__grid">
+    {
+      figuren.map((f) => (
+        <li class="lth__fig">
+          <img
+            src={`/img/lerntypen/klein/${f.slug}.webp`}
+            alt=""
+            aria-hidden="true"
+            width={f.w}
+            height={f.h}
+            loading="eager"
+            decoding="async"
+          />
+          {/* Der Name steht sichtbar daneben; ein alt-Text mit demselben
+              Wortlaut wuerde ihn beim Vorlesen doppeln. */}
+          <span class="lth__name">{f.name}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="lth__unten">Welcher bist du? →</p>
+</a>
+
+<style>
+  .lth {
+    display: block;
+    padding: 1.3rem 1.3rem 1.1rem;
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.18s ease;
+  }
+
+  .lth:hover,
+  .lth:focus-visible {
+    border-color: var(--accent);
+  }
+
+  .lth__oben {
+    margin: 0 0 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .lth__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .lth__fig {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Die Figuren sind unterschiedlich hoch und stehen alle auf einer
+     gedachten Bodenlinie. object-position: bottom legt diese Linie in
+     jeder Zelle auf dieselbe Hoehe, sonst schweben die flacheren. */
+  .lth__fig img {
+    width: 100%;
+    height: 92px;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  .lth__name {
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .lth__unten {
+    margin: 1.1rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 420px) {
+    .lth__fig img {
+      height: 78px;
+    }
+
+    .lth__name {
+      font-size: 0.68rem;
+    }
+  }
+</style>
