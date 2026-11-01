@@ -1,8 +1,23 @@
 ---
-import CharakterTrio from '../components/CharakterTrio.astro';
-import LerntypenHero from '../components/LerntypenHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LerntypenHero from '../components/LerntypenHero.astro';
+import ZahlenStreifen from '../components/ZahlenStreifen.astro';
 import { OCTA } from '../site';
+import schemata from '../data/jura-schemata.json';
+import klausurfaelle from '../data/jura-klausurfaelle.json';
+
+/**
+ * Zahlen aus den Daten, nicht aus der Hand gezaehlt. Die PDF-Zahl ist
+ * schemata.length * 2, weil zu jedem Schema zwei Dateien unter
+ * public/downloads/jura/ liegen: <slug>-schema.pdf und
+ * <slug>-karteikarten.pdf. Steht beides nachgezaehlt im Repo.
+ */
+const zahlen = [
+  { wert: schemata.length, label: 'Prüfungsschemata', sub: 'vollständig aufgebaut, mit Definitionen' },
+  { wert: klausurfaelle.length, label: 'Klausurfälle', sub: 'mit Lösung im Gutachtenstil' },
+  { wert: schemata.length * 2, label: 'PDFs', sub: 'zum Ausdrucken und Hochladen' },
+  { wert: 4, label: 'Lerntools', sub: 'drei Rechner und der Lerntyp-Test' },
+];
 
 /** Fächer mit eigenem Content-Cluster. */
 const faecher = [
@@ -10,16 +25,30 @@ const faecher = [
     title: 'Rechtswissenschaft',
     href: '/lernunterlagen/jura/',
     text: 'Prüfungsschemata und ausformulierte Klausurfälle zu den klassischen Klausurparagrafen — mit Definitionen, Streitständen, PDF und Karteikarten-Deck.',
-    status: 'live',
   },
 ];
 
-/** Geplante Fächer — nur als Ausblick, bewusst ohne eigene Kachel. */
+/** Geplante Fächer — als Chips, damit der Ausblick nicht wie Fließtext wegrutscht. */
 const geplant = [
   'BWL & Wirtschaft',
   'Sportwissenschaften',
   'Wirtschaftsingenieurwesen',
   'Bauingenieurwesen',
+];
+
+const werkzeuge = [
+  {
+    title: 'Lerntyp-Test',
+    href: '/tools/lerntyp-test/',
+    text: 'Acht Fragen, sechs Profile — und eine konkrete Empfehlung anhand deines Ergebnisses, wie du dein Material aufbereiten solltest.',
+    mehr: 'Test starten',
+  },
+  {
+    title: 'Noten- und Examensrechner',
+    href: '/tools/',
+    text: 'Notendurchschnitt, Punkte-Noten-Umrechnung und die Examensnote nach der offiziellen Formel deines Bundeslandes.',
+    mehr: 'Zu den Rechnern',
+  },
 ];
 ---
 
@@ -28,38 +57,61 @@ const geplant = [
   description="Lernmaterial für dein Studium: fertige Prüfungsschemata, PDFs zum Ausdrucken, Karteikarten-Decks und kostenlose Lerntools. Ohne Anmeldung, direkt nutzbar."
   wide
 >
+  {/* Setzt die Motion-Klasse, BEVOR der Inhalt darunter gerendert wird. Alle
+      Regeln, die etwas unsichtbar machen, haengen daran — ohne JavaScript
+      oder bei reduzierter Bewegung bleibt die Seite also vollstaendig
+      sichtbar und es blitzt nichts auf. */}
+  <script is:inline>
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+    ) {
+      document.documentElement.classList.add('motion');
+    }
+  </script>
+
   <section class="hero">
+    <div class="hero__schein" aria-hidden="true"></div>
     <div class="hero__inner wrap">
       <div class="hero__text">
-      <p class="eyebrow">Lernmaterial für dein Studium</p>
-      <h1>Material, mit dem du <span class="hl">tatsächlich</span> lernst.</h1>
-      <p class="lead">
-        Kein weiterer Artikel, der dir dein Thema erklärt — das stand schon im
-        Skript. Hier liegt das, womit in der Prüfungsvorbereitung wirklich
-        gearbeitet wird: fertige Schemata, PDFs zum Ausdrucken,
-        Karteikarten-Decks und Rechner, die dir Arbeit abnehmen. Kostenlos und
-        ohne Anmeldung.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten</a>
-        <a class="btn btn--ghost" href="/lernunterlagen/">Lernunterlagen ansehen</a>
-      </div>
-      <p class="hero__hint">
-        8 Fragen · unter 60 Sekunden · funktioniert für jeden Studiengang
-      </p>
+        <p class="eyebrow" style="--d: 0ms" data-auf>Lernmaterial für dein Studium</p>
+        <h1 style="--d: 70ms" data-auf>
+          Material, mit dem du <span class="hl">tatsächlich</span> lernst.
+        </h1>
+        <p class="lead" style="--d: 140ms" data-auf>
+          Kein weiterer Artikel, der dir dein Thema erklärt — das stand schon im
+          Skript. Hier liegt das, womit in der Prüfungsvorbereitung wirklich
+          gearbeitet wird: fertige Schemata, PDFs zum Ausdrucken,
+          Karteikarten-Decks und Rechner, die dir Arbeit abnehmen.
+        </p>
+        <div class="btn-row" style="--d: 210ms" data-auf>
+          <a class="btn" href="/tools/lerntyp-test/">Lerntyp-Test starten</a>
+          <a class="btn btn--ghost" href="/lernunterlagen/">Lernunterlagen ansehen</a>
+        </div>
+        <p class="hero__hint" style="--d: 280ms" data-auf>
+          <span class="marke marke--mint">Kostenlos</span>
+          <span class="marke marke--mint">Ohne Anmeldung</span>
+          8 Fragen · unter 60 Sekunden
+        </p>
       </div>
 
-      <LerntypenHero class="hero__bild" />
+      <LerntypenHero class="hero__bild" data-auf style="--d: 350ms" />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <ZahlenStreifen zahlen={zahlen} />
     </div>
   </section>
 
   <section class="wrap">
-    <h2 class="rule">Fächer</h2>
-    <div class="grid">
+    <h2 class="rule" data-reveal>Fächer</h2>
+    <div class="grid" data-reveal>
       {
         faecher.map((fach) => (
-          <div class="card card--link">
-            <span class="card__tag">Verfügbar</span>
+          <div class="card card--link karte-plus">
+            <span class="marke marke--mint">Verfügbar</span>
             <h3><a class="card__link" href={fach.href}>{fach.title}</a></h3>
             <p>{fach.text}</p>
             <p class="card__more">Zu den Lernunterlagen →</p>
@@ -67,33 +119,34 @@ const geplant = [
         ))
       }
     </div>
-    <p class="upcoming">
-      <span class="upcoming__label">In Vorbereitung:</span>
-      {geplant.join(' · ')}
-    </p>
-  </section>
-
-  <section class="wrap">
-    <h2 class="rule">Tools</h2>
-    <p class="section-intro">
-      Fachunabhängig und in unter einer Minute erledigt — ohne Anmeldung.
-    </p>
-    <div class="tool-teaser">
-      <div class="card card--link tool-teaser__card">
-        <h3><a class="card__link" href="/tools/lerntyp-test/">Lerntyp-Test</a></h3>
-        <p>
-          Acht Fragen, sechs Profile — und eine konkrete Empfehlung anhand
-          deines Testergebnisses, wie du dein Material aufbereiten solltest,
-          um leichter gute Noten zu schreiben.
-        </p>
-        <p class="card__more">Test starten →</p>
-      </div>
-      <CharakterTrio class="tool-teaser__bild" />
+    <div class="ausblick" data-reveal>
+      <span class="ausblick__label">In Vorbereitung</span>
+      <ul class="ausblick__liste">
+        {geplant.map((g) => <li class="marke marke--gelb">{g}</li>)}
+      </ul>
     </div>
   </section>
 
   <section class="wrap">
-    <div class="octa-cta">
+    <h2 class="rule" data-reveal>Tools</h2>
+    <p class="section-intro" data-reveal>
+      Fachunabhängig und in unter einer Minute erledigt — ohne Anmeldung.
+    </p>
+    <div class="grid grid--zwei" data-reveal>
+      {
+        werkzeuge.map((w, i) => (
+          <div class="card card--link karte-plus" style={`--d: ${i * 80}ms`}>
+            <h3><a class="card__link" href={w.href}>{w.title}</a></h3>
+            <p>{w.text}</p>
+            <p class="card__more">{w.mehr} →</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="octa-cta octa-cta--plus" data-reveal>
       <h2>Gelesen ist nicht gekonnt</h2>
       <p>
         Material durchzuarbeiten heißt nicht, es zu können. {OCTA.pitch} Lade
@@ -110,48 +163,151 @@ const geplant = [
   </section>
 </BaseLayout>
 
+<script>
+  /* Einblenden beim Hereinscrollen. Laeuft nur, wenn die Motion-Klasse oben
+     gesetzt wurde — ohne sie ist in der CSS nichts versteckt und hier gibt es
+     nichts zu tun. Jedes Element wird genau einmal eingeblendet und danach
+     nicht mehr beobachtet: kein Flackern beim Zurueckscrollen, keine Arbeit
+     im Scroll-Handler. */
+  if (document.documentElement.classList.contains('motion')) {
+    const ziele = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+    const zeigen = (z: HTMLElement) => (z.dataset.da = 'ja');
+
+    if ('IntersectionObserver' in window && ziele.length > 0) {
+      const beobachter = new IntersectionObserver(
+        (eintraege) => {
+          for (const e of eintraege) {
+            if (!e.isIntersecting) continue;
+            beobachter.unobserve(e.target);
+            zeigen(e.target as HTMLElement);
+          }
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      ziele.forEach((z) => beobachter.observe(z));
+
+      /* Rettungsleine. Alles, was ueber [data-reveal] laeuft, ist zunaechst
+         unsichtbar — wenn der Beobachter aus irgendeinem Grund nicht
+         ausloest, waere der halbe Seiteninhalt dauerhaft weg. Das darf nicht
+         passieren, also wird nach drei Sekunden bedingungslos alles gezeigt,
+         was dann noch versteckt ist. Im Normalfall ist zu diesem Zeitpunkt
+         ohnehin nur noch sichtbar, was weit unten liegt, und das wird beim
+         Hinscrollen vorher eingeblendet. */
+      window.setTimeout(() => {
+        ziele.forEach((z) => {
+          if (z.dataset.da !== 'ja') {
+            beobachter.unobserve(z);
+            zeigen(z);
+          }
+        });
+      }, 3000);
+    } else {
+      /* Kein IntersectionObserver: sofort alles zeigen statt gar nichts. */
+      ziele.forEach(zeigen);
+    }
+  }
+</script>
+
 <style>
-  /* Test-Teaser: Karte links, die drei Figuren rechts daneben. Auf schmalen
-     Schirmen rutschen die Figuren unter die Karte. */
-  .tool-teaser {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 1.5rem;
-    align-items: center;
+  /* ---------------------------------------------------------- Farbtokens --
+     Mint und Gelb stehen seit jeher in global.css und wurden nie benutzt —
+     aus einem guten Grund: #17b98d auf Weiss hat 2,5:1 Kontrast, #f5a524
+     sogar nur 2,0:1. Als Text waeren beide unlesbar. Hier stehen deshalb
+     abgedunkelte Varianten fuer Text (gemessen 5,3:1 und 5,4:1 auf ihrer
+     jeweiligen Flaeche) und die hellen Originale fuer den Dunkelmodus.
+     Lokal gehalten, weil nur die Startseite umgebaut wird; sobald der Rest
+     der Seite folgt, gehoeren sie nach global.css. */
+  .hero,
+  .band,
+  section {
+    --mint-text: #0a7257;
+    --mint-soft: #e3f7f0;
+    --gelb-text: #8a5806;
+    --gelb-soft: #fdf1dc;
   }
 
-  .tool-teaser__card {
-    height: 100%;
-  }
-
-  .tool-teaser__bild {
-    align-self: end;
-  }
-
-  @media (max-width: 760px) {
-    .tool-teaser {
-      grid-template-columns: 1fr;
+  @media (prefers-color-scheme: dark) {
+    .hero,
+    .band,
+    section {
+      --mint-text: #3ed6ab;
+      --mint-soft: #14302a;
+      --gelb-text: #f7bc5b;
+      --gelb-soft: #33280f;
     }
-
-    .tool-teaser__bild {
-      margin-top: 0.5rem;
-    }
   }
 
-  /* Schlichter Hintergrund — Farbe kommt ueber Boxen und Balken in die Seite,
-     nicht ueber grossflaechige Verlaeufe. */
+  /* ------------------------------------------------------------- Marken -- */
+  .marke {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .marke--mint {
+    color: var(--mint-text);
+    background: var(--mint-soft);
+  }
+
+  .marke--gelb {
+    color: var(--gelb-text);
+    background: var(--gelb-soft);
+  }
+
+  /* --------------------------------------------------------------- Hero -- */
   .hero {
+    position: relative;
+    isolation: isolate;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 2rem;
-    padding-block: 0.5rem 3rem;
+    padding-block: 1.5rem 3.5rem;
+    overflow: hidden;
   }
 
-  /* Zweispaltig: Text links, die sechs Lerntyp-Figuren rechts. Vorher war
-     der Hero einspaltig in einem wide-Container, jedes Kind auf 42rem
-     gedeckelt — die rechte Haelfte blieb dadurch zwangslaeufig leer.
-     1.3fr/1fr laesst dem Text rund 580px (noch eine gut lesbare Zeilen-
-     laenge) und der Spalte rechts genug fuer drei Figuren nebeneinander. */
+  /* Weicher Lichtschein hinter der Ueberschrift. Zwei Farbkreise, stark
+     unscharf. Bewegt wird ausschliesslich transform — der Weichzeichner
+     wird einmal gerechnet und danach nur noch verschoben, das laeuft auf
+     der Grafikkarte und kostet im laufenden Betrieb nichts. */
+  .hero__schein {
+    position: absolute;
+    z-index: -1;
+    inset: -30% -15% auto -15%;
+    height: 34rem;
+    pointer-events: none;
+    background-image:
+      radial-gradient(42% 52% at 22% 52%, rgb(108 73 158 / 0.26), transparent 72%),
+      radial-gradient(34% 46% at 72% 32%, rgb(23 185 141 / 0.17), transparent 72%),
+      radial-gradient(30% 40% at 52% 78%, rgb(245 165 36 / 0.11), transparent 72%);
+    filter: blur(46px);
+    opacity: 0.9;
+  }
+
+  :global(.motion) .hero__schein {
+    animation: schein 22s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes schein {
+    from {
+      transform: translate3d(-2.5%, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(3%, -3%, 0) scale(1.12);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero__schein {
+      opacity: 0.75;
+    }
+  }
+
+  /* Zweispaltig: Text links, die sechs Lerntyp-Figuren rechts. */
   .hero__inner {
+    position: relative;
     max-width: min(var(--w-wide), 100%);
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -161,6 +317,20 @@ const geplant = [
 
   .hero__text > * {
     max-width: 42rem;
+  }
+
+  .hero h1 {
+    margin-bottom: 1.1rem;
+  }
+
+  .hero__hint {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 1.1rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-subtle);
   }
 
   @media (max-width: 920px) {
@@ -174,20 +344,89 @@ const geplant = [
     }
   }
 
-  .hero h1 {
-    margin-bottom: 1.1rem;
+  /* ------------------------------------------------------------- Auftritt --
+     Reiner CSS-Auftritt beim Laden, kein JavaScript: der Hero ist das Erste,
+     was zu sehen ist, und darf nicht auf ein Skript warten. Bewegt werden
+     nur opacity und transform, beides loest kein Neu-Layout aus und kann
+     damit auch keinen Layoutsprung verursachen. */
+  :global(.motion) [data-auf] {
+    animation: auf 0.62s cubic-bezier(0.22, 0.68, 0.3, 1) both;
+    animation-delay: var(--d, 0ms);
   }
 
-  .hero__hint {
-    margin: 0.9rem 0 0;
-    font-size: 0.92rem;
-    color: var(--text-subtle);
+  @keyframes auf {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
-  .section-intro {
-    color: var(--text-muted);
-    max-width: 40rem;
-    margin-top: -0.35rem;
+  /* --------------------------------------------------------- Scroll-Reveal */
+  :global(.motion) [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.68, 0.3, 1);
+  }
+
+  :global(.motion) [data-reveal][data-da='ja'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Karten innerhalb eines eingeblendeten Rasters laufen leicht versetzt. */
+  :global(.motion) [data-reveal] .karte-plus {
+    transition: opacity 0.5s ease var(--d, 0ms), transform 0.5s ease var(--d, 0ms);
+  }
+
+  /* -------------------------------------------------------------- Band -- */
+  /* Abschnitte wechseln die Flaeche, damit die Seite beim Scrollen eine
+     Gliederung bekommt statt einer durchgehenden weissen Bahn. */
+  .band {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding-block: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ------------------------------------------------------------- Karten -- */
+  .grid--zwei {
+    grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+  }
+
+  /* Feine Akzentkante, die beim Darueberfahren von links einlaeuft. */
+  .karte-plus {
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .karte-plus::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 3px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background-image: linear-gradient(90deg, var(--cta-from), var(--mint-text));
+    transition: transform 0.35s cubic-bezier(0.22, 0.68, 0.3, 1);
+  }
+
+  .karte-plus:hover::before,
+  .karte-plus:focus-within::before {
+    transform: scaleX(1);
+  }
+
+  .karte-plus:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .karte-plus .marke {
+    margin-bottom: 0.7rem;
   }
 
   .card__more {
@@ -198,19 +437,104 @@ const geplant = [
     font-size: 0.95rem;
   }
 
-  .upcoming {
-    margin-top: 0.25rem;
-    color: var(--text-subtle);
-    font-size: 0.95rem;
+  .section-intro {
+    color: var(--text-muted);
+    max-width: 40rem;
+    margin-top: -0.35rem;
   }
 
-  .upcoming__label {
-    font-weight: 650;
-    color: var(--text-muted);
-    margin-right: 0.4em;
+  /* ----------------------------------------------------------- Ausblick -- */
+  .ausblick {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .ausblick__label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .ausblick__liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ausblick__liste li {
+    margin-top: 0;
+  }
+
+  /* ----------------------------------------------------------- Octa-CTA -- */
+  .octa-cta--plus {
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .octa-cta--plus::after {
+    content: '';
+    position: absolute;
+    right: -8%;
+    top: -60%;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    pointer-events: none;
+    background-image: radial-gradient(
+      closest-side,
+      rgb(23 185 141 / 0.16),
+      transparent
+    );
   }
 
   section + section {
     margin-top: 2.5rem;
+  }
+
+  .band + section {
+    margin-top: 0;
+  }
+
+  /* Wer ruhige Oberflaechen eingestellt hat, bekommt hier gar nichts — die
+     Motion-Klasse wird dann erst gar nicht gesetzt. Diese Regeln sind der
+     Guertel zum Hosentraeger, falls die Klasse doch einmal haengenbleibt. */
+  /* Beim Drucken ist nichts zu animieren und nichts zu verstecken. */
+  @media print {
+    [data-auf],
+    [data-reveal] {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .hero__schein {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__schein,
+    [data-auf],
+    [data-reveal],
+    .karte-plus::before {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1;
+      transform: none !important;
+    }
+
+    .hero__schein {
+      opacity: 0.9;
+    }
   }
 </style>

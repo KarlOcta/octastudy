@@ -1,0 +1,140 @@
+---
+/**
+ * Zahlenband unter dem Hero.
+ *
+ * Die Zahlen kommen aus den Datendateien, nicht aus der Hand: Wer ein Schema
+ * ergaenzt, aendert damit automatisch auch die Startseite. Eine Zahl, die man
+ * pflegen muss, ist eine Zahl, die irgendwann falsch ist.
+ *
+ * Der Endwert steht im HTML. Das Hochzaehlen ist nur Zugabe — ohne
+ * JavaScript, bei reduzierter Bewegung oder wenn das Skript scheitert, steht
+ * sofort die richtige Zahl da. Kein Layoutsprung, weil die Ziffern mit
+ * tabellarischen Ziffernbreiten gesetzt sind und die Zahl sich beim Zaehlen
+ * nie verbreitert.
+ */
+export interface Zahl {
+  wert: number;
+  label: string;
+  sub: string;
+}
+
+export interface Props {
+  zahlen: Zahl[];
+}
+
+const { zahlen } = Astro.props;
+---
+
+<div class="zb" data-reveal>
+  {
+    zahlen.map((z, i) => (
+      <div class="zb__feld" style={`--d: ${i * 70}ms`}>
+        <span class="zb__wert" data-zaehler={z.wert}>{z.wert}</span>
+        <span class="zb__label">{z.label}</span>
+        <span class="zb__sub">{z.sub}</span>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  function zaehlen() {
+    const felder = Array.from(document.querySelectorAll<HTMLElement>('[data-zaehler]'));
+    if (felder.length === 0) return;
+
+    /* Wer ruhige Oberflaechen eingestellt hat, bekommt gar keine Animation —
+       nicht eine langsamere. Die Zahl steht ohnehin schon da. */
+    if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const lauf = (el: HTMLElement) => {
+      const ziel = Number(el.dataset.zaehler);
+      if (!Number.isFinite(ziel) || ziel <= 0) return;
+      const dauer = 900;
+      const start = performance.now();
+      /* Schnell los, sanft aus — ein linearer Zaehler wirkt mechanisch. */
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      const schritt = (jetzt: number) => {
+        const t = Math.min(1, (jetzt - start) / dauer);
+        el.textContent = String(Math.round(ease(t) * ziel));
+        if (t < 1) requestAnimationFrame(schritt);
+        else el.textContent = String(ziel);
+      };
+      el.textContent = '0';
+      requestAnimationFrame(schritt);
+    };
+
+    const beobachter = new IntersectionObserver(
+      (eintraege) => {
+        for (const e of eintraege) {
+          if (!e.isIntersecting) continue;
+          beobachter.unobserve(e.target);
+          lauf(e.target as HTMLElement);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    felder.forEach((f) => beobachter.observe(f));
+  }
+
+  zaehlen();
+</script>
+
+<style>
+  .zb {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 1rem;
+  }
+
+  .zb__feld {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  /* Kurzer Farbstrich links statt einer Trennlinie zwischen den Feldern:
+     traegt Farbe herein und funktioniert auch, wenn die Felder umbrechen. */
+  .zb__feld::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 3px;
+    border-radius: var(--radius-pill);
+    background-image: linear-gradient(180deg, var(--cta-from), var(--mint-text));
+    opacity: 0.55;
+  }
+
+  .zb__wert {
+    font-size: clamp(1.9rem, 1.3rem + 1.8vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    /* Gleich breite Ziffern — sonst ruckelt die Zahl beim Hochzaehlen. */
+    font-variant-numeric: tabular-nums;
+  }
+
+  .zb__label {
+    margin-top: 0.25rem;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+
+  .zb__sub {
+    margin-top: 0.1rem;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    color: var(--text-subtle);
+  }
+
+  @media (max-width: 760px) {
+    .zb {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
