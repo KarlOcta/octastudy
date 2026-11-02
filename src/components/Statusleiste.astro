@@ -1,0 +1,124 @@
+---
+/**
+ * Statusleiste am unteren Rand — die Seite als Werkzeug, nicht als Broschuere.
+ *
+ * Links die Marke und die Ortszeit, in der Mitte der Bestand, rechts wie weit
+ * man gescrollt hat. Die Uhr hat keinen Nutzen, das ist mir bewusst; sie
+ * traegt den Werkzeug-Charakter, und sie ist ehrlich, weil sie die echte Zeit
+ * des Besuchers zeigt statt irgendeine Zahl.
+ *
+ * Im HTML stehen bereits Platzhalter mit fester Breite. Ohne JavaScript
+ * bleibt es dabei, und nichts springt.
+ */
+export interface Props {
+  bestand: string;
+}
+
+const { bestand } = Astro.props;
+---
+
+<div class="sl" aria-hidden="true">
+  <div class="sl__innen wrap">
+    <span class="sl__teil">octastudy<span class="sl__trenner">·</span><span class="sl__uhr">--:--</span></span>
+    <span class="sl__teil sl__mitte">{bestand}</span>
+    <span class="sl__teil"><span class="sl__fortschritt">000</span> %</span>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const uhr = document.querySelector<HTMLElement>('.sl__uhr');
+    const fortschritt = document.querySelector<HTMLElement>('.sl__fortschritt');
+    if (!uhr || !fortschritt) return;
+
+    const stellen = (n: number) => String(n).padStart(2, '0');
+    const zeit = () => {
+      const d = new Date();
+      uhr.textContent = `${stellen(d.getHours())}:${stellen(d.getMinutes())}`;
+    };
+    zeit();
+    window.setInterval(zeit, 20000);
+
+    /* Scroll-Ereignisse feuern dicht. Gerechnet wird deshalb hoechstens
+       einmal je Bildwiederholung, und der Zuhoerer ist passiv — sonst
+       schlaegt das direkt auf die Reaktionszeit der Seite durch. */
+    let geplant = false;
+    const messen = () => {
+      geplant = false;
+      const weg = document.documentElement.scrollHeight - window.innerHeight;
+      const p = weg <= 0 ? 100 : Math.round((window.scrollY / weg) * 100);
+      fortschritt.textContent = String(Math.min(100, Math.max(0, p))).padStart(3, '0');
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (geplant) return;
+        geplant = true;
+        requestAnimationFrame(messen);
+      },
+      { passive: true }
+    );
+    messen();
+  })();
+</script>
+
+<style>
+  .sl {
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .sl__innen {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.55rem;
+  }
+
+  .sl__teil {
+    white-space: nowrap;
+  }
+
+  .sl__trenner {
+    margin-inline: 0.5em;
+    opacity: 0.6;
+  }
+
+  /* Gleich breite Ziffern, damit Uhr und Prozentzahl beim Zaehlen nicht
+     die Leiste verschieben. */
+  .sl__uhr,
+  .sl__fortschritt {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Auf breiten Schirmen bleibt die Leiste stehen — dort ist Platz dafuer
+     da. Auf dem Telefon nimmt sie nur Hoehe weg und laeuft im Fluss mit. */
+  @media (min-width: 920px) {
+    .sl {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .sl__mitte {
+      display: none;
+    }
+  }
+
+  @media print {
+    .sl {
+      display: none;
+    }
+  }
+</style>

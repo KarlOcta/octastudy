@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LerntypenHero from '../components/LerntypenHero.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import Raster from '../components/Raster.astro';
+import Statusleiste from '../components/Statusleiste.astro';
 import ZahlenStreifen from '../components/ZahlenStreifen.astro';
 import { OCTA } from '../site';
 import schemata from '../data/jura-schemata.json';
@@ -72,6 +75,8 @@ const werkzeuge = [
 
   <section class="hero">
     <div class="hero__schein" aria-hidden="true"></div>
+    <HeroVideo />
+    <Raster class="hero__raster" />
     <div class="hero__inner wrap">
       <div class="hero__text">
         <p class="eyebrow" style="--d: 0ms" data-auf>Lernmaterial für dein Studium</p>
@@ -100,12 +105,14 @@ const werkzeuge = [
   </section>
 
   <section class="band">
-    <div class="wrap">
+    <Raster class="band__raster" />
+    <div class="wrap band__innen">
       <ZahlenStreifen zahlen={zahlen} />
     </div>
   </section>
 
-  <section class="wrap">
+  <section class="wrap abschnitt">
+    <Raster />
     <h2 class="rule" data-reveal>Fächer</h2>
     <div class="grid" data-reveal>
       {
@@ -127,7 +134,8 @@ const werkzeuge = [
     </div>
   </section>
 
-  <section class="wrap">
+  <section class="wrap abschnitt">
+    <Raster />
     <h2 class="rule" data-reveal>Tools</h2>
     <p class="section-intro" data-reveal>
       Fachunabhängig und in unter einer Minute erledigt — ohne Anmeldung.
@@ -145,7 +153,8 @@ const werkzeuge = [
     </div>
   </section>
 
-  <section class="wrap">
+  <section class="wrap abschnitt">
+    <Raster />
     <div class="octa-cta octa-cta--plus" data-reveal>
       <h2>Gelesen ist nicht gekonnt</h2>
       <p>
@@ -161,6 +170,8 @@ const werkzeuge = [
       </div>
     </div>
   </section>
+
+  <Statusleiste bestand={`${schemata.length} Schemata · ${klausurfaelle.length} Fälle · ${schemata.length * 2} PDFs`} />
 </BaseLayout>
 
 <script>
@@ -209,6 +220,38 @@ const werkzeuge = [
   }
 </script>
 
+<style is:global>
+  /* Warmer Grundton statt des kalten #fcfbff. Der alte Wert zieht ins
+     Blaeuliche und laesst die Seite blass wirken; weisse Karten heben sich
+     davon kaum ab (Verhaeltnis 1,03). Auf #faf8f3 sind es 1,06 — wenig in
+     Zahlen, viel fuers Auge. Alle Textfarben bleiben ueber AA, gemessen:
+     Text 13,0 · gedaempft 6,4 · zurueckhaltend 4,8 · Akzent 6,4.
+
+     is:global, weil der Grundton am <body> haengt und der aus dem Layout
+     kommt. Der Block steht nur auf dieser Seite, die uebrigen 110 Seiten
+     bleiben unberuehrt. */
+  :root {
+    --bg: #faf8f3;
+    --raster-linie: rgb(44 42 68 / 0.07);
+    --raster-kreuz: rgb(44 42 68 / 0.22);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15102a;
+      --raster-linie: rgb(237 234 247 / 0.07);
+      --raster-kreuz: rgb(237 234 247 / 0.22);
+    }
+  }
+
+  /* Platz fuer die feststehende Statusleiste, damit sie nichts verdeckt. */
+  @media (min-width: 920px) {
+    body {
+      padding-bottom: 2.1rem;
+    }
+  }
+</style>
+
 <style>
   /* ---------------------------------------------------------- Farbtokens --
      Mint und Gelb stehen seit jeher in global.css und wurden nie benutzt —
@@ -238,14 +281,72 @@ const werkzeuge = [
     }
   }
 
-  /* ------------------------------------------------------------- Marken -- */
+  /* --------------------------------------------------------- Typografie --
+     Mono als zweite Stimme: alles, was Beschriftung ist statt Inhalt —
+     Marken, Jahreszahlen, Kennzahlen, Weiterleitungen. Das ist der groesste
+     einzelne Charaktergewinn und kostet null Byte, weil --font-mono auf die
+     Systemschrift zeigt. */
+  .eyebrow,
+  .marke,
+  .card__more,
+  .ausblick__label {
+    font-family: var(--font-mono);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Groesser und enger als die Grundskala. Die Startseite hat genau eine
+     Ueberschrift, die darf tragen. */
+  .hero h1 {
+    font-size: clamp(2.4rem, 1.5rem + 4vw, 3.9rem);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    margin-bottom: 1.2rem;
+  }
+
+  /* Eigene, dunklere Tonwerte nur im Hero. Grund: Der warme Grundton
+     (#faf8f3) hat weniger Spielraum nach oben als das alte, fast weisse
+     #fcfbff. Ueber dem bewegten Hintergrund fiel --text-muted dadurch auf
+     4,0:1 und damit unter AA. Gemessen an der gebauten Seite ueber 16
+     Zeitpunkte der Videoschleife. */
+  .hero .lead,
+  .hero__hint {
+    color: #4a4765;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero .lead,
+    .hero__hint {
+      color: #bdb7d4;
+    }
+  }
+
+  .hero .lead {
+    font-size: 1.05rem;
+    max-width: 34rem;
+  }
+
+  .card__more {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ------------------------------------------------------------- Marken --
+     Eckiger statt rund: Pillen wirken weich und werblich, Kaesten wirken
+     wie Beschriftung an einem Werkzeug. */
   .marke {
     display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.76rem;
+    padding: 0.22rem 0.55rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
   }
 
   .marke--mint {
@@ -305,6 +406,25 @@ const werkzeuge = [
     }
   }
 
+  /* Jeder Abschnitt traegt sein eigenes Raster. Dadurch sitzen die Kreuze
+     genau auf den Abschnittsgrenzen und markieren sie — die Linien laufen
+     nicht stumpf durch, sondern gliedern mit. */
+  .abschnitt {
+    position: relative;
+  }
+
+  .abschnitt > :not(.raster) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Der Inhalt muss ueber das Raster, sonst liegen die Linien auf dem Text. */
+  .hero__inner,
+  .band__innen {
+    position: relative;
+    z-index: 1;
+  }
+
   /* Zweispaltig: Text links, die sechs Lerntyp-Figuren rechts. */
   .hero__inner {
     position: relative;
@@ -330,7 +450,10 @@ const werkzeuge = [
     gap: 0.45rem;
     margin: 1.1rem 0 0;
     font-size: 0.9rem;
-    color: var(--text-subtle);
+    /* Nicht --text-subtle: ueber dem bewegten Hintergrund faellt dessen
+       Kontrast auf 3,5:1 und damit unter AA. Gemessen an der gebauten
+       Seite ueber 16 Zeitpunkte der Videoschleife. */
+    color: var(--text-muted);
   }
 
   @media (max-width: 920px) {
@@ -386,6 +509,7 @@ const werkzeuge = [
   /* Abschnitte wechseln die Flaeche, damit die Seite beim Scrollen eine
      Gliederung bekommt statt einer durchgehenden weissen Bahn. */
   .band {
+    position: relative;
     background: var(--bg-soft);
     border-bottom: 1px solid var(--border);
     padding-block: 2.2rem;

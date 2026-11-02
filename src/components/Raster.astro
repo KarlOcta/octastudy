@@ -1,0 +1,112 @@
+---
+/**
+ * Haarlinien-Raster mit Fadenkreuzen — der technische Grundriss unter dem
+ * Inhalt.
+ *
+ * Reine Dekoration, deshalb aria-hidden und keinerlei Text. Kostet nichts:
+ * vier Linien als Verlauf, zehn kleine Kreuze als Spans. Die Linien sitzen
+ * auf der Breite des Inhaltsbereichs, damit sie sich an Ueberschriften und
+ * Karten ausrichten statt willkuerlich im Raum zu stehen.
+ */
+export interface Props {
+  /** Zusätzliche Klasse für die Platzierung am Einsatzort. */
+  class?: string;
+  /** Kreuze nur oben, nicht unten — für Abschnitte, die direkt aneinandergrenzen. */
+  nurOben?: boolean;
+}
+
+const { class: extra = '', nurOben = false } = Astro.props;
+const spalten = [0, 25, 50, 75, 100];
+
+/* Ein Kreuz ist 9px breit und sitzt mittig auf seiner Linie. An den beiden
+   Aussenkanten ragte es dadurch 4px ueber den Inhaltsbereich hinaus — auf
+   dem Telefon reichte das fuer eine waagerechte Bildlaufleiste. Die
+   Randkreuze werden deshalb nach innen geschoben. */
+const versatz = (v: number) => (v === 0 ? '4px' : v === 100 ? '-4px' : '0px');
+---
+
+<div class:list={['raster', extra]} aria-hidden="true">
+  {
+    spalten.map((x) => (
+      <Fragment>
+        <span
+          class="raster__kreuz"
+          style={`--x: ${x}%; --y: 0%; --ox: ${versatz(x)}; --oy: ${versatz(0)}`}
+        />
+        {!nurOben && (
+          <span
+            class="raster__kreuz"
+            style={`--x: ${x}%; --y: 100%; --ox: ${versatz(x)}; --oy: ${versatz(100)}`}
+          />
+        )}
+      </Fragment>
+    ))
+  }
+</div>
+
+<style>
+  .raster {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: min(var(--w-wide), 100%);
+    margin-inline: auto;
+    pointer-events: none;
+    /* Linien bei 0, 25, 50, 75 und 100 Prozent. Die letzte kommt ueber den
+       Rahmen rechts, weil ein sich wiederholender Verlauf bei 100% bereits
+       wieder von vorn anfinge. */
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--raster-linie) 0 1px,
+      transparent 1px 25%
+    );
+    border-right: 1px solid var(--raster-linie);
+  }
+
+  .raster__kreuz {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 9px;
+    height: 9px;
+    margin-top: calc(-4px + var(--oy, 0px));
+    margin-left: calc(-4px + var(--ox, 0px));
+  }
+
+  .raster__kreuz::before,
+  .raster__kreuz::after {
+    content: '';
+    position: absolute;
+    background: var(--raster-kreuz);
+  }
+
+  .raster__kreuz::before {
+    left: 0;
+    top: 4px;
+    width: 9px;
+    height: 1px;
+  }
+
+  .raster__kreuz::after {
+    left: 4px;
+    top: 0;
+    width: 1px;
+    height: 9px;
+  }
+
+  /* Auf schmalen Schirmen wird das Raster zur Unruhe: Bei 390px Breite
+     liegen die Linien keine 100px auseinander. Dann nur noch die Kanten. */
+  @media (max-width: 720px) {
+    .raster {
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--raster-linie) 0 1px,
+        transparent 1px 100%
+      );
+    }
+
+    .raster__kreuz:not([style*='--x: 0%']):not([style*='--x: 100%']) {
+      display: none;
+    }
+  }
+</style>
