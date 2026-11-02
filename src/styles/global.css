@@ -19,7 +19,10 @@
   --brand-yellow: #f5a524;
 
   /* Flächen — Light */
-  --bg: #fcfbff;
+  /* Warm statt kalt. #fcfbff zog ins Blaeuliche; weisse Karten hoben sich
+     davon mit Verhaeltnis 1,03 kaum ab, auf #faf8f3 sind es 1,06. Alle
+     Textfarben bleiben nachgerechnet ueber AA. */
+  --bg: #faf8f3;
   --bg-soft: #f4f0fa;
   --bg-card: #ffffff;
   --border: #e7e0f1;
@@ -28,12 +31,29 @@
   /* Text — Light */
   --text: #2c2a44;
   --text-muted: #5b5878;
-  --text-subtle: #6f6b8e;
+  /* Leicht abgedunkelt. Der alte Wert lag auf den helleren Flaechen unter
+     AA — auf --accent-soft bei 4,31 und auf --bg-soft bei 4,48. Das war
+     schon vorher so und faellt nur auf, wenn man es nachrechnet. */
+  --text-subtle: #6a6688;
 
   /* Akzent — Light */
   --accent: #6c499e;
   --accent-hover: #573b80;
   --accent-soft: #f1ebf8;
+
+  /* Statusfarben. --brand-mint und --brand-yellow stehen weiter oben und
+     sind als TEXT unbrauchbar: #17b98d hat auf Weiss 2,5:1, #f5a524 nur
+     2,0:1. Deshalb hier abgedunkelte Fassungen fuer Schrift (gemessen
+     5,3:1 und 5,4:1 auf ihrer jeweiligen Flaeche) und die hellen
+     Originale im Dunkelmodus. */
+  --mint-text: #0a7257;
+  --mint-soft: #e3f7f0;
+  --gelb-text: #8a5806;
+  --gelb-soft: #fdf1dc;
+
+  /* Haarlinien-Raster */
+  --raster-linie: rgb(44 42 68 / 0.07);
+  --raster-kreuz: rgb(44 42 68 / 0.22);
 
   --focus: #6c499e;
 
@@ -75,11 +95,20 @@
 
     --text: #edeaf7;
     --text-muted: #aba5c4;
-    --text-subtle: #8a84ad;
+    /* Siehe hell: auf --accent-soft lag der alte Wert bei 4,22. */
+    --text-subtle: #918bb5;
 
     --accent: #c3aeea;
     --accent-hover: #d6c8f2;
     --accent-soft: #2e2240;
+
+    --mint-text: #3ed6ab;
+    --mint-soft: #14302a;
+    --gelb-text: #f7bc5b;
+    --gelb-soft: #33280f;
+
+    --raster-linie: rgb(237 234 247 / 0.07);
+    --raster-kreuz: rgb(237 234 247 / 0.22);
 
     /* Lila als Textfarbe auf dunklem Grund aufhellen (Kontrast) */
     --brand-pink: #b89be3;
@@ -195,6 +224,20 @@ p {
   text-wrap: pretty;
 }
 
+/* Lange, nicht trennbare Zeichenketten — in der Praxis vor allem ausge-
+   schriebene URLs — schoben auf dem Telefon die ganze Seite nach rechts
+   (gemessen im Impressum: 395px Inhalt in einem 390px breiten Fenster).
+   break-word trennt nur, wenn es anders nicht passt, und laesst normalen
+   Fliesstext unangetastet. */
+p,
+li,
+dd,
+td,
+th,
+figcaption {
+  overflow-wrap: break-word;
+}
+
 ul,
 ol {
   padding-left: 1.35rem;
@@ -266,6 +309,13 @@ th {
 
 /* -------------------------------------------------------------- Layout -- */
 
+/* Platz fuer die feststehende Statusleiste am unteren Rand. */
+@media (min-width: 920px) {
+  body {
+    padding-bottom: 2.1rem;
+  }
+}
+
 .wrap {
   width: 100%;
   max-width: var(--w-wide);
@@ -294,15 +344,55 @@ main {
 /* Badge-Pill — wie „OUT NOW" / „POWERFUL FEATURES" auf octa-ai.app */
 .eyebrow {
   display: inline-block;
-  font-size: 0.76rem;
+  /* Mono als zweite Stimme: alles, was Beschriftung ist statt Inhalt.
+     --font-mono zeigt auf die Systemschrift, kostet also kein Byte. */
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   background: var(--accent-soft);
-  border-radius: var(--radius-pill);
-  padding: 0.35rem 0.85rem;
+  /* Eckig statt rund: Pillen wirken werblich, Kaesten wie die Beschriftung
+     an einem Werkzeug. */
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.75rem;
   margin-bottom: 1.1rem;
+}
+
+/* Statusmarke — „Verfuegbar", „Kostenlos", „In Vorbereitung". */
+.marke {
+  display: inline-block;
+  font-family: var(--font-mono);
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marke--mint {
+  color: var(--mint-text);
+  background: var(--mint-soft);
+}
+
+.marke--gelb {
+  color: var(--gelb-text);
+  background: var(--gelb-soft);
+}
+
+/* Weiterleitungszeile am Fuss einer Karte. Stand bisher wortgleich in fuenf
+   Seiten; jetzt einmal hier. */
+.card__more {
+  margin-top: 0.9rem;
+  margin-bottom: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /* Hervorgehobenes Wort in einer Überschrift — wie „Your *Intelligent*
@@ -418,7 +508,7 @@ main {
 a.card:hover,
 .card--link:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
   color: inherit;
 }

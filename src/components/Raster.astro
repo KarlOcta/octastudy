@@ -13,9 +13,17 @@ export interface Props {
   class?: string;
   /** Kreuze nur oben, nicht unten — für Abschnitte, die direkt aneinandergrenzen. */
   nurOben?: boolean;
+  /**
+   * Feste Variante: liegt als unbewegter Grundriss hinter der ganzen Seite,
+   * statt einen einzelnen Abschnitt zu hinterlegen. So bekommt jede der
+   * 146 Seiten dasselbe Raster, ohne dass irgendeine davon angefasst werden
+   * muss — und die Kreuze sitzen wie Passermarken an den Ecken des
+   * Sichtfensters.
+   */
+  fest?: boolean;
 }
 
-const { class: extra = '', nurOben = false } = Astro.props;
+const { class: extra = '', nurOben = false, fest = false } = Astro.props;
 const spalten = [0, 25, 50, 75, 100];
 
 /* Ein Kreuz ist 9px breit und sitzt mittig auf seiner Linie. An den beiden
@@ -25,7 +33,7 @@ const spalten = [0, 25, 50, 75, 100];
 const versatz = (v: number) => (v === 0 ? '4px' : v === 100 ? '-4px' : '0px');
 ---
 
-<div class:list={['raster', extra]} aria-hidden="true">
+<div class:list={['raster', fest && 'raster--fest', extra]} aria-hidden="true">
   {
     spalten.map((x) => (
       <Fragment>
@@ -63,6 +71,12 @@ const versatz = (v: number) => (v === 0 ? '4px' : v === 100 ? '-4px' : '0px');
     border-right: 1px solid var(--raster-linie);
   }
 
+  .raster--fest {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+
   .raster__kreuz {
     position: absolute;
     left: var(--x);
@@ -96,6 +110,12 @@ const versatz = (v: number) => (v === 0 ? '4px' : v === 100 ? '-4px' : '0px');
 
   /* Auf schmalen Schirmen wird das Raster zur Unruhe: Bei 390px Breite
      liegen die Linien keine 100px auseinander. Dann nur noch die Kanten. */
+  @media print {
+    .raster {
+      display: none;
+    }
+  }
+
   @media (max-width: 720px) {
     .raster {
       background-image: repeating-linear-gradient(

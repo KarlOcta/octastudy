@@ -11,7 +11,8 @@
  * bleibt es dabei, und nichts springt.
  */
 export interface Props {
-  bestand: string;
+  /** Mittlerer Teil. Fehlt er, bleibt die Mitte leer. */
+  bestand?: string;
 }
 
 const { bestand } = Astro.props;

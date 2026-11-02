@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import LerntypenHero from '../components/LerntypenHero.astro';
 import HeroVideo from '../components/HeroVideo.astro';
 import Raster from '../components/Raster.astro';
-import Statusleiste from '../components/Statusleiste.astro';
 import ZahlenStreifen from '../components/ZahlenStreifen.astro';
 import { OCTA } from '../site';
 import schemata from '../data/jura-schemata.json';
@@ -187,7 +186,6 @@ const werkzeuge = [
     </div>
   </section>
 
-  <Statusleiste bestand={`${schemata.length} Schemata · ${klausurfaelle.length} Fälle · ${schemata.length * 2} PDFs`} />
 </BaseLayout>
 
 <script>
@@ -236,83 +234,16 @@ const werkzeuge = [
   }
 </script>
 
-<style is:global>
-  /* Warmer Grundton statt des kalten #fcfbff. Der alte Wert zieht ins
-     Blaeuliche und laesst die Seite blass wirken; weisse Karten heben sich
-     davon kaum ab (Verhaeltnis 1,03). Auf #faf8f3 sind es 1,06 — wenig in
-     Zahlen, viel fuers Auge. Alle Textfarben bleiben ueber AA, gemessen:
-     Text 13,0 · gedaempft 6,4 · zurueckhaltend 4,8 · Akzent 6,4.
 
-     is:global, weil der Grundton am <body> haengt und der aus dem Layout
-     kommt. Der Block steht nur auf dieser Seite, die uebrigen 110 Seiten
-     bleiben unberuehrt. */
-  :root {
-    --bg: #faf8f3;
-    --raster-linie: rgb(44 42 68 / 0.07);
-    --raster-kreuz: rgb(44 42 68 / 0.22);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #15102a;
-      --raster-linie: rgb(237 234 247 / 0.07);
-      --raster-kreuz: rgb(237 234 247 / 0.22);
-    }
-  }
-
-  /* Platz fuer die feststehende Statusleiste, damit sie nichts verdeckt. */
-  @media (min-width: 920px) {
-    body {
-      padding-bottom: 2.1rem;
-    }
-  }
-</style>
 
 <style>
-  /* ---------------------------------------------------------- Farbtokens --
-     Mint und Gelb stehen seit jeher in global.css und wurden nie benutzt —
-     aus einem guten Grund: #17b98d auf Weiss hat 2,5:1 Kontrast, #f5a524
-     sogar nur 2,0:1. Als Text waeren beide unlesbar. Hier stehen deshalb
-     abgedunkelte Varianten fuer Text (gemessen 5,3:1 und 5,4:1 auf ihrer
-     jeweiligen Flaeche) und die hellen Originale fuer den Dunkelmodus.
-     Lokal gehalten, weil nur die Startseite umgebaut wird; sobald der Rest
-     der Seite folgt, gehoeren sie nach global.css. */
-  .hero,
-  .band,
-  section {
-    --mint-text: #0a7257;
-    --mint-soft: #e3f7f0;
-    --gelb-text: #8a5806;
-    --gelb-soft: #fdf1dc;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .hero,
-    .band,
-    section {
-      --mint-text: #3ed6ab;
-      --mint-soft: #14302a;
-      --gelb-text: #f7bc5b;
-      --gelb-soft: #33280f;
-    }
-  }
-
   /* --------------------------------------------------------- Typografie --
      Mono als zweite Stimme: alles, was Beschriftung ist statt Inhalt —
      Marken, Jahreszahlen, Kennzahlen, Weiterleitungen. Das ist der groesste
      einzelne Charaktergewinn und kostet null Byte, weil --font-mono auf die
      Systemschrift zeigt. */
-  .eyebrow,
-  .marke,
-  .card__more,
   .ausblick__label {
     font-family: var(--font-mono);
-  }
-
-  .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    border-radius: var(--radius-sm);
   }
 
   /* Groesser und enger als die Grundskala. Die Startseite hat genau eine
@@ -346,34 +277,6 @@ const werkzeuge = [
     max-width: 34rem;
   }
 
-  .card__more {
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* ------------------------------------------------------------- Marken --
-     Eckiger statt rund: Pillen wirken weich und werblich, Kaesten wirken
-     wie Beschriftung an einem Werkzeug. */
-  .marke {
-    display: inline-block;
-    padding: 0.22rem 0.55rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-  }
-
-  .marke--mint {
-    color: var(--mint-text);
-    background: var(--mint-soft);
-  }
-
-  .marke--gelb {
-    color: var(--gelb-text);
-    background: var(--gelb-soft);
-  }
 
   /* --------------------------------------------------------------- Hero -- */
   .hero {
@@ -572,14 +475,6 @@ const werkzeuge = [
 
   .karte-plus .marke {
     margin-bottom: 0.7rem;
-  }
-
-  .card__more {
-    margin-top: 0.9rem;
-    margin-bottom: 0;
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 0.95rem;
   }
 
   .section-intro {

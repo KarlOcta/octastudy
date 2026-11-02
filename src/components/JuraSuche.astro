@@ -308,6 +308,13 @@ const {
     display: none;
   }
 
+  /* Das hidden-Attribut setzt display: none nur als Browser-Vorgabe; ein
+     eigenes display in der Regel darunter schlaegt sie. Ohne diese Zeile
+     stand das Kreuz auch im leeren Feld. */
+  .jsuche__leeren[hidden] {
+    display: none;
+  }
+
   .jsuche__leeren {
     position: absolute;
     right: 0.35rem;

@@ -142,6 +142,8 @@ const rotatorSlides = [pitch, ratingLine, ...reviewLines];
   .sticky-cta {
     position: fixed;
     left: 50%;
+    /* Ab 920px steht unten die Statusleiste (2,1rem hoch). Ohne diesen
+       Abstand laegen beide uebereinander. */
     bottom: 0.9rem;
     transform: translate(-50%, 1.4rem);
     z-index: 40;
@@ -236,6 +238,17 @@ const rotatorSlides = [pitch, ratingLine, ...reviewLines];
   @media (max-width: 480px) {
     .sticky-cta__text {
       display: none;
+    }
+  }
+
+  /* Ab 920px steht unten die feststehende Statusleiste (2,1rem hoch); ohne
+     diesen Abstand laegen beide uebereinander. Diese Regel MUSS hinter der
+     Grundregel stehen: Eine Media Query erhoeht die Spezifitaet nicht, sie
+     gewinnt allein durch ihre Position in der Datei. Stand sie vorher oben,
+     wurde sie von `bottom: 0.9rem` wieder ueberschrieben. */
+  @media (min-width: 920px) {
+    .sticky-cta {
+      bottom: 3rem;
     }
   }
 </style>

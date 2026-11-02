@@ -2,6 +2,10 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import Raster from '../components/Raster.astro';
+import Statusleiste from '../components/Statusleiste.astro';
+import schemata from '../data/jura-schemata.json';
+import klausurfaelle from '../data/jura-klausurfaelle.json';
 import { SITE, META_PIXEL_ID } from '../site';
 import '../styles/global.css';
 
@@ -63,6 +67,14 @@ const homeHref = lang === 'en' ? '/en/' : '/';
 const breadcrumbLabel = lang === 'en' ? 'Breadcrumb' : 'Brotkrumen-Navigation';
 
 const containerClass = wide ? 'wrap' : 'prose';
+
+/* Bestand fuer die Statusleiste, aus den Daten gezaehlt statt von Hand
+   gepflegt. Zu jedem Schema liegen zwei PDFs unter public/downloads/jura/
+   — daher mal zwei. Auf englischen Seiten in englischen Worten. */
+const bestand =
+  lang === 'en'
+    ? `${schemata.length} outlines · ${klausurfaelle.length} cases · ${schemata.length * 2} PDFs`
+    : `${schemata.length} Schemata · ${klausurfaelle.length} Fälle · ${schemata.length * 2} PDFs`;
 
 // --- Schema.org --------------------------------------------------------
 const graph: Record<string, unknown>[] = [
@@ -324,6 +336,10 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
   </head>
 
   <body>
+    {/* Unbewegter Grundriss hinter der ganzen Seite — ein Element, das jede
+        Seite erbt, ohne dass eine davon angefasst werden muss. */}
+    <Raster fest />
+
     <a class="skip-link" href="#main">{skipLinkLabel}</a>
 
     <Header lang={lang} />
@@ -356,6 +372,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
     </main>
 
     <Footer lang={lang} />
+    <Statusleiste bestand={bestand} />
     <CookieConsent lang={lang} />
   </body>
 </html>
