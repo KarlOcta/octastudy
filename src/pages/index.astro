@@ -156,18 +156,34 @@ const werkzeuge = [
   <section class="wrap abschnitt">
     <Raster />
     <div class="octa-cta octa-cta--plus" data-reveal>
-      <h2>Gelesen ist nicht gekonnt</h2>
-      <p>
-        Material durchzuarbeiten heißt nicht, es zu können. {OCTA.pitch} Lade
-        dein Skript oder ein PDF von hier hoch — die Karteikarten entstehen
-        automatisch, und du sprichst die Antworten laut, statt sie stumm zu
-        überfliegen.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
-          {OCTA.name} im App Store ansehen
-        </a>
+      <div class="octa-cta__text">
+        <h2>Gelesen ist nicht gekonnt</h2>
+        <p>
+          Material durchzuarbeiten heißt nicht, es zu können. {OCTA.pitch} Lade
+          dein Skript oder ein PDF von hier hoch — die Karteikarten entstehen
+          automatisch, und du sprichst die Antworten laut, statt sie stumm zu
+          überfliegen.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href={OCTA.appStoreUrl} rel="noopener">
+            {OCTA.name} im App Store ansehen
+          </a>
+        </div>
       </div>
+
+      {/* Die Karteikarten-Ansicht und nicht der Lernplan: der Text daneben
+          spricht von Karteikarten, von „Test yourself" und von mündlichem
+          Feedback — genau das steht auf diesem Bildschirm. Ein Lernplan
+          daneben würde etwas anderes zeigen als das, was danebensteht. */}
+      <img
+        class="octa-cta__telefon"
+        src="/img/mockups/app/andere-karte.webp"
+        alt="Octa zeigt eine automatisch erzeugte Karteikarte mit Frage und Antwort, darüber die Knöpfe „Erklären“ und „Test yourself“"
+        width="752"
+        height="1559"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 
@@ -375,7 +391,12 @@ const werkzeuge = [
   .hero__schein {
     position: absolute;
     z-index: -1;
-    inset: -30% -15% auto -15%;
+    /* Feste Masse statt Prozent. Mit -30% haengt die Lage des Scheins an
+       der Hoehe des Heros — und die aendert sich, sobald die Hausschrift
+       nachlaedt und die Ueberschrift neu umbricht. Der Schein sprang dann
+       mit, und das zaehlte als Layoutverschiebung (gemessen 0,06 bei 232 ms).
+       Mit festen Werten kann ihn nichts mehr bewegen. */
+    inset: -11rem -15% auto -15%;
     height: 34rem;
     pointer-events: none;
     background-image:
@@ -602,13 +623,58 @@ const werkzeuge = [
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem 2.5rem;
+    align-items: end;
+  }
+
+  .octa-cta__text > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Das Telefon waechst aus der unteren Kante heraus: Der negative
+     Aussenabstand nimmt es aus der Hoehenrechnung, der Kasten bleibt so hoch
+     wie sein Text, und overflow: hidden schneidet den Rest sauber an der
+     abgerundeten Kante ab.
+
+     Die Breite steht hier und nicht in einer Komponente daneben: Astro
+     kapselt Stile je Datei, eine Regel von aussen erreicht das Element einer
+     fremden Komponente nicht — das Bild stuende sonst in seinen echten
+     752px da. */
+  .octa-cta__telefon {
+    position: relative;
+    z-index: 1;
+    width: 190px;
+    height: auto;
+    margin-bottom: calc(-1 * var(--telefon-schnitt, 8.5rem));
+    align-self: end;
+    filter: drop-shadow(0 18px 30px rgb(44 42 68 / 0.18));
+  }
+
+  @media (max-width: 760px) {
+    .octa-cta--plus {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 1.8rem;
+    }
+
+    .octa-cta__text {
+      justify-self: start;
+    }
+
+    .octa-cta__telefon {
+      width: 168px;
+      --telefon-schnitt: 6rem;
+    }
   }
 
   .octa-cta--plus::after {
     content: '';
     position: absolute;
-    right: -8%;
-    top: -60%;
+    /* Nach links oben versetzt: rechts unten steht jetzt das Telefon. */
+    right: 14%;
+    top: -70%;
     width: 24rem;
     height: 24rem;
     border-radius: 50%;
